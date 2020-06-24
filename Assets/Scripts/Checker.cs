@@ -4,7 +4,12 @@ using UnityEngine.UI;
 
 public class Checker : MonoBehaviour
 {
-    public static byte countId = 0;
+    /* coiuntId - cчетчик id для шайб
+     * upCount - счетчик количества шайб у верхнего игрока
+     * downCoun - счетчик количества шайб у нижнего игрока
+     */
+
+    public static byte countId = 0, upCount = 0, downCount = 0;
     public byte id;
 
     //Нитка
@@ -24,9 +29,6 @@ public class Checker : MonoBehaviour
     public GameObject rightBorderHolder;
     Border playerLeftBorder;
     Border playerRightBorder;
-
-    //кол-во шайб на полях
-    public static int upCount = 0, downCount = 0;
 
     struct Border
     {

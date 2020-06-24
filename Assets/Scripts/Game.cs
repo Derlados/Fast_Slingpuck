@@ -9,6 +9,7 @@ public class Game : MonoBehaviour
     public Text gameOverText;
     private bool gameOver, gamePaused;
     public GameObject pauseMenuCanvas, gameOverCanvas;
+    public GameObject AI;
 
     private void Start()
     {
@@ -36,11 +37,12 @@ public class Game : MonoBehaviour
 
         if (Checker.upCount == 0)
         {
+
             gameOverText.text = "Up Win!";
             gameOver = true;
             Time.timeScale = 0;
             gameOverCanvas.SetActive(true);
-
+            AI.GetComponent<AI>().active = false;
         }
 
         if (Checker.downCount == 0)
@@ -49,6 +51,7 @@ public class Game : MonoBehaviour
             gameOver = true;
             Time.timeScale = 0;
             gameOverCanvas.SetActive(true);
+            AI.GetComponent<AI>().active = false;
         }
         // Debug.Log("upCount=" + Checker.upCount + " and downCount=" + Checker.downCount);
     }
