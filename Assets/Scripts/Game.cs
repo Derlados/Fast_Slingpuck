@@ -10,69 +10,86 @@ public class Game : MonoBehaviour
     private bool gameOver, gamePaused;
     public GameObject pauseMenuCanvas, gameOverCanvas;
     public GameObject AI;
+    bool gameStarted;
 
     private void Start()
     {
-        StartCoroutine(delaySec(20));
-        Debug.Log("Start");
+        StartCoroutine(delaySec(2));
+        StartCoroutine(delayAI(1));
     }
 
     void Update()
     {
-
-        if (Input.GetKeyDown(KeyCode.Escape))
+        if (gameStarted)
         {
-            if (!gameOver)
+            if (Input.GetKeyDown(KeyCode.Escape))
             {
-                if (!gamePaused)
+                if (!gameOver)
                 {
-                    PauseMenu();
-                }
-                else
-                {
-                    UnPauseMenu();
+                    if (!gamePaused)
+                    {
+                        PauseMenu();
+                    }
+                    else
+                    {
+                        UnPauseMenu();
+                    }
                 }
             }
-        }
 
-        if (Checker.upCount == 0)
-        {
-            gameOverText.text = "Up Win!";
-            gameOver = true;
-            gameOverCanvas.SetActive(true);
-            AI.GetComponent<AI>().active = false;
-        }
+            if (Checker.upCount == 0)
+            {
+                gameOverText.text = "Up Win!";
+                gameOver = true;
+                gameOverCanvas.SetActive(true);
+                AI.GetComponent<AI>().active = false;
+            }
 
-        if (Checker.downCount == 0)
-        {
+            if (Checker.downCount == 0)
+            {
 
-            gameOverText.text = "Down Win!";
-            gameOver = true;
-            gameOverCanvas.SetActive(true);
-            AI.GetComponent<AI>().active = false;
+                gameOverText.text = "Down Win!";
+                gameOver = true;
+                gameOverCanvas.SetActive(true);
+                AI.GetComponent<AI>().active = false;
+            }
+            // Debug.Log("upCount=" + Checker.upCount + " and downCount=" + Checker.downCount);
         }
-        // Debug.Log("upCount=" + Checker.upCount + " and downCount=" + Checker.downCount);
     }
 
     public void PauseMenu()
     {
         gamePaused = true;
+        Time.timeScale = 0f;
         pauseMenuCanvas.SetActive(true);
     }
 
     public void UnPauseMenu()
     {
         gamePaused = false;
+        Time.timeScale = 1f;
         pauseMenuCanvas.SetActive(false);
     }
 
     public void ToMainMenuPressed()
     {
         SceneManager.LoadScene("Menu");
+        Checker.upCount = 0;
+        Checker.downCount = 0;
+        Time.timeScale = 1f;
     }
 
     IEnumerator delaySec(float sec)
     {
         yield return new WaitForSeconds(sec);
+        gameStarted = true;
     }
+
+    IEnumerator delayAI(float sec)
+    {
+        yield return new WaitForSeconds(sec);
+        AI.GetComponent<AI>().active = true;
+    }
+
+
 }

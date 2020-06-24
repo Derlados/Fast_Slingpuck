@@ -56,26 +56,24 @@ public class Checker : MonoBehaviour
         body = GetComponent<Rigidbody2D>(); // Оптимизация чтобы не вызывать постоянно GetComponent для Rigidbody2D
     }
 
-    private void Update()
+    private void OnMouseDrag()
     {
-        if (mouseDown)
-        {
-            Vector2 Cursor = Input.mousePosition;
-            Cursor = Camera.main.ScreenToWorldPoint(Cursor);
+        Vector2 Cursor = Input.mousePosition;
+        Cursor = Camera.main.ScreenToWorldPoint(Cursor);
 
-            if (objTransform.position.y < 0)
-            {
-                Vector2 clampedMousePos = new Vector2(Mathf.Clamp(Cursor.x, playerLeftBorder.Left, playerLeftBorder.Right),
-                Mathf.Clamp(Cursor.y, playerLeftBorder.Down, playerLeftBorder.Up));
-                transform.position = Vector2.MoveTowards(transform.position, clampedMousePos, Time.deltaTime * 100f);
-            }
-            else
-            {
-                Vector2 clampedMousePos = new Vector2(Mathf.Clamp(Cursor.x, playerRightBorder.Left, playerRightBorder.Right),
-                Mathf.Clamp(Cursor.y, playerRightBorder.Down, playerRightBorder.Up));
-                transform.position =  Vector2.MoveTowards(transform.position, clampedMousePos, Time.deltaTime * 100f);
-            }
+        if (objTransform.position.y < 0)
+        {
+            Vector2 clampedMousePos = new Vector2(Mathf.Clamp(Cursor.x, playerLeftBorder.Left, playerLeftBorder.Right),
+            Mathf.Clamp(Cursor.y, playerLeftBorder.Down, playerLeftBorder.Up));
+            transform.position = Vector2.MoveTowards(transform.position, clampedMousePos, Time.deltaTime * 100f);
         }
+        else
+        {
+            Vector2 clampedMousePos = new Vector2(Mathf.Clamp(Cursor.x, playerRightBorder.Left, playerRightBorder.Right),
+            Mathf.Clamp(Cursor.y, playerRightBorder.Down, playerRightBorder.Up));
+            transform.position = Vector2.MoveTowards(transform.position, clampedMousePos, Time.deltaTime * 100f);
+        }
+
     }
 
     void Start()
@@ -141,32 +139,16 @@ public class Checker : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D col)
     {
         if (col.tag == "UpBorder")
-        {
             upCount++;
-
-            // Debug.Log("Entered UpBorder where now upCount=" + upCount + " and downCount=" + downCount);
-        }
-
         if (col.tag == "DownBorder")
-        {
             downCount++;
-
-            // Debug.Log("Entered DownBorder where now upCount=" + upCount + " and downCount=" + downCount);
-        }
     }
 
     private void OnTriggerExit2D(Collider2D col)
     {
         if (col.tag == "UpBorder")
-        {
             upCount--;
-            // Debug.Log("Exited UpBorder where now upCount=" + upCount + " and downCount=" + downCount);
-        }
-
         if (col.tag == "DownBorder")
-        {
             downCount--;
-            // Debug.Log("Exited DownBorder where now upCount=" + upCount + " and downCount=" + downCount);
-        }
     }
 }
