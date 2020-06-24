@@ -2,34 +2,78 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class Game : MonoBehaviour
 {
-    Text text;
+    public Text gameOverText;
+    private bool gameOver, gamePaused;
+    public GameObject pauseMenuCanvas, gameOverCanvas;
 
     private void Start()
     {
-        text = GetComponent<Text>();
-        text.enabled = false;
+        StartCoroutine(delaySec(20));
+        Debug.Log("Start");
     }
 
     void Update()
     {
+
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            if (!gameOver)
+            {
+                if (!gamePaused)
+                {
+                    PauseMenu();
+                }
+                else
+                {
+                    UnPauseMenu();
+                }
+            }
+        }
+
         if (Checker.upCount == 0)
         {
-            text.text = "Up Win!";
-            text.enabled = true;
-            //Debug.Log("Up Win!");
-           // Debug.Log("upCount=" + Checker.upCount + " and downCount=" + Checker.downCount);
+            gameOverText.text = "Up Win!";
+            gameOver = true;
+            Time.timeScale = 0;
+            gameOverCanvas.SetActive(true);
 
         }
 
         if (Checker.downCount == 0)
         {
-            text.text = "Down Win!";
-            text.enabled = true;
-           // Debug.Log("down Win!");
-           // Debug.Log("upCount=" + Checker.upCount + " and downCount=" + Checker.downCount);
+            gameOverText.text = "Down Win!";
+            gameOver = true;
+            Time.timeScale = 0;
+            gameOverCanvas.SetActive(true);
         }
+        // Debug.Log("upCount=" + Checker.upCount + " and downCount=" + Checker.downCount);
+    }
+
+    public void PauseMenu()
+    {
+        gamePaused = true;
+        Time.timeScale = 0;
+        pauseMenuCanvas.SetActive(true);
+    }
+
+    public void UnPauseMenu()
+    {
+        gamePaused = false;
+        Time.timeScale = 1;
+        pauseMenuCanvas.SetActive(false);
+    }
+
+    public void ToMainMenuPressed()
+    {
+        SceneManager.LoadScene("Menu");
+    }
+
+    IEnumerator delaySec(float sec)
+    {
+        yield return new WaitForSeconds(sec);
     }
 }

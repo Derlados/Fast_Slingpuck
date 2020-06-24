@@ -89,8 +89,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bb5fd8b80ddbfda4b83cdfd445bae523, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  id: 0
   DownString: {fileID: 0}
   UpString: {fileID: 0}
+  speed: 5
   leftBorderHolder: {fileID: 0}
   rightBorderHolder: {fileID: 0}
 --- !u!58 &1095559404968874012

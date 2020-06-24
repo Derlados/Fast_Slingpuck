@@ -1,5 +1,6 @@
 using BaseStructures;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Checker : MonoBehaviour
 {
@@ -16,6 +17,7 @@ public class Checker : MonoBehaviour
     float V = 0.0f, radius; // начальная скорость объекта и радиус объекта
     Transform objTransform; // компоненты Transfrom объекта
     ScreenOptimization screenOpt;
+    public float speed;
 
     // Границы поля
     public GameObject leftBorderHolder;
@@ -53,7 +55,6 @@ public class Checker : MonoBehaviour
 
     void Start()
     {
-       
         // Границы поля
         Pair<Vector2, Vector2> points;
         points = screenOpt.GetWorldCoord2D(leftBorderHolder);
@@ -74,23 +75,27 @@ public class Checker : MonoBehaviour
     //Пермещения объекта при его удержании
     private void OnMouseDrag()
     {
-        Vector2 Cursor = Input.mousePosition;
-        Cursor = Camera.main.ScreenToWorldPoint(Cursor);
+        if (mouseDown)
+        {
+            Vector2 Cursor = Input.mousePosition;
+            Cursor = Camera.main.ScreenToWorldPoint(Cursor);
 
-        if (objTransform.position.y < 0)
-        {
-            Vector2 clampedMousePos = new Vector2(Mathf.Clamp(Cursor.x, playerLeftBorder.Left, playerLeftBorder.Right),
-            Mathf.Clamp(Cursor.y, playerLeftBorder.Down, playerLeftBorder.Up));
-            body.MovePosition(clampedMousePos);
-        }
-        else
-        {
-            Vector2 clampedMousePos = new Vector2(Mathf.Clamp(Cursor.x, playerRightBorder.Left, playerRightBorder.Right),
-            Mathf.Clamp(Cursor.y, playerRightBorder.Down, playerRightBorder.Up));
-            body.MovePosition(clampedMousePos);
+            if (objTransform.position.y < 0)
+            {
+                Vector2 clampedMousePos = new Vector2(Mathf.Clamp(Cursor.x, playerLeftBorder.Left, playerLeftBorder.Right),
+                Mathf.Clamp(Cursor.y, playerLeftBorder.Down, playerLeftBorder.Up));
+                //clampedMousePos = clampedMousePos.normalized * Time.deltaTime*20.0f;
+                //objTransform.Translate(Cursor);
+                body.MovePosition(clampedMousePos);
+            }
+            else
+            {
+                Vector2 clampedMousePos = new Vector2(Mathf.Clamp(Cursor.x, playerRightBorder.Left, playerRightBorder.Right),
+                Mathf.Clamp(Cursor.y, playerRightBorder.Down, playerRightBorder.Up));
+                body.MovePosition(clampedMousePos);
+            }
         }
     }
-
     public void OnMouseDown()
     {
         body.bodyType = RigidbodyType2D.Kinematic;

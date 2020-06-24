@@ -69,6 +69,7 @@
     <Compile Include="Assets\Scripts\BezierLine.cs" />
     <Compile Include="Assets\Scripts\Checker.cs" />
     <Compile Include="Assets\Scripts\Game.cs" />
+    <Compile Include="Assets\Scripts\MainMenu.cs" />
     <Compile Include="Assets\Scripts\ScreenOptimization.cs" />
     <Reference Include="UnityEngine">
       <HintPath>E:/Programs/Unity/2019.4.1f1/Editor/Data/Managed/UnityEngine/UnityEngine.dll</HintPath>
