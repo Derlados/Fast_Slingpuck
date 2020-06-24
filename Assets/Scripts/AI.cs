@@ -20,22 +20,24 @@ public class AI : MonoBehaviour
     }
 
     public List<GameObject> checkers; // список всех шайб которыми может играть AI
-    public BezierLine line;
+    public BezierLine line; // нить AI
     private Status statusType = Status.free;
 
-    private bool active; // false - AI отключен, true - AI включен
-    public float leftBorder, rightBorder, upBorder;
-    private Vector2 target;
-    private Transform keepObj;
-    ScreenOptimization screenOpt;
+    public bool active;    // false - AI отключен, true - AI включен
+    public float speedAI, accuracyAI;   // speedAi - скорость AI, accuracyAi - точность AI (разброс в процентах)
+    private float leftBorder, rightBorder, upBorder;    // границы бота
+    private Vector2 target;     // позиция шайбы для запуска
+    private Transform keepObj;  // удерживаемая шайба
+    ScreenOptimization screenOpt; 
 
 
     private void Start()
     {
+        accuracyAI /= 2;
         screenOpt = ScreenOptimization.getInstance();
         upBorder = screenOpt.GetWorldCoord2D(gameObject).first.y;
-        leftBorder = Camera.main.ScreenToWorldPoint(new Vector2(0.25f * Screen.width, 0)).x;
-        rightBorder = Camera.main.ScreenToWorldPoint(new Vector2(0.75f * Screen.width, 0)).x;
+        leftBorder = Camera.main.ScreenToWorldPoint(new Vector2((0.5f - accuracyAI) * Screen.width, 0)).x;
+        rightBorder = Camera.main.ScreenToWorldPoint(new Vector2((0.5f + accuracyAI) * Screen.width, 0)).x;
     }
 
     void Update()
@@ -47,7 +49,7 @@ public class AI : MonoBehaviour
 
         if (statusType == Status.keep)
         {
-            keepObj.position = Vector2.MoveTowards(keepObj.position, target, Time.deltaTime);
+            keepObj.position = Vector2.MoveTowards(keepObj.position, target, Time.deltaTime * speedAI);
             if ((Vector2)keepObj.position == target)
                 statusType = Status.ready;
         }
