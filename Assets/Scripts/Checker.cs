@@ -23,6 +23,9 @@ public class Checker : MonoBehaviour
     Border playerLeftBorder;
     Border playerRightBorder;
 
+    //кол-во шайб на полях
+    public static int upCount = 0, downCount = 0;
+
     struct Border
     {
         public float Up, Down, Left, Right;
@@ -69,42 +72,30 @@ public class Checker : MonoBehaviour
     }
 
     //Пермещения объекта при его удержании
-    void FixedUpdate()
+    private void OnMouseDrag()
     {
-        //Дебаг
-        //Debug.Log(Camera.main.ScreenToWorldPoint(Input.mousePosition));
+        Vector2 Cursor = Input.mousePosition;
+        Cursor = Camera.main.ScreenToWorldPoint(Cursor);
 
-        //Проверка выхода за границы поля
-        if (mouseDown)
+        if (objTransform.position.y < 0)
         {
-            Vector2 Cursor = Input.mousePosition;
-            Cursor = Camera.main.ScreenToWorldPoint(Cursor);
-
-            if (objTransform.position.y < 0)
-            {
-                Vector2 clampedMousePos = new Vector2(Mathf.Clamp(Cursor.x, playerLeftBorder.Left, playerLeftBorder.Right),
-                Mathf.Clamp(Cursor.y, playerLeftBorder.Down, playerLeftBorder.Up));
-                body.MovePosition(clampedMousePos);
-            }
-            else
-            {
-                Vector2 clampedMousePos = new Vector2(Mathf.Clamp(Cursor.x, playerRightBorder.Left, playerRightBorder.Right),
-                Mathf.Clamp(Cursor.y, playerRightBorder.Down, playerRightBorder.Up));
-                body.MovePosition(clampedMousePos);
-            }
+            Vector2 clampedMousePos = new Vector2(Mathf.Clamp(Cursor.x, playerLeftBorder.Left, playerLeftBorder.Right),
+            Mathf.Clamp(Cursor.y, playerLeftBorder.Down, playerLeftBorder.Up));
+            body.MovePosition(clampedMousePos);
+        }
+        else
+        {
+            Vector2 clampedMousePos = new Vector2(Mathf.Clamp(Cursor.x, playerRightBorder.Left, playerRightBorder.Right),
+            Mathf.Clamp(Cursor.y, playerRightBorder.Down, playerRightBorder.Up));
+            body.MovePosition(clampedMousePos);
         }
     }
 
-    public void Keep()
+    public void OnMouseDown()
     {
         body.bodyType = RigidbodyType2D.Kinematic;
         body.velocity *= 0;
         V = 0.0f;
-    }
-
-    private void OnMouseDown()
-    {
-        Keep();
         mouseDown = true;
     }
 
@@ -139,5 +130,36 @@ public class Checker : MonoBehaviour
     public bool getMouseDown()
     {
         return mouseDown;
+    }
+    private void OnTriggerEnter2D(Collider2D col)
+    {
+        if (col.tag == "UpBorder")
+        {
+            upCount++;
+
+            // Debug.Log("Entered UpBorder where now upCount=" + upCount + " and downCount=" + downCount);
+        }
+
+        if (col.tag == "DownBorder")
+        {
+            downCount++;
+
+            // Debug.Log("Entered DownBorder where now upCount=" + upCount + " and downCount=" + downCount);
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D col)
+    {
+        if (col.tag == "UpBorder")
+        {
+            upCount--;
+            // Debug.Log("Exited UpBorder where now upCount=" + upCount + " and downCount=" + downCount);
+        }
+
+        if (col.tag == "DownBorder")
+        {
+            downCount--;
+            // Debug.Log("Exited DownBorder where now upCount=" + upCount + " and downCount=" + downCount);
+        }
     }
 }
