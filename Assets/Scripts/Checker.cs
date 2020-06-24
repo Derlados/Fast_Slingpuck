@@ -15,11 +15,12 @@ public class Checker : MonoBehaviour
     public BezierLine DownString, UpString;
 
     // Физическое тело
-    private Rigidbody2D body;
+    public Rigidbody2D body;
+    public Transform objTransform; // компоненты Transfrom объекта
 
     bool mouseDown = false; // Проверка нажатия на предмет
     float V = 0.0f, radius; // начальная скорость объекта и радиус объекта
-    Transform objTransform; // компоненты Transfrom объекта
+
     ScreenOptimization screenOpt;
 
     // Границы поля

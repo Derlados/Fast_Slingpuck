@@ -1570,8 +1570,8 @@ MonoBehaviour:
   checkers: []
   line: {fileID: 6473322893027568490}
   active: 0
-  speedAI: 0
-  accuracyAI: 0
+  speedAI: 3
+  accuracyAI: 0.2
 --- !u!224 &1164929598 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 1095559404968874082, guid: 87673815b8b84a54bab8eb13a6d0c988,

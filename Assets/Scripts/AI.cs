@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System;
 using UnityEngine;
+using System.Linq;
 
 public class AI : MonoBehaviour
 {
@@ -19,7 +20,7 @@ public class AI : MonoBehaviour
         wait
     }
 
-    public List<GameObject> checkers; // список всех шайб которыми может играть AI
+    public List<Checker> checkers; // список всех шайб которыми может играть AI
     public BezierLine line; // нить AI
     private Status statusType = Status.free;
 
@@ -43,9 +44,7 @@ public class AI : MonoBehaviour
     void Update()
     {
         if (Input.GetKeyDown("space"))
-        {
             active = true;
-        }
 
         if (statusType == Status.keep)
         {
@@ -58,7 +57,11 @@ public class AI : MonoBehaviour
         {
             System.Random random = new System.Random();
 
-            keepObj = checkers[random.Next(0, checkers.Count)].GetComponent<Transform>();
+            keepObj = checkers[0].objTransform;
+            for (int i = 1; i < checkers.Count; ++i)
+                if (checkers[i].objTransform.position.y > keepObj.position.y)
+                    keepObj = checkers[i].objTransform;
+
             keepObj.GetComponent<Checker>().OnMouseDown();
             target = new Vector2(UnityEngine.Random.Range(leftBorder, rightBorder), upBorder - 1.2f * keepObj.GetComponent<Checker>().getRadius());
 
@@ -74,12 +77,12 @@ public class AI : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D col)
     {
-        checkers.Add(col.gameObject);
+        checkers.Add(col.gameObject.GetComponent<Checker>());
     }
 
     private void OnTriggerExit2D(Collider2D col)
     {
-        checkers.Remove(checkers.Find(item => item.GetComponent<Checker>().id == col.gameObject.GetComponent<Checker>().id));
+        checkers.Remove(checkers.Find(item => item.id == col.gameObject.GetComponent<Checker>().id));
     }
 
     IEnumerator delayToPush(float sec, Transform obj)
