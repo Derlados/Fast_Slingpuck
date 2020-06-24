@@ -39,7 +39,6 @@ public class Game : MonoBehaviour
         {
             gameOverText.text = "Up Win!";
             gameOver = true;
-            Time.timeScale = 0;
             gameOverCanvas.SetActive(true);
             AI.GetComponent<AI>().active = false;
         }
@@ -49,7 +48,6 @@ public class Game : MonoBehaviour
 
             gameOverText.text = "Down Win!";
             gameOver = true;
-            Time.timeScale = 0;
             gameOverCanvas.SetActive(true);
             AI.GetComponent<AI>().active = false;
         }
@@ -59,14 +57,12 @@ public class Game : MonoBehaviour
     public void PauseMenu()
     {
         gamePaused = true;
-        Time.timeScale = 0;
         pauseMenuCanvas.SetActive(true);
     }
 
     public void UnPauseMenu()
     {
         gamePaused = false;
-        Time.timeScale = 1;
         pauseMenuCanvas.SetActive(false);
     }
 
