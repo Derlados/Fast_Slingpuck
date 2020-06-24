@@ -618,6 +618,11 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0.5
       objectReference: {fileID: 0}
+    - target: {fileID: 1095559404968874083, guid: 87673815b8b84a54bab8eb13a6d0c988,
+        type: 3}
+      propertyPath: m_CollisionDetection
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 87673815b8b84a54bab8eb13a6d0c988, type: 3}
 --- !u!1 &331001276
@@ -1871,6 +1876,7 @@ MonoBehaviour:
   gameOverText: {fileID: 652561171}
   pauseMenuCanvas: {fileID: 635218720}
   gameOverCanvas: {fileID: 331001276}
+  AI: {fileID: 0}
 --- !u!224 &1000429449 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 8287065915231190911, guid: 6bf36e7648fa93e44b4af861ccb60171,
@@ -2172,7 +2178,7 @@ GameObject:
   - component: {fileID: 1137931242}
   - component: {fileID: 1137931243}
   m_Layer: 0
-  m_Name: UpBorderHolder
+  m_Name: UpBorderHolder(AI)
   m_TagString: UpBorder
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2249,9 +2255,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   checkers: []
   line: {fileID: 6473322893027568490}
-  leftBorder: 0
-  rightBorder: 0
-  upBorder: 0
+  active: 0
+  speedAI: 0
+  accuracyAI: 0
 --- !u!224 &1164929598 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 1095559404968874082, guid: 87673815b8b84a54bab8eb13a6d0c988,
@@ -2613,6 +2619,11 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0.5
       objectReference: {fileID: 0}
+    - target: {fileID: 1095559404968874083, guid: 87673815b8b84a54bab8eb13a6d0c988,
+        type: 3}
+      propertyPath: m_CollisionDetection
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 87673815b8b84a54bab8eb13a6d0c988, type: 3}
 --- !u!1001 &1947564295
@@ -2761,6 +2772,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Pivot.y
       value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1095559404968874083, guid: 87673815b8b84a54bab8eb13a6d0c988,
+        type: 3}
+      propertyPath: m_CollisionDetection
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 87673815b8b84a54bab8eb13a6d0c988, type: 3}
@@ -3173,6 +3189,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Pivot.y
       value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1095559404968874083, guid: 87673815b8b84a54bab8eb13a6d0c988,
+        type: 3}
+      propertyPath: m_CollisionDetection
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 87673815b8b84a54bab8eb13a6d0c988, type: 3}

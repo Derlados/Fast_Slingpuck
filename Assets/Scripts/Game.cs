@@ -37,7 +37,6 @@ public class Game : MonoBehaviour
 
         if (Checker.upCount == 0)
         {
-
             gameOverText.text = "Up Win!";
             gameOver = true;
             Time.timeScale = 0;
@@ -47,6 +46,7 @@ public class Game : MonoBehaviour
 
         if (Checker.downCount == 0)
         {
+
             gameOverText.text = "Down Win!";
             gameOver = true;
             Time.timeScale = 0;
