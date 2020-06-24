@@ -41,7 +41,7 @@ public class BezierLine : MonoBehaviour
 
         // Подсчет коррекции 
         correction = DownString ? Math.Abs(coordY - coords.first.y) : -Math.Abs(coordY - coords.first.y);
-        correctionForEdge = Camera.main.WorldToScreenPoint(new Vector2(startPoint.x, 1.5f * correction)).y - Screen.height / 2;
+        correctionForEdge = Camera.main.WorldToScreenPoint(new Vector2(startPoint.x, 2f * correction)).y - Screen.height / 2;
         checker = null;
 
         drawCalm();
