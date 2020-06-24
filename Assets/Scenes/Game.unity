@@ -98,7 +98,7 @@ LightmapSettings:
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 0
+  m_UseShadowmask: 1
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -507,6 +507,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Pivot.y
       value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1095559404968874083, guid: 87673815b8b84a54bab8eb13a6d0c988,
+        type: 3}
+      propertyPath: m_CollisionDetection
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 87673815b8b84a54bab8eb13a6d0c988, type: 3}
@@ -1487,7 +1492,7 @@ GameObject:
   - component: {fileID: 1137931242}
   - component: {fileID: 1137931243}
   m_Layer: 0
-  m_Name: UpBorderHolder
+  m_Name: UpBorderHolder(AI)
   m_TagString: UpBorder
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1564,9 +1569,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   checkers: []
   line: {fileID: 6473322893027568490}
-  leftBorder: 0
-  rightBorder: 0
-  upBorder: 0
+  active: 0
+  speedAI: 0
+  accuracyAI: 0
 --- !u!224 &1164929598 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 1095559404968874082, guid: 87673815b8b84a54bab8eb13a6d0c988,
@@ -1825,6 +1830,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 671cf267072778e4e9284e8699b4f8ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  AI: {fileID: 1137931239}
 --- !u!114 &1501976124
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2019,6 +2025,11 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0.5
       objectReference: {fileID: 0}
+    - target: {fileID: 1095559404968874083, guid: 87673815b8b84a54bab8eb13a6d0c988,
+        type: 3}
+      propertyPath: m_CollisionDetection
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 87673815b8b84a54bab8eb13a6d0c988, type: 3}
 --- !u!1001 &1947564295
@@ -2167,6 +2178,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Pivot.y
       value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1095559404968874083, guid: 87673815b8b84a54bab8eb13a6d0c988,
+        type: 3}
+      propertyPath: m_CollisionDetection
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 87673815b8b84a54bab8eb13a6d0c988, type: 3}
@@ -2574,6 +2590,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Pivot.y
       value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1095559404968874083, guid: 87673815b8b84a54bab8eb13a6d0c988,
+        type: 3}
+      propertyPath: m_CollisionDetection
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 87673815b8b84a54bab8eb13a6d0c988, type: 3}
