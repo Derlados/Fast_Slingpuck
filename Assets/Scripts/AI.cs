@@ -54,7 +54,6 @@ public class AI : MonoBehaviour
 
         if (active && statusType == Status.free)
         {
-            active = false;
             System.Random random = new System.Random();
 
             keepObj = checkers[random.Next(0, checkers.Count)].GetComponent<Transform>();
