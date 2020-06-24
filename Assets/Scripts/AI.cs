@@ -43,9 +43,6 @@ public class AI : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown("space"))
-            active = true;
-
         if (statusType == Status.keep)
         {
             keepObj.position = Vector2.MoveTowards(keepObj.position, target, Time.deltaTime * speedAI);
