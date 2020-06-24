@@ -54,11 +54,10 @@ public class AI : MonoBehaviour
 
         if (active && statusType == Status.free)
         {
-            active = false;
             System.Random random = new System.Random();
 
             keepObj = checkers[random.Next(0, checkers.Count)].GetComponent<Transform>();
-            keepObj.GetComponent<Checker>().Keep();
+            keepObj.GetComponent<Checker>().OnMouseDown();
             target = new Vector2(UnityEngine.Random.Range(leftBorder, rightBorder), upBorder - 1.2f * keepObj.GetComponent<Checker>().getRadius());
 
             statusType = Status.keep;
