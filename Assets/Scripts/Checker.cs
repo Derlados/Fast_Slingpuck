@@ -78,6 +78,8 @@ public class Checker : MonoBehaviour
 
     void Start()
     {
+        gameObject.transform.GetChild(0).GetComponent<TrailRenderer>().emitting = true;
+
         // Границы поля
         Pair<Vector2, Vector2> points;
         points = screenOpt.GetWorldCoord2D(leftBorderHolder);
@@ -98,7 +100,6 @@ public class Checker : MonoBehaviour
 
     public void OnMouseDown()
     {
-        body.bodyType = RigidbodyType2D.Kinematic;
         body.velocity *= 0;
         V = 0.0f;
         mouseDown = true;
@@ -106,8 +107,6 @@ public class Checker : MonoBehaviour
 
     public void OnMouseUp()
     {
-        body.bodyType = RigidbodyType2D.Dynamic;
-
         mouseDown = false;
         if (objTransform.position.y < 0)
         {
