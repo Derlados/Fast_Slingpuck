@@ -16,11 +16,12 @@ public class XMLManager : MonoBehaviour
 
     public Difficulty difficulty;
 
-    public void SaveItems(string mode,float speedAI, float accuracyAI)
+    public void SaveItems(string mode,float speedAI, float accuracyAI,float timeRest)
     {
         difficulty.mode = mode;
         difficulty.speedAI = speedAI;
         difficulty.accuracyAI = accuracyAI;
+        difficulty.timeRest = timeRest;
 
         XmlSerializer serializer = new XmlSerializer(typeof(Difficulty));
         FileStream fileStream = new FileStream(Application.persistentDataPath + "/settings.xml", FileMode.Create);
@@ -39,7 +40,7 @@ public class XMLManager : MonoBehaviour
         }
         catch
         {
-            SaveItems(Begginer.mode, Begginer.speed, Begginer.accuracyAI);
+            SaveItems(Begginer.mode, Begginer.speed, Begginer.accuracyAI,Begginer.timeRest);
             LoadItems();
         }
     }
@@ -51,5 +52,6 @@ public class Difficulty
     public string mode;
     public float speedAI;
     public float accuracyAI;
+    public float timeRest;
 }
 
