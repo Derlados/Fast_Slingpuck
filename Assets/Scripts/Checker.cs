@@ -100,7 +100,6 @@ public class Checker : MonoBehaviour
 
     public void OnMouseDown()
     {
-        body.bodyType = RigidbodyType2D.Kinematic;
         body.velocity *= 0;
         V = 0.0f;
         mouseDown = true;
@@ -108,8 +107,6 @@ public class Checker : MonoBehaviour
 
     public void OnMouseUp()
     {
-        body.bodyType = RigidbodyType2D.Dynamic;
-
         mouseDown = false;
         if (objTransform.position.y < 0)
         {
