@@ -25,7 +25,7 @@ public class AI : MonoBehaviour
     private Status statusType = Status.free;
 
     public bool active;    // false - AI отключен, true - AI включен
-    public float speedAI, accuracyAI;   // speedAi - скорость AI, accuracyAi - точность AI (разброс в процентах)
+    public float speedAI, accuracyAI, time;   // speedAi - скорость AI, accuracyAi - точность AI (разброс в процентах), time - время натягивания
     private float leftBorder, rightBorder, upBorder;    // границы бота
     private Vector2 target;     // позиция шайбы для запуска
     private Transform keepObj;  // удерживаемая шайба
@@ -34,6 +34,10 @@ public class AI : MonoBehaviour
 
     private void Start()
     {
+        XMLManager.ins.LoadItems();
+        speedAI = XMLManager.ins.difficulty.speedAI;
+        accuracyAI = XMLManager.ins.difficulty.accuracyAI;
+
         accuracyAI /= 2;
         screenOpt = ScreenOptimization.getInstance();
         upBorder = screenOpt.GetWorldCoord2D(gameObject).first.y;
