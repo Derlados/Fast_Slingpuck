@@ -78,6 +78,8 @@ public class Checker : MonoBehaviour
 
     void Start()
     {
+        gameObject.transform.GetChild(0).GetComponent<TrailRenderer>().emitting = true;
+
         // Границы поля
         Pair<Vector2, Vector2> points;
         points = screenOpt.GetWorldCoord2D(leftBorderHolder);
