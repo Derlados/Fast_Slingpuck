@@ -25,7 +25,7 @@ public class AI : MonoBehaviour
     private Status statusType = Status.free;
 
     public bool active;    // false - AI отключен, true - AI включен
-    public float speedAI, accuracyAI, time;   // speedAi - скорость AI, accuracyAi - точность AI (разброс в процентах), time - время натягивания
+    public float speedAI, accuracyAI, timeRest;   // speedAi - скорость AI, accuracyAi - точность AI (разброс в процентах), time - время взятия фишки
     private float leftBorder, rightBorder, upBorder;    // границы бота
     private Vector2 target;     // позиция шайбы для запуска
     private Transform keepObj;  // удерживаемая шайба
@@ -37,6 +37,7 @@ public class AI : MonoBehaviour
         XMLManager.ins.LoadItems();
         speedAI = XMLManager.ins.difficulty.speedAI;
         accuracyAI = XMLManager.ins.difficulty.accuracyAI;
+        timeRest = XMLManager.ins.difficulty.timeRest;
 
         accuracyAI /= 2;
         screenOpt = ScreenOptimization.getInstance();
@@ -73,7 +74,7 @@ public class AI : MonoBehaviour
         if (statusType == Status.ready)
         {
             statusType = Status.wait;
-            StartCoroutine(delayToPush(0.3f, keepObj));
+            StartCoroutine(delayToPush(0.3f, keepObj, timeRest));
         }
     }
 
@@ -87,11 +88,11 @@ public class AI : MonoBehaviour
         checkers.Remove(checkers.Find(item => item.id == col.gameObject.GetComponent<Checker>().id));
     }
 
-    IEnumerator delayToPush(float sec, Transform obj)
+    IEnumerator delayToPush(float sec, Transform obj,float timeRest)
     {
         yield return new WaitForSeconds(sec);
         obj.GetComponent<Checker>().OnMouseUp();
-        StartCoroutine(delaySec(1));
+        StartCoroutine(delaySec(timeRest));
     }
 
     IEnumerator delaySec(float sec)
