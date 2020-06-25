@@ -6,10 +6,16 @@ using UnityEngine.SceneManagement;
 
 public class Game : MonoBehaviour
 {
-    public Text gameOverText;
+
+    /* gameOverText - текст с сообщение об окончании игры
+     * upCountText - текст показывающий счет верхнего игрока
+     * downCountText - текст показывающий счет нижнего игрока
+     */
+    public Text gameOverText, upCountText, downCountText;
     private bool gameOver, gamePaused;
     public GameObject pauseMenuCanvas, gameOverCanvas;
-    public GameObject AI;
+    public GameObject AI; 
+
     bool gameStarted;
 
     private void Start()
@@ -22,18 +28,17 @@ public class Game : MonoBehaviour
     {
         if (gameStarted)
         {
+            upCountText.text = Checker.upCount.ToString();
+            downCountText.text = Checker.downCount.ToString();
+
             if (Input.GetKeyDown(KeyCode.Escape))
             {
                 if (!gameOver)
                 {
                     if (!gamePaused)
-                    {
                         PauseMenu();
-                    }
                     else
-                    {
                         UnPauseMenu();
-                    }
                 }
             }
 
@@ -53,6 +58,7 @@ public class Game : MonoBehaviour
                 gameOverCanvas.SetActive(true);
                 AI.GetComponent<AI>().active = false;
             }
+
             // Debug.Log("upCount=" + Checker.upCount + " and downCount=" + Checker.downCount);
         }
     }
@@ -79,12 +85,14 @@ public class Game : MonoBehaviour
         Time.timeScale = 1f;
     }
 
+    // Задержка перед стартом игры
     IEnumerator delaySec(float sec)
     {
         yield return new WaitForSeconds(sec);
         gameStarted = true;
     }
-
+    
+    // Задержка перед запуском бота
     IEnumerator delayAI(float sec)
     {
         yield return new WaitForSeconds(sec);
