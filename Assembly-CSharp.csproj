@@ -73,6 +73,7 @@
     <Compile Include="Assets\Scripts\ScreenOptimization.cs" />
     <Compile Include="Assets\Scripts\Settings.cs" />
     <Compile Include="Assets\Scripts\XMLManager.cs" />
+    <Compile Include="Assets\Settings\Difficulties.cs" />
     <Reference Include="UnityEngine">
       <HintPath>D:/GAMES/UnityVersions/2019.4.1f1/Editor/Data/Managed/UnityEngine/UnityEngine.dll</HintPath>
     </Reference>
