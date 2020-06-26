@@ -7,11 +7,14 @@ using UnityEngine.UI;
 public class MainMenu : MonoBehaviour
 {
     public Text scoreText;
+    LocalizationManager locManager;
 
     private void Start()
     {
-       XMLManager.ins.LoadPlayer();
-       //scoreText.text = XMLManager.ins.player.score.ToString();
+        locManager = LocalizationManager.getInstance();
+        locManager.Init();
+        XMLManager.ins.LoadPlayer();
+        //scoreText.text = XMLManager.ins.player.score.ToString();
     }
 
     public void PlayPressed()

@@ -98,7 +98,7 @@ LightmapSettings:
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 0
+  m_UseShadowmask: 1
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -1357,6 +1357,7 @@ GameObject:
   - component: {fileID: 1055593351}
   - component: {fileID: 1055593353}
   - component: {fileID: 1055593352}
+  - component: {fileID: 1055593354}
   m_Layer: 5
   m_Name: Text
   m_TagString: Untagged
@@ -1415,7 +1416,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Settings
+  m_Text: 
 --- !u!222 &1055593353
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1424,6 +1425,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1055593350}
   m_CullTransparentMesh: 0
+--- !u!114 &1055593354
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1055593350}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d2787bfbb44935c408ec2c72744e905c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  id: Settings
 --- !u!1 &1063305524
 GameObject:
   m_ObjectHideFlags: 0
@@ -1440,7 +1454,6 @@ GameObject:
   - component: {fileID: 1063305525}
   - component: {fileID: 1063305532}
   - component: {fileID: 1063305527}
-  - component: {fileID: 1063305533}
   m_Layer: 5
   m_Name: MainManu
   m_TagString: Untagged
@@ -1597,19 +1610,6 @@ MonoBehaviour:
     timeRest: 0
   player:
     score: 0
---- !u!114 &1063305533
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1063305524}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e8aecb05c7096ad499b2e1417d53f417, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  temp: {fileID: 1478349240}
 --- !u!1 &1183994740
 GameObject:
   m_ObjectHideFlags: 0
@@ -1621,6 +1621,7 @@ GameObject:
   - component: {fileID: 1183994741}
   - component: {fileID: 1183994743}
   - component: {fileID: 1183994742}
+  - component: {fileID: 1183994744}
   m_Layer: 5
   m_Name: Text
   m_TagString: Untagged
@@ -1679,7 +1680,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: -0.01
-  m_Text: Start game
+  m_Text: 
 --- !u!222 &1183994743
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1688,6 +1689,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1183994740}
   m_CullTransparentMesh: 0
+--- !u!114 &1183994744
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1183994740}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d2787bfbb44935c408ec2c72744e905c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  id: StartGame
 --- !u!1 &1389928546
 GameObject:
   m_ObjectHideFlags: 0
@@ -1699,6 +1713,7 @@ GameObject:
   - component: {fileID: 1389928547}
   - component: {fileID: 1389928549}
   - component: {fileID: 1389928548}
+  - component: {fileID: 1389928550}
   m_Layer: 5
   m_Name: Text
   m_TagString: Untagged
@@ -1757,7 +1772,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Exit
+  m_Text: 
 --- !u!222 &1389928549
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1766,6 +1781,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1389928546}
   m_CullTransparentMesh: 0
+--- !u!114 &1389928550
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1389928546}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d2787bfbb44935c408ec2c72744e905c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  id: Exit
 --- !u!1 &1478349238
 GameObject:
   m_ObjectHideFlags: 0

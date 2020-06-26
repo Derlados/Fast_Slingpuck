@@ -5,15 +5,13 @@ using System.Xml.Linq;
 using UnityEngine.SceneManagement;
 using BaseStructures;
 
-public class LocalizationManager : MonoBehaviour
+public class LocalizationManager
 {
-    static List<Pair<Text, string>> texts;
+    static List<Pair<Text, string>> texts = new List<Pair<Text, string>>();
     static LocalizationManager instance = null;
     
     XElement data; // Данные XML файла
-    public string curLanguage; // Текущий язык
-
-    public Text temp;
+    string curLanguage = "UA"; // Текущий язык
 
     private LocalizationManager()
     { }
@@ -29,7 +27,7 @@ public class LocalizationManager : MonoBehaviour
         texts.Add(text);
     }
 
-    private void Start()
+    public void Init()
     {
         loadXML();
         setLanguage();
