@@ -16,13 +16,13 @@ public class LocalizationManager
     XElement data; // Данные XML файла
 
     // Набор языков
-    enum language : byte
+    public enum language : byte
     {
         RU,
-        EU,
+        EN,
         UA
     }
-    language curLanguage = language.UA; // Текущий язык
+    public language curLanguage = language.RU; // Текущий язык
 
     private LocalizationManager()
     { }

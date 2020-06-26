@@ -29,15 +29,16 @@ public class AI : MonoBehaviour
     private float leftBorder, rightBorder, upBorder;    // границы бота
     private Vector2 target;     // позиция шайбы для запуска
     private Transform keepObj;  // удерживаемая шайба
-    ScreenOptimization screenOpt; 
-
+    ScreenOptimization screenOpt;
+    XMLManager manager;
 
     private void Start()
     {
-        XMLManager.ins.LoadItems();
-        speedAI = XMLManager.ins.difficulty.speedAI;
-        accuracyAI = XMLManager.ins.difficulty.accuracyAI;
-        timeRest = XMLManager.ins.difficulty.timeRest;
+        manager = XMLManager.getInstance();
+        manager.LoadItems();
+        speedAI = manager.difficulty.speedAI;
+        accuracyAI = manager.difficulty.accuracyAI;
+        timeRest = manager.difficulty.timeRest;
 
         accuracyAI /= 2;
         screenOpt = ScreenOptimization.getInstance();
@@ -48,7 +49,7 @@ public class AI : MonoBehaviour
 
     void Update()
     {
-        active = false;
+        //active = false;
         if (statusType == Status.keep)
         {
             keepObj.position = Vector2.MoveTowards(keepObj.position, target, Time.deltaTime * speedAI);

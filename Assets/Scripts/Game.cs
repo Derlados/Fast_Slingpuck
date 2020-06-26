@@ -22,8 +22,10 @@ public class Game : MonoBehaviour
     public static int score;
     public static bool gameStarted;
 
+    XMLManager manager;
     private void Start()
     {
+        manager = XMLManager.getInstance();
         StartCoroutine(delaySec(1));  //отсчет
         StartCoroutine(delayAI(3));
     }
@@ -60,7 +62,7 @@ public class Game : MonoBehaviour
                     gameOverText.text = "Up Win!";
                     scoreText.text = "YOUR SCORE IS " + score;
                     //сохраняем очки
-                    XMLManager.ins.SavePlayer(score);
+                    manager.SavePlayer(score);
                     score = 0;
                 }
 
@@ -75,7 +77,7 @@ public class Game : MonoBehaviour
                     gameOverText.text = "Down Win!";
                     scoreText.text = "YOUR SCORE IS " + score;
                     //сохраняем очки
-                    XMLManager.ins.SavePlayer(score);
+                    manager.SavePlayer(score);
                     score = 0;
                 }
             }
@@ -98,7 +100,7 @@ public class Game : MonoBehaviour
 
     public void ToMainMenuPressed()
     {
-        SceneManager.LoadScene("Menu");
+        SceneManager.LoadScene("MainMenu");
         Checker.upCount = 0;
         Checker.downCount = 0;
         Time.timeScale = 1f;
@@ -116,6 +118,9 @@ public class Game : MonoBehaviour
         gameStartCounterText.text = "GO!";
         capper.SetActive(false);
         gameStarted = true;
+        yield return new WaitForSeconds(sec);
+        gameStartCounterText.enabled = false;
+
     }
     
     // Задержка перед запуском бота
