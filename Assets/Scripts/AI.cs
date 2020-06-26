@@ -48,7 +48,7 @@ public class AI : MonoBehaviour
 
     void Update()
     {
-        active = false;
+        //active = false;
         if (statusType == Status.keep)
         {
             keepObj.position = Vector2.MoveTowards(keepObj.position, target, Time.deltaTime * speedAI);

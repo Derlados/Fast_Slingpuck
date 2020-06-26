@@ -10,18 +10,20 @@ public class Game : MonoBehaviour
     /* gameOverText - текст с сообщение об окончании игры
      * upCountText - текст показывающий счет верхнего игрока
      * downCountText - текст показывающий счет нижнего игрока
+     * gameStartCounterText - текст показывающий отчет до начала игры
      */
-    public Text gameOverText, upCountText, downCountText;
+    public Text gameOverText, upCountText, downCountText, gameStartCounterText;
     private bool gameOver, gamePaused;
     public GameObject pauseMenuCanvas, gameOverCanvas;
-    public GameObject AI; 
+    public GameObject AI;
+    public GameObject capper;
 
     bool gameStarted;
 
     private void Start()
     {
-        StartCoroutine(delaySec(2));
-        StartCoroutine(delayAI(1));
+        StartCoroutine(delaySec(1));  //отчет
+        StartCoroutine(delayAI(3));
     }
 
     void Update()
@@ -42,22 +44,26 @@ public class Game : MonoBehaviour
                 }
             }
 
-            if (Checker.upCount == 0)
+            if (!gameOver)
             {
-                gameOverText.text = "Up Win!";
-                gameOver = true;
-                gameOverCanvas.SetActive(true);
-                AI.GetComponent<AI>().active = false;
+                if (Checker.upCount == 0)
+                {
+                    gameOverText.text = "Up Win!";
+                    gameOver = true;
+                    gameOverCanvas.SetActive(true);
+                    AI.GetComponent<AI>().active = false;
+                }
+
+                if (Checker.downCount == 0)
+                {
+
+                    gameOverText.text = "Down Win!";
+                    gameOver = true;
+                    gameOverCanvas.SetActive(true);
+                    AI.GetComponent<AI>().active = false;
+                }
             }
 
-            if (Checker.downCount == 0)
-            {
-
-                gameOverText.text = "Down Win!";
-                gameOver = true;
-                gameOverCanvas.SetActive(true);
-                AI.GetComponent<AI>().active = false;
-            }
 
             // Debug.Log("upCount=" + Checker.upCount + " and downCount=" + Checker.downCount);
         }
@@ -89,7 +95,17 @@ public class Game : MonoBehaviour
     IEnumerator delaySec(float sec)
     {
         yield return new WaitForSeconds(sec);
+        for (int i = 2; i > 0; --i)
+        {
+            gameStartCounterText.text = i.ToString();
+            yield return new WaitForSeconds(sec);
+        }
+        gameStartCounterText.text = "GO!";
+        capper.SetActive(false);
         gameStarted = true;
+
+        yield return new WaitForSeconds(sec);
+        gameStartCounterText.enabled = false;
     }
     
     // Задержка перед запуском бота
