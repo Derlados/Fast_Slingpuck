@@ -14,9 +14,8 @@ public class XMLManager : MonoBehaviour
         ins = this;
     }
 
-    public Difficulty difficulty;
+    public Difficulty difficulty; 
     public Player player;
-
 
     public void SaveItems(string mode,float speedAI, float accuracyAI,float timeRest)
     {
@@ -42,7 +41,7 @@ public class XMLManager : MonoBehaviour
         }
         catch
         {
-            SaveItems(Begginer.mode, Begginer.speed, Begginer.accuracyAI,Begginer.timeRest);
+            SaveItems(Difficulties.Begginer.mode, Difficulties.Begginer.speed, Difficulties.Begginer.accuracyAI, Difficulties.Begginer.timeRest);
             LoadItems();
         }
     }
@@ -69,7 +68,10 @@ public class XMLManager : MonoBehaviour
         }
         catch
         {
-            SavePlayer(0);
+            player.score = 0;
+            FileStream fileStream = new FileStream(Application.persistentDataPath + "/player.xml", FileMode.Create);
+            serializer.Serialize(fileStream, player);
+            fileStream.Close();
             LoadPlayer();
         }
     }

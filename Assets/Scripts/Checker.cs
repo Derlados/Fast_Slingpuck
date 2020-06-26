@@ -146,8 +146,6 @@ public class Checker : MonoBehaviour
            
         if (col.tag == "DownBorder")
             downCount++;
-
-      
     }
 
     private void OnTriggerExit2D(Collider2D col)

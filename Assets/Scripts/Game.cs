@@ -35,6 +35,7 @@ public class Game : MonoBehaviour
             upCountText.text = Checker.upCount.ToString();
             downCountText.text = Checker.downCount.ToString();
 
+            //вызов паузы
             if (Input.GetKeyDown(KeyCode.Escape))
             {
                 if (!gameOver)
