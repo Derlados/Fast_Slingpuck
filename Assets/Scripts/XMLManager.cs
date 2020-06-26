@@ -5,14 +5,27 @@ using System.Xml;
 using System.Xml.Serialization;
 using System.IO;
 
+/* Класс для работы с данными
+ * Singleton
+ */
 public class XMLManager : MonoBehaviour
 {
-    public static XMLManager ins;
+    public static XMLManager instance = null;
 
     private void Awake()
     {
-        ins = this;
+        instance = this;
     }
+
+    public static XMLManager getInstance()
+    {
+        if (instance == null)
+            instance = new XMLManager();
+        return instance;
+    }
+
+    private XMLManager()
+    { }
 
     public Difficulty difficulty; 
     public Player player;

@@ -8,13 +8,15 @@ public class MainMenu : MonoBehaviour
 {
     public Text scoreText;
     LocalizationManager locManager;
+    XMLManager manager;
 
     private void Start()
     {
+        manager = XMLManager.getInstance();
         locManager = LocalizationManager.getInstance();
         locManager.Init();
-        XMLManager.ins.LoadPlayer();
-        //scoreText.text = XMLManager.ins.player.score.ToString();
+        manager.LoadPlayer();
+        scoreText.text = manager.player.score.ToString();
     }
 
     public void PlayPressed()
