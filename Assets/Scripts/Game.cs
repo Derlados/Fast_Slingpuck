@@ -10,19 +10,21 @@ public class Game : MonoBehaviour
     /* gameOverText - текст с сообщение об окончании игры
      * upCountText - текст показывающий счет верхнего игрока
      * downCountText - текст показывающий счет нижнего игрока
-     * gameStartCounterText - текст показывающий отчет до начала игры
+     * gameStartCounterText - текст показывающий отсчет до начала игры
+     * scoreText - текст показывающий набранные очки в игре
      */
-    public Text gameOverText, upCountText, downCountText, gameStartCounterText;
+    public Text gameOverText, upCountText, downCountText, gameStartCounterText, scoreText;
     private bool gameOver, gamePaused;
     public GameObject pauseMenuCanvas, gameOverCanvas;
     public GameObject AI;
     public GameObject capper;
 
-    bool gameStarted;
+    public static int score;
+    public static bool gameStarted;
 
     private void Start()
     {
-        StartCoroutine(delaySec(1));  //отчет
+        StartCoroutine(delaySec(1));  //отсчет
         StartCoroutine(delayAI(3));
     }
 
@@ -48,24 +50,34 @@ public class Game : MonoBehaviour
             {
                 if (Checker.upCount == 0)
                 {
-                    gameOverText.text = "Up Win!";
+                    //включаем экран окончания игры
                     gameOver = true;
-                    gameOverCanvas.SetActive(true);
+                    gameStarted = false;
                     AI.GetComponent<AI>().active = false;
+                    gameOverCanvas.SetActive(true);
+                    //установка текста 
+                    gameOverText.text = "Up Win!";
+                    scoreText.text = "YOUR SCORE IS " + score;
+                    //сохраняем очки
+                    XMLManager.ins.SavePlayer(score);
+                    score = 0;
                 }
 
                 if (Checker.downCount == 0)
                 {
-
-                    gameOverText.text = "Down Win!";
+                    //включаем экран окончания игры
                     gameOver = true;
-                    gameOverCanvas.SetActive(true);
+                    gameStarted = false;
                     AI.GetComponent<AI>().active = false;
+                    gameOverCanvas.SetActive(true);
+                    //установка текста 
+                    gameOverText.text = "Down Win!";
+                    scoreText.text = "YOUR SCORE IS " + score;
+                    //сохраняем очки
+                    XMLManager.ins.SavePlayer(score);
+                    score = 0;
                 }
             }
-
-
-            // Debug.Log("upCount=" + Checker.upCount + " and downCount=" + Checker.downCount);
         }
     }
 

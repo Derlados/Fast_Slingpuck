@@ -138,9 +138,16 @@ public class Checker : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D col)
     {
         if (col.tag == "UpBorder")
+        {
             upCount++;
+            if (Game.gameStarted)
+                Game.score += 100;
+        }
+           
         if (col.tag == "DownBorder")
             downCount++;
+
+      
     }
 
     private void OnTriggerExit2D(Collider2D col)

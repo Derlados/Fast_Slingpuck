@@ -15,6 +15,8 @@ public class XMLManager : MonoBehaviour
     }
 
     public Difficulty difficulty;
+    public Player player;
+
 
     public void SaveItems(string mode,float speedAI, float accuracyAI,float timeRest)
     {
@@ -44,6 +46,33 @@ public class XMLManager : MonoBehaviour
             LoadItems();
         }
     }
+
+    public void SavePlayer(int score)
+    {
+        LoadPlayer();
+        player.score += score;
+
+        XmlSerializer serializer = new XmlSerializer(typeof(Player));
+        FileStream fileStream = new FileStream(Application.persistentDataPath + "/player.xml", FileMode.Create);
+        serializer.Serialize(fileStream, player);
+        fileStream.Close();
+    }
+
+    public void LoadPlayer()
+    {
+        XmlSerializer serializer = new XmlSerializer(typeof(Player));
+        try
+        {
+            FileStream fileStream = new FileStream(Application.persistentDataPath + "/player.xml", FileMode.Open);
+            player = (Player)serializer.Deserialize(fileStream);
+            fileStream.Close();
+        }
+        catch
+        {
+            SavePlayer(0);
+            LoadPlayer();
+        }
+    }
 }
 
 [System.Serializable]
@@ -54,4 +83,11 @@ public class Difficulty
     public float accuracyAI;
     public float timeRest;
 }
+
+[System.Serializable]
+public class Player
+{
+    public int score;
+}
+
 
