@@ -116,9 +116,6 @@ public class Game : MonoBehaviour
         gameStartCounterText.text = "GO!";
         capper.SetActive(false);
         gameStarted = true;
-
-        yield return new WaitForSeconds(sec);
-        gameStartCounterText.enabled = false;
     }
     
     // Задержка перед запуском бота
