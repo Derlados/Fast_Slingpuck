@@ -11,7 +11,7 @@ public class MainMenu : MonoBehaviour
     private void Start()
     {
        XMLManager.ins.LoadPlayer();
-       scoreText.text = XMLManager.ins.player.score.ToString();
+       //scoreText.text = XMLManager.ins.player.score.ToString();
     }
 
     public void PlayPressed()
