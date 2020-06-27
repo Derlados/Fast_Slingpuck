@@ -22,7 +22,6 @@ public class Checker : MonoBehaviour
     bool mouseDown = false; // Проверка нажатия на предмет
     float V = 0.0f, radius; // начальная скорость объекта и радиус объекта
 
-    ScreenOptimization screenOpt;
     public float speed;
 
     // Границы поля
@@ -48,8 +47,7 @@ public class Checker : MonoBehaviour
     {
         id = ++countId;
         // Оптимизация под разные экраны
-        screenOpt = ScreenOptimization.getInstance();
-        screenOpt.setColider(gameObject, this.GetComponent<CircleCollider2D>());
+        ScreenOptimization.setColider(gameObject, this.GetComponent<CircleCollider2D>());
         radius = Camera.main.ScreenToWorldPoint(new Vector3(Screen.width, 0f, 0f)).x * (gameObject.GetComponent<CircleCollider2D>().radius / Screen.width) * 2; // радиус в мировых координатах
 
         objTransform = GetComponent<Transform>(); // Оптимизация чтобы не вызывать постоянно GetComponent для Transform
@@ -82,14 +80,14 @@ public class Checker : MonoBehaviour
 
         // Границы поля
         Pair<Vector2, Vector2> points;
-        points = screenOpt.GetWorldCoord2D(leftBorderHolder);
+        points = ScreenOptimization.GetWorldCoord2D(leftBorderHolder);
         playerLeftBorder = new Border(
             points.first.y - radius,
             points.second.y + radius,
             points.first.x + radius,
             points.second.x - radius);
 
-        points = screenOpt.GetWorldCoord2D(rightBorderHolder);
+        points = ScreenOptimization.GetWorldCoord2D(rightBorderHolder);
         playerRightBorder = new Border(
             points.first.y - radius,
             points.second.y + radius,

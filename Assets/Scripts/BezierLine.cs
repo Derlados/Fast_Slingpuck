@@ -22,16 +22,13 @@ public class BezierLine : MonoBehaviour
      */
     public Vector2 startPoint, endPoint, checkPoint = new Vector2(0, 0);
     public float coordY; // середина нити по координате Y
-
-    ScreenOptimization screenOpt;
     public float correction, correctionForEdge; // визуальная коррекция нитки
 
     void Start()
     {
         // Установка двух крайних опорных точек для прорисовки линии
-        screenOpt = ScreenOptimization.getInstance();
-        screenOpt.setColider(gameObject, gameObject.GetComponent<BoxCollider2D>());
-        Pair<Vector2, Vector2> coords = screenOpt.GetWorldCoord2D(gameObject);
+        ScreenOptimization.setColider(gameObject, gameObject.GetComponent<BoxCollider2D>());
+        Pair<Vector2, Vector2> coords = ScreenOptimization.GetWorldCoord2D(gameObject);
         coordY = ((coords.second.y + coords.first.y) / 2);
         startPoint = new Vector2(coords.first.x, coordY);
         endPoint = new Vector2(coords.second.x, coordY);

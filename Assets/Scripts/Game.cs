@@ -23,9 +23,11 @@ public class Game : MonoBehaviour
     public static bool gameStarted;
 
     XMLManager manager;
+    LocalizationManager locManager;
     private void Start()
     {
         manager = XMLManager.getInstance();
+
         StartCoroutine(delaySec(1));  //отсчет
         StartCoroutine(delayAI(3));
     }

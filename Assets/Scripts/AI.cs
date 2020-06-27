@@ -29,7 +29,6 @@ public class AI : MonoBehaviour
     private float leftBorder, rightBorder, upBorder;    // границы бота
     private Vector2 target;     // позиция шайбы для запуска
     private Transform keepObj;  // удерживаемая шайба
-    ScreenOptimization screenOpt;
     XMLManager manager;
 
     private void Start()
@@ -41,8 +40,7 @@ public class AI : MonoBehaviour
         timeRest = manager.difficulty.timeRest;
 
         accuracyAI /= 2;
-        screenOpt = ScreenOptimization.getInstance();
-        upBorder = screenOpt.GetWorldCoord2D(gameObject).first.y;
+        upBorder = ScreenOptimization.GetWorldCoord2D(gameObject).first.y;
         leftBorder = Camera.main.ScreenToWorldPoint(new Vector2((0.5f - accuracyAI) * Screen.width, 0)).x;
         rightBorder = Camera.main.ScreenToWorldPoint(new Vector2((0.5f + accuracyAI) * Screen.width, 0)).x;
     }
