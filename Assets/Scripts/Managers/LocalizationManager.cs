@@ -8,10 +8,10 @@ using BaseStructures;
 /* Класс для работы с локализацией текста
  * Singleton
  */
-public class LocalizationManager
+public class LocalizationManager : MonoBehaviour
 {
-    static List<Pair<Text, string>> texts = new List<Pair<Text, string>>();
-    static LocalizationManager instance = null;
+    private List<Pair<Text, string>> texts = new List<Pair<Text, string>>();
+    public static LocalizationManager instance = null;
     
     XElement data; // Данные XML файла
 
@@ -24,27 +24,23 @@ public class LocalizationManager
     }
     public language curLanguage = language.RU; // Текущий язык
 
-    private LocalizationManager()
-    { }
-    public static LocalizationManager getInstance()
+    public void Awake()
     {
         if (instance == null)
-            instance = new LocalizationManager();
-        
-        return instance;
+        {
+            loadXML();
+            instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else
+            Destroy(gameObject);
     }
 
     // Добавление текста в список текста который необходимо локализовать
     public void add(Pair<Text, string> text)
     {
         texts.Add(text);
-    }
-
-    // Инициализация (Загрузка XML файла и установка языка)
-    public void Init()
-    {
-        loadXML();
-        setLanguage();
+        text.first.text = data.Element(text.second).Value;
     }
 
     // Загрузка данных из XML файла
@@ -55,11 +51,10 @@ public class LocalizationManager
     }
 
     // Установка языка
-    private void setLanguage()
+    public void resetLanguage()
     {
+        loadXML();
         for (int i = 0; i < texts.Count; ++i)
-        {
             texts[i].first.text = data.Element(texts[i].second).Value;
-        }
     }    
 }

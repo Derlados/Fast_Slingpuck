@@ -49,23 +49,20 @@ public class Settings : MonoBehaviour
 
     public void RussianPressed()
     {
-        locManager = LocalizationManager.getInstance();
-        locManager.curLanguage = LocalizationManager.language.RU;
-        locManager.Init();
+        LocalizationManager.instance.curLanguage = LocalizationManager.language.RU;
+        LocalizationManager.instance.resetLanguage();
     }
 
     public void EnglishPressed()
     {
-        locManager = LocalizationManager.getInstance();
-        locManager.curLanguage = LocalizationManager.language.EN;
-        locManager.Init();
+        LocalizationManager.instance.curLanguage = LocalizationManager.language.EN;
+        LocalizationManager.instance.resetLanguage();
     }
 
     public void UkranianPressed()
     {
-        locManager = LocalizationManager.getInstance();
-        locManager.curLanguage = LocalizationManager.language.UA;
-        locManager.Init();
+        LocalizationManager.instance.curLanguage = LocalizationManager.language.UA;
+        LocalizationManager.instance.resetLanguage();
     }
 }
 

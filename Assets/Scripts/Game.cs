@@ -32,7 +32,6 @@ public class Game : MonoBehaviour
 
     XMLManager manager;
     GameManager gameManager;
-    ScreenOptimization screenOpt;
 
     private void Start()
     {
@@ -48,7 +47,6 @@ public class Game : MonoBehaviour
         else
         {
             checkers.SetActive(false);
-            screenOpt = ScreenOptimization.getInstance();
             StartCoroutine(delayBeforeStart(3));
             AI.GetComponent<AI>().active = false;
 
@@ -225,7 +223,7 @@ public class Game : MonoBehaviour
     void RandomPosition()
     {
         Pair<Vector2, Vector2> points;
-        points = screenOpt.GetWorldCoord2D(downBorderHolder);
+        points = ScreenOptimization.GetWorldCoord2D(downBorderHolder);
         Vector2 randomPos = new Vector2(UnityEngine.Random.Range(points.first.x, points.second.x), UnityEngine.Random.Range(points.first.y, points.second.y));
         speedGameChecker.transform.position = randomPos;
     }

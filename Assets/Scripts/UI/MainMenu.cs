@@ -14,8 +14,6 @@ public class MainMenu : MonoBehaviour
     private void Start()
     {
         manager = XMLManager.getInstance();
-        locManager = LocalizationManager.getInstance();
-        locManager.Init();
         manager.LoadPlayer();
         scoreText.text = manager.player.score.ToString();
         gameManager = GameManager.getInstance();

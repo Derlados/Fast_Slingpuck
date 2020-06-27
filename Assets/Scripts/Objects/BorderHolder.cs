@@ -4,14 +4,12 @@ using UnityEngine;
 
 public class BorderHolder : MonoBehaviour
 {
-    ScreenOptimization screenOpt;
     public GameObject canvas;
     Game game;
 
     void Start()
     {
-        screenOpt = ScreenOptimization.getInstance();
-        screenOpt.setColider(gameObject, this.GetComponent<BoxCollider2D>());
+        ScreenOptimization.setColider(gameObject, this.GetComponent<BoxCollider2D>());
         game = canvas.GetComponent<Game>();
     }
 
