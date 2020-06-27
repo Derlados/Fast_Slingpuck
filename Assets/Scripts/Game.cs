@@ -6,7 +6,6 @@ using UnityEngine.SceneManagement;
 
 public class Game : MonoBehaviour
 {
-
     /* gameOverText - текст с сообщение об окончании игры
      * upCountText - текст показывающий счет верхнего игрока
      * downCountText - текст показывающий счет нижнего игрока
@@ -21,24 +20,33 @@ public class Game : MonoBehaviour
 
     public static int score;
     public static bool gameStarted;
+    public static byte upCount = 0, downCount = 0;
 
     XMLManager manager;
-    LocalizationManager locManager;
+    GameManager gameManager;
     private void Start()
     {
         manager = XMLManager.getInstance();
+        gameManager = GameManager.getInstance();
+        Debug.Log(gameManager.currentMode);
 
-        StartCoroutine(delaySec(1));  //отсчет
-        StartCoroutine(delayAI(3));
+        if (gameManager.currentMode == GameManager.modes.Normal)
+        {
+            StartCoroutine(delaySec(1));  //отсчет
+            StartCoroutine(delayAI(3));
+        }
+        else
+        {
+            AI.GetComponent<AI>().active = false;
+            StartCoroutine(countDownTimer(60));
+        }
+
     }
 
     void Update()
     {
         if (gameStarted)
         {
-            upCountText.text = Checker.upCount.ToString();
-            downCountText.text = Checker.downCount.ToString();
-
             //вызов паузы
             if (Input.GetKeyDown(KeyCode.Escape))
             {
@@ -51,36 +59,42 @@ public class Game : MonoBehaviour
                 }
             }
 
-            if (!gameOver)
+            if (gameManager.currentMode == GameManager.modes.Normal)
             {
-                if (Checker.upCount == 0)
-                {
-                    //включаем экран окончания игры
-                    gameOver = true;
-                    gameStarted = false;
-                    AI.GetComponent<AI>().active = false;
-                    gameOverCanvas.SetActive(true);
-                    //установка текста 
-                    gameOverText.text = "Up Win!";
-                    scoreText.text = "YOUR SCORE IS " + score;
-                    //сохраняем очки
-                    manager.SavePlayer(score);
-                    score = 0;
-                }
+                upCountText.text = upCount.ToString();
+                downCountText.text = downCount.ToString();
 
-                if (Checker.downCount == 0)
+                if (!gameOver)
                 {
-                    //включаем экран окончания игры
-                    gameOver = true;
-                    gameStarted = false;
-                    AI.GetComponent<AI>().active = false;
-                    gameOverCanvas.SetActive(true);
-                    //установка текста 
-                    gameOverText.text = "Down Win!";
-                    scoreText.text = "YOUR SCORE IS " + score;
-                    //сохраняем очки
-                    manager.SavePlayer(score);
-                    score = 0;
+                    if (upCount == 0)
+                    {
+                        //включаем экран окончания игры
+                        gameOver = true;
+                        gameStarted = false;
+                        AI.GetComponent<AI>().active = false;
+                        gameOverCanvas.SetActive(true);
+                        //установка текста 
+                        gameOverText.text = "Up Win!";
+                        scoreText.text = "YOUR SCORE IS " + score;
+                        //сохраняем очки
+                        manager.SavePlayer(score);
+                        score = 0;
+                    }
+
+                    if (downCount == 0)
+                    {
+                        //включаем экран окончания игры
+                        gameOver = true;
+                        gameStarted = false;
+                        AI.GetComponent<AI>().active = false;
+                        gameOverCanvas.SetActive(true);
+                        //установка текста 
+                        gameOverText.text = "Down Win!";
+                        scoreText.text = "YOUR SCORE IS " + score;
+                        //сохраняем очки
+                        manager.SavePlayer(score);
+                        score = 0;
+                    }
                 }
             }
         }
@@ -103,8 +117,8 @@ public class Game : MonoBehaviour
     public void ToMainMenuPressed()
     {
         SceneManager.LoadScene("MainMenu");
-        Checker.upCount = 0;
-        Checker.downCount = 0;
+        upCount = 0;
+        downCount = 0;
         Time.timeScale = 1f;
     }
 
@@ -124,7 +138,7 @@ public class Game : MonoBehaviour
         gameStartCounterText.enabled = false;
 
     }
-    
+
     // Задержка перед запуском бота
     IEnumerator delayAI(float sec)
     {
@@ -132,5 +146,44 @@ public class Game : MonoBehaviour
         AI.GetComponent<AI>().active = true;
     }
 
+    //время до конца игры в режиме на скорость
+    IEnumerator countDownTimer(int time)
+    {
+        for (int i = time; i > 0; --i)
+        {
+            gameStartCounterText.text = i.ToString();
+            yield return new WaitForSeconds(1);
+        }
 
+        //включаем экран окончания игры
+        gameOver = true;
+        gameStarted = false;
+        gameOverCanvas.SetActive(true);
+        //установка текста 
+        gameOverText.text = "Time ended!";
+        scoreText.text = "YOUR SCORE IS " + score;
+        //сохраняем очки
+        manager.SavePlayer(score);
+        score = 0;
+    }
+
+    static public void IncreaseCount(bool up)
+    {
+        if (up)
+        {
+            upCount++;
+            if (gameStarted)
+                score += 100;
+        }
+        else
+            downCount++;
+    }
+
+    static public void DecreaseCount(bool up)
+    {
+        if (up)
+            upCount--;
+        else
+            downCount--;
+    }
 }

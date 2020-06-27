@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Border : MonoBehaviour
 {
-    void Start()
+    private void Start()
     {
         ScreenOptimization.setColider(gameObject, this.GetComponent<BoxCollider2D>());
     }

@@ -12,15 +12,15 @@ public class XMLManager
 {
     public static XMLManager instance = null;
 
+    private XMLManager()
+    { }
+
     public static XMLManager getInstance()
     {
         if (instance == null)
             instance = new XMLManager();
         return instance;
     }
-
-    private XMLManager()
-    { }
 
     public Difficulty difficulty; 
     public Player player;

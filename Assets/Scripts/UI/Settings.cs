@@ -11,10 +11,10 @@ public class Settings : MonoBehaviour
     XMLManager manager;
     private void Start()
     {
-        locManager = LocalizationManager.instance;
         manager = XMLManager.getInstance();
         manager.LoadItems();
         chosenModeText.text = manager.difficulty.mode;
+
     }
 
     public void BegginerPressed()
@@ -49,20 +49,20 @@ public class Settings : MonoBehaviour
 
     public void RussianPressed()
     {
-        locManager.curLanguage = LocalizationManager.language.RU;
-        locManager.resetLanguage();
+        LocalizationManager.instance.curLanguage = LocalizationManager.language.RU;
+        LocalizationManager.instance.resetLanguage();
     }
 
     public void EnglishPressed()
     {
-        locManager.curLanguage = LocalizationManager.language.EN;
-        locManager.resetLanguage();
+        LocalizationManager.instance.curLanguage = LocalizationManager.language.EN;
+        LocalizationManager.instance.resetLanguage();
     }
 
     public void UkranianPressed()
     {
-        locManager.curLanguage = LocalizationManager.language.UA;
-        locManager.resetLanguage();
+        LocalizationManager.instance.curLanguage = LocalizationManager.language.UA;
+        LocalizationManager.instance.resetLanguage();
     }
 }
 

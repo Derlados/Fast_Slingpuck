@@ -11,6 +11,6 @@ public class LocalizationText : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        LocalizationManager.instance.add(new Pair<Text, string>(gameObject.GetComponent<Text>(), id));
+        LocalizationManager.instance.add(new Pair<Text, string> (gameObject.GetComponent<Text>(), id));
     }
 }

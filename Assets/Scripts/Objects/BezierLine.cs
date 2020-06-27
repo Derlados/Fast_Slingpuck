@@ -22,6 +22,7 @@ public class BezierLine : MonoBehaviour
      */
     public Vector2 startPoint, endPoint, checkPoint = new Vector2(0, 0);
     public float coordY; // середина нити по координате Y
+
     public float correction, correctionForEdge; // визуальная коррекция нитки
 
     void Start()

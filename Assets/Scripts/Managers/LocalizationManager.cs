@@ -28,8 +28,8 @@ public class LocalizationManager : MonoBehaviour
     {
         if (instance == null)
         {
-            instance = this;
             loadXML();
+            instance = this;
             DontDestroyOnLoad(gameObject);
         }
         else
@@ -57,9 +57,4 @@ public class LocalizationManager : MonoBehaviour
         for (int i = 0; i < texts.Count; ++i)
             texts[i].first.text = data.Element(texts[i].second).Value;
     }    
-
-    public void clear()
-    {
-        texts.Clear();
-    }
 }
