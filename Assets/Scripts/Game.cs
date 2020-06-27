@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using System.Linq;
+using BaseStructures;
 
 public class Game : MonoBehaviour
 {
@@ -17,28 +19,37 @@ public class Game : MonoBehaviour
     public GameObject pauseMenuCanvas, gameOverCanvas;
     public GameObject AI;
     public GameObject capper;
+    public GameObject speedGameChecker;
+    public GameObject downBorderHolder;
+    public GameObject checkers;
 
     public static int score;
     public static bool gameStarted;
     public static byte upCount = 0, downCount = 0;
 
+    //картинка фишки из быстрого режима
+    Image image;
+
     XMLManager manager;
     GameManager gameManager;
+
     private void Start()
     {
         manager = XMLManager.getInstance();
         gameManager = GameManager.getInstance();
-        Debug.Log(gameManager.currentMode);
 
         if (gameManager.currentMode == GameManager.modes.Normal)
         {
-            StartCoroutine(delaySec(1));  //отсчет
+            speedGameChecker.SetActive(false);
+            StartCoroutine(delayBeforeStart(3));
             StartCoroutine(delayAI(3));
         }
         else
         {
+            checkers.SetActive(false);
+            StartCoroutine(delayBeforeStart(3));
             AI.GetComponent<AI>().active = false;
-            StartCoroutine(countDownTimer(60));
+
         }
 
     }
@@ -123,19 +134,22 @@ public class Game : MonoBehaviour
     }
 
     // Задержка перед стартом игры
-    IEnumerator delaySec(float sec)
+    IEnumerator delayBeforeStart(int sec)
     {
-        yield return new WaitForSeconds(sec);
-        for (int i = 2; i > 0; --i)
+        for (int i = sec; i >= 1; --i)
         {
             gameStartCounterText.text = i.ToString();
-            yield return new WaitForSeconds(sec);
+            yield return new WaitForSeconds(1);
         }
         gameStartCounterText.text = "GO!";
         capper.SetActive(false);
         gameStarted = true;
-        yield return new WaitForSeconds(sec);
-        gameStartCounterText.enabled = false;
+        yield return new WaitForSeconds(1);
+
+        //В режиме Normal текст отсчета выключается
+        //В режиме Speed запускается отчет 60 секунд
+        if (gameManager.currentMode == GameManager.modes.Normal) gameStartCounterText.enabled = false;
+        else StartCoroutine(countDownTimer(60));
 
     }
 
@@ -167,23 +181,50 @@ public class Game : MonoBehaviour
         score = 0;
     }
 
-    static public void IncreaseCount(bool up)
+    public void IncreaseCount(bool up)
     {
         if (up)
         {
             upCount++;
             if (gameStarted)
+            {
                 score += 100;
+                if (gameManager.currentMode == GameManager.modes.Speed)
+                    StartCoroutine(delayBeforeDissolve());
+            }
+
         }
         else
             downCount++;
     }
 
-    static public void DecreaseCount(bool up)
+    public void DecreaseCount(bool up)
     {
         if (up)
             upCount--;
         else
             downCount--;
+    }
+
+    //уничтожение шайбы
+    IEnumerator delayBeforeDissolve()
+    {
+        image = speedGameChecker.GetComponent<Image>();
+        for (float f = 0.8f; f >= 0; f -= 0.01f)
+        {
+            image.material.SetFloat("_DissolveAmount", f);
+            yield return new WaitForSeconds(0.01f);
+        }
+        image.material.SetFloat("_DissolveAmount", 1f);
+        RandomPosition();
+    }
+
+    //установка шайбы в рандомное место в нижнем поле
+    void RandomPosition()
+    {
+        Pair<Vector2, Vector2> points;
+        points = ScreenOptimization.GetWorldCoord2D(downBorderHolder);
+        Vector2 randomPos = new Vector2(UnityEngine.Random.Range(points.first.x, points.second.x), UnityEngine.Random.Range(points.first.y, points.second.y));
+        speedGameChecker.transform.position = randomPos;
     }
 }
