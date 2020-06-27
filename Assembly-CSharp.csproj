@@ -70,6 +70,7 @@
     <Compile Include="Assets\Scripts\Managers\XMLManager.cs" />
     <Compile Include="Assets\Scripts\Objects\AI.cs" />
     <Compile Include="Assets\Scripts\Objects\BezierLine.cs" />
+    <Compile Include="Assets\Scripts\Objects\Border.cs" />
     <Compile Include="Assets\Scripts\Objects\BorderHolder.cs" />
     <Compile Include="Assets\Scripts\Objects\Checker.cs" />
     <Compile Include="Assets\Scripts\Objects\ScreenOptimization.cs" />
