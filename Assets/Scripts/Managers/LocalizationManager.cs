@@ -30,6 +30,7 @@ public class LocalizationManager
     {
         if (instance == null)
             instance = new LocalizationManager();
+        
         return instance;
     }
 
