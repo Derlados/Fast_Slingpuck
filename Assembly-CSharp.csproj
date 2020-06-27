@@ -64,17 +64,18 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Libraries\BaseStructures\Pair.cs" />
-    <Compile Include="Assets\Prefabs\Field_border\Border.cs" />
-    <Compile Include="Assets\Scripts\AI.cs" />
-    <Compile Include="Assets\Scripts\BezierLine.cs" />
-    <Compile Include="Assets\Scripts\Checker.cs" />
     <Compile Include="Assets\Scripts\Game.cs" />
-    <Compile Include="Assets\Scripts\LocalizationManager.cs" />
-    <Compile Include="Assets\Scripts\LocalizationText.cs" />
-    <Compile Include="Assets\Scripts\MainMenu.cs" />
-    <Compile Include="Assets\Scripts\ScreenOptimization.cs" />
-    <Compile Include="Assets\Scripts\Settings.cs" />
-    <Compile Include="Assets\Scripts\XMLManager.cs" />
+    <Compile Include="Assets\Scripts\Managers\GameManager.cs" />
+    <Compile Include="Assets\Scripts\Managers\LocalizationManager.cs" />
+    <Compile Include="Assets\Scripts\Managers\XMLManager.cs" />
+    <Compile Include="Assets\Scripts\Objects\AI.cs" />
+    <Compile Include="Assets\Scripts\Objects\BezierLine.cs" />
+    <Compile Include="Assets\Scripts\Objects\BorderHolder.cs" />
+    <Compile Include="Assets\Scripts\Objects\Checker.cs" />
+    <Compile Include="Assets\Scripts\Objects\ScreenOptimization.cs" />
+    <Compile Include="Assets\Scripts\UI\LocalizationText.cs" />
+    <Compile Include="Assets\Scripts\UI\MainMenu.cs" />
+    <Compile Include="Assets\Scripts\UI\Settings.cs" />
     <Compile Include="Assets\Settings\Difficulties.cs" />
     <None Include="Assets\Resources\EN\Game.xml" />
     <None Include="Assets\Resources\UA\MainMenu.xml" />
