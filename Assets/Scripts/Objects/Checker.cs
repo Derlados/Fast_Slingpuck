@@ -23,7 +23,6 @@ public class Checker : MonoBehaviour
     float V = 0.0f, radius; // начальная скорость объекта и радиус объекта
 
     ScreenOptimization screenOpt;
-    public float speed;
 
     // Границы поля
     public GameObject leftBorderHolder;
