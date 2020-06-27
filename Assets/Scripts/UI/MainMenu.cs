@@ -9,6 +9,7 @@ public class MainMenu : MonoBehaviour
     public Text scoreText;
     LocalizationManager locManager;
     XMLManager manager;
+    GameManager gameManager;
 
     private void Start()
     {
@@ -17,15 +18,23 @@ public class MainMenu : MonoBehaviour
         locManager.Init();
         manager.LoadPlayer();
         scoreText.text = manager.player.score.ToString();
+        gameManager = GameManager.getInstance();
     }
 
     public void PlayPressed()
     {
+        gameManager.setNormalMode();
         SceneManager.LoadScene("Game");
     }
 
     public void ExitPressed()
     {
         Application.Quit();
+    }
+
+    public void SpeedGamePressed()
+    {
+        gameManager.setSpeedGame();
+        SceneManager.LoadScene("Game");
     }
 }

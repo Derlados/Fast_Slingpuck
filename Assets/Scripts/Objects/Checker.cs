@@ -9,7 +9,7 @@ public class Checker : MonoBehaviour
      * downCoun - счетчик количества шайб у нижнего игрока
      */
 
-    public static byte countId = 0, upCount = 0, downCount = 0;
+    public static byte countId = 0;
     public byte id;
 
     //Нитка
@@ -97,7 +97,6 @@ public class Checker : MonoBehaviour
             points.second.x - radius);
     }
 
-
     public void OnMouseDown()
     {
         body.velocity *= 0;
@@ -134,25 +133,5 @@ public class Checker : MonoBehaviour
     public bool getMouseDown()
     {
         return mouseDown;
-    }
-    private void OnTriggerEnter2D(Collider2D col)
-    {
-        if (col.tag == "UpBorder")
-        {
-            upCount++;
-            if (Game.gameStarted)
-                Game.score += 100;
-        }
-           
-        if (col.tag == "DownBorder")
-            downCount++;
-    }
-
-    private void OnTriggerExit2D(Collider2D col)
-    {
-        if (col.tag == "UpBorder")
-            upCount--;
-        if (col.tag == "DownBorder")
-            downCount--;
     }
 }
