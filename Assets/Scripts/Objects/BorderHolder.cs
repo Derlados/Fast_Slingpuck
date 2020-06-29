@@ -4,25 +4,29 @@ using UnityEngine;
 
 public class BorderHolder : MonoBehaviour
 {
+    public GameObject canvas;
+    Game game;
+
     void Start()
     {
         ScreenOptimization.setColider(gameObject, this.GetComponent<BoxCollider2D>());
+        game = canvas.GetComponent<Game>();
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if(gameObject.transform.position.y>0)
-             Game.IncreaseCount(true);
+            game.IncreaseCount(true);
         else
-            Game.IncreaseCount(false);
+            game.IncreaseCount(false);
     }
 
     private void OnTriggerExit2D(Collider2D collision)
     {
         if (gameObject.transform.position.y > 0)
-            Game.DecreaseCount(true);
+            game.DecreaseCount(true);
         else
-            Game.DecreaseCount(false);
+            game.DecreaseCount(false);
     }
 
 

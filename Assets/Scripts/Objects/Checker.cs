@@ -22,8 +22,6 @@ public class Checker : MonoBehaviour
     bool mouseDown = false; // Проверка нажатия на предмет
     float V = 0.0f, radius; // начальная скорость объекта и радиус объекта
 
-    public float speed;
-
     // Границы поля
     public GameObject leftBorderHolder;
     public GameObject rightBorderHolder;
