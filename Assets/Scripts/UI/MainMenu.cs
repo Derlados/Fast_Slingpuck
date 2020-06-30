@@ -7,7 +7,6 @@ using UnityEngine.UI;
 public class MainMenu : MonoBehaviour
 {
     public Text scoreText;
-    LocalizationManager locManager;
     XMLManager manager;
     GameManager gameManager;
 

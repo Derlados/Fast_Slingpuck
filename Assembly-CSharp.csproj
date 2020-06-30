@@ -66,6 +66,8 @@
     <Compile Include="Assets\Libraries\BaseStructures\Pair.cs" />
     <Compile Include="Assets\Scripts\Game.cs" />
     <Compile Include="Assets\Scripts\Level.cs" />
+    <Compile Include="Assets\Scripts\Managers\CameraManager.cs" />
+    <Compile Include="Assets\Scripts\Managers\DataManager.cs" />
     <Compile Include="Assets\Scripts\Managers\GameManager.cs" />
     <Compile Include="Assets\Scripts\Managers\LocalizationManager.cs" />
     <Compile Include="Assets\Scripts\Managers\XMLManager.cs" />
@@ -76,11 +78,11 @@
     <Compile Include="Assets\Scripts\Objects\Checker.cs" />
     <Compile Include="Assets\Scripts\Objects\ScreenOptimization.cs" />
     <Compile Include="Assets\Scripts\PlayerData.cs" />
-    <Compile Include="Assets\Scripts\UI\CameraManager.cs" />
     <Compile Include="Assets\Scripts\UI\LocalizationText.cs" />
     <Compile Include="Assets\Scripts\UI\MainMenu.cs" />
     <Compile Include="Assets\Scripts\UI\Settings.cs" />
     <Compile Include="Assets\Settings\Difficulties.cs" />
+    <None Include="Assets\Resources\PlayerData.xml" />
     <None Include="Assets\Resources\EN\Game.xml" />
     <None Include="Assets\Resources\RU\Game.xml" />
     <None Include="Assets\Resources\UA\Game.xml" />

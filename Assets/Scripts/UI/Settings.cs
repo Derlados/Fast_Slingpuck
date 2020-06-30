@@ -7,7 +7,6 @@ using UnityEngine.UI;
 public class Settings : MonoBehaviour
 {
     public Text chosenModeText;
-    LocalizationManager locManager;
     XMLManager manager;
     private void Start()
     {
@@ -49,20 +48,20 @@ public class Settings : MonoBehaviour
 
     public void RussianPressed()
     {
-        LocalizationManager.instance.curLanguage = LocalizationManager.language.RU;
-        LocalizationManager.instance.resetLanguage();
+        LocalizationManager.curLanguage = LocalizationManager.language.RU;
+        LocalizationManager.resetLanguage();
     }
 
     public void EnglishPressed()
     {
-        LocalizationManager.instance.curLanguage = LocalizationManager.language.EN;
-        LocalizationManager.instance.resetLanguage();
+        LocalizationManager.curLanguage = LocalizationManager.language.EN;
+        LocalizationManager.resetLanguage();
     }
 
     public void UkranianPressed()
     {
-        LocalizationManager.instance.curLanguage = LocalizationManager.language.UA;
-        LocalizationManager.instance.resetLanguage();
+        LocalizationManager.curLanguage = LocalizationManager.language.UA;
+        LocalizationManager.resetLanguage();
     }
 }
 

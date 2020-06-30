@@ -6,14 +6,12 @@ using UnityEngine.SceneManagement;
 using BaseStructures;
 
 /* Класс для работы с локализацией текста
- * Singleton
+ * Статический класс
  */
-public class LocalizationManager : MonoBehaviour
+public static class LocalizationManager
 {
-    private List<Pair<Text, string>> texts = new List<Pair<Text, string>>();
-    public static LocalizationManager instance = null;
-    
-    XElement data; // Данные XML файла
+    private static List<Pair<Text, string>> texts = new List<Pair<Text, string>>();
+    private static XElement data; // Данные XML файла
 
     // Набор языков
     public enum language : byte
@@ -22,36 +20,24 @@ public class LocalizationManager : MonoBehaviour
         EN,
         UA
     }
-    public language curLanguage = language.RU; // Текущий язык
-
-    public void Awake()
-    {
-        if (instance == null)
-        {
-            loadXML();
-            instance = this;
-            DontDestroyOnLoad(gameObject);
-        }
-        else
-            Destroy(gameObject);
-    }
+    public static language curLanguage = language.RU; // Текущий язык
 
     // Добавление текста в список текста который необходимо локализовать
-    public void add(Pair<Text, string> text)
+    public static void add(Pair<Text, string> text)
     {
         texts.Add(text);
         text.first.text = data.Element(text.second).Value;
     }
 
     // Загрузка данных из XML файла
-    private void loadXML()
+    private static void loadXML()
     {
         TextAsset textAsset = (TextAsset) Resources.Load(curLanguage.ToString() + "/" + SceneManager.GetActiveScene().name);
         data = XDocument.Parse(textAsset.text).Element("localization");
     }
 
     // Установка языка
-    public void resetLanguage()
+    public static void resetLanguage()
     {
         loadXML();
         for (int i = 0; i < texts.Count; ++i)

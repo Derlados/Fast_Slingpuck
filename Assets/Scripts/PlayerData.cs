@@ -4,38 +4,40 @@ using UnityEngine;
 
 // Этот класс должен будет хранить все данные пользователя
 [System.Serializable]
-public class PlayerData : MonoBehaviour
+public class PlayerData
 {
     static PlayerData instance;
 
     public int money;
     public List<List<bool>> progress = new List<List<bool>>();
 
-    public void Awake()
+    public static PlayerData getInstance()
     {
         if (instance == null)
         {
-            instance = this;
-            DontDestroyOnLoad(gameObject);
+            instance = new PlayerData();
+            instance.Init();        
         }
-        else
-            Destroy(gameObject);
+        return instance;
     }
 
-    private void Start()
+    public void Init()
     {
         progress.Add(new List<bool>());
         progress[0].Add(true);
         progress[0].Add(true);
         progress[0].Add(false);
         progress[0].Add(false);
+        progress.Add(new List<bool>());
+        progress[1].Add(true);
+        progress[1].Add(true);
+        progress[1].Add(false);
+        progress[1].Add(false);
+        XMLManager.SaveData(this, this.ToString());
     }
 
     private PlayerData() { }
 
-    public static PlayerData getInstance()
-    {
-        return instance;
-    }
+
 
 }
