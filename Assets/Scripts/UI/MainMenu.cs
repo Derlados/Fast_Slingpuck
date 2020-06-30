@@ -13,8 +13,6 @@ public class MainMenu : MonoBehaviour
     private void Start()
     {
         manager = XMLManager.getInstance();
-        manager.LoadPlayer();
-        scoreText.text = manager.player.score.ToString();
         gameManager = GameManager.getInstance();
     }
 

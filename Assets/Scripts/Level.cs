@@ -8,7 +8,7 @@ public class Level : MonoBehaviour
 {
     public int NumberPlanet, NumberLvl;
 
-    public void OnEnable()
+    public void Start()
     {
         if (!PlayerData.getInstance().progress[NumberPlanet][NumberLvl])
         {

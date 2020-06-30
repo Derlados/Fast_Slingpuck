@@ -4,6 +4,7 @@ using UnityEngine;
 using System.Xml;
 using System.Xml.Serialization;
 using System.IO;
+using System;
 
 /* Класс для работы с данными
  * Singleton
@@ -23,7 +24,6 @@ public class XMLManager
     }
 
     public Difficulty difficulty; 
-    public Player player;
 
     public void SaveItems(string mode,float speedAI, float accuracyAI,float timeRest)
     {
@@ -54,37 +54,11 @@ public class XMLManager
         }
     }
 
-    public void SavePlayer(int score)
-    {
-        LoadPlayer();
-        player.score += score;
 
-        XmlSerializer serializer = new XmlSerializer(typeof(Player));
-        FileStream fileStream = new FileStream(Application.persistentDataPath + "/player.xml", FileMode.Create);
-        serializer.Serialize(fileStream, player);
-        fileStream.Close();
-    }
-
-    public void LoadPlayer()
-    {
-        XmlSerializer serializer = new XmlSerializer(typeof(Player));
-        try
-        {
-            FileStream fileStream = new FileStream(Application.persistentDataPath + "/player.xml", FileMode.Open);
-            player = (Player)serializer.Deserialize(fileStream);
-            fileStream.Close();
-        }
-        catch
-        {
-            player.score = 0;
-            FileStream fileStream = new FileStream(Application.persistentDataPath + "/player.xml", FileMode.Create);
-            serializer.Serialize(fileStream, player);
-            fileStream.Close();
-            LoadPlayer();
-        }
-    }
-
-  
+    /* Универсальная сериализация
+     * Параметры:
+     * data - класс который необходимо десериализовать, name - имя xml файла (желательно имя самого класса, чтобы не забыть)
+     */
     public static void SaveData<T>(T data, string name)
     {
         XmlSerializer serializer = new XmlSerializer(typeof(T));
@@ -104,11 +78,4 @@ public class Difficulty
     public float accuracyAI;
     public float timeRest;
 }
-
-[System.Serializable]
-public class Player
-{
-    public int score;
-}
-
 

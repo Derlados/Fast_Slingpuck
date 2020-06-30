@@ -32,9 +32,11 @@ public class Game : MonoBehaviour
 
     XMLManager manager;
     GameManager gameManager;
+    PlayerData playerData;
 
     private void Start()
     {
+        playerData = PlayerData.getInstance();
         manager = XMLManager.getInstance();
         gameManager = GameManager.getInstance();
 
@@ -88,7 +90,8 @@ public class Game : MonoBehaviour
                         gameOverText.text = "Up Win!";
                         scoreText.text = "YOUR SCORE IS " + score;
                         //сохраняем очки
-                        manager.SavePlayer(score);
+                        playerData.money += score;
+                        XMLManager.SaveData(playerData, playerData.ToString());
                         score = 0;
                     }
 
@@ -103,7 +106,8 @@ public class Game : MonoBehaviour
                         gameOverText.text = "Down Win!";
                         scoreText.text = "YOUR SCORE IS " + score;
                         //сохраняем очки
-                        manager.SavePlayer(score);
+                        playerData.money += score;
+                        XMLManager.SaveData(playerData, playerData.ToString());
                         score = 0;
                     }
                 }
@@ -177,7 +181,7 @@ public class Game : MonoBehaviour
         gameOverText.text = "Time ended!";
         scoreText.text = "YOUR SCORE IS " + score;
         //сохраняем очки
-        manager.SavePlayer(score);
+        XMLManager.SaveData(playerData, playerData.ToString());
         score = 0;
     }
 
