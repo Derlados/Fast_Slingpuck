@@ -65,6 +65,7 @@
   <ItemGroup>
     <Compile Include="Assets\Libraries\BaseStructures\Pair.cs" />
     <Compile Include="Assets\Scripts\Game.cs" />
+    <Compile Include="Assets\Scripts\Level.cs" />
     <Compile Include="Assets\Scripts\Managers\GameManager.cs" />
     <Compile Include="Assets\Scripts\Managers\LocalizationManager.cs" />
     <Compile Include="Assets\Scripts\Managers\XMLManager.cs" />
@@ -74,6 +75,7 @@
     <Compile Include="Assets\Scripts\Objects\BorderHolder.cs" />
     <Compile Include="Assets\Scripts\Objects\Checker.cs" />
     <Compile Include="Assets\Scripts\Objects\ScreenOptimization.cs" />
+    <Compile Include="Assets\Scripts\PlayerData.cs" />
     <Compile Include="Assets\Scripts\UI\CameraManager.cs" />
     <Compile Include="Assets\Scripts\UI\LocalizationText.cs" />
     <Compile Include="Assets\Scripts\UI\MainMenu.cs" />
