@@ -15,21 +15,11 @@ public class PlayerData
     public static PlayerData getInstance()
     {
         if (instance == null)
-        {
-            XmlSerializer serializer = new XmlSerializer(typeof(PlayerData));
-            try
-            {
-                FileStream fileStream = new FileStream(@"D:\GAMES\Unity\Projects\FastSlingpuck\Assets\Resources\PlayerData.xml", FileMode.Open); // Дебаг, для комп
-                //FileStream fileStream = new FileStream(Application.persistentDataPath + "/PlayerData.xml", FileMode.Open);     
-                instance = (PlayerData)(serializer.Deserialize(fileStream));
-                fileStream.Close();
-            }
-            catch
+            if (!XMLManager.LoadData(ref instance, (new PlayerData()).ToString()))
             {
                 instance = new PlayerData();
                 instance.Init();
             }
-        }
 
         return instance;
     }

@@ -68,6 +68,23 @@ public class XMLManager
         fileStream.Close();
     }
 
+    public static bool LoadData<T>(ref T data, string name)
+    {
+        XmlSerializer serializer = new XmlSerializer(typeof(T));
+        try
+        {
+            FileStream fileStream = new FileStream(@"D:\GAMES\Unity\Projects\FastSlingpuck\Assets\Resources\" + name + ".xml", FileMode.Open); // Дебаг, для комп
+            //FileStream fileStream = new FileStream(Application.persistentDataPath + "/PlayerData.xml", FileMode.Open);     
+            data = (T)(serializer.Deserialize(fileStream));
+            fileStream.Close();
+            return true;
+        }
+        catch
+        {
+            return false;
+        }
+    }
+
 }
 
 [System.Serializable]

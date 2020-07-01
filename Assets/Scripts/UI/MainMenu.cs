@@ -7,12 +7,10 @@ using UnityEngine.UI;
 public class MainMenu : MonoBehaviour
 {
     public Text scoreText;
-    XMLManager manager;
     GameManager gameManager;
 
     private void Start()
     {
-        manager = XMLManager.getInstance();
         gameManager = GameManager.getInstance();
     }
 
