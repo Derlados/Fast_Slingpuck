@@ -1,0 +1,7 @@
+<?xml version="1.0"?>
+<Difficulty xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <mode>Chinese</mode>
+  <speedAI>200</speedAI>
+  <accuracyAI>0.001</accuracyAI>
+  <timeRest>0.22</timeRest>
+</Difficulty>
