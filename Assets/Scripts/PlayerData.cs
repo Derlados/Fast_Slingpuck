@@ -37,22 +37,10 @@ public class PlayerData
     public void Init()
     {
         Debug.Log("INIT");
-        progress.Add(new List<bool>());
-        progress[0].Add(true);
-        progress[0].Add(true);
-        progress[0].Add(false);
-        progress[0].Add(false);
         XMLManager.SaveData(this, this.ToString());
     }
 
     private PlayerData() { }
-
-    public void Show()
-    {
-        for (int i = 0; i < progress.Count; ++i)
-            for (int j = 0; j < progress[i].Count; ++j)
-                Debug.Log(progress[i][j]);
-    }
 
 
 }
