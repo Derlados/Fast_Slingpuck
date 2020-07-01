@@ -621,14 +621,14 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1727655939}
-        m_MethodName: MasterPressed
-        m_Mode: 1
+        m_MethodName: LoadDifficultyPressed
+        m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: 
+          m_StringArgument: master
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &261090571
@@ -751,14 +751,14 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1727655939}
-        m_MethodName: UkranianPressed
-        m_Mode: 1
+        m_MethodName: LanguagePressed
+        m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: 
+          m_StringArgument: UA
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &387440432
@@ -1748,14 +1748,14 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1727655939}
-        m_MethodName: ChinesePressed
-        m_Mode: 1
+        m_MethodName: LoadDifficultyPressed
+        m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: 
+          m_StringArgument: chinese
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &725610359
@@ -1878,14 +1878,14 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1727655939}
-        m_MethodName: BegginerPressed
-        m_Mode: 1
+        m_MethodName: LoadDifficultyPressed
+        m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: 
+          m_StringArgument: begginer
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &825215860
@@ -3591,14 +3591,14 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1727655939}
-        m_MethodName: EnglishPressed
-        m_Mode: 1
+        m_MethodName: LanguagePressed
+        m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: 
+          m_StringArgument: EN
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &1582124080
@@ -3947,14 +3947,14 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1727655939}
-        m_MethodName: GodPressed
-        m_Mode: 1
+        m_MethodName: LoadDifficultyPressed
+        m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: 
+          m_StringArgument: god
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &1679875324
@@ -4437,14 +4437,14 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1727655939}
-        m_MethodName: SkilledPressed
-        m_Mode: 1
+        m_MethodName: LoadDifficultyPressed
+        m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: 
+          m_StringArgument: skilled
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &1812549819
@@ -4591,7 +4591,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e8aecb05c7096ad499b2e1417d53f417, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  curLanguage: 1
 --- !u!4 &1855710812
 Transform:
   m_ObjectHideFlags: 0
@@ -5053,14 +5052,14 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1727655939}
-        m_MethodName: RussianPressed
-        m_Mode: 1
+        m_MethodName: LanguagePressed
+        m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: 
+          m_StringArgument: RU
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &2115503464

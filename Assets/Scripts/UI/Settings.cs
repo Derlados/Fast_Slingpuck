@@ -3,64 +3,67 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+public class Difficulty
+{
+    public string mode;
+    public float speedAI;
+    public float accuracyAI;
+    public float timeRest;
+}
 
 public class Settings : MonoBehaviour
 {
     public Text chosenModeText;
-    XMLManager manager;
+    public Difficulty diff;
+    string settingsFileName = "settings";
+
     private void Start()
     {
-        manager = XMLManager.getInstance();
-        manager.LoadItems();
-        chosenModeText.text = manager.difficulty.mode;
+        diff = new Difficulty();
 
+        //В случае если режим не был выбран,то по умолчанию ставится режим begginer
+        try
+        {
+            XMLManager.LoadData<Difficulty>(ref diff, settingsFileName);
+            chosenModeText.text = diff.mode;
+        }
+        catch
+        {
+            XMLManager.LoadDifficulty(ref diff, "begginer");
+            XMLManager.SaveData<Difficulty>(diff, settingsFileName);
+            chosenModeText.text = diff.mode;
+        }
     }
 
-    public void BegginerPressed()
+    /* Универсальный выбор сложностей
+     * Параметры:
+     * mode - выбранный режим 
+     */
+    public void LoadDifficultyPressed(string mode)
     {
-        chosenModeText.text = Difficulties.Begginer.mode;
-        manager.SaveItems(Difficulties.Begginer.mode, Difficulties.Begginer.speed, Difficulties.Begginer.accuracyAI, Difficulties.Begginer.timeRest);
+        XMLManager.LoadDifficulty(ref diff, mode);
+        XMLManager.SaveData<Difficulty>(diff, settingsFileName);
+        chosenModeText.text = diff.mode;
     }
 
-    public void SkilledPressed()
+    /* Универсальный выбор языка
+     * Параметры:
+     * lang - выбранный язык 
+     */
+    public void LanguagePressed(string lang)
     {
-        chosenModeText.text = Difficulties.Skilled.mode;
-        manager.SaveItems(Difficulties.Skilled.mode, Difficulties.Skilled.speed, Difficulties.Skilled.accuracyAI, Difficulties.Skilled.timeRest);
-    }
-
-    public void MasterPressed()
-    {
-        chosenModeText.text = Difficulties.Master.mode;
-        manager.SaveItems(Difficulties.Master.mode, Difficulties.Master.speed, Difficulties.Master.accuracyAI, Difficulties.Master.timeRest);
-    }
-
-    public void GodPressed()
-    {
-        chosenModeText.text = Difficulties.God.mode;
-        manager.SaveItems(Difficulties.God.mode, Difficulties.God.speed, Difficulties.God.accuracyAI, Difficulties.God.timeRest);
-    }
-
-    public void ChinesePressed()
-    {
-        chosenModeText.text = Difficulties.Chinese.mode;
-        manager.SaveItems(Difficulties.Chinese.mode, Difficulties.Chinese.speed, Difficulties.Chinese.accuracyAI, Difficulties.Chinese.timeRest);
-    }
-
-    public void RussianPressed()
-    {
-        LocalizationManager.curLanguage = LocalizationManager.language.RU;
-        LocalizationManager.resetLanguage();
-    }
-
-    public void EnglishPressed()
-    {
-        LocalizationManager.curLanguage = LocalizationManager.language.EN;
-        LocalizationManager.resetLanguage();
-    }
-
-    public void UkranianPressed()
-    {
-        LocalizationManager.curLanguage = LocalizationManager.language.UA;
+        switch (lang)
+        {
+            case "RU":
+                LocalizationManager.curLanguage = LocalizationManager.language.RU;
+                break;
+            case "EN":
+                LocalizationManager.curLanguage = LocalizationManager.language.EN;
+                break;
+            case "UA":
+                LocalizationManager.curLanguage = LocalizationManager.language.UA;
+                break;
+        }
         LocalizationManager.resetLanguage();
     }
 }

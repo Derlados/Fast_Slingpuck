@@ -14,6 +14,12 @@ public class MainMenu : MonoBehaviour
         gameManager = GameManager.getInstance();
     }
 
+    public void SpeedGamePressed()
+    {
+        gameManager.setSpeedGame();
+        SceneManager.LoadScene("Game");
+    }
+
     public void PlayPressed()
     {
         gameManager.setNormalMode();
@@ -25,9 +31,5 @@ public class MainMenu : MonoBehaviour
         Application.Quit();
     }
 
-    public void SpeedGamePressed()
-    {
-        gameManager.setSpeedGame();
-        SceneManager.LoadScene("Game");
-    }
+
 }

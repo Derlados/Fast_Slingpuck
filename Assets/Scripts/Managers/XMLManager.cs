@@ -5,64 +5,20 @@ using System.Xml;
 using System.Xml.Serialization;
 using System.IO;
 using System;
+using System.Xml.Linq;
+using System.Globalization;
 
-/* Класс для работы с данными
- * Singleton
- */
 public class XMLManager
 {
-    public static XMLManager instance = null;
-
-    private XMLManager()
-    { }
-
-    public static XMLManager getInstance()
-    {
-        if (instance == null)
-            instance = new XMLManager();
-        return instance;
-    }
-
-    public Difficulty difficulty; 
-
-    public void SaveItems(string mode,float speedAI, float accuracyAI,float timeRest)
-    {
-        difficulty.mode = mode;
-        difficulty.speedAI = speedAI;
-        difficulty.accuracyAI = accuracyAI;
-        difficulty.timeRest = timeRest;
-
-        XmlSerializer serializer = new XmlSerializer(typeof(Difficulty));
-        FileStream fileStream = new FileStream(Application.persistentDataPath + "/settings.xml", FileMode.Create);
-        serializer.Serialize(fileStream, difficulty);
-        fileStream.Close();
-    }
-
-    public void LoadItems()
-    {
-        XmlSerializer serializer = new XmlSerializer(typeof(Difficulty));
-        try
-        {
-            FileStream fileStream = new FileStream(Application.persistentDataPath + "/settings.xml", FileMode.Open);
-            difficulty = (Difficulty)serializer.Deserialize(fileStream);
-            fileStream.Close();
-        }
-        catch
-        {
-            SaveItems(Difficulties.Begginer.mode, Difficulties.Begginer.speed, Difficulties.Begginer.accuracyAI, Difficulties.Begginer.timeRest);
-            LoadItems();
-        }
-    }
-
-
     /* Универсальная сериализация
      * Параметры:
-     * data - класс который необходимо сериализовать, name - имя xml файла (желательно имя самого класса, чтобы не забыть)
+     * data - класс который необходимо десериализовать 
+     * name - имя xml файла (желательно имя самого класса, чтобы не забыть)
      */
     public static void SaveData<T>(T data, string name)
     {
         XmlSerializer serializer = new XmlSerializer(typeof(T));
-        FileStream fileStream = new FileStream(@"D:\GAMES\Unity\Projects\FastSlingpuck\Assets\Resources\" + name + ".xml", FileMode.Create);
+        FileStream fileStream = new FileStream(Application.dataPath + "/Data/" + name + ".xml", FileMode.Create);
         //FileStream fileStream = new FileStream(Application.persistentDataPath + '/' + name + ".xml", FileMode.Create);
         serializer.Serialize(fileStream, data);
         fileStream.Close();
@@ -70,16 +26,20 @@ public class XMLManager
 
     /* Универсальная десериализация
      * Параметры:
-     * data - класс который необходимо десериализовать, name - имя xml файла (желательно имя самого класса, чтобы не забыть)
+     * data - класс который необходимо сериализовать 
+     * name - имя xml файла 
+     * Возврат:
+     * true - десериализация успешна
+     * false - отсутствует файл
      */
     public static bool LoadData<T>(ref T data, string name)
     {
         XmlSerializer serializer = new XmlSerializer(typeof(T));
         try
         {
-            FileStream fileStream = new FileStream(@"D:\GAMES\Unity\Projects\FastSlingpuck\Assets\Resources\" + name + ".xml", FileMode.Open); // Дебаг, для комп
-            //FileStream fileStream = new FileStream(Application.persistentDataPath + "/PlayerData.xml", FileMode.Open);     
-            data = (T)(serializer.Deserialize(fileStream));
+            FileStream fileStream = new FileStream(Application.dataPath + "/Data/" + name + ".xml", FileMode.Open);
+            //FileStream fileStream = new FileStream(Application.persistentDataPath + '/' + name + ".xml", FileMode.Create);
+            data = (T)serializer.Deserialize(fileStream);
             fileStream.Close();
             return true;
         }
@@ -89,14 +49,25 @@ public class XMLManager
         }
     }
 
+    /* Универсальная загрузка сложностей
+     * Параметры:
+     * data - класс который необходимо сериализовать, name - имя xml файла (желательно имя самого класса, чтобы не забыть)
+     * data - класс который необходимо сериализовать 
+     * name - имя xml файла 
+     * key - уровень сложности
+     */
+    public static void LoadDifficulty(ref Difficulty data, string key)
+    {
+        FileStream fileStream = new FileStream(Application.dataPath + "/Resources/Settings/Difficulties" + ".xml", FileMode.Open);
+        //FileStream fileStream = new FileStream(Application.persistentDataPath + '/' + name + ".xml", FileMode.Create);
+        XDocument xdoc = XDocument.Load(fileStream);
+        foreach (XElement diff in xdoc.Element("difficulties").Elements(key))
+        {
+            data.mode = diff.Element("mode").Value;
+            data.speedAI = float.Parse(diff.Element("speedAI").Value);
+            data.accuracyAI = float.Parse(diff.Element("accuracyAI").Value, CultureInfo.InvariantCulture);
+            data.timeRest = float.Parse(diff.Element("timeRest").Value, CultureInfo.InvariantCulture);
+        }
+        fileStream.Close();
+    }
 }
-
-[System.Serializable]
-public class Difficulty
-{
-    public string mode;
-    public float speedAI;
-    public float accuracyAI;
-    public float timeRest;
-}
-
