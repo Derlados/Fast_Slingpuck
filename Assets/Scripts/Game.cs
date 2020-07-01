@@ -30,14 +30,12 @@ public class Game : MonoBehaviour
     //картинка фишки из быстрого режима
     Image image;
 
-    XMLManager manager;
     GameManager gameManager;
     PlayerData playerData;
 
     private void Start()
     {
         playerData = PlayerData.getInstance();
-        manager = XMLManager.getInstance();
         gameManager = GameManager.getInstance();
 
         if (gameManager.currentMode == GameManager.modes.Normal)

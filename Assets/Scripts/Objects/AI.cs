@@ -29,15 +29,14 @@ public class AI : MonoBehaviour
     private float leftBorder, rightBorder, upBorder;    // границы бота
     private Vector2 target;     // позиция шайбы для запуска
     private Transform keepObj;  // удерживаемая шайба
-    XMLManager manager;
 
     private void Start()
     {
-        manager = XMLManager.getInstance();
-        manager.LoadItems();
-        speedAI = manager.difficulty.speedAI;
-        accuracyAI = manager.difficulty.accuracyAI;
-        timeRest = manager.difficulty.timeRest;
+        Difficulty diff = new Difficulty();
+        XMLManager.LoadData<Difficulty>(ref diff, "settings");
+        speedAI = diff.speedAI;
+        accuracyAI = diff.accuracyAI;
+        timeRest = diff.timeRest;
 
         accuracyAI /= 2;
         upBorder = ScreenOptimization.GetWorldCoord2D(gameObject).first.y;

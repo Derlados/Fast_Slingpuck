@@ -7,13 +7,17 @@ using UnityEngine.UI;
 public class MainMenu : MonoBehaviour
 {
     public Text scoreText;
-    XMLManager manager;
     GameManager gameManager;
 
     private void Start()
     {
-        manager = XMLManager.getInstance();
         gameManager = GameManager.getInstance();
+    }
+
+    public void SpeedGamePressed()
+    {
+        gameManager.setSpeedGame();
+        SceneManager.LoadScene("Game");
     }
 
     public void PlayPressed()
@@ -27,9 +31,5 @@ public class MainMenu : MonoBehaviour
         Application.Quit();
     }
 
-    public void SpeedGamePressed()
-    {
-        gameManager.setSpeedGame();
-        SceneManager.LoadScene("Game");
-    }
+
 }
