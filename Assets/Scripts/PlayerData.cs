@@ -10,7 +10,7 @@ public class PlayerData
     private static PlayerData instance;
 
     public int money;
-    public List<List<bool>> progress = new List<List<bool>>();
+    public List<List<bool>> progress = new List<List<bool>>(); // Массив bool отмечающий какие уровни уже пройдены
 
     public static PlayerData getInstance()
     {

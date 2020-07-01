@@ -6,6 +6,7 @@ using UnityEngine;
 // Этот класс должен храниь все данные уровня (сложность ИИ, тип поля, режим и т.д.)
 public class Level : MonoBehaviour
 {
+    // Номер планеты
     public int NumberPlanet;
 
     public void Start()
@@ -13,6 +14,7 @@ public class Level : MonoBehaviour
         StartCoroutine(Spawn());
     }
 
+    // Функция загрузки уровней на планете (анимация)
     IEnumerator Spawn()
     {
         for (int i = 0; i < gameObject.transform.childCount; ++i)

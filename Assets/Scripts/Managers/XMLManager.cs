@@ -57,7 +57,7 @@ public class XMLManager
 
     /* Универсальная сериализация
      * Параметры:
-     * data - класс который необходимо десериализовать, name - имя xml файла (желательно имя самого класса, чтобы не забыть)
+     * data - класс который необходимо сериализовать, name - имя xml файла (желательно имя самого класса, чтобы не забыть)
      */
     public static void SaveData<T>(T data, string name)
     {
@@ -68,6 +68,10 @@ public class XMLManager
         fileStream.Close();
     }
 
+    /* Универсальная десериализация
+     * Параметры:
+     * data - класс который необходимо десериализовать, name - имя xml файла (желательно имя самого класса, чтобы не забыть)
+     */
     public static bool LoadData<T>(ref T data, string name)
     {
         XmlSerializer serializer = new XmlSerializer(typeof(T));
