@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<PlayerData xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <money>0</money>
+  <progress>
+    <ArrayOfBoolean>
+      <boolean>true</boolean>
+      <boolean>true</boolean>
+      <boolean>false</boolean>
+      <boolean>false</boolean>
+    </ArrayOfBoolean>
+  </progress>
+</PlayerData>

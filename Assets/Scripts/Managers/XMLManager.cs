@@ -28,18 +28,30 @@ public class XMLManager
      * Параметры:
      * data - класс который необходимо сериализовать 
      * name - имя xml файла 
+     * Возврат:
+     * true - десериализация успешна
+     * false - отсутствует файл
      */
-    public static void LoadData<T>(ref T data, string name)
+    public static bool LoadData<T>(ref T data, string name)
     {
         XmlSerializer serializer = new XmlSerializer(typeof(T));
-        FileStream fileStream = new FileStream(Application.dataPath + "/Data/" + name + ".xml", FileMode.Open);
-        //FileStream fileStream = new FileStream(Application.persistentDataPath + '/' + name + ".xml", FileMode.Create);
-        data = (T)serializer.Deserialize(fileStream);
-        fileStream.Close();
+        try
+        {
+            FileStream fileStream = new FileStream(Application.dataPath + "/Data/" + name + ".xml", FileMode.Open);
+            //FileStream fileStream = new FileStream(Application.persistentDataPath + '/' + name + ".xml", FileMode.Create);
+            data = (T)serializer.Deserialize(fileStream);
+            fileStream.Close();
+            return true;
+        }
+        catch
+        {
+            return false;
+        }
     }
 
     /* Универсальная загрузка сложностей
      * Параметры:
+     * data - класс который необходимо сериализовать, name - имя xml файла (желательно имя самого класса, чтобы не забыть)
      * data - класс который необходимо сериализовать 
      * name - имя xml файла 
      * key - уровень сложности
@@ -59,4 +71,3 @@ public class XMLManager
         fileStream.Close();
     }
 }
-

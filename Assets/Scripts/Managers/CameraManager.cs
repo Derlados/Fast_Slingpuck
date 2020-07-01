@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -6,10 +7,9 @@ public class CameraManager : MonoBehaviour
 {
     public Canvas Menu, Planets; // Полотоно Меню и Планет соответсвенно
     public Camera thisCamera; // Камера на которую вешается скрипт
-    private Vector2 startPos, target; // StartPos - начальная позиция камеры, target - позиция планеты к которой необходимо приблизить камеру
-    public float dirrection, speedSize, speedMove; // Скорость приближения камеры. speedSize - скорость изменения размера видимой области, speedMove - скорость перемещения камеры
+    private Vector2 startPos, targetPos; // StartPos - начальная позиция камеры, targetPos - позиция планеты к которой необходимо приблизить камеру
+    public float stepMove, stepSize; // stepMove - шаг передвижения камеры , stepSize - шаг приближения камеры
     private GameObject planetLevels;
-
 
     Status cameraStatus = Status.freeOnMenu;
 
@@ -27,21 +27,22 @@ public class CameraManager : MonoBehaviour
         Planets.GetComponent<RectTransform>().sizeDelta = Camera.main.ScreenToWorldPoint(new Vector2(Screen.width, Screen.height)) * 2;
     }
 
-    private void Update()
+    private void FixedUpdate()
     {
         if (cameraStatus == Status.zoom)
-        {
-            Vector2 temp = Vector2.MoveTowards(thisCamera.transform.position, target, Time.deltaTime * speedMove);
-
-            if ((Vector2)thisCamera.transform.position == target)
+        {  
+            if ((Vector2)thisCamera.transform.position == targetPos)
             {
                 cameraStatus = (Vector2)thisCamera.transform.position == startPos ? Status.freeOnMenu : Status.freeOnPlanet;
                 if (cameraStatus == Status.freeOnPlanet)
                     planetLevels.SetActive(true);
             }
-
-            thisCamera.transform.position = new Vector3(temp.x, temp.y, thisCamera.transform.position.z);
-            thisCamera.orthographicSize -= Time.deltaTime * speedSize * dirrection;
+            else
+            {
+                Vector2 temp = Vector2.MoveTowards(thisCamera.transform.position, targetPos, stepMove);
+                thisCamera.transform.position = new Vector3(temp.x, temp.y, thisCamera.transform.position.z);
+                thisCamera.orthographicSize -= stepSize;
+            }
         }
 
     }
@@ -50,9 +51,10 @@ public class CameraManager : MonoBehaviour
     public void zoomPlanet(GameObject planet)
     {
         if (cameraStatus != Status.freeOnPlanet)
-        {         
-            target = planet.transform.position;
-            dirrection = 1;
+        {
+            targetPos = planet.transform.position;
+            stepMove = ((Vector2)thisCamera.transform.position - targetPos).magnitude * Time.fixedDeltaTime;
+            stepSize = Math.Abs(thisCamera.orthographicSize - 1.5f) * Time.fixedDeltaTime;
             cameraStatus = Status.zoom;
         }
     }
@@ -66,8 +68,9 @@ public class CameraManager : MonoBehaviour
 
     public void backToStart()
     {
-        dirrection = -1;
-        target = startPos;
+        targetPos = startPos;
+        stepMove = ((Vector2)thisCamera.transform.position - targetPos).magnitude * Time.fixedDeltaTime;
+        stepSize = -Math.Abs(thisCamera.orthographicSize - 5.05f) * Time.fixedDeltaTime;
         planetLevels.SetActive(false);
         cameraStatus = Status.zoom;    
     }
