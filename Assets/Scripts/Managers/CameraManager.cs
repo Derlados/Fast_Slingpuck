@@ -22,9 +22,13 @@ public class CameraManager : MonoBehaviour
 
     private void Start()
     {
-        startPos = thisCamera.transform.position;
         // Оптимизация второго поля под разные екраны так как поле Планет не закреплено за камерой
-        Planets.GetComponent<RectTransform>().sizeDelta = Camera.main.ScreenToWorldPoint(new Vector2(Screen.width, Screen.height)) * 2;
+        Debug.Log(Camera.main.ScreenToWorldPoint(new Vector2(Screen.width, Screen.height)));
+        Debug.Log(Planets.GetComponent<RectTransform>().sizeDelta / 2); 
+        float posX = -Math.Abs(Camera.main.ScreenToWorldPoint(new Vector2(Screen.width, Screen.height)).x - (Planets.GetComponent<RectTransform>().sizeDelta.x / 2));
+        thisCamera.transform.position = new Vector3(posX, thisCamera.transform.position.y, thisCamera.transform.position.z);
+
+        startPos = thisCamera.transform.position;
     }
 
     private void FixedUpdate()
