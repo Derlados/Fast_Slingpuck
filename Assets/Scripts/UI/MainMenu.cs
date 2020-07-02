@@ -7,22 +7,16 @@ using UnityEngine.UI;
 public class MainMenu : MonoBehaviour
 {
     public Text scoreText;
-    GameManager gameManager;
-
-    private void Start()
-    {
-        gameManager = GameManager.getInstance();
-    }
 
     public void SpeedGamePressed()
     {
-        gameManager.setSpeedGame();
+        GameManager.setSpeedGame();
         SceneManager.LoadScene("Game");
     }
 
     public void PlayPressed()
     {
-        gameManager.setNormalMode();
+        GameManager.setNormalMode();
         SceneManager.LoadScene("Game");
     }
 

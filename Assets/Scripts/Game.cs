@@ -5,6 +5,7 @@ using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using System.Linq;
 using BaseStructures;
+using System.IO;
 
 public class Game : MonoBehaviour
 {
@@ -30,15 +31,13 @@ public class Game : MonoBehaviour
     //картинка фишки из быстрого режима
     Image image;
 
-    GameManager gameManager;
     PlayerData playerData;
 
     private void Start()
     {
         playerData = PlayerData.getInstance();
-        gameManager = GameManager.getInstance();
 
-        if (gameManager.currentMode == GameManager.modes.Normal)
+        if (GameManager.currentMode == GameManager.modes.Normal)
         {
             speedGameChecker.SetActive(false);
             StartCoroutine(delayBeforeStart(3));
@@ -51,7 +50,25 @@ public class Game : MonoBehaviour
             AI.GetComponent<AI>().active = false;
 
         }
-
+        switch (GameManager.level)
+        {
+            case "lava":
+                ChangePlanetSprite("lava_planet");
+                ChangeCheckerSprite("fire_CheckerGlowMat", Color.red);
+                break;
+            case "ice":
+                ChangePlanetSprite("ice_planet");
+                ChangeCheckerSprite("ice_CheckerGlowMat", Color.blue);
+                break;
+            case "sand":
+                ChangePlanetSprite("sand_planet");
+                ChangeCheckerSprite("sand_CheckerGlowMat", Color.yellow);
+                break;
+            case "jungle":
+                ChangePlanetSprite("jungle_planet");
+                ChangeCheckerSprite("jungle_CheckerGlowMat", Color.green);
+                break;
+        }
     }
 
     void Update()
@@ -70,7 +87,7 @@ public class Game : MonoBehaviour
                 }
             }
 
-            if (gameManager.currentMode == GameManager.modes.Normal)
+            if (GameManager.currentMode == GameManager.modes.Normal)
             {
                 upCountText.text = upCount.ToString();
                 downCountText.text = downCount.ToString();
@@ -150,7 +167,7 @@ public class Game : MonoBehaviour
 
         //В режиме Normal текст отсчета выключается
         //В режиме Speed запускается отчет 60 секунд
-        if (gameManager.currentMode == GameManager.modes.Normal) gameStartCounterText.enabled = false;
+        if (GameManager.currentMode == GameManager.modes.Normal) gameStartCounterText.enabled = false;
         else StartCoroutine(countDownTimer(60));
 
     }
@@ -191,7 +208,7 @@ public class Game : MonoBehaviour
             if (gameStarted)
             {
                 score += 100;
-                if (gameManager.currentMode == GameManager.modes.Speed)
+                if (GameManager.currentMode == GameManager.modes.Speed)
                     StartCoroutine(delayBeforeDissolve());
             }
 
@@ -229,4 +246,44 @@ public class Game : MonoBehaviour
         Vector2 randomPos = new Vector2(UnityEngine.Random.Range(points.first.x, points.second.x), UnityEngine.Random.Range(points.first.y, points.second.y));
         speedGameChecker.transform.position = randomPos;
     }
+
+    void ChangePlanetSprite(string spriteName)
+    {
+        Image img = GetComponent<Image>();
+        img.sprite = Resources.Load<Sprite>("Sprites/levels/planets/" + spriteName);
+    }
+
+    void ChangeCheckerSprite(string matName,Color color)
+    {
+        for (int i = 4; i <= 7; ++i)
+        {
+            Image img = checkers.transform.GetChild(i).gameObject.GetComponent<Image>();
+            img.material = Resources.Load<Material>("Sprites/Materials/Checker/" + matName);
+
+            Gradient gradient;
+            GradientColorKey[] colorKey;
+            GradientAlphaKey[] alphaKey;
+
+            // Populate the color keys at the relative time 0 and 1 (0 and 100%)
+            colorKey = new GradientColorKey[2];
+            colorKey[0].color = color;
+            colorKey[0].time = 0.0f;
+            colorKey[1].color = color;
+            colorKey[1].time = 1.0f;
+
+            // Populate the alpha  keys at relative time 0 and 1  (0 and 100%)
+            alphaKey = new GradientAlphaKey[2];
+            alphaKey[0].alpha = 1.0f;
+            alphaKey[0].time = 0.0f;
+            alphaKey[1].alpha = 0.2f;
+            alphaKey[1].time = 1.0f;
+
+            gradient = new Gradient();
+            gradient.SetKeys(colorKey, alphaKey);
+
+            TrailRenderer trailRenderer = checkers.transform.GetChild(i).gameObject.transform.GetChild(0).gameObject.GetComponent<TrailRenderer>();
+            trailRenderer.colorGradient = gradient;
+        }
+    }
+
 }
