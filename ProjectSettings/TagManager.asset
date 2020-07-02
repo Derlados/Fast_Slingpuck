@@ -17,7 +17,7 @@ TagManager:
   - UI
   - 
   - 
-  - 
+  - leafs
   - 
   - 
   - 
@@ -48,6 +48,9 @@ TagManager:
   - name: Trails
     uniqueID: 2220256193
     locked: 0
-  - name: New Layer
+  - name: checkers
     uniqueID: 13413727
+    locked: 0
+  - name: leafs
+    uniqueID: 1198340477
     locked: 0

@@ -7,8 +7,8 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: CheckerGlowMat
-  m_Shader: {fileID: -6465566751694194690, guid: f4d18d5c732b8eb47abe1ffd1325eda3,
+  m_Name: ice_CheckerGlowMat
+  m_Shader: {fileID: -6465566751694194690, guid: b68b6306f50b8074d9dc74181881852f,
     type: 3}
   m_ShaderKeywords: ETC1_EXTERNAL_ALPHA
   m_LightmapFlags: 4
@@ -29,11 +29,11 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Emission:
-        m_Texture: {fileID: 2800000, guid: 1d0845de4be698848aecd93608fae76d, type: 3}
+        m_Texture: {fileID: 2800000, guid: f3dd961d976a4e34e96491d9498026ee, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Emission2:
-        m_Texture: {fileID: 2800000, guid: a4907a77ed863324698c82b57603f7b3, type: 3}
+        m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _EmissionMap:
@@ -41,7 +41,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MainTex:
-        m_Texture: {fileID: 2800000, guid: a2a09dcbf335a4343872043733c8ed69, type: 3}
+        m_Texture: {fileID: 2800000, guid: 39bc5c4830bce414ab46d7482bde0edc, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MetallicGlossMap:
@@ -79,9 +79,9 @@ Material:
     - _WorkflowMode: 1
     - _ZWrite: 1
     m_Colors:
-    - Color_35045387: {r: 0, g: 3.611357, b: 3.6886053, a: 0}
+    - Color_35045387: {r: 0, g: 1.8782996, b: 4.350998, a: 0}
     - Color_7EDB2AA4: {r: 1, g: 1, b: 1, a: 0.6509804}
-    - Color_B4D217C0: {r: 0.02699821, g: 3.6067774, b: 5.723607, a: 0}
+    - Color_B4D217C0: {r: 1, g: 0.8634263, b: 0, a: 0}
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}

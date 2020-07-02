@@ -33,7 +33,12 @@ public class AI : MonoBehaviour
     private void Start()
     {
         Difficulty diff = new Difficulty();
-        XMLManager.LoadData<Difficulty>(ref diff, "settings");
+        if (!XMLManager.LoadData<Difficulty>(ref diff, "settings"))
+        {
+            XMLManager.LoadDifficulty(ref diff, "begginer");
+            XMLManager.SaveData<Difficulty>(diff, "settings");
+        }
+
         speedAI = diff.speedAI;
         accuracyAI = diff.accuracyAI;
         timeRest = diff.timeRest;

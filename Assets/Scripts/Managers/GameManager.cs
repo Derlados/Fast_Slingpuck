@@ -8,32 +8,21 @@ using UnityEngine;
  */
 public class GameManager 
 {
-    public static GameManager instance = null;
-
     public enum modes : byte
     {
         Normal,
         Speed
     }
 
-    public modes currentMode = modes.Normal;
+    public static modes currentMode = modes.Normal;
+    public static string level;
 
-    private GameManager()
-    { }
-    public static GameManager getInstance()
-    {
-        if (instance == null)
-            instance = new GameManager();
-        return instance;
-    }
-
-
-    public void setNormalMode()
+    public static void setNormalMode()
     {
         currentMode = modes.Normal;
     }
 
-    public void setSpeedGame()
+    public static void setSpeedGame()
     {
         currentMode = modes.Speed;
     }

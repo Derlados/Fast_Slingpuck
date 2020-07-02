@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class Difficulty
 {
@@ -21,18 +22,14 @@ public class Settings : MonoBehaviour
     {
         diff = new Difficulty();
 
-        //В случае если режим не был выбран,то по умолчанию ставится режим begginer
-        try
-        {
-            XMLManager.LoadData<Difficulty>(ref diff, settingsFileName);
-            chosenModeText.text = diff.mode;
-        }
-        catch
+        if (!XMLManager.LoadData<Difficulty>(ref diff, settingsFileName))
         {
             XMLManager.LoadDifficulty(ref diff, "begginer");
             XMLManager.SaveData<Difficulty>(diff, settingsFileName);
             chosenModeText.text = diff.mode;
         }
+
+        chosenModeText.text = diff.mode;
     }
 
     /* Универсальный выбор сложностей
@@ -65,6 +62,13 @@ public class Settings : MonoBehaviour
                 break;
         }
         LocalizationManager.resetLanguage();
+    }
+
+    public void LevelPressed(string level)
+    {
+        GameManager.level = level;
+        GameManager.setNormalMode();
+        SceneManager.LoadScene("Game");
     }
 }
 

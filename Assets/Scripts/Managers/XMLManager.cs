@@ -18,8 +18,9 @@ public class XMLManager
     public static void SaveData<T>(T data, string name)
     {
         XmlSerializer serializer = new XmlSerializer(typeof(T));
-        FileStream fileStream = new FileStream(Application.dataPath + "/Data/" + name + ".xml", FileMode.Create);
-        //FileStream fileStream = new FileStream(Application.persistentDataPath + '/' + name + ".xml", FileMode.Create);
+        //FileStream fileStream = new FileStream(Application.dataPath + "/Data/" + name + ".xml", FileMode.Create);
+        FileStream fileStream = new FileStream(Application.persistentDataPath + name + ".xml", FileMode.Create);
+        //FileStream fileStream = new FileStream(Application.persistentDataPath  + name + ".xml", FileMode.Create);
         serializer.Serialize(fileStream, data);
         fileStream.Close();
     }
@@ -37,8 +38,8 @@ public class XMLManager
         XmlSerializer serializer = new XmlSerializer(typeof(T));
         try
         {
-            FileStream fileStream = new FileStream(Application.dataPath + "/Data/" + name + ".xml", FileMode.Open);
-            //FileStream fileStream = new FileStream(Application.persistentDataPath + '/' + name + ".xml", FileMode.Create);
+            //FileStream fileStream = new FileStream(Application.dataPath + "/Data/" + name + ".xml", FileMode.Open);
+            FileStream fileStream = new FileStream(Application.persistentDataPath + name + ".xml", FileMode.Open);
             data = (T)serializer.Deserialize(fileStream);
             fileStream.Close();
             return true;
@@ -58,16 +59,15 @@ public class XMLManager
      */
     public static void LoadDifficulty(ref Difficulty data, string key)
     {
-        FileStream fileStream = new FileStream(Application.dataPath + "/Resources/Settings/Difficulties" + ".xml", FileMode.Open);
-        //FileStream fileStream = new FileStream(Application.persistentDataPath + '/' + name + ".xml", FileMode.Create);
-        XDocument xdoc = XDocument.Load(fileStream);
-        foreach (XElement diff in xdoc.Element("difficulties").Elements(key))
+        TextAsset textAsset = (TextAsset)Resources.Load("Settings/Difficulties");
+        XElement xdoc = XDocument.Parse(textAsset.text).Element("difficulties");
+
+        foreach (XElement diff in xdoc.Elements(key))
         {
             data.mode = diff.Element("mode").Value;
             data.speedAI = float.Parse(diff.Element("speedAI").Value);
             data.accuracyAI = float.Parse(diff.Element("accuracyAI").Value, CultureInfo.InvariantCulture);
             data.timeRest = float.Parse(diff.Element("timeRest").Value, CultureInfo.InvariantCulture);
         }
-        fileStream.Close();
     }
 }
