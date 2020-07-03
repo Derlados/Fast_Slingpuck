@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -9,10 +10,11 @@ public class MenuManager : MonoBehaviour
     public Camera thisCamera; // Камера на которую вешается скрипт
     private Vector2 startPos, targetPos; // StartPos - начальная позиция камеры, targetPos - позиция планеты к которой необходимо приблизить камеру
     private float stepMove, stepSize; // stepMove - шаг передвижения камеры , stepSize - шаг приближения камеры
-    private GameObject planetLevels; 
     public GameObject mainMenu, galaxy; // mainMenu - UI главного меню, galaxy - UI режима прохождения уровней 
 
-    Status cameraStatus = Status.freeOnMenu;
+    // Уровни планеты и номер самой планеты
+    private GameObject planetLevels;
+    private int numberPlanet;
 
     enum Status
     {
@@ -20,6 +22,8 @@ public class MenuManager : MonoBehaviour
         freeOnPlanet, // Камера свободна и находится на планете
         zoom, // Камера приближается
     }
+    Status cameraStatus = Status.freeOnMenu;
+
 
     private void Start()
     {
@@ -32,6 +36,11 @@ public class MenuManager : MonoBehaviour
 
     private void FixedUpdate()
     {
+        if (Input.GetKey(KeyCode.Escape))
+        {
+            backToStart();
+        }
+
         if (cameraStatus == Status.zoom)
         {  
             if ((Vector2)thisCamera.transform.position == targetPos)
@@ -40,7 +49,7 @@ public class MenuManager : MonoBehaviour
                 if (cameraStatus == Status.freeOnPlanet)
                 {
                     planetLevels.SetActive(true);
-                    StartCoroutine(Spawn(planetLevels));
+                    StartCoroutine(Spawn(planetLevels, numberPlanet));
                 }
             }
             else
@@ -82,8 +91,12 @@ public class MenuManager : MonoBehaviour
         this.planetLevels = planetLevels;
     }
 
-    // Возврат к стартовому меню
+    public void setPlanetNumber(int num)
+    {
+        numberPlanet = num;
+    }
 
+    // Возврат к стартовому меню
     public void backToStart()
     {
         targetPos = startPos;
@@ -93,12 +106,13 @@ public class MenuManager : MonoBehaviour
         cameraStatus = Status.zoom;    
     }
 
-    IEnumerator Spawn(GameObject gameObject)
+    // Анимация прорисовки уровней
+    IEnumerator Spawn(GameObject gameObject, int num)
     {
         for (int i = 0; i < gameObject.transform.childCount; ++i)
         {
             GameObject ChildLvl = gameObject.transform.GetChild(i).gameObject;
-            bool progress = PlayerData.getInstance().progress[Int32.Parse(gameObject.name)][i];
+            bool progress = PlayerData.getInstance().progress[num][i];
 
             for (int j = 0; j < ChildLvl.transform.childCount; ++j)
             {
