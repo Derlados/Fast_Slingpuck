@@ -38,8 +38,8 @@ public class XMLManager
         XmlSerializer serializer = new XmlSerializer(typeof(T));
         try
         {
-            //FileStream fileStream = new FileStream(Application.dataPath + "/Data/" + name + ".xml", FileMode.Open);
-            FileStream fileStream = new FileStream(Application.persistentDataPath + name + ".xml", FileMode.Open);
+            FileStream fileStream = new FileStream(@"D:\GAMES\Unity\Projects\FastSlingpuck\Assets\Resources\" + name + ".xml", FileMode.Open); //Debug
+            //FileStream fileStream = new FileStream(Application.persistentDataPath + name + ".xml", FileMode.Open);
             data = (T)serializer.Deserialize(fileStream);
             fileStream.Close();
             return true;

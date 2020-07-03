@@ -2,16 +2,19 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
-public class CameraManager : MonoBehaviour
+public class MenuManager : MonoBehaviour
 {
-    public Canvas Menu, Planets; // Полотоно Меню и Планет соответсвенно
+    public Canvas GalaxyCanvas; // Полотоно Планет
     public Camera thisCamera; // Камера на которую вешается скрипт
     private Vector2 startPos, targetPos; // StartPos - начальная позиция камеры, targetPos - позиция планеты к которой необходимо приблизить камеру
-    public float stepMove, stepSize; // stepMove - шаг передвижения камеры , stepSize - шаг приближения камеры
-    private GameObject planetLevels;
+    private float stepMove, stepSize; // stepMove - шаг передвижения камеры , stepSize - шаг приближения камеры
+    public GameObject mainMenu, galaxy; // mainMenu - UI главного меню, galaxy - UI режима прохождения уровней 
 
-    Status cameraStatus = Status.freeOnMenu;
+    // Уровни планеты и номер самой планеты
+    private GameObject planetLevels;
+    private int numberPlanet;
 
     enum Status
     {
@@ -19,13 +22,13 @@ public class CameraManager : MonoBehaviour
         freeOnPlanet, // Камера свободна и находится на планете
         zoom, // Камера приближается
     }
+    Status cameraStatus = Status.freeOnMenu;
+
 
     private void Start()
     {
         // Оптимизация второго поля под разные екраны так как поле Планет не закреплено за камерой
-        Debug.Log(Camera.main.ScreenToWorldPoint(new Vector2(Screen.width, Screen.height)));
-        Debug.Log(Planets.GetComponent<RectTransform>().sizeDelta / 2); 
-        float posX = -Math.Abs(Camera.main.ScreenToWorldPoint(new Vector2(Screen.width, Screen.height)).x - (Planets.GetComponent<RectTransform>().sizeDelta.x / 2));
+        float posX = -Math.Abs(Camera.main.ScreenToWorldPoint(new Vector2(Screen.width, Screen.height)).x - (GalaxyCanvas.GetComponent<RectTransform>().sizeDelta.x / 2));
         thisCamera.transform.position = new Vector3(posX, thisCamera.transform.position.y, thisCamera.transform.position.z);
 
         startPos = thisCamera.transform.position;
@@ -33,13 +36,21 @@ public class CameraManager : MonoBehaviour
 
     private void FixedUpdate()
     {
+        if (Input.GetKey(KeyCode.Escape))
+        {
+            backToStart();
+        }
+
         if (cameraStatus == Status.zoom)
         {  
             if ((Vector2)thisCamera.transform.position == targetPos)
             {
                 cameraStatus = (Vector2)thisCamera.transform.position == startPos ? Status.freeOnMenu : Status.freeOnPlanet;
                 if (cameraStatus == Status.freeOnPlanet)
+                {
                     planetLevels.SetActive(true);
+                    StartCoroutine(Spawn(planetLevels, numberPlanet));
+                }
             }
             else
             {
@@ -50,6 +61,18 @@ public class CameraManager : MonoBehaviour
         }
 
     }
+
+    //////////////////////////////////////////////////////////////////////////////////  MAIN MENU ///////////////////////////////////////////////////////////////////////////////////
+   
+    public void chooseGalaxy()
+    {
+        mainMenu.SetActive(false);
+        galaxy.SetActive(true);
+    }
+
+    //////////////////////////////////////////////////////////////////////////////////  SHOP MENU ///////////////////////////////////////////////////////////////////////////////////
+
+    //////////////////////////////////////////////////////////////////////////////////  GALAXY MENU ///////////////////////////////////////////////////////////////////////////////////
 
     // Приближение к планете
     public void zoomPlanet(GameObject planet)
@@ -68,8 +91,12 @@ public class CameraManager : MonoBehaviour
         this.planetLevels = planetLevels;
     }
 
-    // Возврат к стартовому меню
+    public void setPlanetNumber(int num)
+    {
+        numberPlanet = num;
+    }
 
+    // Возврат к стартовому меню
     public void backToStart()
     {
         targetPos = startPos;
@@ -77,6 +104,30 @@ public class CameraManager : MonoBehaviour
         stepSize = -Math.Abs(thisCamera.orthographicSize - 5.05f) * Time.fixedDeltaTime;
         planetLevels.SetActive(false);
         cameraStatus = Status.zoom;    
+    }
+
+    // Анимация прорисовки уровней
+    IEnumerator Spawn(GameObject gameObject, int num)
+    {
+        for (int i = 0; i < gameObject.transform.childCount; ++i)
+        {
+            GameObject ChildLvl = gameObject.transform.GetChild(i).gameObject;
+            bool progress = PlayerData.getInstance().progress[num][i];
+
+            for (int j = 0; j < ChildLvl.transform.childCount; ++j)
+            {
+                GameObject child = ChildLvl.transform.GetChild(j).gameObject;
+
+                if (!progress)
+                {
+                    Color32 thisColor = child.GetComponent<Image>().color;
+                    child.GetComponent<Image>().color = new Color32(thisColor.r, thisColor.g, thisColor.b, 170);
+                }
+
+                child.gameObject.SetActive(true);
+                yield return new WaitForSeconds(0.1f);
+            }
+        }
     }
 }
 
