@@ -81,7 +81,7 @@ public class MenuManager : MonoBehaviour
         {
             targetPos = planet.transform.position;
             stepMove = ((Vector2)thisCamera.transform.position - targetPos).magnitude * Time.fixedDeltaTime;
-            stepSize = Math.Abs(thisCamera.orthographicSize - 1.5f) * Time.fixedDeltaTime;
+            stepSize = Math.Abs(thisCamera.orthographicSize - 1.18f) * Time.fixedDeltaTime;
             cameraStatus = Status.zoom;
         }
     }
@@ -109,23 +109,43 @@ public class MenuManager : MonoBehaviour
     // Анимация прорисовки уровней
     IEnumerator Spawn(GameObject gameObject, int num)
     {
+        float timeDelay;
+
         for (int i = 0; i < gameObject.transform.childCount; ++i)
         {
             GameObject ChildLvl = gameObject.transform.GetChild(i).gameObject;
-            bool progress = PlayerData.getInstance().progress[num][i];
+            byte progress = PlayerData.getInstance().progress[num][i];
 
             for (int j = 0; j < ChildLvl.transform.childCount; ++j)
             {
+                timeDelay = 0.1f;
                 GameObject child = ChildLvl.transform.GetChild(j).gameObject;
 
-                if (!progress)
+                if (progress != 0)
                 {
-                    Color32 thisColor = child.GetComponent<Image>().color;
-                    child.GetComponent<Image>().color = new Color32(thisColor.r, thisColor.g, thisColor.b, 170);
+                    if (j == 0)
+                        for (int k = 1; k <= progress; ++k)
+                            child.transform.GetChild(k).gameObject.SetActive(true);
+                    child.gameObject.SetActive(true);
+                }
+                else
+                {
+                    if (j == 0 && (i == 0 || PlayerData.getInstance().progress[num][i - 1] != 0))
+                        child.gameObject.SetActive(true);
+                    else if (j == 0)
+                    {
+                        Color32 thisColor = child.GetComponent<Image>().color;
+                        child.GetComponent<Image>().color = new Color32(thisColor.r, thisColor.g, thisColor.b, 170);
+                        child.gameObject.SetActive(true);
+                    }
+                    else
+                    {
+                        child.gameObject.SetActive(false);
+                        timeDelay = 0;
+                    }
                 }
 
-                child.gameObject.SetActive(true);
-                yield return new WaitForSeconds(0.1f);
+                yield return new WaitForSeconds(timeDelay);
             }
         }
     }
