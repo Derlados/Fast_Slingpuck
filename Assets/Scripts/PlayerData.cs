@@ -10,7 +10,7 @@ public class PlayerData
     private static PlayerData instance;
 
     public int money;
-    public List<List<bool>> progress = new List<List<bool>>(); // Массив bool отмечающий какие уровни уже пройдены
+    public List<List<byte>> progress = new List<List<byte>>(); // Массив bool отмечающий какие уровни уже пройдены
 
     public static PlayerData getInstance()
     {
@@ -26,6 +26,12 @@ public class PlayerData
 
     public void Init()
     {
+        progress.Add(new List<byte>());
+        progress[0].Add(3);
+        progress[0].Add(2);
+        progress[0].Add(0);
+        progress[0].Add(0);
+
         Debug.Log("INIT");
         XMLManager.SaveData(this, this.ToString());
     }

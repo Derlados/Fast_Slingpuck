@@ -19,8 +19,8 @@ public class XMLManager
     {
         XmlSerializer serializer = new XmlSerializer(typeof(T));
         //FileStream fileStream = new FileStream(Application.dataPath + "/Data/" + name + ".xml", FileMode.Create);
-        FileStream fileStream = new FileStream(Application.persistentDataPath + name + ".xml", FileMode.Create);
-        //FileStream fileStream = new FileStream(Application.persistentDataPath  + name + ".xml", FileMode.Create);
+        //FileStream fileStream = new FileStream(Application.persistentDataPath + name + ".xml", FileMode.Create);
+        FileStream fileStream = new FileStream(@"D:\GAMES\Unity\Projects\FastSlingpuck\Assets\Resources\" + name + ".xml", FileMode.Create); //Debug
         serializer.Serialize(fileStream, data);
         fileStream.Close();
     }
