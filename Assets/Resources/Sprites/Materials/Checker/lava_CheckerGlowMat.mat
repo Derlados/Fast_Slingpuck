@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: fire_CheckerGlowMat
+  m_Name: lava_CheckerGlowMat
   m_Shader: {fileID: -6465566751694194690, guid: b68b6306f50b8074d9dc74181881852f,
     type: 3}
   m_ShaderKeywords: ETC1_EXTERNAL_ALPHA

@@ -32,6 +32,8 @@ public class AI : MonoBehaviour
 
     private void Start()
     {
+        active = false;
+
         Difficulty diff = new Difficulty();
         if (!XMLManager.LoadData<Difficulty>(ref diff, "settings"))
         {
@@ -51,53 +53,64 @@ public class AI : MonoBehaviour
 
     void Update()
     {
-        //active = false;
-        if (statusType == Status.keep)
+        if (active)
         {
-            keepObj.position = Vector2.MoveTowards(keepObj.position, target, Time.deltaTime * speedAI);
-            if ((Vector2)keepObj.position == target)
-                statusType = Status.ready;
-        }
+            if (statusType == Status.keep)
+            {
+                keepObj.position = Vector2.MoveTowards(keepObj.position, target, Time.deltaTime * speedAI);
+                if ((Vector2)keepObj.position == target)
+                    statusType = Status.ready;
+            }
 
-        if (active && statusType == Status.free)
-        {
-            System.Random random = new System.Random();
+            if (statusType == Status.free)
+            {
+                System.Random random = new System.Random();
 
-            keepObj = checkers[0].objTransform;
-            for (int i = 1; i < checkers.Count; ++i)
-                if (checkers[i].objTransform.position.y > keepObj.position.y)
-                    keepObj = checkers[i].objTransform;
+                keepObj = checkers[0].objTransform;
+                for (int i = 1; i < checkers.Count; ++i)
+                    if (checkers[i].objTransform.position.y > keepObj.position.y)
+                        keepObj = checkers[i].objTransform;
 
-            keepObj.GetComponent<Checker>().OnMouseDown();
-            target = new Vector2(UnityEngine.Random.Range(leftBorder, rightBorder), upBorder - 1.2f * keepObj.GetComponent<Checker>().getRadius());
+                keepObj.GetComponent<Checker>().OnMouseDown();
+                target = new Vector2(UnityEngine.Random.Range(leftBorder, rightBorder), upBorder - 1.2f * keepObj.GetComponent<Checker>().getRadius());
 
-            statusType = Status.keep;
-        }
+                statusType = Status.keep;
+            }
 
-        if (statusType == Status.ready)
-        {
-            statusType = Status.wait;
-            StartCoroutine(delayToPush(0.3f, keepObj, timeRest));
+            if (statusType == Status.ready)
+            {
+                statusType = Status.wait;
+                StartCoroutine(delayToPush(0.3f, keepObj, timeRest));
+            }
         }
     }
 
+    // Добавляет новую шайбу в список шайб которые может использовать AI
     private void OnTriggerEnter2D(Collider2D col)
     {
         checkers.Add(col.gameObject.GetComponent<Checker>());
     }
 
+    // Удаляет шайбу из списка шайб которые может использовать AI
     private void OnTriggerExit2D(Collider2D col)
     {
         checkers.Remove(checkers.Find(item => item.id == col.gameObject.GetComponent<Checker>().id));
     }
 
-    IEnumerator delayToPush(float sec, Transform obj,float timeRest)
+    /* Задержка до запуска шайбы (Иммитация прицеливания) 
+     * Параметры:
+     * sec - время прицеливания в секундах
+     * obj - удерживаемая шайба (компонент Transform)
+     * timeRest - время отдыха между запусками шайб
+     */
+    IEnumerator delayToPush(float sec, Transform obj, float timeRest)
     {
         yield return new WaitForSeconds(sec);
         obj.GetComponent<Checker>().OnMouseUp();
         StartCoroutine(delaySec(timeRest));
     }
 
+    // Задержка в несколько секунд(sec)
     IEnumerator delaySec(float sec)
     {
         yield return new WaitForSeconds(sec);

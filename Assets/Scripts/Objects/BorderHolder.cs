@@ -13,21 +13,8 @@ public class BorderHolder : MonoBehaviour
         game = canvas.GetComponent<Game>();
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if(gameObject.transform.position.y>0)
-            game.IncreaseCount(true);
-        else
-            game.IncreaseCount(false);
-    }
-
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if (gameObject.transform.position.y > 0)
-            game.DecreaseCount(true);
-        else
-            game.DecreaseCount(false);
+        game.changeCount(gameObject.transform.position.y > 0 ? true : false);
     }
-
-
 }

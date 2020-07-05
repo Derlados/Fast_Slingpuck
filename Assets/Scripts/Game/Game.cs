@@ -7,6 +7,7 @@ using System.Linq;
 using BaseStructures;
 using System.IO;
 
+// Класс отвечающий за геймплей в самой игре
 public class Game : MonoBehaviour
 {
     /* gameOverText - текст с сообщение об окончании игры
@@ -15,29 +16,33 @@ public class Game : MonoBehaviour
      * gameStartCounterText - текст показывающий отсчет до начала игры
      * scoreText - текст показывающий набранные очки в игре
      */
-    public Text gameOverText, upCountText, downCountText, gameStartCounterText, scoreText;
-    private bool gameOver, gamePaused;
-    public GameObject pauseMenuCanvas, gameOverCanvas;
     public GameObject AI;
     public GameObject capper;
     public GameObject speedGameChecker;
     public GameObject downBorderHolder;
     public GameObject checkers;
+    public GameObject gameMenu;
 
+    // Счетчики
     public static int score;
-    public static bool gameStarted;
     public static byte upCount = 0, downCount = 0;
 
+    // Текст счетчиков
+    Text upCountText, downCountText, gameCounter;
     //картинка фишки из быстрого режима
     Image image;
-
     PlayerData playerData;
+
+    GameRule.Mode mode;
+    GameRule.Type type;
 
     private void Start()
     {
         playerData = PlayerData.getInstance();
+        mode = GameRule.mode;
+        type = GameRule.type;
 
-        if (GameManager.currentMode == GameManager.modes.Normal)
+        if (mode == GameRule.Mode.normal)
         {
             speedGameChecker.SetActive(false);
             StartCoroutine(delayBeforeStart(3));
@@ -48,94 +53,32 @@ public class Game : MonoBehaviour
             checkers.SetActive(false);
             StartCoroutine(delayBeforeStart(3));
             AI.GetComponent<AI>().active = false;
+        }
 
-        }
-        switch (GameManager.level)
-        {
-            case "lava":
-                ChangePlanetSprite("lava_planet");
-                ChangeCheckerSprite("fire_CheckerGlowMat", Color.red);
-                break;
-            case "ice":
-                ChangePlanetSprite("ice_planet");
-                ChangeCheckerSprite("ice_CheckerGlowMat", Color.blue);
-                break;
-            case "sand":
-                ChangePlanetSprite("sand_planet");
-                ChangeCheckerSprite("sand_CheckerGlowMat", Color.yellow);
-                break;
-            case "jungle":
-                ChangePlanetSprite("jungle_planet");
-                ChangeCheckerSprite("jungle_CheckerGlowMat", Color.green);
-                break;
-        }
+        ChangePlanetSprite(type.ToString() + "_planet");
+        ChangeCheckerSprite(type.ToString() + "_CheckerGlowMat", Color.red);
     }
-
-    void Update()
-    {
-        if (gameStarted)
-        {
-            if (GameManager.currentMode == GameManager.modes.Normal)
-            {
-                upCountText.text = upCount.ToString();
-                downCountText.text = downCount.ToString();
-
-                if (!gameOver)
-                {
-                    if (upCount == 0)
-                    {
-                        //включаем экран окончания игры
-                        gameOver = true;
-                        gameStarted = false;
-                        AI.GetComponent<AI>().active = false;
-                        gameOverCanvas.SetActive(true);
-                        //установка текста 
-                        gameOverText.text = "Up Win!";
-                        scoreText.text = "YOUR SCORE IS " + score;
-                        //сохраняем очки
-                        playerData.money += score;
-                        XMLManager.SaveData(playerData, playerData.ToString());
-                        score = 0;
-                    }
-
-                    if (downCount == 0)
-                    {
-                        //включаем экран окончания игры
-                        gameOver = true;
-                        gameStarted = false;
-                        AI.GetComponent<AI>().active = false;
-                        gameOverCanvas.SetActive(true);
-                        //установка текста 
-                        gameOverText.text = "Down Win!";
-                        scoreText.text = "YOUR SCORE IS " + score;
-                        //сохраняем очки
-                        playerData.money += score;
-                        XMLManager.SaveData(playerData, playerData.ToString());
-                        score = 0;
-                    }
-                }
-            }
-        }
-    }
-
 
     // Задержка перед стартом игры
     IEnumerator delayBeforeStart(int sec)
     {
         for (int i = sec; i >= 1; --i)
         {
-            gameStartCounterText.text = i.ToString();
+            gameCounter.text = i.ToString();
             yield return new WaitForSeconds(1);
         }
-        gameStartCounterText.text = "GO!";
+
+        gameCounter.text = "GO!"; // Заменить и локализовать
         capper.SetActive(false);
-        gameStarted = true;
+        AI.GetComponent<AI>().active = true;
         yield return new WaitForSeconds(1);
 
         //В режиме Normal текст отсчета выключается
         //В режиме Speed запускается отчет 60 секунд
-        if (GameManager.currentMode == GameManager.modes.Normal) gameStartCounterText.enabled = false;
-        else StartCoroutine(countDownTimer(60));
+        if (GameManager.currentMode == GameManager.modes.Normal)
+            gameCounter.enabled = false;
+        else 
+            StartCoroutine(countDownTimer(60));
 
     }
 
@@ -146,81 +89,49 @@ public class Game : MonoBehaviour
         AI.GetComponent<AI>().active = true;
     }
 
-    //время до конца игры в режиме на скорость
-    IEnumerator countDownTimer(int time)
+    /* Функция счета очков при удачном попадании в "окно"
+     * Параметры:
+     * direction - направление с которого вышла шайба
+     * true - снизу, false - сверху
+     */
+    public void changeCount(bool direction)
     {
-        for (int i = time; i > 0; --i)
+        if (mode == GameRule.Mode.normal)
         {
-            gameStartCounterText.text = i.ToString();
-            yield return new WaitForSeconds(1);
-        }
-
-        //включаем экран окончания игры
-        gameOver = true;
-        gameStarted = false;
-        gameOverCanvas.SetActive(true);
-        //установка текста 
-        gameOverText.text = "Time ended!";
-        scoreText.text = "YOUR SCORE IS " + score;
-        //сохраняем очки
-        XMLManager.SaveData(playerData, playerData.ToString());
-        score = 0;
-    }
-
-    public void IncreaseCount(bool up)
-    {
-        if (up)
-        {
-            upCount++;
-            if (gameStarted)
+            if (direction)
             {
-                score += 100;
-                if (GameManager.currentMode == GameManager.modes.Speed)
-                    StartCoroutine(delayBeforeDissolve());
+                --downCount;
+                ++upCount;
+            }
+            else
+            {
+                ++downCount;
+                --upCount;
             }
 
+            upCountText.text = upCount.ToString();
+            downCountText.text = downCount.ToString();
+
+            if (upCount == 0 || downCount == 0)
+                gameOver();
         }
-        else
-            downCount++;
     }
 
-    public void DecreaseCount(bool up)
+    // Окончание игры
+    private void gameOver()
     {
-        if (up)
-            upCount--;
-        else
-            downCount--;
+        AI.GetComponent<AI>().active = false;
+        gameMenu.GetComponent<GameMenu>().gameOver(0, downCount == 0 ? true : false);   
     }
 
-    //уничтожение шайбы
-    IEnumerator delayBeforeDissolve()
-    {
-        image = speedGameChecker.GetComponent<Image>();
-        for (float f = 0.8f; f >= 0; f -= 0.01f)
-        {
-            image.material.SetFloat("_DissolveAmount", f);
-            yield return new WaitForSeconds(0.01f);
-        }
-        image.material.SetFloat("_DissolveAmount", 1f);
-        RandomPosition();
-    }
-
-    //установка шайбы в рандомное место в нижнем поле
-    void RandomPosition()
-    {
-        Pair<Vector2, Vector2> points;
-        points = ScreenOptimization.GetWorldCoord2D(downBorderHolder);
-        Vector2 randomPos = new Vector2(UnityEngine.Random.Range(points.first.x, points.second.x), UnityEngine.Random.Range(points.first.y, points.second.y));
-        speedGameChecker.transform.position = randomPos;
-    }
-
+    // Установка спрайтов поля и шайб
     void ChangePlanetSprite(string spriteName)
     {
         Image img = GetComponent<Image>();
         img.sprite = Resources.Load<Sprite>("Sprites/levels/planets/" + spriteName);
     }
 
-    void ChangeCheckerSprite(string matName,Color color)
+    void ChangeCheckerSprite(string matName, Color color)
     {
         for (int i = 4; i <= 7; ++i)
         {
@@ -251,6 +162,41 @@ public class Game : MonoBehaviour
             TrailRenderer trailRenderer = checkers.transform.GetChild(i).gameObject.transform.GetChild(0).gameObject.GetComponent<TrailRenderer>();
             trailRenderer.colorGradient = gradient;
         }
+    }
+
+    ////////////////////////////////////////////////////////////////////////////////////  SPEED Режим  //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+    // Анимация уничтожения шайбы
+    IEnumerator delayBeforeDissolve()
+    {
+        image = speedGameChecker.GetComponent<Image>();
+        for (float f = 0.8f; f >= 0; f -= 0.01f)
+        {
+            image.material.SetFloat("_DissolveAmount", f);
+            yield return new WaitForSeconds(0.01f);
+        }
+        image.material.SetFloat("_DissolveAmount", 1f);
+        RandomPosition();
+    }
+
+    //время до конца игры в режиме на скорость
+    IEnumerator countDownTimer(int time)
+    {
+        for (int i = time; i > 0; --i)
+        {
+            gameCounter.text = i.ToString();
+            yield return new WaitForSeconds(1);
+        }
+        gameOver();
+    } 
+
+    //установка шайбы в рандомное место в нижнем поле
+    void RandomPosition()
+    {
+        Pair<Vector2, Vector2> points;
+        points = ScreenOptimization.GetWorldCoord2D(downBorderHolder);
+        Vector2 randomPos = new Vector2(UnityEngine.Random.Range(points.first.x, points.second.x), UnityEngine.Random.Range(points.first.y, points.second.y));
+        speedGameChecker.transform.position = randomPos;
     }
 
 }
