@@ -17,7 +17,7 @@ public class Game : MonoBehaviour
      * scoreText - текст показывающий набранные очки в игре
      */
     public GameObject AI;
-    public GameObject capper;
+    public GameObject capperField;
     public GameObject speedGameChecker;
     public GameObject downBorderHolder;
     public GameObject checkers;
@@ -25,20 +25,22 @@ public class Game : MonoBehaviour
 
     // Счетчики
     public static int score;
-    public static byte upCount = 0, downCount = 0;
+    public static byte upCount = 4, downCount = 4; // константы (4) необходимо заменить
 
     // Текст счетчиков
-    Text upCountText, downCountText, gameCounter;
+    public Text upCountText, downCountText, gameCounter;
     //картинка фишки из быстрого режима
     Image image;
-    PlayerData playerData;
+    public Image imgField;
 
     GameRule.Mode mode;
     GameRule.Type type;
 
     private void Start()
     {
-        playerData = PlayerData.getInstance();
+        upCountText.text = upCount.ToString();
+        downCountText.text = downCount.ToString();
+
         mode = GameRule.mode;
         type = GameRule.type;
 
@@ -69,7 +71,7 @@ public class Game : MonoBehaviour
         }
 
         gameCounter.text = "GO!"; // Заменить и локализовать
-        capper.SetActive(false);
+        capperField.SetActive(false);
         AI.GetComponent<AI>().active = true;
         yield return new WaitForSeconds(1);
 
@@ -127,8 +129,7 @@ public class Game : MonoBehaviour
     // Установка спрайтов поля и шайб
     void ChangePlanetSprite(string spriteName)
     {
-        Image img = GetComponent<Image>();
-        img.sprite = Resources.Load<Sprite>("Sprites/levels/planets/" + spriteName);
+        imgField.sprite = Resources.Load<Sprite>("Sprites/levels/planets/" + spriteName);
     }
 
     void ChangeCheckerSprite(string matName, Color color)

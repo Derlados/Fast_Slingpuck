@@ -3,9 +3,7 @@ using System.Collections.Generic;
 using System.Transactions;
 using UnityEngine;
 
-/* Класс для работы режимами игры
- * Singleton
- */
+
 public class GameManager 
 {
     public enum modes : byte

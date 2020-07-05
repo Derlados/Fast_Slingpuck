@@ -8,7 +8,7 @@ using UnityEngine.SceneManagement;
 public class GameMenu : MonoBehaviour
 {
     public Text gameOverText, scoreText;
-    public GameObject pauseMenuCanvas, gameOverCanvas, capper;
+    public GameObject pauseMenuCanvas, gameOverCanvas, capperField;
     PlayerData playerData;
 
     public void Start()
@@ -19,19 +19,18 @@ public class GameMenu : MonoBehaviour
     public void Pause()
     {
         Time.timeScale = 0f;
-        capper.SetActive(true);
+        capperField.SetActive(true);
         pauseMenuCanvas.SetActive(true);
     }
     public void UnPause()
     {
         Time.timeScale = 1f;
-        capper.SetActive(false);
+        capperField.SetActive(false);
         pauseMenuCanvas.SetActive(false);
     }
     public void ToMainMenuPressed()
     {
-        //SceneManager.LoadScene("MainMenu");
-        Time.timeScale = 1f;
+        SceneManager.LoadScene("GameMenu");
     }
 
     public void gameOver(int money, bool winner)
