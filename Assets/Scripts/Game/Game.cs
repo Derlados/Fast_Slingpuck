@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 using System.Linq;
 using BaseStructures;
 using System.IO;
+using System.Runtime.CompilerServices;
 
 // Класс отвечающий за геймплей в самой игре
 public class Game : MonoBehaviour
@@ -58,7 +59,7 @@ public class Game : MonoBehaviour
         }
 
         ChangePlanetSprite(type.ToString() + "_planet");
-        ChangeCheckerSprite(type.ToString() + "_CheckerGlowMat", Color.red);
+        ChangeCheckerSprite(type.ToString() + "_CheckerGlowMat");
     }
 
     // Задержка перед стартом игры
@@ -132,7 +133,7 @@ public class Game : MonoBehaviour
         imgField.sprite = Resources.Load<Sprite>("Sprites/levels/planets/" + spriteName);
     }
 
-    void ChangeCheckerSprite(string matName, Color color)
+    void ChangeCheckerSprite(string matName)
     {
         for (int i = 4; i <= 7; ++i)
         {
@@ -143,11 +144,13 @@ public class Game : MonoBehaviour
             GradientColorKey[] colorKey;
             GradientAlphaKey[] alphaKey;
 
+            Debug.Log(Resources.Load<Material>("Sprites/Materials/Checker/" + matName).color);
+
             // Populate the color keys at the relative time 0 and 1 (0 and 100%)
             colorKey = new GradientColorKey[2];
-            colorKey[0].color = color;
+            colorKey[0].color = img.material.GetColor("Color_35045387");
             colorKey[0].time = 0.0f;
-            colorKey[1].color = color;
+            colorKey[1].color = img.material.GetColor("Color_35045387");
             colorKey[1].time = 1.0f;
 
             // Populate the alpha  keys at relative time 0 and 1  (0 and 100%)
