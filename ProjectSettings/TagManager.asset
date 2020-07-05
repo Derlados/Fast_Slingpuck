@@ -54,3 +54,6 @@ TagManager:
   - name: leafs
     uniqueID: 1198340477
     locked: 0
+  - name: Planets
+    uniqueID: 839931841
+    locked: 0
