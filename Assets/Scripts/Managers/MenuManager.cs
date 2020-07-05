@@ -16,6 +16,7 @@ public class MenuManager : MonoBehaviour
     private GameObject planetLevels;
     private int numberPlanet;
 
+    // Статус действий камеры
     enum Status
     {
         freeOnMenu, // Камера свободна и находится в меню
@@ -23,7 +24,6 @@ public class MenuManager : MonoBehaviour
         zoom, // Камера приближается
     }
     Status cameraStatus = Status.freeOnMenu;
-
 
     private void Start()
     {

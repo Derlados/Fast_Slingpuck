@@ -75,18 +75,6 @@ public class Game : MonoBehaviour
     {
         if (gameStarted)
         {
-            //вызов паузы
-            if (Input.GetKeyDown(KeyCode.Escape))
-            {
-                if (!gameOver)
-                {
-                    if (!gamePaused)
-                        PauseMenu();
-                    else
-                        UnPauseMenu();
-                }
-            }
-
             if (GameManager.currentMode == GameManager.modes.Normal)
             {
                 upCountText.text = upCount.ToString();
@@ -130,27 +118,6 @@ public class Game : MonoBehaviour
         }
     }
 
-    public void PauseMenu()
-    {
-        gamePaused = true;
-        Time.timeScale = 0f;
-        pauseMenuCanvas.SetActive(true);
-    }
-
-    public void UnPauseMenu()
-    {
-        gamePaused = false;
-        Time.timeScale = 1f;
-        pauseMenuCanvas.SetActive(false);
-    }
-
-    public void ToMainMenuPressed()
-    {
-        SceneManager.LoadScene("MainMenu");
-        upCount = 0;
-        downCount = 0;
-        Time.timeScale = 1f;
-    }
 
     // Задержка перед стартом игры
     IEnumerator delayBeforeStart(int sec)
