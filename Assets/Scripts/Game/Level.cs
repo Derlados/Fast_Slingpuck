@@ -7,11 +7,13 @@ public class Level : MonoBehaviour
 {
     public GameRule.Mode mode;
     public GameRule.Type type;
+    public GameRule.Difficulties difficulties;
 
     public void loadGame()
     {
         GameRule.mode = mode;
         GameRule.type = type;
+        GameRule.difficulties = difficulties;
         SceneManager.LoadScene("Game");
     }
 }

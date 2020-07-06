@@ -88,7 +88,6 @@
     <None Include="Assets\Resources\Settings\Difficulties.xml" />
     <None Include="Assets\Data\settings.xml" />
     <None Include="Assets\Resources\EN\Game.xml" />
-    <None Include="Assets\Resources\settings.xml" />
     <None Include="Assets\Resources\RU\MainMenu.xml" />
     <None Include="Assets\Resources\EN\MainMenu.xml" />
     <None Include="Assets\Resources\RU\Game.xml" />
