@@ -23,6 +23,7 @@ public class Game : MonoBehaviour
     public GameObject downBorderHolder;
     public GameObject checkers;
     public GameObject gameMenu;
+    public GameObject particles;    
 
     // Счетчики
     public static int score;
@@ -60,6 +61,7 @@ public class Game : MonoBehaviour
 
         ChangePlanetSprite(type.ToString() + "_planet");
         ChangeCheckerSprite(type.ToString() + "_CheckerGlowMat");
+        ChangeParticle(type.ToString() + "_particle");
     }
 
     // Задержка перед стартом игры
@@ -168,6 +170,15 @@ public class Game : MonoBehaviour
         }
     }
 
+    void ChangeParticle(string particleName)
+    {
+        foreach(Transform t in particles.transform)
+        {
+            if (t.name == particleName)
+                t.gameObject.SetActive(true);
+        }
+    }
+
     ////////////////////////////////////////////////////////////////////////////////////  SPEED Режим  //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
     // Анимация уничтожения шайбы
@@ -203,4 +214,5 @@ public class Game : MonoBehaviour
         speedGameChecker.transform.position = randomPos;
     }
 
+    
 }
