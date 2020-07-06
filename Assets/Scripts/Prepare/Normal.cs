@@ -8,7 +8,6 @@ public class Normal : MonoBehaviour, Mode
     GameObject checkers;
     GameObject AI;
     GameObject capperField;
-    GameObject downBorderHolder;
     GameObject gameMenu;
     Game game;
 
@@ -19,9 +18,11 @@ public class Normal : MonoBehaviour, Mode
     // Текст счетчиков
     public Text upCountText, downCountText, gameCounter;
 
+    // Монеты
+    int money;
+
     void Start()
     {
-        Debug.Log(GetComponent<Mode>().ToString());
         initScene();
         StartCoroutine(delayBeforeStart(3));
         StartCoroutine(delayAI(3));
@@ -30,15 +31,17 @@ public class Normal : MonoBehaviour, Mode
     public void initScene()
     {
         game = GetComponent<Game>();
-        downBorderHolder = game.downBorderHolder;
 
         // Бот
         AI = game.AI;
 
-        // Текст
+        // Текст счетчиков
         upCountText = game.upCountText;
         downCountText = game.downCountText;
         gameCounter = game.gameCounter;
+
+        // Меню
+        gameMenu = game.gameMenu;
 
         // Заглушка
         capperField = game.capperField;
@@ -96,9 +99,7 @@ public class Normal : MonoBehaviour, Mode
     public void gameOver()
     {
         AI.GetComponent<AI>().active = false;
-        gameMenu.GetComponent<GameMenu>().gameOver(0, downCount == 0 ? true : false);
-
-
+        gameMenu.GetComponent<GameMenu>().gameOver(downCount == 0 ? "YOU WIN !" :  "YOU LOSE !", 0);
     }
 
     public void calculateResult()

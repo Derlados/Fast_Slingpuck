@@ -7,8 +7,8 @@ using UnityEngine.SceneManagement;
 // Класс отвечающий за весь UI в самой игре
 public class GameMenu : MonoBehaviour
 {
-    public Text gameOverText, scoreText;
     public GameObject pauseMenuCanvas, gameOverCanvas, capperField;
+    public Text gameOverText, scoreText;
     PlayerData playerData;
 
     public void Start()
@@ -33,18 +33,14 @@ public class GameMenu : MonoBehaviour
         SceneManager.LoadScene("GameMenu");
     }
 
-    public void gameOver(int money, bool winner)
+    public void gameOver(string message, int money)
     {
         gameOverCanvas.SetActive(true);
         scoreText.text += money.ToString();
-        playerData.money += money;
-        XMLManager.SaveData(playerData, playerData.ToString());
+        PlayerData.getInstance().money += money;
+        XMLManager.SaveData(PlayerData.getInstance(), PlayerData.getInstance().ToString());
 
-        // Временно, текст необходимо будет заменить и локализовать
-        if (winner)
-            gameOverText.text = "YOU WIN !";
-        else
-            gameOverText.text = "YOU LOSE !";
-
+        gameOverText.text = message;
     }
+
 }

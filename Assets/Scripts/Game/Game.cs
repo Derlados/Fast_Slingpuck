@@ -44,6 +44,9 @@ public class Game : MonoBehaviour
         mode = GameRule.mode;
         type = GameRule.type;
 
+        if (mode == GameRule.Mode.normal)
+            gameObject.AddComponent<Normal>();
+
         ChangePlanetSprite(type.ToString() + "_planet");
         ChangeCheckerSprite(type.ToString() + "_CheckerGlowMat");
     }
@@ -64,8 +67,6 @@ public class Game : MonoBehaviour
             Gradient gradient;
             GradientColorKey[] colorKey;
             GradientAlphaKey[] alphaKey;
-
-            Debug.Log(Resources.Load<Material>("Sprites/Materials/Checker/" + matName).color);
 
             // Populate the color keys at the relative time 0 and 1 (0 and 100%)
             colorKey = new GradientColorKey[2];
