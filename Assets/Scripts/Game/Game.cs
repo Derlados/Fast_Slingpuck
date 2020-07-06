@@ -20,7 +20,7 @@ public class Game : MonoBehaviour
     public GameObject AI;
     public GameObject capperField;
     public GameObject speedGameChecker;
-    public GameObject downBorderHolder;
+    public GameObject downBorderHolder, upBorderHolder;
     public GameObject checkers;
     public GameObject gameMenu;
     public GameObject particles;    
@@ -32,7 +32,6 @@ public class Game : MonoBehaviour
     // Текст счетчиков
     public Text upCountText, downCountText, gameCounter;
     //картинка фишки из быстрого режима
-    Image image;
     public Image imgField;
 
     GameRule.Mode mode;
@@ -46,87 +45,19 @@ public class Game : MonoBehaviour
         mode = GameRule.mode;
         type = GameRule.type;
 
-        if (mode == GameRule.Mode.normal)
+        switch (mode)
         {
-            speedGameChecker.SetActive(false);
-            StartCoroutine(delayBeforeStart(3));
-            StartCoroutine(delayAI(3));
-        }
-        else
-        {
-            checkers.SetActive(false);
-            StartCoroutine(delayBeforeStart(3));
-            AI.GetComponent<AI>().active = false;
+            case GameRule.Mode.normal:
+                gameObject.AddComponent<Normal>();
+                break;
+            case GameRule.Mode.speed:
+                gameObject.AddComponent<Speed>();
+                break;
         }
 
         ChangePlanetSprite(type.ToString() + "_planet");
         ChangeCheckerSprite(type.ToString() + "_CheckerGlowMat");
         ChangeParticle(type.ToString() + "_particle");
-    }
-
-    // Задержка перед стартом игры
-    IEnumerator delayBeforeStart(int sec)
-    {
-        for (int i = sec; i >= 1; --i)
-        {
-            gameCounter.text = i.ToString();
-            yield return new WaitForSeconds(1);
-        }
-
-        gameCounter.text = "GO!"; // Заменить и локализовать
-        capperField.SetActive(false);
-        AI.GetComponent<AI>().active = true;
-        yield return new WaitForSeconds(1);
-
-        //В режиме Normal текст отсчета выключается
-        //В режиме Speed запускается отчет 60 секунд
-        if (GameManager.currentMode == GameManager.modes.Normal)
-            gameCounter.enabled = false;
-        else 
-            StartCoroutine(countDownTimer(60));
-
-    }
-
-    // Задержка перед запуском бота
-    IEnumerator delayAI(float sec)
-    {
-        yield return new WaitForSeconds(sec);
-        AI.GetComponent<AI>().active = true;
-    }
-
-    /* Функция счета очков при удачном попадании в "окно"
-     * Параметры:
-     * direction - направление с которого вышла шайба
-     * true - снизу, false - сверху
-     */
-    public void changeCount(bool direction)
-    {
-        if (mode == GameRule.Mode.normal)
-        {
-            if (direction)
-            {
-                --downCount;
-                ++upCount;
-            }
-            else
-            {
-                ++downCount;
-                --upCount;
-            }
-
-            upCountText.text = upCount.ToString();
-            downCountText.text = downCount.ToString();
-
-            if (upCount == 0 || downCount == 0)
-                gameOver();
-        }
-    }
-
-    // Окончание игры
-    private void gameOver()
-    {
-        AI.GetComponent<AI>().active = false;
-        gameMenu.GetComponent<GameMenu>().gameOver(0, downCount == 0 ? true : false);   
     }
 
     // Установка спрайтов поля и шайб
@@ -145,8 +76,6 @@ public class Game : MonoBehaviour
             Gradient gradient;
             GradientColorKey[] colorKey;
             GradientAlphaKey[] alphaKey;
-
-            Debug.Log(Resources.Load<Material>("Sprites/Materials/Checker/" + matName).color);
 
             // Populate the color keys at the relative time 0 and 1 (0 and 100%)
             colorKey = new GradientColorKey[2];
@@ -181,6 +110,7 @@ public class Game : MonoBehaviour
 
     ////////////////////////////////////////////////////////////////////////////////////  SPEED Режим  //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+    /*
     // Анимация уничтожения шайбы
     IEnumerator delayBeforeDissolve()
     {
@@ -213,6 +143,5 @@ public class Game : MonoBehaviour
         Vector2 randomPos = new Vector2(UnityEngine.Random.Range(points.first.x, points.second.x), UnityEngine.Random.Range(points.first.y, points.second.y));
         speedGameChecker.transform.position = randomPos;
     }
-
-    
+    */
 }

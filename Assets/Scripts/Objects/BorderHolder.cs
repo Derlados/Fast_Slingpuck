@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class BorderHolder : MonoBehaviour
 {
-    public Game game;
+    public GameObject game;
 
     void Start()
     {
@@ -13,6 +13,6 @@ public class BorderHolder : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        game.changeCount(collision.transform.position.y > 0 ? true : false);
+        game.GetComponent<Mode>().changeCount(collision.transform.position.y > 0 ? true : false);
     }
 }

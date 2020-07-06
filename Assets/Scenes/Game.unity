@@ -585,6 +585,7 @@ GameObject:
   m_Component:
   - component: {fileID: 153113610}
   - component: {fileID: 153113609}
+  - component: {fileID: 153113611}
   m_Layer: 0
   m_Name: Game
   m_TagString: Untagged
@@ -608,6 +609,7 @@ MonoBehaviour:
   capperField: {fileID: 1485364683}
   speedGameChecker: {fileID: 1530045660}
   downBorderHolder: {fileID: 2103430078}
+  upBorderHolder: {fileID: 0}
   checkers: {fileID: 1218372587}
   gameMenu: {fileID: 407324426}
   particles: {fileID: 813878396}
@@ -629,6 +631,24 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &153113611
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 153113608}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 75c83c35c77a8644bbc07f08d77b99b0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  score: 0
+  upCount: 4
+  downCount: 4
+  upCountText: {fileID: 0}
+  downCountText: {fileID: 0}
+  gameCounter: {fileID: 0}
 --- !u!1001 &202994977
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1570,11 +1590,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b28d4815e23b9394f904a0b2d58eb78f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameOverText: {fileID: 652561171}
-  scoreText: {fileID: 1107275804}
   pauseMenuCanvas: {fileID: 635218720}
   gameOverCanvas: {fileID: 331001276}
   capperField: {fileID: 1485364683}
+  gameOverText: {fileID: 652561171}
+  scoreText: {fileID: 1107275804}
 --- !u!4 &407324428
 Transform:
   m_ObjectHideFlags: 0
@@ -8151,7 +8171,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a45c2fa02ffccf741ad008e52daa894b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  game: {fileID: 153113609}
+  game: {fileID: 153113608}
 --- !u!114 &1137931243
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14204,7 +14224,7 @@ PrefabInstance:
     - target: {fileID: 1095559404968874081, guid: 87673815b8b84a54bab8eb13a6d0c988,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1095559404968874082, guid: 87673815b8b84a54bab8eb13a6d0c988,
         type: 3}
@@ -14264,22 +14284,22 @@ PrefabInstance:
     - target: {fileID: 1095559404968874082, guid: 87673815b8b84a54bab8eb13a6d0c988,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -3
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1095559404968874082, guid: 87673815b8b84a54bab8eb13a6d0c988,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 4.5
+      value: -4
       objectReference: {fileID: 0}
     - target: {fileID: 1095559404968874082, guid: 87673815b8b84a54bab8eb13a6d0c988,
         type: 3}
       propertyPath: m_SizeDelta.x
-      value: 2.5
+      value: -3.5
       objectReference: {fileID: 0}
     - target: {fileID: 1095559404968874082, guid: 87673815b8b84a54bab8eb13a6d0c988,
         type: 3}
       propertyPath: m_SizeDelta.y
-      value: 2.9400024
+      value: 5.9400024
       objectReference: {fileID: 0}
     - target: {fileID: 1095559404968874082, guid: 87673815b8b84a54bab8eb13a6d0c988,
         type: 3}
@@ -14294,12 +14314,12 @@ PrefabInstance:
     - target: {fileID: 1095559404968874082, guid: 87673815b8b84a54bab8eb13a6d0c988,
         type: 3}
       propertyPath: m_AnchorMax.x
-      value: 0.5657778
+      value: 0.57133335
       objectReference: {fileID: 0}
     - target: {fileID: 1095559404968874082, guid: 87673815b8b84a54bab8eb13a6d0c988,
         type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0.27814582
+      value: 0.2765833
       objectReference: {fileID: 0}
     - target: {fileID: 1095559404968874082, guid: 87673815b8b84a54bab8eb13a6d0c988,
         type: 3}
@@ -15401,7 +15421,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a45c2fa02ffccf741ad008e52daa894b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  game: {fileID: 153113609}
+  game: {fileID: 153113608}
 --- !u!1001 &1095559403952503388
 PrefabInstance:
   m_ObjectHideFlags: 0
