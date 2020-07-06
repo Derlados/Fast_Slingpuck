@@ -79,6 +79,8 @@
     <Compile Include="Assets\Scripts\Objects\Checker.cs" />
     <Compile Include="Assets\Scripts\Objects\ScreenOptimization.cs" />
     <Compile Include="Assets\Scripts\PlayerData.cs" />
+    <Compile Include="Assets\Scripts\Prepare\Mode.cs" />
+    <Compile Include="Assets\Scripts\Prepare\Normal.cs" />
     <Compile Include="Assets\Scripts\UI\LocalizationText.cs" />
     <Compile Include="Assets\Scripts\UI\MainMenu.cs" />
     <Compile Include="Assets\Scripts\UI\Settings.cs" />
