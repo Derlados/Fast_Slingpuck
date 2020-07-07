@@ -5,7 +5,6 @@ using UnityEngine.UI;
 
 public class Normal : MonoBehaviour, Mode
 {
-    GameObject checkers;
     GameObject AI;
     GameObject capperField;
     GameObject gameMenu;
@@ -16,7 +15,7 @@ public class Normal : MonoBehaviour, Mode
     public byte upCount = 4, downCount = 4; // константы (4) необходимо заменить
 
     // Текст счетчиков
-    public Text upCountText, downCountText, gameCounter;
+    public Text upCountText, downCountText, gameCounterText;
 
     // Монеты
     int money;
@@ -25,7 +24,6 @@ public class Normal : MonoBehaviour, Mode
     {
         initScene();
         StartCoroutine(delayBeforeStart(3));
-        StartCoroutine(delayAI(3));
     }
 
     public void initScene()
@@ -34,17 +32,20 @@ public class Normal : MonoBehaviour, Mode
 
         // Бот
         AI = game.AI;
+        if (GameRule.AI)
+            AI.SetActive(false);
 
         // Текст счетчиков
         upCountText = game.upCountText;
         downCountText = game.downCountText;
-        gameCounter = game.gameCounter;
+        gameCounterText = game.gameCounter;
 
         // Меню
         gameMenu = game.gameMenu;
 
         // Заглушка
         capperField = game.capperField;
+        game.checkers.SetActive(true);
     }
 
     // Задержка перед стартом игры
@@ -52,22 +53,16 @@ public class Normal : MonoBehaviour, Mode
     {
         for (int i = sec; i >= 1; --i)
         {
-            gameCounter.text = i.ToString();
+            gameCounterText.text = i.ToString();
             yield return new WaitForSeconds(1);
         }
 
-        gameCounter.text = "GO!"; // Заменить и локализовать
+        gameCounterText.text = "GO!"; // Заменить и локализовать
         capperField.SetActive(false);
         AI.GetComponent<AI>().active = true;
         yield return new WaitForSeconds(1);
     }
 
-    // Задержка перед запуском бота
-    IEnumerator delayAI(float sec)
-    {
-        yield return new WaitForSeconds(sec);
-        AI.GetComponent<AI>().active = true;
-    }
 
     /* Функция счета очков при удачном попадании в "окно"
     * Параметры:

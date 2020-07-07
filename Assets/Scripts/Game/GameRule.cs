@@ -19,4 +19,5 @@ public static class GameRule
 
     public static Mode mode;
     public static Type type;
+    public static bool AI = false; 
 }
