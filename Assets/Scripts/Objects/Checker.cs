@@ -25,10 +25,10 @@ public class Checker : MonoBehaviour
     // Границы поля
     public GameObject leftBorderHolder;
     public GameObject rightBorderHolder;
-    Border playerLeftBorder;
-    Border playerRightBorder;
+    public Border playerDownBorder;
+    public Border playerUpBorder;
 
-    struct Border
+    public struct Border
     {
         public float Up, Down, Left, Right;
 
@@ -52,26 +52,6 @@ public class Checker : MonoBehaviour
         body = GetComponent<Rigidbody2D>(); // Оптимизация чтобы не вызывать постоянно GetComponent для Rigidbody2D
     }
 
-    private void OnMouseDrag()
-    {
-        Vector2 Cursor = Input.mousePosition;
-        Cursor = Camera.main.ScreenToWorldPoint(Cursor);
-
-        if (objTransform.position.y < 0)
-        {
-            Vector2 clampedMousePos = new Vector2(Mathf.Clamp(Cursor.x, playerLeftBorder.Left, playerLeftBorder.Right),
-            Mathf.Clamp(Cursor.y, playerLeftBorder.Down, playerLeftBorder.Up));
-            transform.position = Vector2.MoveTowards(transform.position, clampedMousePos, Time.deltaTime * 100f);
-        }
-        else
-        {
-            Vector2 clampedMousePos = new Vector2(Mathf.Clamp(Cursor.x, playerRightBorder.Left, playerRightBorder.Right),
-            Mathf.Clamp(Cursor.y, playerRightBorder.Down, playerRightBorder.Up));
-            transform.position = Vector2.MoveTowards(transform.position, clampedMousePos, Time.deltaTime * 100f);
-        }
-
-    }
-
     void Start()
     {
         gameObject.transform.GetChild(0).GetComponent<TrailRenderer>().emitting = true;
@@ -79,19 +59,40 @@ public class Checker : MonoBehaviour
         // Границы поля
         Pair<Vector2, Vector2> points;
         points = ScreenOptimization.GetWorldCoord2D(leftBorderHolder);
-        playerLeftBorder = new Border(
+        playerDownBorder = new Border(
             points.first.y - radius,
             points.second.y + radius,
             points.first.x + radius,
             points.second.x - radius);
 
         points = ScreenOptimization.GetWorldCoord2D(rightBorderHolder);
-        playerRightBorder = new Border(
+        playerUpBorder = new Border(
             points.first.y - radius,
             points.second.y + radius,
             points.first.x + radius,
             points.second.x - radius);
     }
+
+    private void OnMouseDrag()
+    {
+        Vector2 Cursor = Input.mousePosition;
+        Cursor = Camera.main.ScreenToWorldPoint(Cursor);
+
+        if (objTransform.position.y < 0)
+        {
+            Vector2 clampedMousePos = new Vector2(Mathf.Clamp(Cursor.x, playerDownBorder.Left, playerDownBorder.Right),
+            Mathf.Clamp(Cursor.y, playerDownBorder.Down, playerDownBorder.Up));
+            transform.position = Vector2.MoveTowards(transform.position, clampedMousePos, Time.deltaTime * 100f);
+        }
+        else
+        {
+            Vector2 clampedMousePos = new Vector2(Mathf.Clamp(Cursor.x, playerUpBorder.Left, playerUpBorder.Right),
+            Mathf.Clamp(Cursor.y, playerUpBorder.Down, playerUpBorder.Up));
+            transform.position = Vector2.MoveTowards(transform.position, clampedMousePos, Time.deltaTime * 100f);
+        }
+
+    }
+
 
     public void OnMouseDown()
     {

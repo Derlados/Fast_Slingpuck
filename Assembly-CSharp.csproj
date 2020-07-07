@@ -75,6 +75,7 @@
     <Compile Include="Assets\Scripts\Modes\Mode.cs" />
     <Compile Include="Assets\Scripts\Modes\Normal.cs" />
     <Compile Include="Assets\Scripts\Modes\Speed.cs" />
+    <Compile Include="Assets\Scripts\Modifiers\Destroy.cs" />
     <Compile Include="Assets\Scripts\Objects\AI.cs" />
     <Compile Include="Assets\Scripts\Objects\BezierLine.cs" />
     <Compile Include="Assets\Scripts\Objects\Border.cs" />

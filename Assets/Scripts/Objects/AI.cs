@@ -64,10 +64,8 @@ public class AI : MonoBehaviour
                     statusType = Status.ready;
             }
 
-            if (statusType == Status.free)
+            if (statusType == Status.free && checkers.Count > 0)
             {
-                System.Random random = new System.Random();
-
                 keepObj = checkers[0].objTransform;
                 for (int i = 1; i < checkers.Count; ++i)
                     if (checkers[i].objTransform.position.y > keepObj.position.y)
