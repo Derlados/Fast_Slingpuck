@@ -39,6 +39,11 @@ public class Game : MonoBehaviour
 
         if (mode == GameRule.Mode.normal)
             gameObject.AddComponent<Normal>();
+        else
+        {
+            gameObject.AddComponent<Speed>();
+            speedGameChecker.AddComponent<Destroy>();
+        }
 
         ChangePlanetSprite(type.ToString() + "_planet");
         ChangeCheckerSprite(type.ToString() + "_CheckerGlowMat");

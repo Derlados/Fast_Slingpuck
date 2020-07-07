@@ -8,6 +8,7 @@ TagManager:
   - UpBorder
   - DownBorder
   - Checker
+  - Field
   layers:
   - Default
   - TransparentFX

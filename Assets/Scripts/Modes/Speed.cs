@@ -57,8 +57,6 @@ public class Speed : MonoBehaviour, Mode
             downCountText.text = (++downCount).ToString();
         else
             upCountText.text = (++upCount).ToString();
-
-        StartCoroutine(delayBeforeDissolve());
     }
 
     public void gameOver()
@@ -100,25 +98,4 @@ public class Speed : MonoBehaviour, Mode
         gameOver();
     }
 
-    // Анимация уничтожения шайбы
-    IEnumerator delayBeforeDissolve()
-    {
-        Image image = speedGameChecker.GetComponent<Image>();
-        for (float f = 0.8f; f >= 0; f -= 0.01f)
-        {
-            image.material.SetFloat("_DissolveAmount", f);
-            yield return new WaitForSeconds(0.01f);
-        }
-        image.material.SetFloat("_DissolveAmount", 1f);
-        RandomPosition();
-    }
-
-    //установка шайбы в рандомное место в нижнем поле
-    void RandomPosition()
-    {
-        Pair<Vector2, Vector2> points;
-        points = ScreenOptimization.GetWorldCoord2D(downBorderHolder);
-        Vector2 randomPos = new Vector2(Random.Range(points.first.x, points.second.x), Random.Range(points.first.y, points.second.y));
-        speedGameChecker.transform.position = randomPos;
-    }
 }
