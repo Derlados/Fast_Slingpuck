@@ -6,14 +6,14 @@ using BaseStructures;
 
 public class Speed : MonoBehaviour, Mode
 {
-    GameObject AI; // Ситуативно может быть, а может и не быть
-    GameObject capperField;
-    GameObject gameMenu;
-    GameObject speedGameChecker;
-    GameObject downBorderHolder;
-    Game game;
+    public GameObject AI;
+    public GameObject capperField;
+    public GameObject gameMenu;
+    public GameObject speedGameChecker;
+    public GameObject downBorderHolder;
+    public Game game;
 
-    Text upCountText, downCountText, gameCounterText;
+    public Text upCountText, downCountText, gameCounterText;
 
     // Счетчики
     public int score;
@@ -23,7 +23,7 @@ public class Speed : MonoBehaviour, Mode
     void Start()
     {
         initScene();
-        delayBeforeStart(3);
+        StartCoroutine(delayBeforeStart(3));
     }
 
     public void initScene()
@@ -40,6 +40,9 @@ public class Speed : MonoBehaviour, Mode
         downCountText = game.downCountText;
         gameCounterText = game.gameCounter;
 
+        speedGameChecker = game.speedGameChecker;
+        downBorderHolder = game.downBorderHolder;
+
         // Меню
         gameMenu = game.gameMenu;
 
@@ -55,7 +58,7 @@ public class Speed : MonoBehaviour, Mode
         else
             upCountText.text = (++upCount).ToString();
 
-        RandomPosition();
+        StartCoroutine(delayBeforeDissolve());
     }
 
     public void gameOver()
@@ -80,12 +83,8 @@ public class Speed : MonoBehaviour, Mode
 
         gameCounterText.text = "GO!"; // Заменить и локализовать
         capperField.SetActive(false);
-        
-        if (AI != null)
-            AI.GetComponent<AI>().active = true;
-        
+        AI.GetComponent<AI>().active = true;    
         yield return new WaitForSeconds(1);
-
         StartCoroutine(counter(60));
     }
 
@@ -99,6 +98,19 @@ public class Speed : MonoBehaviour, Mode
 
         AI.GetComponent<AI>().active = false;
         gameOver();
+    }
+
+    // Анимация уничтожения шайбы
+    IEnumerator delayBeforeDissolve()
+    {
+        Image image = speedGameChecker.GetComponent<Image>();
+        for (float f = 0.8f; f >= 0; f -= 0.01f)
+        {
+            image.material.SetFloat("_DissolveAmount", f);
+            yield return new WaitForSeconds(0.01f);
+        }
+        image.material.SetFloat("_DissolveAmount", 1f);
+        RandomPosition();
     }
 
     //установка шайбы в рандомное место в нижнем поле
