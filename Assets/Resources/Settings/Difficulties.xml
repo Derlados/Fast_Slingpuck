@@ -3,31 +3,31 @@
   <begginer>
     <mode>Begginer</mode>
     <speedAI>15</speedAI>
-	<accuracyAI>0.2</accuracyAI>
-	<timeRest>1.2</timeRest>
+	  <accuracyAI>0.2</accuracyAI>
+	  <timeRest>1.2</timeRest>
   </begginer>
   <skilled>
     <mode>Skilled</mode>
     <speedAI>30</speedAI>
-	<accuracyAI>0.1</accuracyAI>
-	<timeRest>1.0</timeRest>
+	  <accuracyAI>0.1</accuracyAI>
+	  <timeRest>1.0</timeRest>
   </skilled>
   <master>
     <mode>Master</mode>
     <speedAI>75</speedAI>
-	<accuracyAI>0.05</accuracyAI>
-	<timeRest>0.6</timeRest>
+	  <accuracyAI>0.05</accuracyAI>
+	  <timeRest>0.6</timeRest>
   </master>
   <god>
     <mode>God</mode>
     <speedAI>115</speedAI>
-	<accuracyAI>0.02</accuracyAI>
-	<timeRest>0.4</timeRest>
+	  <accuracyAI>0.02</accuracyAI>
+	  <timeRest>0.4</timeRest>
   </god>
   <chinese>
     <mode>Chinese</mode>
     <speedAI>200</speedAI>
-	<accuracyAI>0.001</accuracyAI>
-	<timeRest>0.22</timeRest>
+	  <accuracyAI>0.001</accuracyAI>
+	  <timeRest>0.22</timeRest>
   </chinese>
 </difficulties>

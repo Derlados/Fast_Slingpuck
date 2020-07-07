@@ -17,7 +17,18 @@ public static class GameRule
         jungle
     }
 
+    public enum Difficulties
+    {
+        begginer,
+        skilled,
+        master,
+        god,
+        chinese
+    }
+
     public static Mode mode;
     public static Type type;
     public static bool AI = false; 
+    public static Difficulties difficulties;
+
 }

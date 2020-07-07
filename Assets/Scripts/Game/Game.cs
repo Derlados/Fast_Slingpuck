@@ -23,6 +23,7 @@ public class Game : MonoBehaviour
     public GameObject downBorderHolder, upBorderHolder;
     public GameObject checkers;
     public GameObject gameMenu;
+    public GameObject particles;    
 
     // Текст счетчиков
     public Text upCountText, downCountText, gameCounter;
@@ -37,16 +38,20 @@ public class Game : MonoBehaviour
         mode = GameRule.mode;
         type = GameRule.type;
 
-        if (mode == GameRule.Mode.normal)
-            gameObject.AddComponent<Normal>();
-        else
+        switch (mode)
         {
-            gameObject.AddComponent<Speed>();
-            speedGameChecker.AddComponent<Destroy>();
+            case GameRule.Mode.normal:
+                gameObject.AddComponent<Normal>();
+                break;
+            case GameRule.Mode.speed:
+                gameObject.AddComponent<Speed>();
+                speedGameChecker.AddComponent<Destroy>();
+                break;
         }
 
         ChangePlanetSprite(type.ToString() + "_planet");
         ChangeCheckerSprite(type.ToString() + "_CheckerGlowMat");
+        ChangeParticle(type.ToString() + "_particle");
     }
 
     // Установка спрайтов поля и шайб
@@ -85,6 +90,15 @@ public class Game : MonoBehaviour
 
             TrailRenderer trailRenderer = checkers.transform.GetChild(i).gameObject.transform.GetChild(0).gameObject.GetComponent<TrailRenderer>();
             trailRenderer.colorGradient = gradient;
+        }
+    }
+
+    void ChangeParticle(string particleName)
+    {
+        foreach(Transform t in particles.transform)
+        {
+            if (t.name == particleName)
+                t.gameObject.SetActive(true);
         }
     }
 }
