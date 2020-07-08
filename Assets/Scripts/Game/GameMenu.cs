@@ -7,7 +7,7 @@ using UnityEngine.SceneManagement;
 // Класс отвечающий за весь UI в самой игре
 public class GameMenu : MonoBehaviour
 {
-    public GameObject pauseMenuCanvas, gameOverCanvas, capperField;
+    public GameObject pauseMenuCanvas, gameOverCanvas, capperField, PauseBtnCanvas;
     public Text gameOverText, scoreText;
     PlayerData playerData;
 
@@ -21,12 +21,14 @@ public class GameMenu : MonoBehaviour
         Time.timeScale = 0f;
         capperField.SetActive(true);
         pauseMenuCanvas.SetActive(true);
+        PauseBtnCanvas.SetActive(false);
     }
     public void UnPause()
     {
         Time.timeScale = 1f;
         capperField.SetActive(false);
         pauseMenuCanvas.SetActive(false);
+        PauseBtnCanvas.SetActive(true);
     }
     public void ToMainMenuPressed()
     {
