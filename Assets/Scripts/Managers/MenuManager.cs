@@ -17,13 +17,17 @@ public class MenuManager : MonoBehaviour
     private int numberPlanet;
 
     // Статус действий камеры
-    enum Status
+    public enum Status
     {
         freeOnMenu, // Камера свободна и находится в меню
         freeOnPlanet, // Камера свободна и находится на планете
         zoom, // Камера приближается
     }
-    Status cameraStatus = Status.freeOnMenu;
+    public static Status cameraStatus = Status.freeOnMenu;
+
+    //сохранение планеты перед увелечением\отдалением
+    Vector3 tmp; //сохраненный размер
+    GameObject planetTmp; //сохраненная планета
 
     private void Start()
     {
@@ -83,6 +87,13 @@ public class MenuManager : MonoBehaviour
             stepMove = ((Vector2)thisCamera.transform.position - targetPos).magnitude * Time.fixedDeltaTime;
             stepSize = Math.Abs(thisCamera.orthographicSize - 1.18f) * Time.fixedDeltaTime;
             cameraStatus = Status.zoom;
+
+            //сохраняем данные о планете перед изменением размеров планеты
+            Vector3 temp = planet.GetComponent<RectTransform>().localScale;
+            tmp = temp;
+            planetTmp = planet;
+
+            StartCoroutine(scalePlanet(planet,true));
         }
     }
 
@@ -103,7 +114,9 @@ public class MenuManager : MonoBehaviour
         stepMove = ((Vector2)thisCamera.transform.position - targetPos).magnitude * Time.fixedDeltaTime;
         stepSize = -Math.Abs(thisCamera.orthographicSize - 5.05f) * Time.fixedDeltaTime;
         planetLevels.SetActive(false);
-        cameraStatus = Status.zoom;    
+        cameraStatus = Status.zoom;
+        Debug.Log(planetTmp);
+        StartCoroutine(scalePlanet(planetTmp, false));
     }
 
     // Анимация прорисовки уровней
@@ -146,6 +159,36 @@ public class MenuManager : MonoBehaviour
                 }
 
                 yield return new WaitForSeconds(timeDelay);
+            }
+        }
+    }
+
+    // Анимация увеличения\уменьшения планет
+    IEnumerator scalePlanet(GameObject planet,bool to)
+    {
+        Vector3 temp = planet.GetComponent<RectTransform>().localScale;
+        float toScale;
+
+        if (to) toScale = 1.15f;
+        else toScale = tmp.x;
+
+        Debug.Log(tmp.x);
+        if (temp.x < toScale)
+        {
+            for (float i = temp.x; i <= toScale; i = i + 0.01f)
+            {
+                temp = new Vector3(i, i, i);
+                planet.GetComponent<RectTransform>().localScale = temp;
+                yield return new WaitForSeconds(0.020f);
+            }
+        }
+        else
+        {
+            for (float i = temp.x; i >= toScale; i = i - 0.01f)
+            {
+                temp = new Vector3(i, i, i);
+                planet.GetComponent<RectTransform>().localScale = temp;
+                yield return new WaitForSeconds(0.020f);
             }
         }
     }
