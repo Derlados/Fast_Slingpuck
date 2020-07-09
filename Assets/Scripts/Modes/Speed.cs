@@ -9,7 +9,6 @@ public class Speed : MonoBehaviour, Mode
     public GameObject AI;
     public GameObject capperField;
     public GameObject gameMenu;
-    public GameObject speedGameChecker;
     public GameObject downBorderHolder;
     public Game game;
 
@@ -40,7 +39,6 @@ public class Speed : MonoBehaviour, Mode
         downCountText = game.downCountText;
         gameCounterText = game.gameCounter;
 
-        speedGameChecker = game.speedGameChecker;
         downBorderHolder = game.downBorderHolder;
 
         // Меню
@@ -48,14 +46,14 @@ public class Speed : MonoBehaviour, Mode
 
         // Заглушка
         capperField = game.capperField;
-        game.speedGameChecker.SetActive(true);
+        game.checkersSpeed.SetActive(true);
     }
 
-    public void changeCount(bool direction)
+    public void changeCount(GameObject obj)
     {
-        if (direction)
+        if (obj.transform.position.y > 0 && !obj.GetComponent<Modifier>().playableForAI)
             downCountText.text = (++downCount).ToString();
-        else
+        else if (obj.transform.position.y < 0 && obj.GetComponent<Modifier>().playableForAI)
             upCountText.text = (++upCount).ToString();
     }
 

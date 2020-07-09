@@ -2257,6 +2257,21 @@ PrefabInstance:
       propertyPath: type
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3431030227263662423, guid: 799c0823fe5592c408e4e4a64887ee7f,
+        type: 3}
+      propertyPath: AI
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3431030227263662423, guid: 799c0823fe5592c408e4e4a64887ee7f,
+        type: 3}
+      propertyPath: mode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3431030227263662423, guid: 799c0823fe5592c408e4e4a64887ee7f,
+        type: 3}
+      propertyPath: difficulties
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4331401105193270650, guid: 799c0823fe5592c408e4e4a64887ee7f,
         type: 3}
       propertyPath: m_IsActive

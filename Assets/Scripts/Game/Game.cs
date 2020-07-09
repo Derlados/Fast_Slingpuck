@@ -19,9 +19,8 @@ public class Game : MonoBehaviour
      */
     public GameObject AI;
     public GameObject capperField;
-    public GameObject speedGameChecker;
     public GameObject downBorderHolder, upBorderHolder;
-    public GameObject checkers;
+    public GameObject checkersNormal, checkersSpeed;
     public GameObject gameMenu;
     public GameObject particles;    
 
@@ -30,27 +29,37 @@ public class Game : MonoBehaviour
     //картинка фишки из быстрого режима
     public Image imgField;
 
-    GameRule.Mode mode;
-    GameRule.Type type;
+    GameRule.Mode mode; // Режим игры
+    GameRule.Type type; // Тип карты (текстуры)
 
     private void Start()
     {
         mode = GameRule.mode;
         type = GameRule.type;
 
+        GameObject checkers = null;
+
+        // Модификация компонентов относительно выбраных настроек
         switch (mode)
         {
             case GameRule.Mode.normal:
                 gameObject.AddComponent<Normal>();
+                for (int i = 0; i < checkersSpeed.transform.childCount; ++i)
+                    checkersSpeed.transform.GetChild(i).gameObject.AddComponent<Modifier>();
+                checkers = checkersNormal;
                 break;
             case GameRule.Mode.speed:
                 gameObject.AddComponent<Speed>();
-                speedGameChecker.AddComponent<Destroy>();
+                for (int i = 0; i < checkersSpeed.transform.childCount; ++i)
+                    checkersSpeed.transform.GetChild(i).gameObject.AddComponent<Destroy>();
+                checkers = checkersSpeed;
                 break;
         }
 
+        // Наложение соответствующий текстур
         ChangePlanetSprite(type.ToString() + "_planet");
-        ChangeCheckerSprite(type.ToString() + "_CheckerGlowMat");
+        if (GameRule.AI)
+            ChangeCheckerSprite(type.ToString() + "_CheckerGlowMat", checkers);
         ChangeParticle(type.ToString() + "_particle");
     }
 
@@ -60,10 +69,11 @@ public class Game : MonoBehaviour
         imgField.sprite = Resources.Load<Sprite>("Sprites/levels/planets/" + spriteName);
     }
 
-    void ChangeCheckerSprite(string matName)
+    void ChangeCheckerSprite(string matName, GameObject checkers)
     {
-        for (int i = 4; i <= 7; ++i)
+        for (int i = checkers.transform.childCount / 2; i < checkers.transform.childCount; ++i)
         {
+            checkers.transform.GetChild(i).gameObject.SetActive(true);
             Image img = checkers.transform.GetChild(i).gameObject.GetComponent<Image>();
             img.material = Resources.Load<Material>("Sprites/Materials/Checker/" + matName);
 

@@ -13,5 +13,5 @@ interface Mode
     * direction - направление с которого вышла шайба
     * true - снизу, false - сверху
     */
-    void changeCount(bool dirrection);
+    void changeCount(GameObject obj);
 }
