@@ -31,6 +31,7 @@ public class PlayerData
         progress[0].Add(2);
         progress[0].Add(0);
         progress[0].Add(0);
+        progress[0].Add(0);
 
         Debug.Log("INIT");
         XMLManager.SaveData(this, this.ToString());
