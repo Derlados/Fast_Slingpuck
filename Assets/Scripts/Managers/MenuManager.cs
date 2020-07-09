@@ -28,7 +28,7 @@ public class MenuManager : MonoBehaviour
     //сохранение планеты перед увелечением\отдалением
     Vector3 tmp; //сохраненный размер
     GameObject planetTmp; //сохраненная планета
-    Camera tmpCamera; //сохраненная камера
+  //  Camera tmpCamera; //сохраненная камера
 
     private void Start()
     {
@@ -85,8 +85,8 @@ public class MenuManager : MonoBehaviour
         if (cameraStatus != Status.freeOnPlanet)
         {
             targetPos = planet.transform.position;
-            tmpCamera = thisCamera;
-            thisCamera.transform.position = new Vector3(thisCamera.transform.position.x, thisCamera.transform.position.y, planet.transform.position.z-2f);
+            //tmpCamera = thisCamera;
+            //thisCamera.transform.position = new Vector3(thisCamera.transform.position.x, thisCamera.transform.position.y, planet.transform.position.z-2f);
 
             stepMove = ((Vector2)thisCamera.transform.position - targetPos).magnitude * Time.fixedDeltaTime;
             stepSize = Math.Abs(thisCamera.orthographicSize - 1.18f) * Time.fixedDeltaTime;
@@ -97,6 +97,10 @@ public class MenuManager : MonoBehaviour
             planetTmp = planet;
 
             StartCoroutine(scalePlanet(planet,true));
+
+            for (int i = 2; i < galaxy.transform.childCount; ++i)
+                if (galaxy.transform.GetChild(i).transform.gameObject != planet.transform.gameObject)
+                    StartCoroutine(fadePlanet(i, true));
         }
     }
 
@@ -114,13 +118,17 @@ public class MenuManager : MonoBehaviour
     public void backToStart()
     {
         targetPos = startPos;
-        thisCamera.transform.position = new Vector3(thisCamera.transform.position.x, thisCamera.transform.position.y, tmpCamera.transform.position.z - 2f);
+        //thisCamera.transform.position = new Vector3(thisCamera.transform.position.x, thisCamera.transform.position.y, tmpCamera.transform.position.z - 2f);
 
         stepMove = ((Vector2)thisCamera.transform.position - targetPos).magnitude * Time.fixedDeltaTime;
         stepSize = -Math.Abs(thisCamera.orthographicSize - 5.05f) * Time.fixedDeltaTime;
         planetLevels.SetActive(false);
         cameraStatus = Status.zoom;
         StartCoroutine(scalePlanet(planetTmp, false));
+
+        for (int i = 2; i < galaxy.transform.childCount; ++i)
+            if (galaxy.transform.GetChild(i) != planetTmp)
+                StartCoroutine(fadePlanet(i, false));
     }
 
     // Анимация прорисовки уровней
@@ -168,32 +176,74 @@ public class MenuManager : MonoBehaviour
     }
 
     // Анимация увеличения\уменьшения планет
+    /*
+     * planet - обьект планеты
+     * to = true - уменьшение к размеру 1.15
+     * to = false - возращение к прежнему размеру
+     */
     IEnumerator scalePlanet(GameObject planet,bool to)
     {
         Vector3 temp = planet.GetComponent<RectTransform>().localScale;
         float toScale;
-
+   
         if (to) toScale = 1.15f;
         else toScale = tmp.x;
 
         if (temp.x < toScale)
         {
-            for (float i = temp.x; i <= toScale; i = i + 0.01f)
+            while (temp.x <= toScale)
             {
-                temp = new Vector3(i, i, i);
+                temp.x += Time.deltaTime / 1;
+
+                temp = new Vector3(temp.x, temp.x, temp.x);
                 planet.GetComponent<RectTransform>().localScale = temp;
-                yield return new WaitForSeconds(0.020f);
+                yield return null;
             }
         }
         else
         {
-            for (float i = temp.x; i >= toScale; i = i - 0.01f)
+            while (temp.x > toScale)
             {
-                temp = new Vector3(i, i, i);
+                temp.x -= Time.deltaTime / 1;
+
+                temp = new Vector3(temp.x, temp.x, temp.x);
                 planet.GetComponent<RectTransform>().localScale = temp;
-                yield return new WaitForSeconds(0.020f);
+                yield return null;
             }
         }
     }
+
+    // Анимация затухания планет
+    /*
+     * num - номер планеты в галактике планеты
+     * to = true - затухание планеты 
+     * to = false - разтухание планеты
+     */
+    IEnumerator fadePlanet(int num, bool to)
+    {
+        Color color = galaxy.transform.GetChild(num).transform.GetComponent<Image>().color;
+
+        if (to)
+        {
+            while (galaxy.transform.GetChild(num).transform.GetComponent<Image>().color.a > 0)
+            {               
+                color.a -= Time.deltaTime / 1; 
+                galaxy.transform.GetChild(num).transform.GetComponent<Image>().color = new Color(color.r, color.g, color.b, color.a);
+                yield return null;
+            }
+        }
+        else
+        {
+            while (galaxy.transform.GetChild(num).transform.GetComponent<Image>().color.a < 1)
+            {                  
+                color.a += Time.deltaTime / 1;  
+                galaxy.transform.GetChild(num).transform.GetComponent<Image>().color = new Color(color.r, color.g, color.b, color.a);
+                yield return null;
+            }
+        }
+     
+
+    }
+
 }
 
