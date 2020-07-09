@@ -28,6 +28,7 @@ public class MenuManager : MonoBehaviour
     //сохранение планеты перед увелечением\отдалением
     Vector3 tmp; //сохраненный размер
     GameObject planetTmp; //сохраненная планета
+    Camera tmpCamera; //сохраненная камера
 
     private void Start()
     {
@@ -84,13 +85,15 @@ public class MenuManager : MonoBehaviour
         if (cameraStatus != Status.freeOnPlanet)
         {
             targetPos = planet.transform.position;
+            tmpCamera = thisCamera;
+            thisCamera.transform.position = new Vector3(thisCamera.transform.position.x, thisCamera.transform.position.y, planet.transform.position.z-2f);
+
             stepMove = ((Vector2)thisCamera.transform.position - targetPos).magnitude * Time.fixedDeltaTime;
             stepSize = Math.Abs(thisCamera.orthographicSize - 1.18f) * Time.fixedDeltaTime;
             cameraStatus = Status.zoom;
 
             //сохраняем данные о планете перед изменением размеров планеты
-            Vector3 temp = planet.GetComponent<RectTransform>().localScale;
-            tmp = temp;
+            tmp = planet.GetComponent<RectTransform>().localScale;
             planetTmp = planet;
 
             StartCoroutine(scalePlanet(planet,true));
@@ -111,11 +114,12 @@ public class MenuManager : MonoBehaviour
     public void backToStart()
     {
         targetPos = startPos;
+        thisCamera.transform.position = new Vector3(thisCamera.transform.position.x, thisCamera.transform.position.y, tmpCamera.transform.position.z - 2f);
+
         stepMove = ((Vector2)thisCamera.transform.position - targetPos).magnitude * Time.fixedDeltaTime;
         stepSize = -Math.Abs(thisCamera.orthographicSize - 5.05f) * Time.fixedDeltaTime;
         planetLevels.SetActive(false);
         cameraStatus = Status.zoom;
-        Debug.Log(planetTmp);
         StartCoroutine(scalePlanet(planetTmp, false));
     }
 
@@ -172,7 +176,6 @@ public class MenuManager : MonoBehaviour
         if (to) toScale = 1.15f;
         else toScale = tmp.x;
 
-        Debug.Log(tmp.x);
         if (temp.x < toScale)
         {
             for (float i = temp.x; i <= toScale; i = i + 0.01f)
