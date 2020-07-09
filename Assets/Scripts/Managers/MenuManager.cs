@@ -7,7 +7,7 @@ using UnityEngine.UI;
 public class MenuManager : MonoBehaviour
 {
     public Canvas GalaxyCanvas; // Полотоно Планет
-    public Camera thisCamera,tmpCamera; // Камера на которую вешается скрипт
+    public Camera thisCamera; // Камера на которую вешается скрипт
     private Vector2 startPos, targetPos; // StartPos - начальная позиция камеры, targetPos - позиция планеты к которой необходимо приблизить камеру
     private float stepMove, stepSize; // stepMove - шаг передвижения камеры , stepSize - шаг приближения камеры
     public GameObject mainMenu, galaxy; // mainMenu - UI главного меню, galaxy - UI режима прохождения уровней 
@@ -28,6 +28,7 @@ public class MenuManager : MonoBehaviour
     //сохранение планеты перед увелечением\отдалением
     Vector3 tmp; //сохраненный размер
     GameObject planetTmp; //сохраненная планета
+    Camera tmpCamera; //сохраненная камера
 
     private void Start()
     {
