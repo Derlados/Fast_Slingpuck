@@ -47,8 +47,6 @@ public class Destroy : Modifier
     void RandomPosition()
     {
         Vector2 randomPos = new Vector2(Random.Range(field.Left, field.Right), Random.Range(field.Down, field.Up));
-        gameObject.GetComponent<CircleCollider2D>().isTrigger = true;
         gameObject.transform.position = randomPos;
-        gameObject.GetComponent<CircleCollider2D>().isTrigger = false;
     }
 }
