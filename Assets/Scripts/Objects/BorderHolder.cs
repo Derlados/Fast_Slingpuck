@@ -13,6 +13,6 @@ public class BorderHolder : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        game.GetComponent<Mode>().changeCount(collision.transform.position.y > 0 ? true : false);
+        game.GetComponent<Mode>().changeCount(collision.gameObject);
     }
 }

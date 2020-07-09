@@ -50,12 +50,12 @@ public class Checker : MonoBehaviour
 
         objTransform = GetComponent<Transform>(); // Оптимизация чтобы не вызывать постоянно GetComponent для Transform
         body = GetComponent<Rigidbody2D>(); // Оптимизация чтобы не вызывать постоянно GetComponent для Rigidbody2D
+
+        gameObject.transform.GetChild(0).GetComponent<TrailRenderer>().emitting = true; // След шайбы
     }
 
     void Start()
     {
-        gameObject.transform.GetChild(0).GetComponent<TrailRenderer>().emitting = true;
-
         // Границы поля
         Pair<Vector2, Vector2> points;
         points = ScreenOptimization.GetWorldCoord2D(leftBorderHolder);

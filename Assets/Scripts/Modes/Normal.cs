@@ -45,7 +45,7 @@ public class Normal : MonoBehaviour, Mode
 
         // Заглушка
         capperField = game.capperField;
-        game.checkers.SetActive(true);
+        game.checkersNormal.SetActive(true);
     }
 
     // Задержка перед стартом игры
@@ -69,10 +69,10 @@ public class Normal : MonoBehaviour, Mode
     * direction - направление с которого вышла шайба
     * true - снизу, false - сверху
     */
-    public void changeCount(bool direction)
+    public void changeCount(GameObject obj)
     {
 
-        if (direction)
+        if (obj.transform.position.y > 0)
         {
             --downCount;
             ++upCount;
