@@ -9,6 +9,7 @@ TagManager:
   - DownBorder
   - Checker
   - Field
+  - Window
   layers:
   - Default
   - TransparentFX

@@ -18,8 +18,8 @@ public class Game : MonoBehaviour
      * scoreText - текст показывающий набранные очки в игре
      */
     public GameObject AI;
-    public GameObject capperField;
-    public GameObject downBorderHolder, upBorderHolder;
+    public GameObject capperField;  
+    public GameObject downBorderHolder, upBorderHolder, window;
     public GameObject checkersNormal, checkersSpeed;
     public GameObject gameMenu;
     public GameObject particles;    
@@ -44,12 +44,14 @@ public class Game : MonoBehaviour
         {
             case GameRule.Mode.normal:
                 gameObject.AddComponent<Normal>();
-                for (int i = 0; i < checkersSpeed.transform.childCount; ++i)
-                    checkersSpeed.transform.GetChild(i).gameObject.AddComponent<Modifier>();
+                window.AddComponent<NormalWindow>();
+                for (int i = 0; i < checkersNormal.transform.childCount; ++i)
+                    checkersNormal.transform.GetChild(i).gameObject.AddComponent<Modifier>();
                 checkers = checkersNormal;
                 break;
             case GameRule.Mode.speed:
                 gameObject.AddComponent<Speed>();
+                window.AddComponent<DestroyWindow>();
                 for (int i = 0; i < checkersSpeed.transform.childCount; ++i)
                     checkersSpeed.transform.GetChild(i).gameObject.AddComponent<Destroy>();
                 checkers = checkersSpeed;

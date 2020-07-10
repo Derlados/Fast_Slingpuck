@@ -32,7 +32,7 @@ public class Normal : MonoBehaviour, Mode
 
         // Бот
         AI = game.AI;
-        if (GameRule.AI)
+        if (!GameRule.AI)
             AI.SetActive(false);
 
         // Текст счетчиков
@@ -66,12 +66,10 @@ public class Normal : MonoBehaviour, Mode
 
     /* Функция счета очков при удачном попадании в "окно"
     * Параметры:
-    * direction - направление с которого вышла шайба
-    * true - снизу, false - сверху
+    * obj - шайба которая пролетела через окно
     */
     public void changeCount(GameObject obj)
     {
-
         if (obj.transform.position.y > 0)
         {
             --downCount;

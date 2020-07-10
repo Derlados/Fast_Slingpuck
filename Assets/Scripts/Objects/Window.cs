@@ -2,8 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BorderHolder : MonoBehaviour
+public class Window : MonoBehaviour
 {
+    public GameObject game;
+
     void Start()
     {
         ScreenOptimization.setColider(gameObject, this.GetComponent<BoxCollider2D>());
