@@ -28,7 +28,6 @@ public class MenuManager : MonoBehaviour
     //сохранение планеты перед увелечением\отдалением
     Vector3 tmp; //сохраненный размер
     GameObject planetTmp; //сохраненная планета
-  //  Camera tmpCamera; //сохраненная камера
 
     private void Start()
     {
@@ -41,7 +40,7 @@ public class MenuManager : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (Input.GetKey(KeyCode.Escape))
+        if (Input.GetKey(KeyCode.Escape) && cameraStatus != Status.zoom)
         {
             backToStart();
         }
@@ -82,12 +81,12 @@ public class MenuManager : MonoBehaviour
     // Приближение к планете
     public void zoomPlanet(GameObject planet)
     {
+        Debug.Log("menu = " + cameraStatus);
         if (cameraStatus != Status.freeOnPlanet)
         {
+            Debug.Log("ZOOOOM!");
             targetPos = planet.transform.position;
-            //tmpCamera = thisCamera;
-            //thisCamera.transform.position = new Vector3(thisCamera.transform.position.x, thisCamera.transform.position.y, planet.transform.position.z-2f);
-
+            Debug.Log(targetPos);
             stepMove = ((Vector2)thisCamera.transform.position - targetPos).magnitude * Time.fixedDeltaTime;
             stepSize = Math.Abs(thisCamera.orthographicSize - 1.18f) * Time.fixedDeltaTime;
             cameraStatus = Status.zoom;
@@ -96,6 +95,7 @@ public class MenuManager : MonoBehaviour
             tmp = planet.GetComponent<RectTransform>().localScale;
             planetTmp = planet;
 
+            Debug.Log(planet);
             StartCoroutine(scalePlanet(planet,true));
 
             for (int i = 2; i < galaxy.transform.childCount; ++i)
@@ -118,8 +118,6 @@ public class MenuManager : MonoBehaviour
     public void backToStart()
     {
         targetPos = startPos;
-        //thisCamera.transform.position = new Vector3(thisCamera.transform.position.x, thisCamera.transform.position.y, tmpCamera.transform.position.z - 2f);
-
         stepMove = ((Vector2)thisCamera.transform.position - targetPos).magnitude * Time.fixedDeltaTime;
         stepSize = -Math.Abs(thisCamera.orthographicSize - 5.05f) * Time.fixedDeltaTime;
         planetLevels.SetActive(false);
@@ -193,7 +191,7 @@ public class MenuManager : MonoBehaviour
         {
             while (temp.x <= toScale)
             {
-                temp.x += Time.deltaTime / 1;
+                temp.x += Time.deltaTime / 2.5f;
 
                 temp = new Vector3(temp.x, temp.x, temp.x);
                 planet.GetComponent<RectTransform>().localScale = temp;

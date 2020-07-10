@@ -18,7 +18,7 @@ public class Game : MonoBehaviour
      * scoreText - текст показывающий набранные очки в игре
      */
     public GameObject AI;
-    public GameObject capperField;
+    public GameObject capperField;  
     public GameObject downBorderHolder, upBorderHolder, window;
     public GameObject checkersNormal, checkersSpeed;
     public GameObject gameMenu;
@@ -62,7 +62,7 @@ public class Game : MonoBehaviour
         ChangePlanetSprite(type.ToString() + "_planet");
         if (GameRule.AI)
             ChangeCheckerSprite(type.ToString() + "_CheckerGlowMat", checkers);
-        ChangeParticle(type.ToString() + "_particle");
+        ChangeParticle(type.ToString() + "_particle",true);
     }
 
     // Установка спрайтов поля и шайб
@@ -105,12 +105,12 @@ public class Game : MonoBehaviour
         }
     }
 
-    void ChangeParticle(string particleName)
+    public void ChangeParticle(string particleName,bool active)
     {
         foreach(Transform t in particles.transform)
         {
             if (t.name == particleName)
-                t.gameObject.SetActive(true);
+                t.gameObject.SetActive(active);
         }
     }
 }
