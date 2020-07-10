@@ -98,7 +98,7 @@ LightmapSettings:
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 1
+  m_UseShadowmask: 0
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -1488,7 +1488,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.08235294, g: 0.4745098, b: 0.92156863, a: 1}
+  m_Color: {r: 0.59392077, g: 0.5801887, b: 1, a: 1}
   m_RaycastTarget: 1
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -1951,7 +1951,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 24, y: -788}
+  m_AnchoredPosition: {x: 24, y: -651}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &494381238
@@ -7142,10 +7142,9 @@ RectTransform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children:
-  - {fileID: 1069148385}
+  m_Children: []
   m_Father: {fileID: 968482491}
-  m_RootOrder: 13
+  m_RootOrder: 17
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -7376,10 +7375,10 @@ RectTransform:
   m_Father: {fileID: 331001280}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 231}
-  m_SizeDelta: {x: 928.0923, y: 174.0173}
+  m_AnchorMin: {x: 0.098592594, y: 0.642}
+  m_AnchorMax: {x: 0.8927408, y: 0.77964395}
+  m_AnchoredPosition: {x: 4.5, y: 3}
+  m_SizeDelta: {x: 1.685669, y: 1.716217}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &652561171
 MonoBehaviour:
@@ -7454,10 +7453,10 @@ RectTransform:
   m_Father: {fileID: 331001280}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -59.8, y: 665.5}
-  m_SizeDelta: {x: 286.85492, y: 200.59076}
+  m_AnchorMin: {x: 0.31014815, y: 0.8274795}
+  m_AnchorMax: {x: 0.575741, y: 0.9273832}
+  m_AnchoredPosition: {x: 2.199997, y: 4.5}
+  m_SizeDelta: {x: 0.85491943, y: 8.590759}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &678895820
 MonoBehaviour:
@@ -7992,10 +7991,10 @@ RectTransform:
   m_Father: {fileID: 331001280}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 124, y: 670}
-  m_SizeDelta: {x: 122.202515, y: 122.202515}
+  m_AnchorMin: {x: 0.55629635, y: 0.8493149}
+  m_AnchorMax: {x: 0.67300004, y: 0.91400003}
+  m_AnchoredPosition: {x: 0, y: 1.5}
+  m_SizeDelta: {x: -3.7974854, y: -0.79748535}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &893625063
 MonoBehaviour:
@@ -8284,6 +8283,7 @@ RectTransform:
   - {fileID: 79411982}
   - {fileID: 4787368759220558476}
   - {fileID: 1556874172}
+  - {fileID: 596791743}
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -8716,7 +8716,7 @@ ParticleSystem:
   m_GameObject: {fileID: 986234412}
   serializedVersion: 6
   lengthInSec: 1
-  simulationSpeed: 0.59
+  simulationSpeed: 0.41
   stopAction: 0
   cullingMode: 0
   ringBufferMode: 0
@@ -8900,13 +8900,13 @@ ParticleSystem:
       maxColor: {r: 1, g: 1, b: 1, a: 1}
       maxGradient:
         serializedVersion: 2
-        key0: {r: 1, g: 0, b: 0, a: 1}
-        key1: {r: 1, g: 0.9104993, b: 0, a: 1}
-        key2: {r: 1, g: 0.6615062, b: 0, a: 0}
-        key3: {r: 0, g: 0.8679245, b: 0.08680333, a: 0}
-        key4: {r: 0, g: 0.07073331, b: 1, a: 0}
+        key0: {r: 0.92156863, g: 0.10980392, b: 0.08235294, a: 1}
+        key1: {r: 0.9245283, g: 0.92227876, b: 0.11774653, a: 1}
+        key2: {r: 0.92156863, g: 0.5294118, b: 0.08235294, a: 0}
+        key3: {r: 0.08235294, g: 0.92156863, b: 0.10980392, a: 0}
+        key4: {r: 1, g: 0.051886797, b: 0.8180704, a: 0}
         key5: {r: 0, g: 1, b: 0.99010324, a: 0}
-        key6: {r: 1, g: 0, b: 0.83183813, a: 0}
+        key6: {r: 0.92156863, g: 0.08235294, b: 0.89411765, a: 0}
         key7: {r: 0, g: 0, b: 0, a: 0}
         ctime0: 7517
         ctime1: 17155
@@ -9280,8 +9280,8 @@ ParticleSystem:
     rotation3D: 0
     gravityModifier:
       serializedVersion: 2
-      minMaxState: 3
-      scalar: 0.2
+      minMaxState: 0
+      scalar: -1.1
       minScalar: 0.01
       maxCurve:
         serializedVersion: 2
@@ -9540,7 +9540,7 @@ ParticleSystem:
     rateOverTime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 200
+      scalar: 100
       minScalar: 10
       maxCurve:
         serializedVersion: 2
@@ -13404,10 +13404,10 @@ RectTransform:
   m_Father: {fileID: 968482491}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 540, y: 960}
-  m_SizeDelta: {x: 1080, y: 1920}
+  m_AnchorMin: {x: 0.80311096, y: 0.4494792}
+  m_AnchorMax: {x: 0.97400004, y: 0.5454792}
+  m_AnchoredPosition: {x: -419, y: 5}
+  m_SizeDelta: {x: 898, y: 1736}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1041357038
 MonoBehaviour:
@@ -13480,7 +13480,7 @@ RectTransform:
   - {fileID: 387344951}
   - {fileID: 331001280}
   m_Father: {fileID: 968482491}
-  m_RootOrder: 12
+  m_RootOrder: 13
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -13656,10 +13656,10 @@ RectTransform:
   m_Father: {fileID: 331001280}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 5, y: -250}
-  m_SizeDelta: {x: 898.9441, y: 241.99219}
+  m_AnchorMin: {x: 0.351, y: 0.39400002}
+  m_AnchorMax: {x: 0.65714824, y: 0.57847947}
+  m_AnchoredPosition: {x: 0.5, y: -1.5}
+  m_SizeDelta: {x: -1.0750732, y: -2.6010742}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1107275804
 MonoBehaviour:
@@ -13826,7 +13826,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 968482491}
-  m_RootOrder: 10
+  m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.39774072, y: 0.4963542}
   m_AnchorMax: {x: 0.601, y: 0.50200003}
@@ -13926,7 +13926,7 @@ Transform:
   - {fileID: 1857101088}
   - {fileID: 1639780753}
   m_Father: {fileID: 968482491}
-  m_RootOrder: 11
+  m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1219612028
 PrefabInstance:
@@ -20704,10 +20704,10 @@ RectTransform:
   m_Father: {fileID: 331001280}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -0.0021515, y: -0.022003}
-  m_SizeDelta: {x: 1079.6501, y: 1920.3413}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: -0.004333496, y: -0.02166748}
+  m_SizeDelta: {x: -0.336792, y: -0.6578369}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2038599861
 MonoBehaviour:
@@ -20956,7 +20956,7 @@ ParticleSystem:
   m_GameObject: {fileID: 2135837790}
   serializedVersion: 6
   lengthInSec: 1
-  simulationSpeed: 0.59
+  simulationSpeed: 0.41
   stopAction: 0
   cullingMode: 0
   ringBufferMode: 0
@@ -21140,13 +21140,13 @@ ParticleSystem:
       maxColor: {r: 1, g: 1, b: 1, a: 1}
       maxGradient:
         serializedVersion: 2
-        key0: {r: 1, g: 0, b: 0, a: 1}
-        key1: {r: 1, g: 0.9104993, b: 0, a: 1}
-        key2: {r: 1, g: 0.6615062, b: 0, a: 0}
-        key3: {r: 0, g: 0.8679245, b: 0.08680333, a: 0}
-        key4: {r: 0, g: 0.07073331, b: 1, a: 0}
+        key0: {r: 0.92156863, g: 0.10980392, b: 0.08235294, a: 1}
+        key1: {r: 0.9245283, g: 0.92227876, b: 0.11774653, a: 1}
+        key2: {r: 0.92156863, g: 0.5294118, b: 0.08235294, a: 0}
+        key3: {r: 0.08235294, g: 0.92156863, b: 0.10980392, a: 0}
+        key4: {r: 1, g: 0.051886797, b: 0.8180704, a: 0}
         key5: {r: 0, g: 1, b: 0.99010324, a: 0}
-        key6: {r: 1, g: 0, b: 0.83183813, a: 0}
+        key6: {r: 0.92156863, g: 0.08235294, b: 0.89411765, a: 0}
         key7: {r: 0, g: 0, b: 0, a: 0}
         ctime0: 7517
         ctime1: 17155
@@ -21520,8 +21520,8 @@ ParticleSystem:
     rotation3D: 0
     gravityModifier:
       serializedVersion: 2
-      minMaxState: 3
-      scalar: 0.2
+      minMaxState: 0
+      scalar: -1.1
       minScalar: 0.01
       maxCurve:
         serializedVersion: 2
@@ -21780,7 +21780,7 @@ ParticleSystem:
     rateOverTime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 200
+      scalar: 100
       minScalar: 10
       maxCurve:
         serializedVersion: 2
