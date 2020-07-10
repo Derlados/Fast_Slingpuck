@@ -16,7 +16,6 @@ public static class GameRule
         sand,
         jungle
     }
-
     public enum Difficulties
     {
         begginer,
@@ -26,7 +25,13 @@ public static class GameRule
         chinese
     }
 
-    public static Mode mode;
+    /* Настройки уровня
+     * mode - режим игры
+     * type - тип поля
+     * Ai - наличие бота. true - игра с ботом, false - игра без бота
+     * difficulties - сложность игры
+     */
+    public static Mode mode; 
     public static Type type;
     public static bool AI = false; 
     public static Difficulties difficulties;

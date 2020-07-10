@@ -49,11 +49,12 @@ public class Speed : MonoBehaviour, Mode
         game.checkersSpeed.SetActive(true);
     }
 
+    // Очко добавляется тому игроку с чьей стороны прилетела шайба
     public void changeCount(GameObject obj)
     {
-        if (obj.transform.position.y > 0 && !obj.GetComponent<Modifier>().playableForAI)
+        if (obj.GetComponent<Checker>().field == Checker.Field.Down)
             downCountText.text = (++downCount).ToString();
-        else if (obj.transform.position.y < 0 && obj.GetComponent<Modifier>().playableForAI)
+        else
             upCountText.text = (++upCount).ToString();
     }
 

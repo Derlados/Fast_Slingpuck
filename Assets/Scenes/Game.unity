@@ -773,7 +773,8 @@ MonoBehaviour:
   AI: {fileID: 1137931239}
   capperField: {fileID: 1485364683}
   downBorderHolder: {fileID: 2103430078}
-  upBorderHolder: {fileID: 0}
+  upBorderHolder: {fileID: 1137931239}
+  window: {fileID: 1146339053}
   checkersNormal: {fileID: 1218372587}
   checkersSpeed: {fileID: 79411981}
   gameMenu: {fileID: 407324426}
@@ -2427,6 +2428,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Pivot.y
       value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1095559404968874083, guid: 87673815b8b84a54bab8eb13a6d0c988,
+        type: 3}
+      propertyPath: m_CollisionDetection
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 87673815b8b84a54bab8eb13a6d0c988, type: 3}
@@ -7421,6 +7427,11 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0.5
       objectReference: {fileID: 0}
+    - target: {fileID: 1095559404968874083, guid: 87673815b8b84a54bab8eb13a6d0c988,
+        type: 3}
+      propertyPath: m_CollisionDetection
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 87673815b8b84a54bab8eb13a6d0c988, type: 3}
 --- !u!224 &609604429 stripped
@@ -8931,10 +8942,10 @@ RectTransform:
   m_Father: {fileID: 968482491}
   m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.39774072, y: 0.49375004}
-  m_AnchorMax: {x: 0.601, y: 0.5066042}
-  m_AnchoredPosition: {x: 0, y: 0.0000009536743}
-  m_SizeDelta: {x: 0.000015258789, y: -0.0000019073486}
+  m_AnchorMin: {x: 0.39774072, y: 0.4963542}
+  m_AnchorMax: {x: 0.601, y: 0.50200003}
+  m_AnchoredPosition: {x: 0, y: 0.0000166893}
+  m_SizeDelta: {x: 0.000015258789, y: 0.0000333786}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1146339055
 MonoBehaviour:

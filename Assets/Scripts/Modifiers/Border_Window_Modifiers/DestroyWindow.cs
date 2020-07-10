@@ -4,15 +4,15 @@ using UnityEngine;
 
 public class DestroyWindow : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    GameObject game;
+
+    private void Start()
     {
-        
+        game = gameObject.GetComponent<Window>().game;
     }
 
-    // Update is called once per frame
-    void Update()
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        
+        game.GetComponent<Mode>().changeCount(collision.gameObject);
     }
 }
