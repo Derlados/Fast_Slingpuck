@@ -41,7 +41,7 @@ public class MenuManager : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (Input.GetKey(KeyCode.Escape))
+        if (Input.GetKey(KeyCode.Escape) && cameraStatus != Status.zoom)
         {
             backToStart();
         }
@@ -193,7 +193,7 @@ public class MenuManager : MonoBehaviour
         {
             while (temp.x <= toScale)
             {
-                temp.x += Time.deltaTime / 1;
+                temp.x += Time.deltaTime / 2.5f;
 
                 temp = new Vector3(temp.x, temp.x, temp.x);
                 planet.GetComponent<RectTransform>().localScale = temp;

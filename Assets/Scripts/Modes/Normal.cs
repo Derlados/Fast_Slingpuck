@@ -19,7 +19,7 @@ public class Normal : MonoBehaviour, Mode
 
     // Монеты
     int money;
-
+   
     void Start()
     {
         initScene();
@@ -76,6 +76,7 @@ public class Normal : MonoBehaviour, Mode
         {
             --downCount;
             ++upCount;
+            money += 100;
         }
         else
         {
@@ -94,7 +95,8 @@ public class Normal : MonoBehaviour, Mode
     public void gameOver()
     {
         AI.GetComponent<AI>().active = false;
-        gameMenu.GetComponent<GameMenu>().gameOver(downCount == 0 ? "YOU WIN !" :  "YOU LOSE !", 0);
+        gameMenu.GetComponent<GameMenu>().gameOver(downCount == 0 ? "YOU WIN !" :  "YOU LOSE !", money);
+        game.ChangeParticle(GameRule.type.ToString() + "_particle", false);
     }
 
     public void calculateResult()

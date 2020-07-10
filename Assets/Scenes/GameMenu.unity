@@ -2408,6 +2408,16 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3431030227263662423, guid: b2f54662d1802b0469829b107941328c,
+        type: 3}
+      propertyPath: type
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 3431030227263662423, guid: b2f54662d1802b0469829b107941328c,
+        type: 3}
+      propertyPath: difficulties
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4331401105193270650, guid: b2f54662d1802b0469829b107941328c,
         type: 3}
       propertyPath: m_IsActive
@@ -2879,6 +2889,16 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3431030227263662423, guid: b2f54662d1802b0469829b107941328c,
+        type: 3}
+      propertyPath: type
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 3431030227263662423, guid: b2f54662d1802b0469829b107941328c,
+        type: 3}
+      propertyPath: difficulties
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4331401105193270650, guid: b2f54662d1802b0469829b107941328c,
         type: 3}
       propertyPath: m_IsActive
@@ -3219,6 +3239,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3431030227263662423, guid: b2f54662d1802b0469829b107941328c,
+        type: 3}
+      propertyPath: type
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 3431030227263662423, guid: b2f54662d1802b0469829b107941328c,
+        type: 3}
+      propertyPath: difficulties
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4331401105193270650, guid: b2f54662d1802b0469829b107941328c,
         type: 3}
@@ -7494,6 +7524,16 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3431030227263662423, guid: b2f54662d1802b0469829b107941328c,
+        type: 3}
+      propertyPath: type
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 3431030227263662423, guid: b2f54662d1802b0469829b107941328c,
+        type: 3}
+      propertyPath: difficulties
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4331401105193270650, guid: b2f54662d1802b0469829b107941328c,
         type: 3}
       propertyPath: m_IsActive
@@ -7994,6 +8034,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3431030227263662423, guid: b2f54662d1802b0469829b107941328c,
+        type: 3}
+      propertyPath: type
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 3431030227263662423, guid: b2f54662d1802b0469829b107941328c,
+        type: 3}
+      propertyPath: difficulties
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 4331401105193270650, guid: b2f54662d1802b0469829b107941328c,
         type: 3}
