@@ -44,8 +44,8 @@ public class Game : MonoBehaviour
         {
             case GameRule.Mode.normal:
                 gameObject.AddComponent<Normal>();
-                for (int i = 0; i < checkersSpeed.transform.childCount; ++i)
-                    checkersSpeed.transform.GetChild(i).gameObject.AddComponent<Modifier>();
+                for (int i = 0; i < checkersNormal.transform.childCount; ++i)
+                    checkersNormal.transform.GetChild(i).gameObject.AddComponent<Modifier>();
                 checkers = checkersNormal;
                 break;
             case GameRule.Mode.speed:

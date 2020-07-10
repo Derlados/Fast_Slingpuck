@@ -8,7 +8,6 @@ public class Checker : MonoBehaviour
      * upCount - счетчик количества шайб у верхнего игрока
      * downCoun - счетчик количества шайб у нижнего игрока
      */
-
     public static byte countId = 0;
     public byte id;
 
@@ -41,6 +40,14 @@ public class Checker : MonoBehaviour
         }
     }
 
+
+    public enum Field
+    {
+        Up, 
+        Down
+    }
+    public Field field; 
+
     private void Awake()
     {
         id = ++countId;
@@ -52,6 +59,8 @@ public class Checker : MonoBehaviour
         body = GetComponent<Rigidbody2D>(); // Оптимизация чтобы не вызывать постоянно GetComponent для Rigidbody2D
 
         gameObject.transform.GetChild(0).GetComponent<TrailRenderer>().emitting = true; // След шайбы
+
+        field = objTransform.position.y > 0 ? Field.Up : Field.Down; 
     }
 
     void Start()

@@ -84,6 +84,7 @@ public class Speed : MonoBehaviour, Mode
         StartCoroutine(counter(60));
     }
 
+    // Таймер игры
     IEnumerator counter(int sec)
     {
         for (int i = sec; i >= 0; --i)
