@@ -11,8 +11,11 @@ public class DestroyWindow : MonoBehaviour
         game = gameObject.GetComponent<Window>().game;
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void OnTriggerExit2D(Collider2D collision)
     {
-        game.GetComponent<Mode>().changeCount(collision.gameObject);
+        Checker check = collision.gameObject.GetComponent<Checker>();
+        if ((collision.gameObject.transform.position.y > 0 && check.field == Checker.Field.Down) || (collision.gameObject.transform.position.y < 0 && check.field == Checker.Field.Up)) 
+            game.GetComponent<Mode>().changeCount(collision.gameObject);
+        
     }
 }

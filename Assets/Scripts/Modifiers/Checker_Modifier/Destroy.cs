@@ -22,12 +22,12 @@ public class Destroy : Modifier
         }
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void OnTriggerExit2D(Collider2D collision)
     {
-        Transform obj = collision.gameObject.transform;
+        Checker check = gameObject.GetComponent<Checker>();
         Rigidbody2D body = gameObject.GetComponent<Checker>().body;
 
-        if (!(obj.position.y > field.Down && obj.position.y < field.Up) && collision.gameObject.tag == "Window")
+        if (collision.gameObject.tag == "Window" && (check.transform.position.y > 0 && check.field == Checker.Field.Down) || (check.transform.position.y < 0 && check.field == Checker.Field.Up))
         {
             body.velocity /= 4;
             gameObject.GetComponent<CircleCollider2D>().isTrigger = true;
@@ -39,7 +39,7 @@ public class Destroy : Modifier
     IEnumerator delayBeforeDissolve()
     {       
         Image image = gameObject.GetComponent<Image>();
-        for (float f = 0.8f; f >= 0; f -= 0.01f)
+        for (float f = 0.8f; f >= 0; f -= 0.03f)
         {
             image.material.SetFloat("_DissolveAmount", f);
             yield return new WaitForSeconds(0.01f);
