@@ -19,7 +19,7 @@ public class UIParallax : MonoBehaviour
         if (Input.GetMouseButtonDown(0))
             mousePosYStart = Input.mousePosition.y;
 
-        if(Input.touchCount == 1 && Input.GetTouch(0).phase == TouchPhase.Moved || Input.GetMouseButton(0) && MenuManager.cameraStatus != MenuManager.Status.freeOnPlanet)
+        if((Input.touchCount == 1 && Input.GetTouch(0).phase == TouchPhase.Moved || Input.GetMouseButton(0)) && MenuManager.cameraStatus != MenuManager.Status.freeOnPlanet)
         {
             Vector3 newPosition;
 
@@ -32,8 +32,6 @@ public class UIParallax : MonoBehaviour
             {
                 float newY = Mathf.Clamp(layers[i].transform.position.y + deltaY * dragSpeed * (i + 1) / 10.0f, minDragY, maxDragY);
                 
-                   
-
                 if (i == layers.Length - 1)
                 {
                     newPosition = new Vector3(layers[i].transform.position.x, newY, layers[i].transform.position.z);
