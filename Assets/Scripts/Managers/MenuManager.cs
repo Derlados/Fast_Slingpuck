@@ -31,6 +31,7 @@ public class MenuManager : MonoBehaviour
 
     private void Start()
     {
+        cameraStatus = Status.freeOnMenu;
         // Оптимизация второго поля под разные екраны так как поле Планет не закреплено за камерой
         float posX = -Math.Abs(Camera.main.ScreenToWorldPoint(new Vector2(Screen.width, Screen.height)).x - (GalaxyCanvas.GetComponent<RectTransform>().sizeDelta.x / 2));
         thisCamera.transform.position = new Vector3(posX, thisCamera.transform.position.y, thisCamera.transform.position.z);
