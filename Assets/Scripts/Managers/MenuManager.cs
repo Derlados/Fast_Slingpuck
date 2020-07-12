@@ -82,12 +82,9 @@ public class MenuManager : MonoBehaviour
     // Приближение к планете
     public void zoomPlanet(GameObject planet)
     {
-        Debug.Log("menu = " + cameraStatus);
         if (cameraStatus != Status.freeOnPlanet)
         {
-            Debug.Log("ZOOOOM!");
             targetPos = planet.transform.position;
-            Debug.Log(targetPos);
             stepMove = ((Vector2)thisCamera.transform.position - targetPos).magnitude * Time.fixedDeltaTime;
             stepSize = Math.Abs(thisCamera.orthographicSize - 1.18f) * Time.fixedDeltaTime;
             cameraStatus = Status.zoom;
@@ -95,8 +92,6 @@ public class MenuManager : MonoBehaviour
             //сохраняем данные о планете перед изменением размеров планеты
             tmp = planet.GetComponent<RectTransform>().localScale;
             planetTmp = planet;
-
-            Debug.Log(planet);
             StartCoroutine(scalePlanet(planet,true));
 
             for (int i = 2; i < galaxy.transform.childCount; ++i)
