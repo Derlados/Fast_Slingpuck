@@ -113,6 +113,7 @@ public class MenuManager : MonoBehaviour
     public void setPlanetNumber(int num)
     {
         numberPlanet = num;
+        GameRule.planetNum = num;
     }
 
     // Возврат к стартовому меню
