@@ -40,7 +40,6 @@ public class Checker : MonoBehaviour
         }
     }
 
-
     public enum Field
     {
         Up, 
@@ -52,7 +51,10 @@ public class Checker : MonoBehaviour
     {
         id = ++countId;
         // Оптимизация под разные экраны
+        ScreenOptimization.setSize(gameObject, this.GetComponent<CircleCollider2D>());
         ScreenOptimization.setColider(gameObject, this.GetComponent<CircleCollider2D>());
+
+        Debug.Log(gameObject.GetComponent<RectTransform>().sizeDelta);
         radius = Camera.main.ScreenToWorldPoint(new Vector3(Screen.width, 0f, 0f)).x * (gameObject.GetComponent<CircleCollider2D>().radius / Screen.width) * 2; // радиус в мировых координатах
 
         objTransform = GetComponent<Transform>(); // Оптимизация чтобы не вызывать постоянно GetComponent для Transform

@@ -29,17 +29,21 @@ public class Speed : MonoBehaviour, Mode
     {
         game = GetComponent<Game>();
 
-        // Бот
-        AI = game.AI;
-        if (!GameRule.AI)
-            AI.SetActive(false);
-
         // Текст счетчиков
         upCountText = game.upCountText;
         downCountText = game.downCountText;
         gameCounterText = game.gameCounter;
+        upCountText.text = upCount.ToString();
 
         downBorderHolder = game.downBorderHolder;
+
+        // Бот
+        AI = game.AI;
+        if (!GameRule.AI)
+        {
+            AI.SetActive(false);
+            downCountText.text = downCount.ToString();
+        }
 
         // Меню
         gameMenu = game.gameMenu;
