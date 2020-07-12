@@ -9,7 +9,7 @@ public class Level : MonoBehaviour
     public GameRule.Type type;
     public bool AI;
     public GameRule.Difficulties difficulties;
-
+    public int numLevel, numPlanet;
 
     public void loadGame()
     {
@@ -17,6 +17,9 @@ public class Level : MonoBehaviour
         GameRule.type = type;
         GameRule.AI = AI;
         GameRule.difficulties = difficulties;
+        GameRule.levelNum = numLevel;
+        GameRule.planetNum = numPlanet;
+
         MenuManager.cameraStatus = MenuManager.Status.freeOnMenu;
         SceneManager.LoadScene("Game");
     }
