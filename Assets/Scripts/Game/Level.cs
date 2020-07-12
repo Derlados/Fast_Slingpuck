@@ -18,8 +18,6 @@ public class Level : MonoBehaviour
         GameRule.AI = AI;
         GameRule.difficulties = difficulties;
         GameRule.levelNum = numLevel;
-
-        MenuManager.cameraStatus = MenuManager.Status.freeOnMenu;
         SceneManager.LoadScene("Game");
     }
 }
