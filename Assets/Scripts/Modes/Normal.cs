@@ -10,6 +10,11 @@ public class Normal : MonoBehaviour, Mode
     GameObject gameMenu;
     Game game;
 
+    // Условия получения звезд
+    private int targetTime = 40, targetCheckers = 6; // Константы необходимо передавать из вне
+    private int time; // Время игры
+    private bool checkTargetCheckers; // Показывает было ли нарушено условие true - нарушено, false - не нарушено
+  
     // Счетчики
     public int score;
     public byte upCount = 4, downCount = 4; // константы (4) необходимо заменить
@@ -40,6 +45,9 @@ public class Normal : MonoBehaviour, Mode
         downCountText = game.downCountText;
         gameCounterText = game.gameCounter;
 
+        upCountText.text = upCount.ToString();
+        downCountText.text = downCount.ToString();
+
         // Меню
         gameMenu = game.gameMenu;
 
@@ -61,6 +69,7 @@ public class Normal : MonoBehaviour, Mode
         capperField.SetActive(false);
         AI.GetComponent<AI>().active = true;
         yield return new WaitForSeconds(1);
+        StartCoroutine(Timer());
     }
 
 
@@ -85,13 +94,19 @@ public class Normal : MonoBehaviour, Mode
         upCountText.text = upCount.ToString();
         downCountText.text = downCount.ToString();
 
+        if (downCount > targetCheckers)
+            checkTargetCheckers = true;
+
         if (upCount == 0 || downCount == 0)
             gameOver();
+
     }
 
     // Окончание игры
     public void gameOver()
     {
+        StopCoroutine(Timer());
+        calculateResult();
         AI.GetComponent<AI>().active = false;
         gameMenu.GetComponent<GameMenu>().gameOver(downCount == 0 ? "YOU WIN !" :  "YOU LOSE !", money);
         game.ChangeParticle(GameRule.type.ToString() + "_particle", false);
@@ -99,6 +114,29 @@ public class Normal : MonoBehaviour, Mode
 
     public void calculateResult()
     {
+        if (downCount != 0)
+            game.countStars = 0;
+        else
+        {
+            if (checkTargetCheckers)
+                --game.countStars;
 
+            if (time > targetTime)
+                --game.countStars;
+        }
+
+        Debug.Log(game.countStars);
+
+        // Необходимо доделать
+        //PlayerData.getInstance().progress[GameRule.planetNum][GameRule.levelNum] = game.countStars;
+    }
+
+    IEnumerator Timer()
+    {
+        while (true)
+        {
+            yield return new WaitForSeconds(1);
+            ++time;
+        }
     }
 }

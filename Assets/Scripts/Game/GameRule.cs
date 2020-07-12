@@ -36,4 +36,5 @@ public static class GameRule
     public static bool AI = false; 
     public static Difficulties difficulties;
 
+    public static int planetNum, levelNum;
 }
