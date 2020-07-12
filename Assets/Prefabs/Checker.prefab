@@ -86,7 +86,7 @@ TrailRenderer:
       m_Curve:
       - serializedVersion: 3
         time: 0
-        value: 0.82209015
+        value: 0.621109
         inSlope: -0.22281785
         outSlope: -0.22281785
         tangentMode: 0
@@ -94,22 +94,22 @@ TrailRenderer:
         inWeight: 0.33333334
         outWeight: 0.25466865
       - serializedVersion: 3
-        time: 0.6925195
-        value: 0.43262202
-        inSlope: -1.2212442
-        outSlope: -1.2212442
+        time: 0.63210404
+        value: 0.19733986
+        inSlope: -1.0682023
+        outSlope: -1.0682023
         tangentMode: 0
         weightedMode: 0
-        inWeight: 0.29189688
-        outWeight: 0.43439323
+        inWeight: 0.13658081
+        outWeight: 0.36239436
       - serializedVersion: 3
         time: 1
         value: 0
-        inSlope: -1.6879433
-        outSlope: -1.6879433
+        inSlope: -0.24899724
+        outSlope: -0.24899724
         tangentMode: 0
         weightedMode: 0
-        inWeight: 0.28929636
+        inWeight: 0.3248481
         outWeight: 0
       m_PreInfinity: 2
       m_PostInfinity: 2
@@ -271,6 +271,7 @@ MonoBehaviour:
   objTransform: {fileID: 0}
   leftBorderHolder: {fileID: 0}
   rightBorderHolder: {fileID: 0}
+  field: 0
 --- !u!58 &1095559404968874012
 CircleCollider2D:
   m_ObjectHideFlags: 0
