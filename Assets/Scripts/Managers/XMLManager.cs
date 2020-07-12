@@ -19,8 +19,8 @@ public class XMLManager
     {
         XmlSerializer serializer = new XmlSerializer(typeof(T));
         
-        //FileStream fileStream = new FileStream(Application.persistentDataPath + name + ".xml", FileMode.Create); //ANDROID
-        FileStream fileStream = new FileStream(Application.dataPath + "/Resources/" + name + ".xml", FileMode.Create); //PC
+        FileStream fileStream = new FileStream(Application.persistentDataPath + name + ".xml", FileMode.Create); //ANDROID
+        //FileStream fileStream = new FileStream(Application.dataPath + "/Resources/" + name + ".xml", FileMode.Create); //PC
         serializer.Serialize(fileStream, data);
         fileStream.Close();
     }
@@ -38,8 +38,8 @@ public class XMLManager
         XmlSerializer serializer = new XmlSerializer(typeof(T));
         try
         {
-            //FileStream fileStream = new FileStream(Application.persistentDataPath + name + ".xml", FileMode.Open); //ANDROID
-            FileStream fileStream = new FileStream(Application.dataPath + "/Resources/" + name + ".xml", FileMode.Open); //PC
+            FileStream fileStream = new FileStream(Application.persistentDataPath + name + ".xml", FileMode.Open); //ANDROID
+            //FileStream fileStream = new FileStream(Application.dataPath + "/Resources/" + name + ".xml", FileMode.Open); //PC
             data = (T)serializer.Deserialize(fileStream);
             fileStream.Close();
             return true;

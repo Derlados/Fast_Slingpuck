@@ -32,6 +32,9 @@ public class Game : MonoBehaviour
     GameRule.Mode mode; // Режим игры
     GameRule.Type type; // Тип карты (текстуры)
 
+    // Количество звезд которые получит игрок пройдя уровень
+    public byte countStars = 3;
+
     private void Start()
     {
         mode = GameRule.mode;
