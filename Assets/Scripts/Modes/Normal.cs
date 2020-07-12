@@ -40,6 +40,9 @@ public class Normal : MonoBehaviour, Mode
         downCountText = game.downCountText;
         gameCounterText = game.gameCounter;
 
+        upCountText.text = upCount.ToString();
+        downCountText.text = downCount.ToString();
+
         // Меню
         gameMenu = game.gameMenu;
 

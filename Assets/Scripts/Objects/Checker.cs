@@ -40,7 +40,6 @@ public class Checker : MonoBehaviour
         }
     }
 
-
     public enum Field
     {
         Up, 
