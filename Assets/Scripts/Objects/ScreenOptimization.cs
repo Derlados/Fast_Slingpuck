@@ -1,5 +1,6 @@
 using UnityEngine;
 using BaseStructures;
+using UnityEditor;
 
 public static class ScreenOptimization
 {
@@ -15,6 +16,14 @@ public static class ScreenOptimization
     {
         RectTransform rect = obj.GetComponent<RectTransform>();
         circle.radius = Screen.width * (rect.anchorMax.x - rect.anchorMin.x) / 2;
+    }
+
+    // Установка размера для объекта в проценте от разрешения экрана
+    public static void setSize(GameObject obj, CircleCollider2D circle)
+    {
+        RectTransform rect = obj.GetComponent<RectTransform>();
+        obj.GetComponent<RectTransform>().sizeDelta = Camera.main.ScreenToWorldPoint(new Vector2(Screen.width * (rect.anchorMax.x - rect.anchorMin.x), Screen.width * (rect.anchorMax.x - rect.anchorMin.x)));
+        setColider(obj, circle);
     }
 
     //Возврат положения объекта в мировых координатах (Левый верхний и правыйнижний угол)
