@@ -5,12 +5,32 @@ using UnityEngine.SceneManagement;
 
 public class Level : MonoBehaviour
 {
-    public GameRule.Mode mode;
-    public GameRule.Type type;
-    public bool AI;
-    public GameRule.Difficulties difficulties;
-    public int numLevel;
 
+    // Цели для режима Normal
+    [System.Serializable]
+    public class Normal
+    {
+        public int time;
+        public int countCheckers;
+    }
+    public Normal normal; 
+
+    // Цели для режима Speed
+    [System.Serializable]
+    public class Speed
+    {
+        public int minTargetCheckers; [Tooltip("If player will play without AI")]
+        public int maxTargetCheckers;
+    }
+    public Speed speed;
+
+    public GameRule.Mode mode; // Режим игры
+    public GameRule.Type type; // Тип планеты
+    public bool AI; // Наличие ИИ. true - игра с ИИ, false - игра без ИИ
+    public GameRule.Difficulties difficulties; // Сложность игры
+    public int numLevel; // Номер уровня, необходимо знать для того чтобы в дальнейшем записать результат
+
+    // Установка всех игровых правил и запус игры
     public void loadGame()
     {
         GameRule.mode = mode;
@@ -19,7 +39,21 @@ public class Level : MonoBehaviour
         GameRule.difficulties = difficulties;
         GameRule.levelNum = numLevel;
 
-        MenuManager.cameraStatus = MenuManager.Status.freeOnMenu;
         SceneManager.LoadScene("Game");
+    }
+
+    public void setTargets()
+    {
+        switch (GameRule.mode)
+        {
+            case GameRule.Mode.normal:
+                GameRule.target2 = normal.time;
+                GameRule.target3 = normal.countCheckers;
+                break;
+            case GameRule.Mode.speed:
+                GameRule.target1 = speed.minTargetCheckers;
+                GameRule.target2 = speed.maxTargetCheckers;
+                break;
+        }
     }
 }

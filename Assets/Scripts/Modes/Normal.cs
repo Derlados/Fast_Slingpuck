@@ -54,6 +54,21 @@ public class Normal : MonoBehaviour, Mode
         // Заглушка
         capperField = game.capperField;
         game.checkersNormal.SetActive(true);
+
+        // Установка целей
+        initTargets();
+    }
+
+    /* Установка целей для режима Normal
+     * Порядок целей для режима (номер цели = номеру цели в GameRule)
+     * 1 - Победа
+     * 2 - Ограничение по времени 
+     * 3 - Ограничение по количетву шайб которые могут одновременно находится у игрока 
+     */
+    public void initTargets()
+    {
+        targetTime = GameRule.target2;
+        targetCheckers = GameRule.target3;
     }
 
     // Задержка перед стартом игры

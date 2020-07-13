@@ -18,6 +18,11 @@ public class Speed : MonoBehaviour, Mode
     public int score;
     public short upCount = 0, downCount = 0; // константы (4) необходимо заменить
 
+    // Цели
+    public int winTarget; // На случай если нету ИИ, победа начисляется за количество фишек забитых за время
+    public int targetCheckers; // Вторая цель - количество забитых фишек, для получения следующей звезды
+    public bool missOrLag; // true - если случился промах в игре без ИИ или игрок отстал по очкам хотя бы раз за игру от ИИ 
+
     // Start is called before the first frame update
     void Start()
     {
@@ -51,6 +56,22 @@ public class Speed : MonoBehaviour, Mode
         // Заглушка
         capperField = game.capperField;
         game.checkersSpeed.SetActive(true);
+
+        // Установка целей
+        initTargets();
+    }
+
+
+    /* Установка целей для режима Normal
+     * Порядок целей для режима (номер цели = номеру цели в GameRule)
+     * 1 - Победа (Или достигнута цель winTarget)
+     * 2 - Количество фишек для получения следующей звезды
+     * 3 - Без промахов (нету ИИ), не отставать от бота в течении всей игры
+     */
+    public void initTargets()
+    {
+        winTarget = GameRule.target1;
+        targetCheckers = GameRule.target2;
     }
 
     // Очко добавляется тому игроку с чьей стороны прилетела шайба
@@ -70,7 +91,16 @@ public class Speed : MonoBehaviour, Mode
 
     public void calculateResult()
     {
+        if (downCount < winTarget)
+            game.countStars = 0;
+        else
+        {
+            if (downCount < targetCheckers)
+                --game.countStars;
 
+            if (missOrLag)
+                --game.countStars;
+        }
     }
 
     // Задержка перед началом игры
