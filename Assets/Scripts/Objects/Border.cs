@@ -8,6 +8,4 @@ public class Border : MonoBehaviour
     {
         ScreenOptimization.setColider(gameObject, gameObject.GetComponent<BoxCollider2D>());
     }
-
-
 }

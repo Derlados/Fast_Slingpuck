@@ -3838,6 +3838,16 @@ PrefabInstance:
       propertyPath: AI
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 3431030227263662423, guid: fe6ef68fcb158c04ca07ba4bd1672cf5,
+        type: 3}
+      propertyPath: normal.time
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 3431030227263662423, guid: fe6ef68fcb158c04ca07ba4bd1672cf5,
+        type: 3}
+      propertyPath: normal.countCheckers
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 4331401105193270650, guid: fe6ef68fcb158c04ca07ba4bd1672cf5,
         type: 3}
       propertyPath: m_IsActive
@@ -3906,7 +3916,7 @@ PrefabInstance:
     - target: {fileID: 9004831237760379576, guid: fe6ef68fcb158c04ca07ba4bd1672cf5,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 439
+      value: 438.99997
       objectReference: {fileID: 0}
     - target: {fileID: 9004831237760379576, guid: fe6ef68fcb158c04ca07ba4bd1672cf5,
         type: 3}
@@ -6945,7 +6955,7 @@ PrefabInstance:
     - target: {fileID: 9004831237760379576, guid: fe6ef68fcb158c04ca07ba4bd1672cf5,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 438
+      value: 437.99997
       objectReference: {fileID: 0}
     - target: {fileID: 9004831237760379576, guid: fe6ef68fcb158c04ca07ba4bd1672cf5,
         type: 3}
@@ -7760,7 +7770,22 @@ PrefabInstance:
     - target: {fileID: 3431030227263662423, guid: fe6ef68fcb158c04ca07ba4bd1672cf5,
         type: 3}
       propertyPath: AI
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3431030227263662423, guid: fe6ef68fcb158c04ca07ba4bd1672cf5,
+        type: 3}
+      propertyPath: mode
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3431030227263662423, guid: fe6ef68fcb158c04ca07ba4bd1672cf5,
+        type: 3}
+      propertyPath: speed.minTargetCheckers
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3431030227263662423, guid: fe6ef68fcb158c04ca07ba4bd1672cf5,
+        type: 3}
+      propertyPath: speed.maxTargetCheckers
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 4331401105193270650, guid: fe6ef68fcb158c04ca07ba4bd1672cf5,
         type: 3}
@@ -10554,7 +10579,7 @@ PrefabInstance:
     - target: {fileID: 9004831237760379576, guid: b2f54662d1802b0469829b107941328c,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 453
+      value: 452.99997
       objectReference: {fileID: 0}
     - target: {fileID: 9004831237760379576, guid: b2f54662d1802b0469829b107941328c,
         type: 3}

@@ -54,7 +54,6 @@ public class Checker : MonoBehaviour
         ScreenOptimization.setSize(gameObject, this.GetComponent<CircleCollider2D>());
         ScreenOptimization.setColider(gameObject, this.GetComponent<CircleCollider2D>());
 
-        Debug.Log(gameObject.GetComponent<RectTransform>().sizeDelta);
         radius = Camera.main.ScreenToWorldPoint(new Vector3(Screen.width, 0f, 0f)).x * (gameObject.GetComponent<CircleCollider2D>().radius / Screen.width) * 2; // радиус в мировых координатах
 
         objTransform = GetComponent<Transform>(); // Оптимизация чтобы не вызывать постоянно GetComponent для Transform
@@ -119,14 +118,20 @@ public class Checker : MonoBehaviour
         {
             float checkY = DownString.coordY + radius + DownString.correction;
             if (objTransform.position.y < checkY)
+            {
+                ++Game.countShots;
                 V = ((checkY - objTransform.position.y) * 124 + 4) / 20.0f; // Формула рассчета начальной скорости объекта
+            }
             objTransform.rotation = Quaternion.Euler(0, 0, 90);
         }
         else
         {
             float checkY = UpString.coordY - radius - UpString.correction;
             if (objTransform.position.y > checkY)
+            {
+                ++Game.countShots;
                 V = ((objTransform.position.y - checkY) * 124 + 4) / 20.0f; // Формула рассчета начальной скорости объекта
+            }
             objTransform.rotation = Quaternion.Euler(0, 0, -90);
         }
 
