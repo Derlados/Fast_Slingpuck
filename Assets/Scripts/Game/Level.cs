@@ -38,8 +38,9 @@ public class Level : MonoBehaviour
         GameRule.AI = AI;
         GameRule.difficulties = difficulties;
         GameRule.levelNum = numLevel;
-
+        
         setTargets();
+        
         SceneManager.LoadScene("Game");
     }
 
