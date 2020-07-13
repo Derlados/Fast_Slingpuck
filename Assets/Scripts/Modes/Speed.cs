@@ -21,7 +21,7 @@ public class Speed : MonoBehaviour, Mode
     // Цели
     public int winTarget; // На случай если нету ИИ, победа начисляется за количество фишек забитых за время
     public int targetCheckers; // Вторая цель - количество забитых фишек, для получения следующей звезды
-    public bool missOrLag; // true - если случился промах в игре без ИИ или игрок отстал по очкам хотя бы раз за игру от ИИ 
+    public bool lag = false; // true - игрок отстал по очкам хотя бы раз за игру от ИИ 
 
     // Start is called before the first frame update
     void Start()
@@ -47,8 +47,11 @@ public class Speed : MonoBehaviour, Mode
         if (!GameRule.AI)
         {
             AI.SetActive(false);
-            downCountText.text = downCount.ToString();
+            upCountText.gameObject.SetActive(false);
         }
+
+        // Установка начального текста для счетчиков
+        downCountText.text = downCount.ToString();
 
         // Меню
         gameMenu = game.gameMenu;
@@ -82,30 +85,33 @@ public class Speed : MonoBehaviour, Mode
         else
             upCountText.text = (++upCount).ToString();
 
-        if (upCount < downCount)
-            missOrLag = true;
+        if (upCount > downCount)
+            lag = true;
     }
 
     public void gameOver()
     {
+        calculateResult();
         AI.GetComponent<AI>().active = false;
-        gameMenu.GetComponent<GameMenu>().gameOver("Game Over !", downCount);
+        gameMenu.GetComponent<GameMenu>().gameOver("Game Over !", downCount); 
     }
 
     public void calculateResult()
     {
-        if ((GameRule.AI && downCount < winTarget) || (!GameRule.AI && downCount <= upCount))
+        if ((!GameRule.AI && downCount < winTarget) || (GameRule.AI && downCount <= upCount))
             game.countStars = 0;
         else
         {
             if (downCount < targetCheckers)
                 --game.countStars;
 
-            if (missOrLag)
+            if (lag || Game.countShots > downCount)
                 --game.countStars;
         }
 
-        Debug.Log(game.countStars);
+        // Необходимо доделать
+        if (PlayerData.getInstance().progress[GameRule.planetNum][GameRule.levelNum] < game.countStars)
+            PlayerData.getInstance().progress[GameRule.planetNum][GameRule.levelNum] = game.countStars;
     }
 
     // Задержка перед началом игры
@@ -121,7 +127,7 @@ public class Speed : MonoBehaviour, Mode
         capperField.SetActive(false);
         AI.GetComponent<AI>().active = true;    
         yield return new WaitForSeconds(1);
-        StartCoroutine(counter(60));
+        StartCoroutine(counter(10));
     }
 
     // Таймер игры

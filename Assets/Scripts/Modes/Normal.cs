@@ -45,6 +45,7 @@ public class Normal : MonoBehaviour, Mode
         downCountText = game.downCountText;
         gameCounterText = game.gameCounter;
 
+        // Установка начального текста для счетчиков
         upCountText.text = upCount.ToString();
         downCountText.text = downCount.ToString();
 
@@ -143,7 +144,8 @@ public class Normal : MonoBehaviour, Mode
         Debug.Log(game.countStars);
 
         // Необходимо доделать
-        //PlayerData.getInstance().progress[GameRule.planetNum][GameRule.levelNum] = game.countStars;
+        if (PlayerData.getInstance().progress[GameRule.planetNum][GameRule.levelNum] < game.countStars)
+            PlayerData.getInstance().progress[GameRule.planetNum][GameRule.levelNum] = game.countStars;
     }
 
     IEnumerator Timer()
