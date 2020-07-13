@@ -81,6 +81,9 @@ public class Speed : MonoBehaviour, Mode
             downCountText.text = (++downCount).ToString();
         else
             upCountText.text = (++upCount).ToString();
+
+        if (upCount < downCount)
+            missOrLag = true;
     }
 
     public void gameOver()
@@ -91,7 +94,7 @@ public class Speed : MonoBehaviour, Mode
 
     public void calculateResult()
     {
-        if (downCount < winTarget)
+        if ((GameRule.AI && downCount < winTarget) || (!GameRule.AI && downCount <= upCount))
             game.countStars = 0;
         else
         {
@@ -101,6 +104,8 @@ public class Speed : MonoBehaviour, Mode
             if (missOrLag)
                 --game.countStars;
         }
+
+        Debug.Log(game.countStars);
     }
 
     // Задержка перед началом игры

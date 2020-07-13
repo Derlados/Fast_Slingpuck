@@ -39,6 +39,7 @@ public class Level : MonoBehaviour
         GameRule.difficulties = difficulties;
         GameRule.levelNum = numLevel;
 
+        setTargets();
         SceneManager.LoadScene("Game");
     }
 

@@ -11,7 +11,7 @@ public class Normal : MonoBehaviour, Mode
     Game game;
 
     // Условия получения звезд
-    private int targetTime = 40, targetCheckers = 6; // Константы необходимо передавать из вне
+    private int targetTime, targetCheckers; // Константы необходимо передавать из вне
     private int time; // Время игры
     private bool checkTargetCheckers; // Показывает было ли нарушено условие true - нарушено, false - не нарушено
   
