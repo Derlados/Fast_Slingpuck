@@ -15,23 +15,23 @@ public class PlayerData
     public static PlayerData getInstance()
     {
         if (instance == null)
+        {
             if (!XMLManager.LoadData(ref instance, (new PlayerData()).ToString()))
-            {
                 instance = new PlayerData();
-                instance.Init();
-            }
+            instance.Init();
+        }
 
         return instance;
     }
 
     public void Init()
     {
-        progress.Add(new List<byte>());
-        progress[0].Add(3);
-        progress[0].Add(2);
-        progress[0].Add(0);
-        progress[0].Add(0);
-        progress[0].Add(0);
+        for (int i = progress.Count; i < MenuManager.ALL_PLANETS; ++i)
+        {
+            progress.Add(new List<byte>());
+            for (int j = 0; j < 4; ++j)
+                progress[i].Add(0);
+        }
 
         Debug.Log("INIT");
         XMLManager.SaveData(this, this.ToString());
