@@ -105,7 +105,7 @@ public class Speed : MonoBehaviour, Mode
             if (downCount < targetCheckers)
                 --game.countStars;
 
-            if (lag || Game.countShots > downCount)
+            if ((GameRule.AI && lag) || (!GameRule.AI && Game.countShots > downCount))
                 --game.countStars;
         }
 
@@ -127,7 +127,7 @@ public class Speed : MonoBehaviour, Mode
         capperField.SetActive(false);
         AI.GetComponent<AI>().active = true;    
         yield return new WaitForSeconds(1);
-        StartCoroutine(counter(10));
+        StartCoroutine(counter(60));
     }
 
     // Таймер игры
