@@ -13,27 +13,63 @@ public class ShopData
 public class Shop : MonoBehaviour
 {
     public static GameObject PlayerMoneyText;
-    public GameObject currentPuck;
+    public GameObject currentChecker;
     PlayerData playerData; 
     ShopData shopData; //данные об шайбах в магазине
-
-    public GameObject shopCheckers; //обьект в котором находятся шайбы, которые можно купить
+    public GameObject checkerToBuy;
+    public GameObject CheckerPanel; //обьект в котором находятся шайбы, которые можно купить
 
     void Start()
     {
         shopData = new ShopData();
         XMLManager.LoadShop(ref shopData);
-
-        for(int i = 0; i < shopCheckers.transform.childCount && i < shopData.checkers.Count;i++)
-                shopCheckers.transform.GetChild(i+3).gameObject.transform.GetComponent<Image>().sprite = Resources.Load<Sprite>("Sprites/levels/checkers/" + shopData.checkers[i].first);
+        AddCheckers(shopData.checkers.Count);
 
         playerData = PlayerData.getInstance();
-        currentPuck.GetComponent<Image>().sprite = Resources.Load<Sprite>("Sprites/levels/checkers/" + playerData.puckSprite);
-
+        currentChecker.GetComponent<Image>().sprite = Resources.Load<Sprite>("Sprites/levels/checkers/" + playerData.puckSprite);
         PlayerMoneyText = this.transform.GetChild(2).transform.GetChild(2).gameObject;
         LoadMoney();
     }
 
+    public void AddCheckers(int count)
+    {
+        RectTransform rectTransform = checkerToBuy.transform.GetComponent<RectTransform>();
+        Vector3 firstCheckerCoord = rectTransform.position;
+        Vector2 anchorMin = rectTransform.anchorMin;
+        Vector2 anchorMax = rectTransform.anchorMax;
+
+        for(int i = 0; i < count-1; ++i)
+        {
+            GameObject gm = (GameObject)Instantiate(checkerToBuy, firstCheckerCoord, Quaternion.identity);
+            gm.transform.SetParent(CheckerPanel.transform);
+            RectTransform rectTransformClone = gm.transform.GetComponent<RectTransform>();
+
+            if (anchorMin.x > 0.48f)
+            {;
+                anchorMin.x = rectTransform.anchorMin.x;
+                anchorMax.x = rectTransform.anchorMax.x;
+                anchorMin.y -= 0.32f;
+                anchorMax.y -= 0.32f;
+
+            }
+            else
+            {
+                anchorMin.x += 0.32f;
+                anchorMax.x += 0.32f;
+            }
+
+            rectTransformClone.anchorMin = anchorMin;
+            rectTransformClone.anchorMax = anchorMax;
+            rectTransformClone.localScale = rectTransform.localScale;
+            rectTransformClone.sizeDelta = rectTransform.sizeDelta;
+        }
+
+        for (int i = 0; i < CheckerPanel.transform.childCount && i < shopData.checkers.Count; i++)
+        {
+            CheckerPanel.transform.GetChild(i).transform.GetComponent<Image>().sprite = Resources.Load<Sprite>("Sprites/levels/checkers/" + shopData.checkers[i].first);
+        }
+    }
+    
     public static void LoadMoney()
     {
         PlayerData playerData = PlayerData.getInstance();
@@ -41,14 +77,14 @@ public class Shop : MonoBehaviour
         PlayerMoneyText.GetComponent<Text>().text = playerData.money.ToString();
     }
 
-    public void BuyPuck(GameObject puck)
+    public void BuyChecker(GameObject checker)
     {
-        int money = int.Parse(puck.transform.GetChild(0).transform.GetComponent<Text>().text);
+        int money = int.Parse(checker.transform.GetChild(0).transform.GetComponent<Text>().text);
         if (playerData.money >= money)
         {
-            Sprite puckSprite = puck.GetComponent<Image>().sprite;
-            currentPuck.GetComponent<Image>().sprite = puckSprite;
-            puck.transform.GetChild(0).gameObject.SetActive(false);
+            Sprite puckSprite = checker.GetComponent<Image>().sprite;
+            currentChecker.GetComponent<Image>().sprite = puckSprite;
+            checker.transform.GetChild(0).gameObject.SetActive(false);
 
             playerData.puckSprite = puckSprite.name;
             playerData.money -= money;

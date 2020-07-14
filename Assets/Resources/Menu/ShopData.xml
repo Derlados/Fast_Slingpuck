@@ -13,5 +13,13 @@
       <first>fire_checker</first>
       <second>false</second>
     </PairOfStringBoolean>
+	<PairOfStringBoolean>
+      <first>fire_checker</first>
+      <second>false</second>
+    </PairOfStringBoolean>
+	<PairOfStringBoolean>
+      <first>fire_checker</first>
+      <second>false</second>
+    </PairOfStringBoolean>
   </checkers>
 </ShopData>

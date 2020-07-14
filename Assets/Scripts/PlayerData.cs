@@ -20,6 +20,7 @@ public class PlayerData
             {
                 instance = new PlayerData();
                 instance.puckSprite = "standart_checker";
+                instance.Init();
                 instance.Save();
             }
 
@@ -34,9 +35,6 @@ public class PlayerData
         progress[0].Add(0);
         progress[0].Add(0);
         progress[0].Add(0);
-
-        Debug.Log("INIT");
-        XMLManager.SaveData(this, this.ToString());
     }
 
     public void Save()
