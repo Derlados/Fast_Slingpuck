@@ -19,11 +19,10 @@ public static class ScreenOptimization
     }
 
     // Установка размера для объекта в проценте от разрешения экрана
-    public static void setSize(GameObject obj, CircleCollider2D circle)
+    public static void setSize(GameObject obj, CircleCollider2D circle, float percent)
     {
-        RectTransform rect = obj.GetComponent<RectTransform>();
-        obj.GetComponent<RectTransform>().sizeDelta = Camera.main.ScreenToWorldPoint(new Vector2(Screen.width * (rect.anchorMax.x - rect.anchorMin.x), Screen.width * (rect.anchorMax.x - rect.anchorMin.x)));
-        setColider(obj, circle);
+        obj.GetComponent<RectTransform>().sizeDelta = new Vector2(Screen.width * percent, Screen.width * percent);
+        circle.radius = (Screen.width *  percent) / 2;
     }
 
     //Возврат положения объекта в мировых координатах (Левый верхний и правыйнижний угол)

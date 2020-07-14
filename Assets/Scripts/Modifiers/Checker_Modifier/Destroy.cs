@@ -14,12 +14,16 @@ public class Destroy : Modifier
     {
         checker = gameObject.GetComponent<Checker>();
         if (gameObject.transform.position.y > 0)
+        {
             field = checker.playerUpBorder;
+            field.Down = checker.UpString.transform.position.y - checker.getRadius();
+        }
         else
         {
             field = checker.playerDownBorder;
+            field.Down = checker.DownString.transform.position.y + checker.getRadius();
             playableForAI = false;
-        }
+        }     
     }
 
     private void OnTriggerExit2D(Collider2D collision)
@@ -52,6 +56,8 @@ public class Destroy : Modifier
     void RandomPosition()
     {
         Vector2 randomPos = new Vector2(Random.Range(field.Left, field.Right), Random.Range(field.Down, field.Up));
+
+
         gameObject.GetComponent<Checker>().OnMouseDown();
         gameObject.transform.position = randomPos;
         gameObject.GetComponent<CircleCollider2D>().isTrigger = false;

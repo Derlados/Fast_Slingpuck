@@ -29,6 +29,9 @@ public class MenuManager : MonoBehaviour
     Vector3 tmp; //сохраненный размер
     GameObject planetTmp; //сохраненная планета
 
+    // Количество планет всего
+    public const int ALL_PLANETS = 5;
+
     private void Start()
     {
         cameraStatus = Status.freeOnMenu;
