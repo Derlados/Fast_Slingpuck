@@ -7,6 +7,7 @@ using System.IO;
 using System;
 using System.Xml.Linq;
 using System.Globalization;
+using BaseStructures;
 
 public class XMLManager
 {
@@ -69,5 +70,22 @@ public class XMLManager
             data.accuracyAI = float.Parse(diff.Element("accuracyAI").Value, CultureInfo.InvariantCulture);
             data.timeRest = float.Parse(diff.Element("timeRest").Value, CultureInfo.InvariantCulture);
         }
+    }
+    public static void LoadShop(ref ShopData data)
+    {
+        TextAsset textAsset = (TextAsset)Resources.Load("Menu/ShopData");
+        XElement shopData = XDocument.Parse(textAsset.text).Element("ShopData");
+
+        foreach (XElement checkers in shopData.Elements("checkers"))
+        {
+            foreach (XElement diff in checkers.Elements("PairOfStringBoolean"))
+            {
+                Pair<string, bool> pair = new Pair<string, bool>();
+                pair.first = diff.Element("first").Value;
+                pair.second = bool.Parse(diff.Element("second").Value);
+                data.checkers.Add(pair);
+            }
+        }
+
     }
 }

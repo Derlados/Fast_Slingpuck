@@ -11,6 +11,7 @@ public class PlayerData
 
     public int money;
     public List<List<byte>> progress = new List<List<byte>>(); // Массив bool отмечающий какие уровни уже пройдены
+    public string puckSprite;
 
     public static PlayerData getInstance()
     {
@@ -18,22 +19,26 @@ public class PlayerData
         {
             if (!XMLManager.LoadData(ref instance, (new PlayerData()).ToString()))
                 instance = new PlayerData();
-            instance.Init();
-        }
-
+                instance.puckSprite = "standart_checker";
+                instance.Init();
+                instance.Save();
+            }
         return instance;
     }
 
     public void Init()
     {
-        for (int i = progress.Count; i < MenuManager.ALL_PLANETS; ++i)
+        for (int i = progress.Count; i < MenuManager.allPlanets-1; ++i)
         {
             progress.Add(new List<byte>());
-            for (int j = 0; j < 4; ++j)
+            //+5 т.е MainMenu содержит 5 элементов UI
+            for (int j = 0; j < MenuManager.planets.transform.GetChild(i+5).transform.childCount; ++j)
                 progress[i].Add(0);
         }
+	}
 
-        Debug.Log("INIT");
+    public void Save()
+    {
         XMLManager.SaveData(this, this.ToString());
     }
 

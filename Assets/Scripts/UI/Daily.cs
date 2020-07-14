@@ -12,6 +12,8 @@ using UnityEngine.UI;
  * curDay - номер текущего дня
  * nextDay - номер следующего дня
  */
+
+[System.Serializable]
 public class Date
 {
     public DateTime prevDate;
@@ -38,9 +40,11 @@ public class Daily : MonoBehaviour
     public GameObject claimBtn;
     public GameObject closeBtn;
 
+    Date date;
+
     void Start()
     {
-        Date date = new Date(System.DateTime.Today, false,1,1);
+        date = new Date(System.DateTime.Today, false,1,1);
 
         //загрузка сохраненого дня
         if (!XMLManager.LoadData<Date>(ref date, "daily"))
@@ -52,9 +56,6 @@ public class Daily : MonoBehaviour
             date.curDay = date.nextDay;
             date.showed = false;
         }
-
-        Debug.Log("date.curDay =" + date.curDay);
-        Debug.Log("date.nextDay  =" + date.nextDay);
 
         //отрисовка бонусов
         for (int i = 1; i < date.curDay; ++i)
@@ -73,7 +74,6 @@ public class Daily : MonoBehaviour
                 date.nextDay = 0;
             }
 
-            date.showed = true;
             date.prevDate = System.DateTime.Today;
             date.nextDay++;
 
@@ -90,9 +90,10 @@ public class Daily : MonoBehaviour
     {
         PlayerData playerData = PlayerData.getInstance();
         playerData.money += 100;
-        playerData.Init();
+        playerData.Save();
         MainMenu.LoadMoney();
 
+        date.showed = true;
         claimBtn.SetActive(false);
         closeBtn.SetActive(true);
         DailyMenu.SetActive(false);
