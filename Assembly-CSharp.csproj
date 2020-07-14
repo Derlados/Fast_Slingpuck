@@ -91,6 +91,7 @@
     <Compile Include="Assets\Scripts\UI\LocalizationText.cs" />
     <Compile Include="Assets\Scripts\UI\MainMenu.cs" />
     <Compile Include="Assets\Scripts\UI\Settings.cs" />
+    <Compile Include="Assets\Scripts\UI\Shop.cs" />
     <Compile Include="Assets\Scripts\UI\UIParallax.cs" />
     <None Include="Assets\Resources\Settings\Difficulties.xml" />
     <None Include="Assets\Data\settings.xml" />
@@ -98,6 +99,7 @@
     <None Include="Assets\Resources\RU\MainMenu.xml" />
     <None Include="Assets\Resources\EN\MainMenu.xml" />
     <None Include="Assets\Resources\RU\Game.xml" />
+    <None Include="Assets\Resources\Menu\ShopData.xml" />
     <None Include="Assets\Resources\UA\Game.xml" />
     <None Include="Assets\Resources\UA\MainMenu.xml" />
     <None Include="Assets\Resources\PlayerData.xml" />

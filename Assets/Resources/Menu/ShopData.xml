@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<ShopData xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <checkers>
+    <PairOfStringBoolean>
+      <first>standart_checker</first>
+      <second>false</second>
+    </PairOfStringBoolean>
+	<PairOfStringBoolean>
+      <first>jungle_checker</first>
+      <second>false</second>
+    </PairOfStringBoolean>
+	<PairOfStringBoolean>
+      <first>fire_checker</first>
+      <second>false</second>
+    </PairOfStringBoolean>
+  </checkers>
+</ShopData>

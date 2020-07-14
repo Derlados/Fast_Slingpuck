@@ -98,7 +98,7 @@ LightmapSettings:
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 1
+  m_UseShadowmask: 0
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -783,6 +783,7 @@ MonoBehaviour:
   downCountText: {fileID: 1820441981}
   gameCounter: {fileID: 1701238457}
   imgField: {fileID: 968482488}
+  countStars: 3
 --- !u!4 &153113610
 Transform:
   m_ObjectHideFlags: 0
@@ -1488,7 +1489,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.59392077, g: 0.5801887, b: 1, a: 1}
+  m_Color: {r: 0, g: 0.5647059, b: 1, a: 1}
   m_RaycastTarget: 1
   m_Maskable: 1
   m_OnCullStateChanged:

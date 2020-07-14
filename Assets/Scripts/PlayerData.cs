@@ -11,6 +11,7 @@ public class PlayerData
 
     public int money;
     public List<List<byte>> progress = new List<List<byte>>(); // Массив bool отмечающий какие уровни уже пройдены
+    public string puckSprite;
 
     public static PlayerData getInstance()
     {
@@ -18,7 +19,8 @@ public class PlayerData
             if (!XMLManager.LoadData(ref instance, (new PlayerData()).ToString()))
             {
                 instance = new PlayerData();
-                instance.Init();
+                instance.puckSprite = "standart_checker";
+                instance.Save();
             }
 
         return instance;
@@ -34,6 +36,11 @@ public class PlayerData
         progress[0].Add(0);
 
         Debug.Log("INIT");
+        XMLManager.SaveData(this, this.ToString());
+    }
+
+    public void Save()
+    {
         XMLManager.SaveData(this, this.ToString());
     }
 

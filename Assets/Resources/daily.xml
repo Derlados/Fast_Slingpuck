@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <Date xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-  <prevDate>2020-07-13T00:00:00+03:00</prevDate>
+  <prevDate>2020-07-14T00:00:00+03:00</prevDate>
   <showed>true</showed>
-  <curDay>1</curDay>
-  <nextDay>2</nextDay>
+  <curDay>2</curDay>
+  <nextDay>3</nextDay>
 </Date>
