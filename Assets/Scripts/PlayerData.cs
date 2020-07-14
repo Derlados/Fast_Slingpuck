@@ -16,26 +16,26 @@ public class PlayerData
     public static PlayerData getInstance()
     {
         if (instance == null)
+        {
             if (!XMLManager.LoadData(ref instance, (new PlayerData()).ToString()))
-            {
                 instance = new PlayerData();
                 instance.puckSprite = "standart_checker";
                 instance.Init();
                 instance.Save();
             }
-
         return instance;
     }
 
     public void Init()
     {
-        progress.Add(new List<byte>());
-        progress[0].Add(3);
-        progress[0].Add(2);
-        progress[0].Add(0);
-        progress[0].Add(0);
-        progress[0].Add(0);
-    }
+        for (int i = progress.Count; i < MenuManager.allPlanets-1; ++i)
+        {
+            progress.Add(new List<byte>());
+            //+5 т.е MainMenu содержит 5 элементов UI
+            for (int j = 0; j < MenuManager.planets.transform.GetChild(i+5).transform.childCount; ++j)
+                progress[i].Add(0);
+        }
+	}
 
     public void Save()
     {

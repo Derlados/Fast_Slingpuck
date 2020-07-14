@@ -35,8 +35,13 @@ public class Game : MonoBehaviour
     // Количество звезд которые получит игрок пройдя уровень
     public byte countStars = 3;
 
+    // Действия игрока
+    public static int countShots;
+
     private void Start()
     {
+        countShots = 0;
+
         mode = GameRule.mode;
         type = GameRule.type;
 

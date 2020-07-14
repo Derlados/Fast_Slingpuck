@@ -11,7 +11,7 @@ public class Normal : MonoBehaviour, Mode
     Game game;
 
     // Условия получения звезд
-    private int targetTime = 40, targetCheckers = 6; // Константы необходимо передавать из вне
+    private int targetTime, targetCheckers; // Константы необходимо передавать из вне
     private int time; // Время игры
     private bool checkTargetCheckers; // Показывает было ли нарушено условие true - нарушено, false - не нарушено
   
@@ -45,6 +45,7 @@ public class Normal : MonoBehaviour, Mode
         downCountText = game.downCountText;
         gameCounterText = game.gameCounter;
 
+        // Установка начального текста для счетчиков
         upCountText.text = upCount.ToString();
         downCountText.text = downCount.ToString();
 
@@ -54,6 +55,21 @@ public class Normal : MonoBehaviour, Mode
         // Заглушка
         capperField = game.capperField;
         game.checkersNormal.SetActive(true);
+
+        // Установка целей
+        initTargets();
+    }
+
+    /* Установка целей для режима Normal
+     * Порядок целей для режима (номер цели = номеру цели в GameRule)
+     * 1 - Победа
+     * 2 - Ограничение по времени 
+     * 3 - Ограничение по количетву шайб которые могут одновременно находится у игрока 
+     */
+    public void initTargets()
+    {
+        targetTime = GameRule.target2;
+        targetCheckers = GameRule.target3;
     }
 
     // Задержка перед стартом игры
@@ -128,7 +144,8 @@ public class Normal : MonoBehaviour, Mode
         Debug.Log(game.countStars);
 
         // Необходимо доделать
-        //PlayerData.getInstance().progress[GameRule.planetNum][GameRule.levelNum] = game.countStars;
+        if (PlayerData.getInstance().progress[GameRule.planetNum][GameRule.levelNum] < game.countStars)
+            PlayerData.getInstance().progress[GameRule.planetNum][GameRule.levelNum] = game.countStars;
     }
 
     IEnumerator Timer()

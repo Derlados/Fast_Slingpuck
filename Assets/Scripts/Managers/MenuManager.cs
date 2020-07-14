@@ -11,6 +11,7 @@ public class MenuManager : MonoBehaviour
     private Vector2 startPos, targetPos; // StartPos - начальная позиция камеры, targetPos - позиция планеты к которой необходимо приблизить камеру
     private float stepMove, stepSize; // stepMove - шаг передвижения камеры , stepSize - шаг приближения камеры
     public GameObject mainMenu, galaxy; // mainMenu - UI главного меню, galaxy - UI режима прохождения уровней 
+    public static GameObject planets;
 
     // Уровни планеты и номер самой планеты
     private GameObject planetLevels;
@@ -29,6 +30,9 @@ public class MenuManager : MonoBehaviour
     Vector3 tmp; //сохраненный размер
     GameObject planetTmp; //сохраненная планета
 
+    // Количество планет всего
+    public static int allPlanets;
+
     private void Start()
     {
         cameraStatus = Status.freeOnMenu;
@@ -37,6 +41,10 @@ public class MenuManager : MonoBehaviour
         thisCamera.transform.position = new Vector3(posX, thisCamera.transform.position.y, thisCamera.transform.position.z);
 
         startPos = thisCamera.transform.position;
+
+        //-2 т.к обьект galaxy содержит еще 2 обьекта, которые не являются планетами
+        allPlanets = galaxy.transform.childCount - 2;
+        planets = mainMenu;
     }
 
     private void FixedUpdate()

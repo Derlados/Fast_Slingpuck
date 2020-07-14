@@ -3,12 +3,31 @@
   <money>0</money>
   <progress>
     <ArrayOfUnsignedByte>
-      <unsignedByte>3</unsignedByte>
-      <unsignedByte>2</unsignedByte>
+      <unsignedByte>0</unsignedByte>
+      <unsignedByte>0</unsignedByte>
+      <unsignedByte>0</unsignedByte>
+      <unsignedByte>0</unsignedByte>
+      <unsignedByte>0</unsignedByte>
+    </ArrayOfUnsignedByte>
+    <ArrayOfUnsignedByte>
+      <unsignedByte>0</unsignedByte>
+      <unsignedByte>0</unsignedByte>
+      <unsignedByte>0</unsignedByte>
+      <unsignedByte>0</unsignedByte>
+    </ArrayOfUnsignedByte>
+    <ArrayOfUnsignedByte>
+      <unsignedByte>0</unsignedByte>
+      <unsignedByte>0</unsignedByte>
+      <unsignedByte>0</unsignedByte>
+      <unsignedByte>0</unsignedByte>
+      <unsignedByte>0</unsignedByte>
+    </ArrayOfUnsignedByte>
+    <ArrayOfUnsignedByte>
+      <unsignedByte>0</unsignedByte>
       <unsignedByte>0</unsignedByte>
       <unsignedByte>0</unsignedByte>
       <unsignedByte>0</unsignedByte>
     </ArrayOfUnsignedByte>
   </progress>
-  <puckSprite>fire_checker</puckSprite>
+  <puckSprite>standart_checker</puckSprite>
 </PlayerData>
