@@ -97,5 +97,6 @@ public class Daily : MonoBehaviour
         claimBtn.SetActive(false);
         closeBtn.SetActive(true);
         DailyMenu.SetActive(false);
+        XMLManager.SaveData<Date>(date, "daily");
     }
 }
