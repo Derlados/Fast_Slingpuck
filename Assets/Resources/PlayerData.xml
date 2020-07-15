@@ -1,9 +1,14 @@
 <?xml version="1.0"?>
 <PlayerData xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-  <money>600</money>
+  <money>400</money>
   <progress>
     <ArrayOfUnsignedByte>
-      <unsignedByte>3</unsignedByte>
+      <unsignedByte>1</unsignedByte>
+      <unsignedByte>0</unsignedByte>
+      <unsignedByte>0</unsignedByte>
+      <unsignedByte>0</unsignedByte>
+    </ArrayOfUnsignedByte>
+    <ArrayOfUnsignedByte>
       <unsignedByte>0</unsignedByte>
       <unsignedByte>0</unsignedByte>
       <unsignedByte>0</unsignedByte>
@@ -14,20 +19,15 @@
       <unsignedByte>0</unsignedByte>
       <unsignedByte>0</unsignedByte>
       <unsignedByte>0</unsignedByte>
-    </ArrayOfUnsignedByte>
-    <ArrayOfUnsignedByte>
-      <unsignedByte>0</unsignedByte>
-      <unsignedByte>0</unsignedByte>
-      <unsignedByte>0</unsignedByte>
-      <unsignedByte>0</unsignedByte>
       <unsignedByte>0</unsignedByte>
     </ArrayOfUnsignedByte>
     <ArrayOfUnsignedByte>
+      <unsignedByte>0</unsignedByte>
       <unsignedByte>0</unsignedByte>
       <unsignedByte>0</unsignedByte>
       <unsignedByte>0</unsignedByte>
       <unsignedByte>0</unsignedByte>
     </ArrayOfUnsignedByte>
   </progress>
-  <puckSprite>fire_checker</puckSprite>
+  <puckSprite>standart_checker</puckSprite>
 </PlayerData>
