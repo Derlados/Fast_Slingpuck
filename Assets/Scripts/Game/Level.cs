@@ -1,7 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.SceneManagement;
+﻿using UnityEngine;
 
 public class Level : MonoBehaviour
 {
@@ -31,17 +28,17 @@ public class Level : MonoBehaviour
     public int numLevel; // Номер уровня, необходимо знать для того чтобы в дальнейшем записать результат
 
     // Установка всех игровых правил и запус игры
-    public void loadGame()
+    public void setGameRule()
     {
         GameRule.mode = mode;
         GameRule.type = type;
         GameRule.AI = AI;
         GameRule.difficulties = difficulties;
         GameRule.levelNum = numLevel;
-        
+
         setTargets();
-        
-        SceneManager.LoadScene("Game");
+
+        GameObject.FindGameObjectWithTag("MenuManager").GetComponent<MenuManager>().loadLevelDesc(this);
     }
 
     public void setTargets()

@@ -20,7 +20,7 @@ public static class LocalizationManager
         EN,
         UA
     }
-    public static language curLanguage = language.RU; // Текущий язык
+    public static language curLanguage = language.EN; // Текущий язык
 
     // Добавление текста в список текста который необходимо локализовать
     public static void add(Pair<Text, string> text)
