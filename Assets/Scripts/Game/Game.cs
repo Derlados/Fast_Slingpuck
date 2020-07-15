@@ -46,6 +46,7 @@ public class Game : MonoBehaviour
         type = GameRule.type;
 
         GameObject checkers = null;
+        PlayerData playerData = PlayerData.getInstance();
 
         // Модификация компонентов относительно выбраных настроек
         switch (mode)
@@ -55,13 +56,20 @@ public class Game : MonoBehaviour
                 window.AddComponent<NormalWindow>();
                 for (int i = 0; i < checkersNormal.transform.childCount; ++i)
                     checkersNormal.transform.GetChild(i).gameObject.AddComponent<Modifier>();
-                checkers = checkersNormal;
+
+                
+                for (int i = 0; i < checkersNormal.transform.childCount / 2; ++i)
+                    checkersNormal.transform.GetChild(i).gameObject.transform.GetComponent<Image>().sprite = Resources.Load<Sprite>("Sprites/levels/checkers/" + playerData.puckSprite);
+
+                 checkers = checkersNormal;
                 break;
             case GameRule.Mode.speed:
                 gameObject.AddComponent<Speed>();
                 window.AddComponent<DestroyWindow>();
                 for (int i = 0; i < checkersSpeed.transform.childCount; ++i)
                     checkersSpeed.transform.GetChild(i).gameObject.AddComponent<Destroy>();
+                checkersSpeed.transform.GetChild(0).transform.GetComponent<Image>().sprite = Resources.Load<Sprite>("Sprites/levels/checkers/" + playerData.puckSprite);
+
                 checkers = checkersSpeed;
                 break;
         }

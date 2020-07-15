@@ -91,5 +91,16 @@ public class XMLManager
             }
         }
 
+        foreach (XElement checkers in shopData.Elements("modificators"))
+        {
+            foreach (XElement diff in checkers.Elements("PairOfStringInt32"))
+            {
+                Pair<string, int> pair = new Pair<string, int>();
+                pair.first = diff.Element("first").Value;
+                pair.second = int.Parse(diff.Element("second").Value);
+                data.modificators.Add(pair);
+            }
+        }
+
     }
 }

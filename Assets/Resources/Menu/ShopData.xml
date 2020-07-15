@@ -26,4 +26,14 @@
       <second>200</second>
     </PairOfStringInt32>
   </checkers>
+  <modificators>
+    <PairOfStringInt32>
+      <first>boost</first>
+      <second>200</second>
+    </PairOfStringInt32>
+    <PairOfStringInt32>
+      <first>double</first>
+      <second>300</second>
+    </PairOfStringInt32>
+  </modificators>
 </ShopData>

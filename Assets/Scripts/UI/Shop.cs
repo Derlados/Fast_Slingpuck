@@ -7,34 +7,42 @@ using UnityEngine.UI;
 /*
  * класс для десериалзиации
  * checkers - список из пары названия спрайта шайбы и ее цены
+ * modificators - список из пары названи спрайта модификатора и его цены
  */
 
 [System.Serializable]
 public class ShopData
 {
-    public List<Pair<string,int>> checkers = new List<Pair<string, int>>();
+    public List<Pair<string, int>> checkers = new List<Pair<string, int>>();
+    public List<Pair<string, int>> modificators = new List<Pair<string, int>>();
 }
 
 /*
  * класс для сериалзиации
  * userCheckers - список шайб доступных для покупки, где True - доступна для покупки, False - шайба уже куплена
+ * userModificators - спиок кол-во купленных модификатор у игрока
+ * 
  */
 
 [System.Serializable]
 public class UserShopData
 {
     public List<bool> userCheckers = new List<bool>();
+    public List<int> userModificators = new List<int>();
 }
 
 public class Shop : MonoBehaviour
 {
-    public static GameObject PlayerMoneyText;
-    public GameObject currentChecker;
-    PlayerData playerData; 
+    public static GameObject PlayerMoneyText; //текст денег в меню
+    public GameObject currentChecker; //спрайт текущего чекера
+    public GameObject checkerToBuy; //истинная шайба
+    public GameObject modificatorToBuy; //истинный модификатор
+    public GameObject checkerPanel; //обьект в котором находятся шайбы, которые можно купить
+    public GameObject modificatorsPanel; //обьект в котором находятся модификаторы, которые можно купить
+
+    PlayerData playerData;  //данные игрока
     ShopData shopData; //данные об шайбах в магазине
-    public GameObject checkerToBuy;
-    public GameObject CheckerPanel; //обьект в котором находятся шайбы, которые можно купить
-    UserShopData userShopData;
+    UserShopData userShopData; //данные о доступных шайбах
 
     void Start()
     {
@@ -42,6 +50,7 @@ public class Shop : MonoBehaviour
         shopData = new ShopData();
         XMLManager.LoadShop(ref shopData);
         AddCheckers(shopData.checkers.Count);
+        AddModificators(shopData.modificators.Count);
 
         //установка кол-во денег и текущий спрайт шайбы игрока
         playerData = PlayerData.getInstance();
@@ -51,7 +60,7 @@ public class Shop : MonoBehaviour
 
         //установка доступных шайб для покупки
         userShopData = new UserShopData();
-        LoadCheckers();
+        LoadUserData();
     }
 
     //добалвение шайб (обьектов) в меню магазина
@@ -67,7 +76,7 @@ public class Shop : MonoBehaviour
         {
             //копирование исходной шайбы
             GameObject gm = (GameObject)Instantiate(checkerToBuy, firstCheckerCoord, Quaternion.identity);
-            gm.transform.SetParent(CheckerPanel.transform);
+            gm.transform.SetParent(checkerPanel.transform);
             RectTransform rectTransformClone = gm.transform.GetComponent<RectTransform>();
 
             if (anchorMin.x > 0.48f)
@@ -93,10 +102,10 @@ public class Shop : MonoBehaviour
         }
 
         //установка текстуры и цены шайб в меню магазина
-        for (int i = 0; i < CheckerPanel.transform.childCount && i < shopData.checkers.Count; i++)
+        for (int i = 0; i < checkerPanel.transform.childCount && i < shopData.checkers.Count; i++)
         {
-            CheckerPanel.transform.GetChild(i).transform.GetComponent<Image>().sprite = Resources.Load<Sprite>("Sprites/levels/checkers/" + shopData.checkers[i].first);
-            CheckerPanel.transform.GetChild(i).transform.GetChild(0).GetComponent<Text>().text = shopData.checkers[i].second.ToString();
+            checkerPanel.transform.GetChild(i).transform.GetComponent<Image>().sprite = Resources.Load<Sprite>("Sprites/levels/checkers/" + shopData.checkers[i].first);
+            checkerPanel.transform.GetChild(i).transform.GetChild(0).GetComponent<Text>().text = shopData.checkers[i].second.ToString();
         }
     }
     
@@ -123,7 +132,7 @@ public class Shop : MonoBehaviour
         //поиск номера этой шайбы в списке
         for (int i = 0; i < shopData.checkers.Count; ++i)
         {
-            if (checker.GetComponent<Image>().sprite.name == CheckerPanel.transform.GetChild(i).GetComponent<Image>().sprite.name)
+            if (checker.GetComponent<Image>().sprite.name == checkerPanel.transform.GetChild(i).GetComponent<Image>().sprite.name)
             {
                 //если фишка свободна для покупки (True) и если у юзера есть такое кол-во денег, происходит покупка
                 if (userShopData.userCheckers[i] && playerData.money >= money)
@@ -146,16 +155,18 @@ public class Shop : MonoBehaviour
                 }
             }
         }
-
     }
 
-    //загрузка купленных шайб
-    public void LoadCheckers()
+    //загрузка данных про купленные шайбы и модификаторы
+    public void LoadUserData()
     {
         if (!XMLManager.LoadData<UserShopData>(ref userShopData, "UserShopData"))
         {
             for (int i = 0; i < shopData.checkers.Count; ++i)
                 userShopData.userCheckers.Add(true);
+            for (int i = 0; i < shopData.modificators.Count; ++i)
+                userShopData.userModificators.Add(0);
+
             XMLManager.SaveData<UserShopData>(userShopData, "UserShopData");
         }
 
@@ -165,12 +176,93 @@ public class Shop : MonoBehaviour
             int countDelta = shopData.checkers.Count - userShopData.userCheckers.Count;
             for (int i = 0; i < countDelta; ++i)
                 userShopData.userCheckers.Add(true);
-            
-            XMLManager.SaveData<UserShopData>(userShopData, "UserShopData");
         }
-    
+
+        //в случае если в магазин были добавленны новые модификаторы, список купленных модификаторов обновляется
+        if (userShopData.userModificators.Count != shopData.modificators.Count)
+        {
+            int countDelta = shopData.modificators.Count - userShopData.userModificators.Count;
+            for (int i = 0; i < countDelta; ++i)
+                userShopData.userModificators.Add(0);
+        }
+
+        XMLManager.SaveData<UserShopData>(userShopData, "UserShopData");
+
         //установка доступных шайб
         for (int i = 0; i < shopData.checkers.Count; ++i)
-            CheckerPanel.transform.GetChild(i).transform.GetChild(0).gameObject.SetActive(userShopData.userCheckers[i]);
+            checkerPanel.transform.GetChild(i).transform.GetChild(0).gameObject.SetActive(userShopData.userCheckers[i]);
+
+        //установка доступных модификаторов
+        for (int i = 0; i < shopData.modificators.Count; ++i)
+            modificatorsPanel.transform.GetChild(i).transform.GetChild(1).gameObject.transform.GetComponent<Text>().text = userShopData.userModificators[i].ToString();
+    }
+
+    //добалвение модификаторов (обьектов) в меню магазина
+    public void AddModificators(int count)
+    {
+        //получение координат исходного модификатора
+        RectTransform rectTransform = modificatorToBuy.transform.GetComponent<RectTransform>();
+        Vector3 firstModificatorrCoord = rectTransform.position;
+        Vector2 anchorMin = rectTransform.anchorMin;
+        Vector2 anchorMax = rectTransform.anchorMax;
+
+        for (int i = 0; i < count - 1; ++i)
+        {
+            //копирование исходного модификатора
+            GameObject gm = (GameObject)Instantiate(modificatorToBuy, firstModificatorrCoord, Quaternion.identity);
+            gm.transform.SetParent(modificatorsPanel.transform);
+            RectTransform rectTransformClone = gm.transform.GetComponent<RectTransform>();
+
+            //перемещение клона модификатора вправо
+            anchorMin.x += 0.32f;
+            anchorMax.x += 0.32f;
+            
+            //установка координат клона модификатора
+            rectTransformClone.anchorMin = anchorMin;
+            rectTransformClone.anchorMax = anchorMax;
+            rectTransformClone.localScale = rectTransform.localScale;
+            rectTransformClone.sizeDelta = rectTransform.sizeDelta;
+        }
+
+        //установка текстуры и цены модификатора в меню магазина
+        for (int i = 0; i < modificatorsPanel.transform.childCount && i < shopData.modificators.Count; i++)
+        {
+            modificatorsPanel.transform.GetChild(i).transform.GetComponent<Image>().sprite = Resources.Load<Sprite>("Sprites/UI/Shop/" + shopData.modificators[i].first);
+            modificatorsPanel.transform.GetChild(i).transform.GetChild(0).GetComponent<Text>().text = shopData.modificators[i].second.ToString();
+        }
+    }
+
+    //покупка шайбы
+    public void BuyModificator(GameObject modificator)
+    {
+        //получение цены модификатора
+        int money = int.Parse(modificator.transform.GetChild(0).transform.GetComponent<Text>().text);
+
+        //поиск номера этого модификатора в списке
+        for (int i = 0; i < shopData.modificators.Count; ++i)
+        {
+            if (modificator.GetComponent<Image>().sprite.name == modificatorsPanel.transform.GetChild(i).GetComponent<Image>().sprite.name)
+            {
+                //если у юзера есть такое кол-во денег, происходит покупка
+                if (playerData.money >= money)
+                {
+                    int count = int.Parse(modificator.transform.GetChild(1).GetComponent<Text>().text);
+                    count++;
+                    modificator.transform.GetChild(1).GetComponent<Text>().text = count.ToString();
+
+                    userShopData.userModificators[i] = count;
+                    XMLManager.SaveData<UserShopData>(userShopData, "UserShopData");
+
+                    //уменьшаем деньги у игрока
+                    playerData.money -= money;
+                    playerData.Save();
+                    LoadMoney();
+                }
+                else
+                {
+                    Debug.Log("Not enough money to buy or you already have it!");
+                }
+            }
+        }
     }
 }

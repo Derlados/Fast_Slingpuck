@@ -8,4 +8,8 @@
     <boolean>false</boolean>
     <boolean>false</boolean>
   </userCheckers>
+  <userModificators>
+    <int>9</int>
+    <int>17</int>
+  </userModificators>
 </UserShopData>
