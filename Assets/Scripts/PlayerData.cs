@@ -18,11 +18,14 @@ public class PlayerData
         if (instance == null)
         {
             if (!XMLManager.LoadData(ref instance, (new PlayerData()).ToString()))
+            {
                 instance = new PlayerData();
                 instance.puckSprite = "standart_checker";
                 instance.Init();
                 instance.Save();
             }
+
+        }
         return instance;
     }
 
