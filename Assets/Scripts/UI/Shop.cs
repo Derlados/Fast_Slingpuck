@@ -55,7 +55,7 @@ public class Shop : MonoBehaviour
         //установка кол-во денег и текущий спрайт шайбы игрока
         playerData = PlayerData.getInstance();
         currentChecker.GetComponent<Image>().sprite = Resources.Load<Sprite>("Sprites/levels/checkers/" + playerData.puckSprite);
-        PlayerMoneyText = this.transform.GetChild(2).transform.GetChild(2).gameObject;
+        PlayerMoneyText = this.transform.GetChild(3).transform.GetChild(2).gameObject;
         LoadMoney();
 
         //установка доступных шайб для покупки
@@ -84,14 +84,14 @@ public class Shop : MonoBehaviour
                 //если дошли до границы меню, смещаем клон шайбы на 2 строку
                 anchorMin.x = rectTransform.anchorMin.x;
                 anchorMax.x = rectTransform.anchorMax.x;
-                anchorMin.y -= 0.32f;
-                anchorMax.y -= 0.32f;
+                anchorMin.y -= 0.475f;
+                anchorMax.y -= 0.475f;
             }
             else
             {
                 //перемещение клона шайбы вправо
-                anchorMin.x += 0.32f;
-                anchorMax.x += 0.32f;
+                anchorMin.x += 0.36f;
+                anchorMax.x += 0.36f;
             }
 
             //установка координат клона шайбы
@@ -134,24 +134,28 @@ public class Shop : MonoBehaviour
         {
             if (checker.GetComponent<Image>().sprite.name == checkerPanel.transform.GetChild(i).GetComponent<Image>().sprite.name)
             {
-                //если фишка свободна для покупки (True) и если у юзера есть такое кол-во денег, происходит покупка
-                if (userShopData.userCheckers[i] && playerData.money >= money)
+                //если фишка свободна для покупки (True)
+                if (userShopData.userCheckers[i])
                 {
-                    //выключаем текст цены
-                    checker.transform.GetChild(0).gameObject.SetActive(false);
+                    //если у юзера есть такое кол-во денег, происходит покупка
+                    if (userShopData.userCheckers[i] && playerData.money >= money)
+                    {
+                        //выключаем текст цены
+                        checker.transform.GetChild(0).gameObject.SetActive(false);
 
-                    //записываем эту фишку как купленную
-                    userShopData.userCheckers[i] = false;
-                    XMLManager.SaveData<UserShopData>(userShopData, "UserShopData");
+                        //записываем эту фишку как купленную
+                        userShopData.userCheckers[i] = false;
+                        XMLManager.SaveData<UserShopData>(userShopData, "UserShopData");
 
-                    //уменьшаем деньги у игрока
-                    playerData.money -= money;
-                    playerData.Save();
-                    LoadMoney();
-                }
-                else
-                {
-                    Debug.Log("Not enough money to buy!");
+                        //уменьшаем деньги у игрока
+                        playerData.money -= money;
+                        playerData.Save();
+                        LoadMoney();
+                    }
+                    else
+                    {
+                        Debug.Log("Not enough money to buy!");
+                    }
                 }
             }
         }

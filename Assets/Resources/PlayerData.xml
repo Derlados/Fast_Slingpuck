@@ -29,5 +29,5 @@
       <unsignedByte>0</unsignedByte>
     </ArrayOfUnsignedByte>
   </progress>
-  <puckSprite>jungle_checker</puckSprite>
+  <puckSprite>fire_checker</puckSprite>
 </PlayerData>
