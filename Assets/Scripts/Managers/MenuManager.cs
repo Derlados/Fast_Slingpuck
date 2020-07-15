@@ -52,9 +52,10 @@ public class MenuManager : MonoBehaviour
     private void FixedUpdate()
     {
         if (Input.GetKey(KeyCode.Escape) && cameraStatus != Status.zoom)
-        {
             backToStart();
-        }
+
+        if (Input.GetKey(KeyCode.Space) && cameraStatus != Status.zoom)
+            levelInformation.SetActive(false);
 
         if (cameraStatus == Status.zoom)
         {  
@@ -104,7 +105,8 @@ public class MenuManager : MonoBehaviour
         levelDesc.fieldImage.sprite = Resources.Load<Sprite>("Sprites/levels/planets/" + level.type.ToString() + "_planet");
 
         XElement data; // Данные XML файла
-        TextAsset textAsset = (TextAsset)Resources.Load("XML/Localization/" + LocalizationManager.curLanguage.ToString() + "/Level.xml");
+        Debug.Log("XML/Localization/" + LocalizationManager.curLanguage.ToString() + "/Level");
+        TextAsset textAsset = (TextAsset)Resources.Load("XML/Lozalization/" + LocalizationManager.curLanguage.ToString() + "/level");
         data = XDocument.Parse(textAsset.text).Element("Level");
 
         levelDesc.GameDifficultyText.text = data.Element("difficulty").Element(level.difficulties.ToString()).Value;
@@ -114,9 +116,9 @@ public class MenuManager : MonoBehaviour
         string el = GameRule.AI ? level.mode.ToString() + "AI" : level.mode.ToString();
         data = data.Element("targets").Element(el);
 
-        levelDesc.TargetText1.text = data.Element("target1").Value;
-        levelDesc.TargetText2.text = data.Element("target2").Value;
-        levelDesc.TargetText3.text = data.Element("target3").Value;
+        levelDesc.TargetText1.text = data.Element("target1").Value.Replace("NUMBER", GameRule.target1.ToString());
+        levelDesc.TargetText2.text = data.Element("target2").Value.Replace("NUMBER", GameRule.target2.ToString());
+        levelDesc.TargetText3.text = data.Element("target3").Value.Replace("NUMBER", GameRule.target3.ToString());
 
         levelInformation.SetActive(true);
     }

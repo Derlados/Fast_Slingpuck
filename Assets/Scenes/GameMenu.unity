@@ -563,7 +563,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.045, y: 0.47766232}
   m_AnchorMax: {x: 0.45063564, y: 0.5206689}
-  m_AnchoredPosition: {x: -26.700027, y: 226}
+  m_AnchoredPosition: {x: -26.700012, y: 226}
   m_SizeDelta: {x: -62.12329, y: -14.891804}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &45154645
@@ -2753,7 +2753,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.045, y: 0.47766232}
   m_AnchorMax: {x: 0.45063564, y: 0.5206689}
-  m_AnchoredPosition: {x: 491.8, y: 225.99}
+  m_AnchoredPosition: {x: 491.80002, y: 225.98999}
   m_SizeDelta: {x: 20.891052, y: -14.905273}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &363771689
@@ -3902,13 +3902,13 @@ MonoBehaviour:
   galaxy: {fileID: 966311220}
   levelInformation: {fileID: 679694318}
   levelDesc:
-    fieldImage: {fileID: 0}
-    GameDifficultyText: {fileID: 0}
-    GameModeText: {fileID: 0}
-    GameDescriptionText: {fileID: 0}
-    TargetText1: {fileID: 0}
-    TargetText2: {fileID: 0}
-    TargetText3: {fileID: 0}
+    fieldImage: {fileID: 480169839}
+    GameDifficultyText: {fileID: 665657556}
+    GameModeText: {fileID: 363771689}
+    GameDescriptionText: {fileID: 234743036}
+    TargetText1: {fileID: 497006042}
+    TargetText2: {fileID: 2119183231}
+    TargetText3: {fileID: 1524271239}
 --- !u!4 &557895972
 Transform:
   m_ObjectHideFlags: 0
@@ -4274,6 +4274,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9004831237760379575, guid: cf6d3c973f2c6fd47988df2a50bed8ea,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: setGameRule
       objectReference: {fileID: 0}
     - target: {fileID: 9004831237760379576, guid: cf6d3c973f2c6fd47988df2a50bed8ea,
         type: 3}
@@ -6949,6 +6954,11 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 9004831237760379575, guid: cf6d3c973f2c6fd47988df2a50bed8ea,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: setGameRule
+      objectReference: {fileID: 0}
     - target: {fileID: 9004831237760379576, guid: cf6d3c973f2c6fd47988df2a50bed8ea,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -7946,6 +7956,11 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 9004831237760379575, guid: cf6d3c973f2c6fd47988df2a50bed8ea,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: setGameRule
+      objectReference: {fileID: 0}
     - target: {fileID: 9004831237760379576, guid: cf6d3c973f2c6fd47988df2a50bed8ea,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -8342,7 +8357,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.045, y: 0.568}
   m_AnchorMax: {x: 0.4496076, y: 0.6115563}
-  m_AnchoredPosition: {x: -26.200027, y: 159.9}
+  m_AnchoredPosition: {x: -26.200012, y: 159.9}
   m_SizeDelta: {x: -61.123596, y: -14.192665}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1077387521
