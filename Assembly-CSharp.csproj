@@ -94,7 +94,7 @@
     <Compile Include="Assets\Scripts\UI\Shop.cs" />
     <Compile Include="Assets\Scripts\UI\UIParallax.cs" />
     <None Include="Assets\Resources\XML\Lozalization\EN\Level.xml" />
-    <None Include="Assets\Resources\Settings\Difficulties.xml" />
+    <None Include="Assets\Resources\Game\Difficulties.xml" />
     <None Include="Assets\Data\settings.xml" />
     <None Include="Assets\Resources\XML\Lozalization\EN\Game.xml" />
     <None Include="Assets\Resources\XML\Lozalization\RU\MainMenu.xml" />
@@ -104,6 +104,7 @@
     <None Include="Assets\Resources\XML\Lozalization\UA\Game.xml" />
     <None Include="Assets\Resources\XML\Lozalization\UA\MainMenu.xml" />
     <None Include="Assets\Resources\PlayerData.xml" />
+    <None Include="Assets\Resources\UserShopData.xml" />
     <None Include="Assets\Data\PlayerData.xml" />
     <None Include="Assets\Resources\daily.xml" />
     <Reference Include="UnityEngine">

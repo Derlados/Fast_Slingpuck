@@ -1,25 +1,39 @@
 <?xml version="1.0"?>
 <ShopData xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <checkers>
-    <PairOfStringBoolean>
+    <PairOfStringInt32>
       <first>standart_checker</first>
-      <second>false</second>
-    </PairOfStringBoolean>
-	<PairOfStringBoolean>
+      <second>50</second>
+    </PairOfStringInt32>
+    <PairOfStringInt32>
       <first>jungle_checker</first>
-      <second>false</second>
-    </PairOfStringBoolean>
-	<PairOfStringBoolean>
+      <second>100</second>
+    </PairOfStringInt32>
+	<PairOfStringInt32>
       <first>fire_checker</first>
-      <second>false</second>
-    </PairOfStringBoolean>
-	<PairOfStringBoolean>
+      <second>150</second>
+    </PairOfStringInt32>
+    <PairOfStringInt32>
       <first>fire_checker</first>
-      <second>false</second>
-    </PairOfStringBoolean>
-	<PairOfStringBoolean>
+      <second>200</second>
+    </PairOfStringInt32>
+    <PairOfStringInt32>
       <first>fire_checker</first>
-      <second>false</second>
-    </PairOfStringBoolean>
+      <second>200</second>
+    </PairOfStringInt32>
+    <PairOfStringInt32>
+      <first>fire_checker</first>
+      <second>200</second>
+    </PairOfStringInt32>
   </checkers>
+  <modificators>
+    <PairOfStringInt32>
+      <first>boost</first>
+      <second>200</second>
+    </PairOfStringInt32>
+    <PairOfStringInt32>
+      <first>double</first>
+      <second>300</second>
+    </PairOfStringInt32>
+  </modificators>
 </ShopData>
