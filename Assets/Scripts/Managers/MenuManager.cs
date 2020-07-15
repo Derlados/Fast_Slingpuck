@@ -1,7 +1,8 @@
 ﻿using System;
 using System.Collections;
-using System.Collections.Generic;
+using System.Xml.Linq;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class MenuManager : MonoBehaviour
@@ -12,6 +13,7 @@ public class MenuManager : MonoBehaviour
     private float stepMove, stepSize; // stepMove - шаг передвижения камеры , stepSize - шаг приближения камеры
     public GameObject mainMenu, galaxy; // mainMenu - UI главного меню, galaxy - UI режима прохождения уровней 
     public static GameObject planets;
+    public GameObject levelInformation; // Описание уровня
 
     // Уровни планеты и номер самой планеты
     private GameObject planetLevels;
@@ -87,6 +89,44 @@ public class MenuManager : MonoBehaviour
 
     //////////////////////////////////////////////////////////////////////////////////  GALAXY MENU ///////////////////////////////////////////////////////////////////////////////////
 
+    // Загрузка описания уровня
+    [System.Serializable]
+    public class LevelDesc
+    {
+        public Image fieldImage;
+        public Text GameDifficultyText, GameModeText, GameDescriptionText;
+        public Text TargetText1, TargetText2, TargetText3;
+    }
+    public LevelDesc levelDesc;
+
+    public void loadLevelDesc(Level level)
+    {
+        levelDesc.fieldImage.sprite = Resources.Load<Sprite>("Sprites/levels/planets/" + level.type.ToString() + "_planet");
+
+        XElement data; // Данные XML файла
+        TextAsset textAsset = (TextAsset)Resources.Load("XML/Localization/" + LocalizationManager.curLanguage.ToString() + "/Level.xml");
+        data = XDocument.Parse(textAsset.text).Element("Level");
+
+        levelDesc.GameDifficultyText.text = data.Element("difficulty").Element(level.difficulties.ToString()).Value;
+        levelDesc.GameModeText.text = data.Element("mode").Element(level.mode.ToString()).Value;
+        levelDesc.GameDescriptionText.text = data.Element("description").Element(level.mode.ToString()).Value;
+
+        string el = GameRule.AI ? level.mode.ToString() + "AI" : level.mode.ToString();
+        data = data.Element("targets").Element(el);
+
+        levelDesc.TargetText1.text = data.Element("target1").Value;
+        levelDesc.TargetText2.text = data.Element("target2").Value;
+        levelDesc.TargetText3.text = data.Element("target3").Value;
+
+        levelInformation.SetActive(true);
+    }
+
+    // Загрузка игры
+    public void loadGame()
+    {
+        SceneManager.LoadScene("Game");
+    }
+
     // Приближение к планете
     public void zoomPlanet(GameObject planet)
     {
@@ -133,6 +173,9 @@ public class MenuManager : MonoBehaviour
             if (galaxy.transform.GetChild(i) != planetTmp)
                 StartCoroutine(fadePlanet(i, false));
     }
+
+    // Окно информации об уровне
+
 
     // Анимация прорисовки уровней
     IEnumerator Spawn(GameObject gameObject, int num)
