@@ -30,7 +30,6 @@ public class UIParallax : MonoBehaviour
         if (Input.GetMouseButtonDown(0))
             mousePosYStart = Input.mousePosition.y;
 
-        Debug.Log(active);
         if (((Input.touchCount == 1 && Input.GetTouch(0).phase == TouchPhase.Moved || Input.GetMouseButton(0)) && MenuManager.cameraStatus != MenuManager.Status.freeOnPlanet) && active == true)
         {
             Vector3 newPosition;
