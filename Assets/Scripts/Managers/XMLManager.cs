@@ -53,14 +53,12 @@ public class XMLManager
 
     /* Универсальная загрузка сложностей
      * Параметры:
-     * data - класс который необходимо сериализовать, name - имя xml файла (желательно имя самого класса, чтобы не забыть)
-     * data - класс который необходимо сериализовать 
-     * name - имя xml файла 
+     * data - класс который необходимо сериализовать
      * key - уровень сложности
      */
     public static void LoadDifficulty(ref Difficulty data, string key)
     {
-        TextAsset textAsset = (TextAsset)Resources.Load("Settings/Difficulties");
+        TextAsset textAsset = (TextAsset)Resources.Load("Game/Difficulties");
         XElement xdoc = XDocument.Parse(textAsset.text).Element("difficulties");
 
         foreach (XElement diff in xdoc.Elements(key))
@@ -71,6 +69,12 @@ public class XMLManager
             data.timeRest = float.Parse(diff.Element("timeRest").Value, CultureInfo.InvariantCulture);
         }
     }
+
+
+    /* Универсальная загрузка данных в магазин
+     * Параметры:
+     * data - класс который необходимо сериализовать
+     */
     public static void LoadShop(ref ShopData data)
     {
         TextAsset textAsset = (TextAsset)Resources.Load("Menu/ShopData");
@@ -78,11 +82,11 @@ public class XMLManager
 
         foreach (XElement checkers in shopData.Elements("checkers"))
         {
-            foreach (XElement diff in checkers.Elements("PairOfStringBoolean"))
+            foreach (XElement diff in checkers.Elements("PairOfStringInt32"))
             {
-                Pair<string, bool> pair = new Pair<string, bool>();
+                Pair<string, int> pair = new Pair<string, int>();
                 pair.first = diff.Element("first").Value;
-                pair.second = bool.Parse(diff.Element("second").Value);
+                pair.second = int.Parse(diff.Element("second").Value);
                 data.checkers.Add(pair);
             }
         }
