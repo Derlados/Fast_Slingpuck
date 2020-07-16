@@ -70,8 +70,8 @@ public class Daily : MonoBehaviour
 
             if (date.nextDay == 9)
             {
-                date.curDay = 0;
-                date.nextDay = 0;
+                date.curDay = 1;
+                date.nextDay = 1;
             }
 
             date.prevDate = System.DateTime.Today;
