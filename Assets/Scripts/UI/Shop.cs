@@ -37,7 +37,7 @@ public class Shop : MonoBehaviour
     public GameObject currentChecker; //спрайт текущего чекера
     public GameObject checkerToBuy; //истинная шайба
     public GameObject modificatorToBuy; //истинный модификатор
-    public GameObject checkerPanel; //обьект в котором находятся шайбы, которые можно купить
+    public GameObject checkerPanel; //обьект в кот ром находятся шайбы, которые можно купить
     public GameObject modificatorsPanel; //обьект в котором находятся модификаторы, которые можно купить
 
     PlayerData playerData;  //данные игрока
@@ -119,18 +119,21 @@ public class Shop : MonoBehaviour
         XMLManager.LoadData<PlayerData>(ref playerData, "PlayerData");
         PlayerMoneyText.GetComponent<Text>().text = playerData.money.ToString();
     }
+    
+    public void ChangeChecker(GameObject checker)
+    {
+        //выбор шайбы как текущею
+        Sprite puckSprite = checker.GetComponent<Image>().sprite;
+        currentChecker.GetComponent<Image>().sprite = puckSprite;
+        playerData.puckSprite = puckSprite.name;
+        playerData.Save();
+    }
 
     //покупка шайбы
     public void BuyChecker(GameObject checker)
     {
         //получение цены шайбы
         int money = int.Parse(checker.transform.GetChild(0).transform.GetComponent<Text>().text);
-
-        //выбор шайбы как текущею
-        Sprite puckSprite = checker.GetComponent<Image>().sprite;
-        currentChecker.GetComponent<Image>().sprite = puckSprite;
-        playerData.puckSprite = puckSprite.name;
-        playerData.Save();
 
         //поиск номера этой шайбы в списке
         for (int i = 0; i < checkerPanel.transform.childCount; ++i)
@@ -150,6 +153,8 @@ public class Shop : MonoBehaviour
                         userShopData.userCheckers[i] = false;
                         XMLManager.SaveData<UserShopData>(userShopData, "UserShopData");
 
+                        ChangeChecker(checker);
+
                         //уменьшаем деньги у игрока
                         playerData.money -= money;
                         playerData.Save();
@@ -160,6 +165,10 @@ public class Shop : MonoBehaviour
                         Debug.Log("Not enough money to buy!");
                     }
                 }
+                else
+                {
+                    ChangeChecker(checker);
+                }
             }
         }
     }
@@ -169,7 +178,9 @@ public class Shop : MonoBehaviour
     {
         if (!XMLManager.LoadData<UserShopData>(ref userShopData, "UserShopData"))
         {
-            for (int i = 0; i < checkerPanel.transform.childCount; ++i)
+            //т.к первая шайба изначально доступна
+            userShopData.userCheckers.Add(false);
+            for (int i = 1; i < checkerPanel.transform.childCount; ++i)
                 userShopData.userCheckers.Add(true);
             for (int i = 0; i < modificatorsPanel.transform.childCount; ++i)
                 userShopData.userModificators.Add(0);
