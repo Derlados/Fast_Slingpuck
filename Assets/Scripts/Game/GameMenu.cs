@@ -36,16 +36,22 @@ public class GameMenu : MonoBehaviour
         SceneManager.LoadScene("GameMenu");
     }
 
-    public void gameOver(string message, int money)
+    public void gameOver(string message, int stars, int money)
     {
+        PlayerData playerData = PlayerData.getInstance();
+
         gameOverCanvas.SetActive(true);
         capperField.SetActive(true);
         scoreText.text = money.ToString();
-        PlayerData.getInstance().money += money;
+
+        // Запись значений в PlayerData
+        playerData.money += money;
+        if (playerData.progress[GameRule.planetNum][GameRule.levelNum] < stars)
+            playerData.progress[GameRule.planetNum][GameRule.levelNum] = (byte)stars;
         XMLManager.SaveData(PlayerData.getInstance(), PlayerData.getInstance().ToString());
 
         gameOverText.text = message;
-        playerMoney.text = "1000"; // заменить на LoadPlayer
+        playerMoney.text = money.ToString();
     }
 
 }
