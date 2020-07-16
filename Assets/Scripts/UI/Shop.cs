@@ -72,33 +72,33 @@ public class Shop : MonoBehaviour
         Vector2 anchorMin = rectTransform.anchorMin;
         Vector2 anchorMax = rectTransform.anchorMax;
 
-        for(int i = 0; i < count-1; ++i)
+        //count -1 т.к исходная шайба уже создана
+        for (int i = 0; i < count-1; ++i)
         {
             //копирование исходной шайбы
             GameObject gm = (GameObject)Instantiate(checkerToBuy, firstCheckerCoord, Quaternion.identity);
             gm.transform.SetParent(checkerPanel.transform);
             RectTransform rectTransformClone = gm.transform.GetComponent<RectTransform>();
 
-            if (anchorMin.x > 0.48f)
-            {
-                //если дошли до границы меню, смещаем клон шайбы на 2 строку
-                anchorMin.x = rectTransform.anchorMin.x;
-                anchorMax.x = rectTransform.anchorMax.x;
-                anchorMin.y -= 0.475f;
-                anchorMax.y -= 0.475f;
-            }
-            else
-            {
-                //перемещение клона шайбы вправо
-                anchorMin.x += 0.36f;
-                anchorMax.x += 0.36f;
-            }
-
             //установка координат клона шайбы
             rectTransformClone.anchorMin = anchorMin;
             rectTransformClone.anchorMax = anchorMax;
             rectTransformClone.localScale = rectTransform.localScale;
             rectTransformClone.sizeDelta = rectTransform.sizeDelta;
+        }
+
+        float deltaCount = (float)count / 3f;
+        if ((deltaCount % 10) != 0) deltaCount++;
+        if (deltaCount >= 2)
+        {
+            for (int i = 0; i < (int)deltaCount-1; ++i)
+            {
+                RectTransform rectTransformPanel = checkerPanel.transform.GetComponent<RectTransform>();
+                Vector2 offset = rectTransformPanel.offsetMax;
+                offset.x += 350;
+                rectTransformPanel.offsetMax = offset;
+                //Debug.Log(ScreenOptimization.GetWorldCoord2D(checkerPanel).second.x);
+            }
         }
 
         //установка текстуры и цены шайб в меню магазина
