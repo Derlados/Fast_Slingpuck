@@ -2372,7 +2372,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 557895971}
         m_MethodName: loadGame
         m_Mode: 1
         m_Arguments:
@@ -4712,7 +4712,7 @@ PrefabInstance:
     - target: {fileID: 3431030227263662423, guid: cf6d3c973f2c6fd47988df2a50bed8ea,
         type: 3}
       propertyPath: difficulties
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3431030227263662423, guid: cf6d3c973f2c6fd47988df2a50bed8ea,
         type: 3}

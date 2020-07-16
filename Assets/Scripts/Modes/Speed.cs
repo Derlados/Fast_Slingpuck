@@ -23,6 +23,9 @@ public class Speed : MonoBehaviour, Mode
     public int targetCheckers; // Вторая цель - количество забитых фишек, для получения следующей звезды
     public bool lag = false; // true - игрок отстал по очкам хотя бы раз за игру от ИИ 
 
+    // Монеты
+    int money;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -93,25 +96,36 @@ public class Speed : MonoBehaviour, Mode
     {
         calculateResult();
         AI.GetComponent<AI>().active = false;
-        gameMenu.GetComponent<GameMenu>().gameOver("Game Over !", downCount); 
+        gameMenu.GetComponent<GameMenu>().gameOver("Game Over !", game.countStars, money); 
     }
 
     public void calculateResult()
     {
+        // Подсчет звезд и монет
+        int lagOrMissMoney = 30, victoryMoney = 40;
+        money = 0;
+
         if ((!GameRule.AI && downCount < winTarget) || (GameRule.AI && downCount <= upCount))
             game.countStars = 0;
         else
         {
+            money += victoryMoney; // Монеты за победу
+
             if (downCount < targetCheckers)
                 --game.countStars;
 
+            Debug.Log(money);
+
             if ((GameRule.AI && lag) || (!GameRule.AI && Game.countShots > downCount))
                 --game.countStars;
+            else
+                money += lagOrMissMoney;
+
+            Debug.Log(money);
         }
 
-        // Необходимо доделать
-        if (PlayerData.getInstance().progress[GameRule.planetNum][GameRule.levelNum] < game.countStars)
-            PlayerData.getInstance().progress[GameRule.planetNum][GameRule.levelNum] = game.countStars;
+        // За каждый гол - +2 монеты, начисляется даже при поражении 
+        money += downCount * 2;
     }
 
     // Задержка перед началом игры
@@ -127,7 +141,7 @@ public class Speed : MonoBehaviour, Mode
         capperField.SetActive(false);
         AI.GetComponent<AI>().active = true;    
         yield return new WaitForSeconds(1);
-        StartCoroutine(counter(60));
+        StartCoroutine(counter(10));
     }
 
     // Таймер игры

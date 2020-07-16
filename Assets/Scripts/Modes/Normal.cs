@@ -14,7 +14,9 @@ public class Normal : MonoBehaviour, Mode
     private int targetTime, targetCheckers; // Константы необходимо передавать из вне
     private int time; // Время игры
     private bool checkTargetCheckers; // Показывает было ли нарушено условие true - нарушено, false - не нарушено
-  
+
+    private int goals = 0; // количество забиваний шайб за всю игру
+
     // Счетчики
     public int score;
     public byte upCount = 4, downCount = 4; // константы (4) необходимо заменить
@@ -95,6 +97,8 @@ public class Normal : MonoBehaviour, Mode
     */
     public void changeCount(GameObject obj)
     {
+        ++goals;
+
         if (obj.transform.position.y > 0)
         {
             --downCount;
@@ -124,12 +128,15 @@ public class Normal : MonoBehaviour, Mode
         StopCoroutine(Timer());
         calculateResult();
         AI.GetComponent<AI>().active = false;
-        gameMenu.GetComponent<GameMenu>().gameOver(downCount == 0 ? "YOU WIN !" :  "YOU LOSE !", money);
+        gameMenu.GetComponent<GameMenu>().gameOver(downCount == 0 ? "YOU WIN !" :  "YOU LOSE !", game.countStars, money);
         game.ChangeParticle(GameRule.type.ToString() + "_particle", false);
     }
 
     public void calculateResult()
     {
+        PlayerData playerData = PlayerData.getInstance();
+
+        // Подсчет звезд
         if (downCount != 0)
             game.countStars = 0;
         else
@@ -141,11 +148,33 @@ public class Normal : MonoBehaviour, Mode
                 --game.countStars;
         }
 
-        Debug.Log(game.countStars);
+        int timeMoney = 30, goalsMoney = 60, victoryMoney = 40;
+        // Подсчет монет при победе
+        if (downCount == 0)
+        {
+            money = victoryMoney; // Монеты за победу
 
-        // Необходимо доделать
-        if (PlayerData.getInstance().progress[GameRule.planetNum][GameRule.levelNum] < game.countStars)
-            PlayerData.getInstance().progress[GameRule.planetNum][GameRule.levelNum] = game.countStars;
+            /* Подсчет количества монет за время игры
+             * Формула макс_монет_за_время - (время_игры - 10)
+             * Монеты начинают терятся таким образом начиная с 10 секунды, каждую секунду игрок теряет монету
+             */
+            if (time <= 10)
+                money += timeMoney;
+            else
+                money += timeMoney - (time - 10) > 0 ? timeMoney - (time - 10) : 0;
+        }
+        else
+            money = 0;
+
+        /* Подсчет количества монет за забитые шайбы
+         * Формула <максимум монет за голы> / <количество голов суммарно за игру> * <количетво голов забитых игроком>
+         * Таким образом если человек будет пропускать шайбы, суммарное количество забитых шайб будет расти дополнительно со стороны ИИ и количество монет будет уменьшаться
+         * Начисляет даже в случае поражения
+         */
+        int playerGoals = downCount == 0 ? goals / 2 + 2 : goals / 2 - 2;
+        money += goalsMoney / goals * playerGoals;
+
+        playerData.money += money;
     }
 
     IEnumerator Timer()
