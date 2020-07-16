@@ -104,7 +104,6 @@
     <None Include="Assets\Resources\XML\Lozalization\UA\Game.xml" />
     <None Include="Assets\Resources\XML\Lozalization\UA\MainMenu.xml" />
     <None Include="Assets\Resources\PlayerData.xml" />
-    <None Include="Assets\Resources\UserShopData.xml" />
     <None Include="Assets\Data\PlayerData.xml" />
     <None Include="Assets\Resources\daily.xml" />
     <Reference Include="UnityEngine">

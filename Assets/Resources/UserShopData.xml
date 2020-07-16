@@ -1,15 +1,14 @@
 <?xml version="1.0"?>
 <UserShopData xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <userCheckers>
-    <boolean>false</boolean>
-    <boolean>false</boolean>
-    <boolean>false</boolean>
-    <boolean>false</boolean>
-    <boolean>false</boolean>
-    <boolean>false</boolean>
+    <boolean>true</boolean>
+    <boolean>true</boolean>
+    <boolean>true</boolean>
+    <boolean>true</boolean>
+    <boolean>true</boolean>
+    <boolean>true</boolean>
   </userCheckers>
   <userModificators>
-    <int>9</int>
-    <int>17</int>
+    <int>0</int>
   </userModificators>
 </UserShopData>

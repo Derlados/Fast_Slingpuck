@@ -1584,7 +1584,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.104, y: 0.21474999}
   m_AnchorMax: {x: 0.9111482, y: 0.34600002}
-  m_AnchoredPosition: {x: 1, y: -7.500061}
+  m_AnchoredPosition: {x: 1, y: -7.500122}
   m_SizeDelta: {x: 9.070557, y: 1.8582001}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &169283843
@@ -6567,22 +6567,21 @@ MonoBehaviour:
   m_GameObject: {fileID: 889515184}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 30649d3a9faa99c48a7b1166b86bf2a0, type: 3}
+  m_Script: {fileID: 11500000, guid: 8a8695521f0d02e499659fee002a26c2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_Padding:
-    m_Left: 0
+    m_Left: 25
     m_Right: 0
     m_Top: 25
     m_Bottom: 25
   m_ChildAlignment: 3
-  m_Spacing: 0
-  m_ChildForceExpandWidth: 1
-  m_ChildForceExpandHeight: 1
-  m_ChildControlWidth: 1
-  m_ChildControlHeight: 1
-  m_ChildScaleWidth: 1
-  m_ChildScaleHeight: 1
+  m_StartCorner: 0
+  m_StartAxis: 1
+  m_CellSize: {x: 225, y: 225}
+  m_Spacing: {x: 0, y: 0}
+  m_Constraint: 2
+  m_ConstraintCount: 1
 --- !u!1 &895434186
 GameObject:
   m_ObjectHideFlags: 0
