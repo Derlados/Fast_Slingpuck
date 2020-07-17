@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
-using UnityEngine.Events;
+using System.Xml.Linq;
+using UnityEditor.iOS;
 
 // Класс отвечающий за весь UI в самой игре
 public class GameMenu : MonoBehaviour
@@ -40,6 +41,7 @@ public class GameMenu : MonoBehaviour
     {
         PlayerData playerData = PlayerData.getInstance();
 
+        createGameOverMenu();
         gameOverCanvas.SetActive(true);
         capperField.SetActive(true);
         StartCoroutine(spawnStars(stars, money1, money2, money3));
@@ -56,12 +58,36 @@ public class GameMenu : MonoBehaviour
     [System.Serializable]
     public class GameOverMenu
     {
-        public List<Image> stars;
-        public Image moneyTargetImage1, moneyTargetImage2, moneyTargetImage3;
-        public Text targetText1, targetText2, targetText3;
-        public Text moneyTargetText1, moneyTargetText2, moneyTargetText3, totalText;
+        public List<Image> stars; // звезды
+        public Image moneyTargetImage1, moneyTargetImage2, moneyTargetImage3; // Картинки критериев для получения монет
+        public Text targetText1, targetText2, targetText3; // текст критериев получения монет
+        public Text moneyTargetText1, moneyTargetText2, moneyTargetText3, totalText; // текст количество монет
+        public Text gameOver; // Текст конца игры
     }
     public GameOverMenu gameOverMenu;
+
+    void createGameOverMenu()
+    {
+        XElement data; // Данные XML файла
+        TextAsset textAsset = (TextAsset)Resources.Load("XML/Lozalization/" + LocalizationManager.curLanguage.ToString() + "/GameOverMenu");
+        data = XDocument.Parse(textAsset.text).Element("GameOverMenu");
+
+        gameOverMenu.gameOver.text = data.Element("gameOver").Value;
+        gameOverMenu.totalText.text = data.Element("totalText").Value;
+
+        data = data.Element(GameRule.mode.ToString());
+
+        XElement images = data.Element("images"); // названия спрайтов
+
+        gameOverMenu.moneyTargetImage1.sprite = Resources.Load<Sprite>("Sprites/GameOverMenu/" + images.Element("targetImage1").Value);
+        gameOverMenu.moneyTargetImage2.sprite = Resources.Load<Sprite>("Sprites/GameOverMenu/" + images.Element("targetImage2").Value);
+        gameOverMenu.moneyTargetImage3.sprite = Resources.Load<Sprite>("Sprites/GameOverMenu/" + images.Element("targetImage3").Value);
+
+        XElement texts = data.Element("texts");
+        gameOverMenu.targetText1.text = texts.Element("targetText1").Value;
+        gameOverMenu.targetText2.text = texts.Element("targetText2").Value;
+        gameOverMenu.targetText3.text = texts.Element("targetText3").Value;
+    }
 
     IEnumerator spawnStars(int stars, int money1, int money2, int money3)
     {

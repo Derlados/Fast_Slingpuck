@@ -98,7 +98,7 @@ LightmapSettings:
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 0
+  m_UseShadowmask: 1
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -1857,7 +1857,7 @@ PrefabInstance:
     - target: {fileID: 4787368759220558476, guid: 7ebfe26e6fe34474c8d0acd3d013ad86,
         type: 3}
       propertyPath: m_RootOrder
-      value: 14
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 4787368759220558476, guid: 7ebfe26e6fe34474c8d0acd3d013ad86,
         type: 3}
@@ -2129,6 +2129,7 @@ MonoBehaviour:
     moneyTargetText2: {fileID: 1495696377}
     moneyTargetText3: {fileID: 1107275804}
     totalText: {fileID: 130401016}
+    gameOver: {fileID: 652561171}
 --- !u!4 &407324428
 Transform:
   m_ObjectHideFlags: 0
@@ -8575,7 +8576,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: f8e192472d9fdbc4bbf628f3360d7794, type: 3}
+  m_Sprite: {fileID: 0}
   m_Type: 0
   m_PreserveAspect: 1
   m_FillCenter: 1
@@ -8768,9 +8769,9 @@ RectTransform:
   - {fileID: 2103430079}
   - {fileID: 1146339054}
   - {fileID: 79411982}
+  - {fileID: 1837087575}
   - {fileID: 4787368759220558476}
   - {fileID: 1556874172}
-  - {fileID: 1837087575}
   - {fileID: 596791743}
   - {fileID: 1133904785}
   m_Father: {fileID: 0}
@@ -9440,7 +9441,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: d379abaa9203d4344a55948bd783f00d, type: 3}
+  m_Sprite: {fileID: 0}
   m_Type: 0
   m_PreserveAspect: 1
   m_FillCenter: 1
@@ -16016,7 +16017,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 80d265b611aa26e47a3a8d4673b1c3a4, type: 3}
+  m_Sprite: {fileID: 0}
   m_Type: 0
   m_PreserveAspect: 1
   m_FillCenter: 1
@@ -16322,7 +16323,7 @@ RectTransform:
   - {fileID: 2135837791}
   - {fileID: 128976046}
   m_Father: {fileID: 968482491}
-  m_RootOrder: 15
+  m_RootOrder: 13
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -17128,8 +17129,8 @@ GameObject:
   m_Component:
   - component: {fileID: 2038599860}
   - component: {fileID: 2038599863}
-  - component: {fileID: 2038599861}
   - component: {fileID: 2038599862}
+  - component: {fileID: 2038599861}
   m_Layer: 5
   m_Name: ToMainMenu
   m_TagString: Untagged
@@ -22462,7 +22463,7 @@ PrefabInstance:
     - target: {fileID: 4787368759220558476, guid: 7ebfe26e6fe34474c8d0acd3d013ad86,
         type: 3}
       propertyPath: m_RootOrder
-      value: 13
+      value: 14
       objectReference: {fileID: 0}
     - target: {fileID: 4787368759220558476, guid: 7ebfe26e6fe34474c8d0acd3d013ad86,
         type: 3}
