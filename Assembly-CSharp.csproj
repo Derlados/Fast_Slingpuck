@@ -94,6 +94,7 @@
     <Compile Include="Assets\Scripts\UI\Shop.cs" />
     <Compile Include="Assets\Scripts\UI\UIParallax.cs" />
     <None Include="Assets\Resources\XML\Lozalization\EN\Level.xml" />
+    <None Include="Assets\Resources\XML\Lozalization\EN\GameOverMenu.xml" />
     <None Include="Assets\Resources\Game\Difficulties.xml" />
     <None Include="Assets\Data\settings.xml" />
     <None Include="Assets\Resources\XML\Lozalization\EN\Game.xml" />

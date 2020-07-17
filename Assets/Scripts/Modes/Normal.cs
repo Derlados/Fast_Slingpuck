@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -25,7 +25,7 @@ public class Normal : MonoBehaviour, Mode
     public Text upCountText, downCountText, gameCounterText;
 
     // Монеты
-    int money;
+    int money1, money2, money3;
    
     void Start()
     {
@@ -103,7 +103,6 @@ public class Normal : MonoBehaviour, Mode
         {
             --downCount;
             ++upCount;
-            money += 100;
         }
         else
         {
@@ -128,7 +127,7 @@ public class Normal : MonoBehaviour, Mode
         StopCoroutine(Timer());
         calculateResult();
         AI.GetComponent<AI>().active = false;
-        gameMenu.GetComponent<GameMenu>().gameOver(downCount == 0 ? "YOU WIN !" :  "YOU LOSE !", game.countStars, money);
+        gameMenu.GetComponent<GameMenu>().gameOver(downCount == 0 ? "YOU WIN !" :  "YOU LOSE !", game.countStars, money1, money2, money3);
         game.ChangeParticle(GameRule.type.ToString() + "_particle", false);
     }
 
@@ -152,19 +151,19 @@ public class Normal : MonoBehaviour, Mode
         // Подсчет монет при победе
         if (downCount == 0)
         {
-            money = victoryMoney; // Монеты за победу
+            money1 = victoryMoney; // Монеты за победу
 
             /* Подсчет количества монет за время игры
              * Формула макс_монет_за_время - (время_игры - 10)
              * Монеты начинают терятся таким образом начиная с 10 секунды, каждую секунду игрок теряет монету
              */
             if (time <= 10)
-                money += timeMoney;
+                money2 = timeMoney;
             else
-                money += timeMoney - (time - 10) > 0 ? timeMoney - (time - 10) : 0;
+                money2 = timeMoney - (time - 10) > 0 ? timeMoney - (time - 10) : 0;
         }
         else
-            money = 0;
+            money1 = money2 = 0;
 
         /* Подсчет количества монет за забитые шайбы
          * Формула <максимум монет за голы> / <количество голов суммарно за игру> * <количетво голов забитых игроком>
@@ -172,9 +171,7 @@ public class Normal : MonoBehaviour, Mode
          * Начисляет даже в случае поражения
          */
         int playerGoals = downCount == 0 ? goals / 2 + 2 : goals / 2 - 2;
-        money += goalsMoney / goals * playerGoals;
-
-        playerData.money += money;
+        money3 = goalsMoney / goals * playerGoals;
     }
 
     IEnumerator Timer()
