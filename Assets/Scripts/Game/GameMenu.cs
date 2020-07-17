@@ -8,7 +8,7 @@ using UnityEngine.SceneManagement;
 public class GameMenu : MonoBehaviour
 {
     public GameObject pauseMenuCanvas, gameOverCanvas, capperField, PauseBtnCanvas;
-    public Text gameOverText, scoreText, playerMoney;
+    public Text gameOverText, scoreText;
     PlayerData playerData;
 
     public void Start()
@@ -45,7 +45,6 @@ public class GameMenu : MonoBehaviour
         XMLManager.SaveData(PlayerData.getInstance(), PlayerData.getInstance().ToString());
 
         gameOverText.text = message;
-        playerMoney.text = "1000"; // заменить на LoadPlayer
     }
 
 }
