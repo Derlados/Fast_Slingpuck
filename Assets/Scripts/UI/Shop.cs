@@ -10,12 +10,12 @@ using UnityEngine.UI;
  * modificators - список из пары названи спрайта модификатора и его цены
  */
 
-[System.Serializable]
+/*[System.Serializable]
 public class ShopData
 {
     public List<Pair<string, int>> checkers = new List<Pair<string, int>>();
     public List<Pair<string, int>> modificators = new List<Pair<string, int>>();
-}
+}*/
 
 /*
  * класс для сериалзиации
@@ -34,14 +34,16 @@ public class UserShopData
 public class Shop : MonoBehaviour
 {
     public static GameObject PlayerMoneyText; //текст денег в меню
-    public GameObject currentChecker; //спрайт текущего чекера
-    public GameObject checkerToBuy; //истинная шайба
-    public GameObject modificatorToBuy; //истинный модификатор
+   // public GameObject checkerToBuy; //истинная шайба
+   // public GameObject modificatorToBuy; //истинный модификатор
     public GameObject checkerPanel; //обьект в кот ром находятся шайбы, которые можно купить
     public GameObject modificatorsPanel; //обьект в котором находятся модификаторы, которые можно купить
+    private GameObject secondTab;
+    public GameObject selected_panel;
+    GameObject currenChecker;
 
     PlayerData playerData;  //данные игрока
-    ShopData shopData; //данные об шайбах в магазине
+    //ShopData shopData; //данные об шайбах в магазине
     UserShopData userShopData; //данные о доступных шайбах
 
     void Start()
@@ -57,8 +59,7 @@ public class Shop : MonoBehaviour
 
         //установка кол-во денег и текущий спрайт шайбы игрока
         playerData = PlayerData.getInstance();
-        currentChecker.GetComponent<Image>().sprite = Resources.Load<Sprite>("Sprites/levels/checkers/" + playerData.puckSprite);
-        PlayerMoneyText = this.transform.GetChild(3).transform.GetChild(2).gameObject;
+        PlayerMoneyText = this.transform.GetChild(4).transform.GetChild(1).gameObject;
         LoadMoney();
 
         //установка доступных шайб для покупки
@@ -67,7 +68,7 @@ public class Shop : MonoBehaviour
     }
 
     //добалвение шайб (обьектов) в меню магазина
-    public void AddCheckers(int count)
+    /*public void AddCheckers(int count)
     {
         //получение координат исходной шайбы
         RectTransform rectTransform = checkerToBuy.transform.GetComponent<RectTransform>();
@@ -110,7 +111,7 @@ public class Shop : MonoBehaviour
             checkerPanel.transform.GetChild(i).transform.GetComponent<Image>().sprite = Resources.Load<Sprite>("Sprites/levels/checkers/" + shopData.checkers[i].first);
             checkerPanel.transform.GetChild(i).transform.GetChild(0).GetComponent<Text>().text = shopData.checkers[i].second.ToString();
         }
-    }
+    }*/
     
     //загрузка денег в магазине
     public static void LoadMoney()
@@ -122,10 +123,16 @@ public class Shop : MonoBehaviour
     
     public void ChangeChecker(GameObject checker)
     {
+        checker.transform.GetChild(2).transform.GetComponent<Text>().text = "Selected";
+        currenChecker.transform.GetChild(2).transform.GetComponent<Text>().text = "Have it";
+
+        checker.transform.GetChild(0).transform.GetComponent<Image>().sprite =  Resources.Load<Sprite>("Sprites/UI/NewMenu/Shop/selectedChecker");
+        currenChecker.transform.GetChild(0).transform.GetComponent<Image>().sprite = Resources.Load<Sprite>("Sprites/UI/NewMenu/Shop/unSelectedChecker");
+
+        currenChecker = checker;
+
         //выбор шайбы как текущею
-        Sprite puckSprite = checker.GetComponent<Image>().sprite;
-        currentChecker.GetComponent<Image>().sprite = puckSprite;
-        playerData.puckSprite = puckSprite.name;
+        playerData.puckSprite = checker.transform.GetChild(4).GetComponent<Image>().sprite.name;
         playerData.Save();
     }
 
@@ -133,27 +140,33 @@ public class Shop : MonoBehaviour
     public void BuyChecker(GameObject checker)
     {
         //получение цены шайбы
-        int money = int.Parse(checker.transform.GetChild(0).transform.GetComponent<Text>().text);
-
+        int money;
+        try
+        {
+             money = int.Parse(checker.transform.GetChild(2).GetComponent<Text>().text);
+        }
+        catch
+        {
+            money = 0;
+        }
+  
         //поиск номера этой шайбы в списке
         for (int i = 0; i < checkerPanel.transform.childCount; ++i)
         {
-            if (checker.GetComponent<Image>().sprite.name == checkerPanel.transform.GetChild(i).GetComponent<Image>().sprite.name)
+            if (checker.transform.GetChild(4).GetComponent<Image>().sprite.name == checkerPanel.transform.GetChild(i).transform.GetChild(4).GetComponent<Image>().sprite.name)
             {
                 //если фишка свободна для покупки (True)
                 if (userShopData.userCheckers[i])
                 {
                     //если у юзера есть такое кол-во денег, происходит покупка
-                    if (userShopData.userCheckers[i] && playerData.money >= money)
+                    if (playerData.money >= money)
                     {
-                        //выключаем текст цены
-                        checker.transform.GetChild(0).gameObject.SetActive(false);
+                        //меняем текст
+                        ChangeChecker(checker);
 
                         //записываем эту фишку как купленную
                         userShopData.userCheckers[i] = false;
                         XMLManager.SaveData<UserShopData>(userShopData, "UserShopData");
-
-                        ChangeChecker(checker);
 
                         //уменьшаем деньги у игрока
                         playerData.money -= money;
@@ -167,7 +180,8 @@ public class Shop : MonoBehaviour
                 }
                 else
                 {
-                    ChangeChecker(checker);
+                    if(currenChecker != checker)
+                        ChangeChecker(checker);
                 }
             }
         }
@@ -189,7 +203,7 @@ public class Shop : MonoBehaviour
         }
 
         //в случае если в магазин были добавленны новые шайбы, список купленных шайб обновляется
-        if(userShopData.userCheckers.Count != checkerPanel.transform.childCount)
+        if (userShopData.userCheckers.Count != checkerPanel.transform.childCount)
         {
             int countDelta = checkerPanel.transform.childCount - userShopData.userCheckers.Count;
             for (int i = 0; i < countDelta; ++i)
@@ -208,7 +222,22 @@ public class Shop : MonoBehaviour
 
         //установка доступных шайб
         for (int i = 0; i < checkerPanel.transform.childCount; ++i)
-            checkerPanel.transform.GetChild(i).transform.GetChild(0).gameObject.SetActive(userShopData.userCheckers[i]);
+        {
+            if (userShopData.userCheckers[i]) checkerPanel.transform.GetChild(i).transform.GetChild(2).gameObject.SetActive(userShopData.userCheckers[i]);
+            else checkerPanel.transform.GetChild(i).transform.GetChild(2).transform.GetComponent<Text>().text = "Have it";
+        };
+
+        //поиск номера этой шайбы в списке
+        for (int i = 0; i < checkerPanel.transform.childCount; ++i)
+        {
+            if (playerData.puckSprite == checkerPanel.transform.GetChild(i).transform.GetChild(4).GetComponent<Image>().sprite.name)
+            {
+                GameObject tmp = checkerPanel.transform.GetChild(i).gameObject;
+                tmp.transform.GetChild(2).GetComponent<Text>().text = "Selected";
+                tmp.transform.GetChild(0).GetComponent<Image>().sprite = Resources.Load<Sprite>("Sprites/UI/NewMenu/Shop/selectedChecker");
+                currenChecker = tmp;
+            }
+        }
 
         //установка доступных модификаторов
         for (int i = 0; i < modificatorsPanel.transform.childCount; ++i)
@@ -216,7 +245,7 @@ public class Shop : MonoBehaviour
     }
 
     //добалвение модификаторов (обьектов) в меню магазина
-    public void AddModificators(int count)
+    /*public void AddModificators(int count)
     {
         //получение координат исходного модификатора
         RectTransform rectTransform = modificatorToBuy.transform.GetComponent<RectTransform>();
@@ -248,9 +277,9 @@ public class Shop : MonoBehaviour
             modificatorsPanel.transform.GetChild(i).transform.GetComponent<Image>().sprite = Resources.Load<Sprite>("Sprites/UI/Shop/" + shopData.modificators[i].first);
             modificatorsPanel.transform.GetChild(i).transform.GetChild(0).GetComponent<Text>().text = shopData.modificators[i].second.ToString();
         }
-    }
+    }*/
 
-    //покупка шайбы
+    //покупка модификатора
     public void BuyModificator(GameObject modificator)
     {
         //получение цены модификатора
@@ -282,5 +311,31 @@ public class Shop : MonoBehaviour
                 }
             }
         }
+    }
+
+    //firstTab - selected tab
+    //secondTab - unSelected tab
+    public void setTab(GameObject firstTab)
+    {
+        Color blue = new Color32(0,130,202,255);
+        Color gray = new Color32(204,204,204,255);
+        Color darkGray = new Color32(125, 125, 125, 255);
+
+        firstTab.transform.GetComponent<Image>().color = blue;
+        secondTab.transform.GetComponent<Image>().color = gray;
+
+        firstTab.transform.GetChild(0).transform.GetComponent<Text>().color = Color.white;
+        secondTab.transform.GetChild(0).transform.GetComponent<Text>().color = darkGray;
+
+        firstTab.transform.GetComponent<Image>().sprite = Resources.Load<Sprite>("Sprites/UI/NewMenu/Shop/shop_selectedOption");
+        secondTab.transform.GetComponent<Image>().sprite = Resources.Load<Sprite>("Sprites/UI/NewMenu/Shop/shop_unselectedOption");
+
+        if(firstTab.tag == "modificatorBtn") selected_panel.transform.GetComponent<Image>().sprite = Resources.Load<Sprite>("Sprites/UI/NewMenu/Shop/2shop_selected_panel");
+        else selected_panel.transform.GetComponent<Image>().sprite = Resources.Load<Sprite>("Sprites/UI/NewMenu/Shop/shop_selected_panel");
+    }
+
+    public void setSecondTab(GameObject obj)
+    {
+        secondTab = obj;
     }
 }

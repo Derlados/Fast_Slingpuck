@@ -11,7 +11,7 @@ public class MainMenu : MonoBehaviour
 
     void Start()
     {
-        PlayerMoneyText = this.transform.GetChild(0).transform.GetChild(2).gameObject;
+        PlayerMoneyText = this.transform.GetChild(0).transform.GetChild(1).gameObject;
         LoadMoney();
     }
 
@@ -21,23 +21,4 @@ public class MainMenu : MonoBehaviour
         XMLManager.LoadData<PlayerData>(ref playerData, "PlayerData");
         PlayerMoneyText.GetComponent<Text>().text = playerData.money.ToString();
     }
-
-    public void SpeedGamePressed()
-    {
-        GameManager.setSpeedGame();
-        SceneManager.LoadScene("Game");
-    }
-
-    public void PlayPressed()
-    {
-        GameManager.setNormalMode();
-        SceneManager.LoadScene("Game");
-    }
-
-    public void ExitPressed()
-    {
-        Application.Quit();
-    }
-
-
 }

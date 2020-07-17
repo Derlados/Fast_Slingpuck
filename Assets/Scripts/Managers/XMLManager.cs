@@ -20,7 +20,7 @@ public class XMLManager
     {
         XmlSerializer serializer = new XmlSerializer(typeof(T));
         
-        //FileStream fileStream = new FileStream(Application.persistentDataPath + name + ".xml", FileMode.Create); //ANDROID
+       // FileStream fileStream = new FileStream(Application.persistentDataPath + name + ".xml", FileMode.Create); //ANDROID
         FileStream fileStream = new FileStream(Application.dataPath + "/Resources/" + name + ".xml", FileMode.Create); //PC
         serializer.Serialize(fileStream, data);
         fileStream.Close();
@@ -75,7 +75,7 @@ public class XMLManager
      * Параметры:
      * data - класс который необходимо сериализовать
      */
-    public static void LoadShop(ref ShopData data)
+    /*public static void LoadShop(ref ShopData data)
     {
         TextAsset textAsset = (TextAsset)Resources.Load("Menu/ShopData");
         XElement shopData = XDocument.Parse(textAsset.text).Element("ShopData");
@@ -102,5 +102,5 @@ public class XMLManager
             }
         }
 
-    }
+    }*/
 }
