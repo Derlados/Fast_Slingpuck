@@ -8,7 +8,7 @@ using UnityEngine.SceneManagement;
 public class GameMenu : MonoBehaviour
 {
     public GameObject pauseMenuCanvas, gameOverCanvas, capperField, PauseBtnCanvas;
-    public Text gameOverText, scoreText, playerMoney;
+    public Text gameOverText, scoreText;
     PlayerData playerData;
 
     public void Start()
