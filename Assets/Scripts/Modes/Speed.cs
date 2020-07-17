@@ -24,7 +24,7 @@ public class Speed : MonoBehaviour, Mode
     public bool lag = false; // true - игрок отстал по очкам хотя бы раз за игру от ИИ 
 
     // Монеты
-    int money;
+    int money1, money2, money3;
 
     // Start is called before the first frame update
     void Start()
@@ -96,36 +96,33 @@ public class Speed : MonoBehaviour, Mode
     {
         calculateResult();
         AI.GetComponent<AI>().active = false;
-        gameMenu.GetComponent<GameMenu>().gameOver("Game Over !", game.countStars, money); 
+        gameMenu.GetComponent<GameMenu>().gameOver("Game Over !", game.countStars, money1, money2, money3); 
     }
 
     public void calculateResult()
     {
         // Подсчет звезд и монет
-        int lagOrMissMoney = 30, victoryMoney = 40;
-        money = 0;
+        int lagOrMissMoney = 30, victoryMoney = 15;
+        money1 = money2 = money3 = 0;
 
         if ((!GameRule.AI && downCount < winTarget) || (GameRule.AI && downCount <= upCount))
             game.countStars = 0;
         else
         {
-            money += victoryMoney; // Монеты за победу
+            money1 = victoryMoney; // Монеты за победу
 
             if (downCount < targetCheckers)
                 --game.countStars;
 
-            Debug.Log(money);
-
             if ((GameRule.AI && lag) || (!GameRule.AI && Game.countShots > downCount))
                 --game.countStars;
             else
-                money += lagOrMissMoney;
-
-            Debug.Log(money);
+                money2 = lagOrMissMoney;
         }
 
+        money1 = game.countStars * victoryMoney;
         // За каждый гол - +2 монеты, начисляется даже при поражении 
-        money += downCount * 2;
+        money3 = downCount * 2;
     }
 
     // Задержка перед началом игры
