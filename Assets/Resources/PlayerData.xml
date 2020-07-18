@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <PlayerData xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-  <money>4850</money>
+  <money>11167</money>
   <progress>
     <ArrayOfUnsignedByte>
       <unsignedByte>3</unsignedByte>
@@ -29,5 +29,5 @@
       <unsignedByte>0</unsignedByte>
     </ArrayOfUnsignedByte>
   </progress>
-  <puckSprite>sand_checker</puckSprite>
+  <puckSprite>standart_checker</puckSprite>
 </PlayerData>

@@ -2299,10 +2299,11 @@ MonoBehaviour:
     targetText1: {fileID: 1368722119}
     targetText2: {fileID: 506367479}
     targetText3: {fileID: 458562393}
+    totalText: {fileID: 1406441860}
     moneyTargetText1: {fileID: 404067373}
     moneyTargetText2: {fileID: 1495696377}
     moneyTargetText3: {fileID: 1107275804}
-    totalText: {fileID: 130401016}
+    moneyTotalText: {fileID: 130401016}
     gameOver: {fileID: 652561171}
 --- !u!4 &407324428
 Transform:

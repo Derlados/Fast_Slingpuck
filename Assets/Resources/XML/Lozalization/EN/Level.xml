@@ -23,7 +23,7 @@
 	<speed>
 	    <target1>Score NUMBER goals</target1>
 	    <target2>Score NUMBER goals</target2>
-	    <target3>No miss</target3>
+	    <target3>Accuracy NUMBER %</target3>
 	</speed>
 	<speedAI>
 	    <target1>Victory</target1>

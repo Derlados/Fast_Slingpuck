@@ -21,7 +21,8 @@ public class Speed : MonoBehaviour, Mode
     // Цели
     public int winTarget; // На случай если нету ИИ, победа начисляется за количество фишек забитых за время
     public int targetCheckers; // Вторая цель - количество забитых фишек, для получения следующей звезды
-    public bool lag = false; // true - игрок отстал по очкам хотя бы раз за игру от ИИ 
+    public int maxLag = 0; // Максимальное отставание от ИИ которое было за игру
+    
 
     // Монеты
     int money1, money2, money3;
@@ -88,8 +89,8 @@ public class Speed : MonoBehaviour, Mode
         else
             upCountText.text = (++upCount).ToString();
 
-        if (upCount > downCount)
-            lag = true;
+        if (upCount - downCount > maxLag)
+            maxLag = upCount - downCount;
     }
 
     public void gameOver()
@@ -102,25 +103,34 @@ public class Speed : MonoBehaviour, Mode
     public void calculateResult()
     {
         // Подсчет звезд и монет
-        int lagOrMissMoney = 30, victoryMoney = 15;
+        int accuracyOrLagMoney = 80, victoryMoney = 15;
         money1 = money2 = money3 = 0;
 
+        double accuracy = ((double)downCount / Game.countShots);
+
+        // Начисление звезд
         if ((!GameRule.AI && downCount < winTarget) || (GameRule.AI && downCount <= upCount))
             game.countStars = 0;
         else
         {
-            money1 = victoryMoney; // Монеты за победу
-
             if (downCount < targetCheckers)
                 --game.countStars;
 
-            if ((GameRule.AI && lag) || (!GameRule.AI && Game.countShots > downCount))
+            if ((GameRule.AI && maxLag > 0) || (!GameRule.AI && accuracy < GameRule.target3))
                 --game.countStars;
-            else
-                money2 = lagOrMissMoney;
         }
 
         money1 = game.countStars * victoryMoney;
+
+        /* Начисление за точность если игра была без ИИ
+         * Формула: Процент точности * accuracyOrLagMoney
+         * Начисление монет если игра была против ИИ
+         * За каждое очко на которое максимально отстал от ИИ игрок - штраф 1/5 от полного зароботка, таким образом отставание более чем на 5 голов приводит к тому что игрок получает 0 монет
+         */
+        money2 = !GameRule.AI ? (int)(accuracyOrLagMoney * accuracy) : accuracyOrLagMoney - (maxLag * accuracyOrLagMoney / 5);
+        if (money2 < 0 || money1 == 0)
+            money2 = 0;
+
         // За каждый гол - +2 монеты, начисляется даже при поражении 
         money3 = downCount * 2;
     }
@@ -138,7 +148,7 @@ public class Speed : MonoBehaviour, Mode
         capperField.SetActive(false);
         AI.GetComponent<AI>().active = true;    
         yield return new WaitForSeconds(1);
-        StartCoroutine(counter(10));
+        StartCoroutine(counter(60));
     }
 
     // Таймер игры
