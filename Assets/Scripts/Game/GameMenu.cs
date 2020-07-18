@@ -4,7 +4,6 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using System.Xml.Linq;
-using UnityEditor.iOS;
 
 // Класс отвечающий за весь UI в самой игре
 public class GameMenu : MonoBehaviour

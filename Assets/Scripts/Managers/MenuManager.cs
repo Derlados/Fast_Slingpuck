@@ -14,6 +14,7 @@ public class MenuManager : MonoBehaviour
     public GameObject mainMenu, galaxy; // mainMenu - UI главного меню, galaxy - UI режима прохождения уровней 
     public static GameObject planets;
     public GameObject levelInformation; // Описание уровня
+    public GameObject backBtn; //кнопка назад
 
     // Уровни планеты и номер самой планеты
     private GameObject planetLevels;
@@ -65,6 +66,7 @@ public class MenuManager : MonoBehaviour
                 if (cameraStatus == Status.freeOnPlanet)
                 {
                     planetLevels.SetActive(true);
+                    backBtn.SetActive(true);
                     StartCoroutine(Spawn(planetLevels, numberPlanet));
                 }
             }
@@ -100,6 +102,7 @@ public class MenuManager : MonoBehaviour
     }
     public LevelDesc levelDesc;
 
+    // Окно информации об уровне
     public void loadLevelDesc(Level level)
     {
         levelDesc.fieldImage.sprite = Resources.Load<Sprite>("Sprites/levels/planets/" + level.type.ToString() + "_planet");
@@ -168,6 +171,7 @@ public class MenuManager : MonoBehaviour
         stepMove = ((Vector2)thisCamera.transform.position - targetPos).magnitude * Time.fixedDeltaTime;
         stepSize = -Math.Abs(thisCamera.orthographicSize - 5.05f) * Time.fixedDeltaTime;
         planetLevels.SetActive(false);
+        backBtn.SetActive(false);
         cameraStatus = Status.zoom;
         StartCoroutine(scalePlanet(planetTmp, false));
 
@@ -175,9 +179,6 @@ public class MenuManager : MonoBehaviour
             if (galaxy.transform.GetChild(i) != planetTmp)
                 StartCoroutine(fadePlanet(i, false));
     }
-
-    // Окно информации об уровне
-
 
     // Анимация прорисовки уровней
     IEnumerator Spawn(GameObject gameObject, int num)
