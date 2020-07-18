@@ -58,9 +58,9 @@ public class Daily : MonoBehaviour
         }
 
         //отрисовка бонусов
-        for (int i = 1; i < date.curDay; ++i)
-            Days.transform.GetChild(i).GetComponent<Image>().sprite = Resources.Load<Sprite>("Sprites/UI/DailyReward_taken");
-        Days.transform.GetChild(date.curDay).GetComponent<Image>().sprite = Resources.Load<Sprite>("Sprites/UI/DailyReward_get");
+        for (int i = 0; i < date.curDay; ++i)
+            Days.transform.GetChild(i).GetChild(5).GetComponent<Image>().sprite = Resources.Load<Sprite>("Sprites/Daily/day_claimed");
+        Days.transform.GetChild(date.curDay).GetChild(5).gameObject.SetActive(false);
 
         //date.showed = false;
         //если начался следующий день и бонус не был взят, то становится активным окно взтие бонуса
