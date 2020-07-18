@@ -1,9 +1,5 @@
 fileFormatVersion: 2
-<<<<<<< HEAD
-guid: cdee309fc0ed1d243a9b2db81f1e4a86
-=======
-guid: 98b664daf7caf6442a7f49d86b19ed4f
->>>>>>> GamePlay
+guid: 6e84d2929768af749ab0334e425b92d6
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -90,7 +86,7 @@ TextureImporter:
     secondaryTextures: []
   spritePackingTag: 
   pSDRemoveMatte: 0
-  pSDShowRemoveMatteOption: 1
+  pSDShowRemoveMatteOption: 0
   userData: 
   assetBundleName: 
   assetBundleVariant: 
