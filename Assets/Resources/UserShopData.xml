@@ -4,9 +4,9 @@
     <boolean>false</boolean>
     <boolean>false</boolean>
     <boolean>false</boolean>
-    <boolean>true</boolean>
+    <boolean>false</boolean>
   </userCheckers>
   <userModificators>
-    <int>0</int>
+    <int>2</int>
   </userModificators>
 </UserShopData>

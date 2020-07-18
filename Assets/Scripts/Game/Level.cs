@@ -18,6 +18,7 @@ public class Level : MonoBehaviour
     {
         public int minTargetCheckers; [Tooltip("If player will play without AI")]
         public int maxTargetCheckers;
+        public int accuracy;
     }
     public Speed speed;
 
@@ -52,6 +53,7 @@ public class Level : MonoBehaviour
             case GameRule.Mode.speed:
                 GameRule.target1 = speed.minTargetCheckers;
                 GameRule.target2 = speed.maxTargetCheckers;
+                GameRule.target3 = speed.accuracy;
                 break;
         }
     }
