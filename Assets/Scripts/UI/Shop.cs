@@ -38,13 +38,16 @@ public class Shop : MonoBehaviour
    // public GameObject modificatorToBuy; //истинный модификатор
     public GameObject checkerPanel; //обьект в кот ром находятся шайбы, которые можно купить
     public GameObject modificatorsPanel; //обьект в котором находятся модификаторы, которые можно купить
-    private GameObject secondTab;
-    public GameObject selected_panel;
-    GameObject currenChecker;
+    private GameObject secondTab; //2-ое меню
+    public GameObject selected_panel; //выбранная панель
+    GameObject currenChecker; //обьект выбранной шайбы
 
     PlayerData playerData;  //данные игрока
     //ShopData shopData; //данные об шайбах в магазине
     UserShopData userShopData; //данные о доступных шайбах
+
+    const string SHOP_PATH = "Sprites/Shop/"; // путь к спрайтам магазина
+    string haveIt = "Have it", selected = "Selected";
 
     void Start()
     {
@@ -123,11 +126,11 @@ public class Shop : MonoBehaviour
     
     public void ChangeChecker(GameObject checker)
     {
-        checker.transform.GetChild(2).transform.GetComponent<Text>().text = "Selected";
-        currenChecker.transform.GetChild(2).transform.GetComponent<Text>().text = "Have it";
+        checker.transform.GetChild(2).transform.GetComponent<Text>().text = selected;
+        currenChecker.transform.GetChild(2).transform.GetComponent<Text>().text = haveIt;
 
-        checker.transform.GetChild(0).transform.GetComponent<Image>().sprite =  Resources.Load<Sprite>("Sprites/UI/NewMenu/Shop/selectedChecker");
-        currenChecker.transform.GetChild(0).transform.GetComponent<Image>().sprite = Resources.Load<Sprite>("Sprites/UI/NewMenu/Shop/unSelectedChecker");
+        checker.transform.GetChild(0).transform.GetComponent<Image>().sprite =  Resources.Load<Sprite>(SHOP_PATH+"selectedChecker");
+        currenChecker.transform.GetChild(0).transform.GetComponent<Image>().sprite = Resources.Load<Sprite>(SHOP_PATH+"unSelectedChecker");
 
         currenChecker = checker;
 
@@ -224,7 +227,7 @@ public class Shop : MonoBehaviour
         for (int i = 0; i < checkerPanel.transform.childCount; ++i)
         {
             if (userShopData.userCheckers[i]) checkerPanel.transform.GetChild(i).transform.GetChild(2).gameObject.SetActive(userShopData.userCheckers[i]);
-            else checkerPanel.transform.GetChild(i).transform.GetChild(2).transform.GetComponent<Text>().text = "Have it";
+            else checkerPanel.transform.GetChild(i).transform.GetChild(2).transform.GetComponent<Text>().text = haveIt;
         };
 
         //поиск номера этой шайбы в списке
@@ -233,8 +236,8 @@ public class Shop : MonoBehaviour
             if (playerData.puckSprite == checkerPanel.transform.GetChild(i).transform.GetChild(4).GetComponent<Image>().sprite.name)
             {
                 GameObject tmp = checkerPanel.transform.GetChild(i).gameObject;
-                tmp.transform.GetChild(2).GetComponent<Text>().text = "Selected";
-                tmp.transform.GetChild(0).GetComponent<Image>().sprite = Resources.Load<Sprite>("Sprites/UI/NewMenu/Shop/selectedChecker");
+                tmp.transform.GetChild(2).GetComponent<Text>().text = selected;
+                tmp.transform.GetChild(0).GetComponent<Image>().sprite = Resources.Load<Sprite>(SHOP_PATH + "selectedChecker");
                 currenChecker = tmp;
             }
         }
@@ -317,8 +320,8 @@ public class Shop : MonoBehaviour
     //secondTab - unSelected tab
     public void setTab(GameObject firstTab)
     {
-        Color blue = new Color32(0,130,202,255);
-        Color gray = new Color32(204,204,204,255);
+        Color blue = new Color32(0, 130, 202, 255);
+        Color gray = new Color32(204, 204, 204, 255);
         Color darkGray = new Color32(125, 125, 125, 255);
 
         firstTab.transform.GetComponent<Image>().color = blue;
@@ -327,11 +330,11 @@ public class Shop : MonoBehaviour
         firstTab.transform.GetChild(0).transform.GetComponent<Text>().color = Color.white;
         secondTab.transform.GetChild(0).transform.GetComponent<Text>().color = darkGray;
 
-        firstTab.transform.GetComponent<Image>().sprite = Resources.Load<Sprite>("Sprites/UI/NewMenu/Shop/shop_selectedOption");
-        secondTab.transform.GetComponent<Image>().sprite = Resources.Load<Sprite>("Sprites/UI/NewMenu/Shop/shop_unselectedOption");
+        firstTab.transform.GetComponent<Image>().sprite = Resources.Load<Sprite>(SHOP_PATH + "shop_selectedOption");
+        secondTab.transform.GetComponent<Image>().sprite = Resources.Load<Sprite>(SHOP_PATH + "shop_unselectedOption");
 
-        if(firstTab.tag == "modificatorBtn") selected_panel.transform.GetComponent<Image>().sprite = Resources.Load<Sprite>("Sprites/UI/NewMenu/Shop/2shop_selected_panel");
-        else selected_panel.transform.GetComponent<Image>().sprite = Resources.Load<Sprite>("Sprites/UI/NewMenu/Shop/shop_selected_panel");
+        if (firstTab.tag == "modificatorBtn") selected_panel.transform.GetComponent<Image>().sprite = Resources.Load<Sprite>(SHOP_PATH + "2shop_selected_panel");
+        else selected_panel.transform.GetComponent<Image>().sprite = Resources.Load<Sprite>(SHOP_PATH + "shop_selected_panel");
     }
 
     public void setSecondTab(GameObject obj)

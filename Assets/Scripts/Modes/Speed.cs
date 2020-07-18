@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -22,6 +22,9 @@ public class Speed : MonoBehaviour, Mode
     public int winTarget; // На случай если нету ИИ, победа начисляется за количество фишек забитых за время
     public int targetCheckers; // Вторая цель - количество забитых фишек, для получения следующей звезды
     public bool lag = false; // true - игрок отстал по очкам хотя бы раз за игру от ИИ 
+
+    // Монеты
+    int money1, money2, money3;
 
     // Start is called before the first frame update
     void Start()
@@ -93,25 +96,33 @@ public class Speed : MonoBehaviour, Mode
     {
         calculateResult();
         AI.GetComponent<AI>().active = false;
-        gameMenu.GetComponent<GameMenu>().gameOver("Game Over !", downCount); 
+        gameMenu.GetComponent<GameMenu>().gameOver("Game Over !", game.countStars, money1, money2, money3); 
     }
 
     public void calculateResult()
     {
+        // Подсчет звезд и монет
+        int lagOrMissMoney = 30, victoryMoney = 15;
+        money1 = money2 = money3 = 0;
+
         if ((!GameRule.AI && downCount < winTarget) || (GameRule.AI && downCount <= upCount))
             game.countStars = 0;
         else
         {
+            money1 = victoryMoney; // Монеты за победу
+
             if (downCount < targetCheckers)
                 --game.countStars;
 
             if ((GameRule.AI && lag) || (!GameRule.AI && Game.countShots > downCount))
                 --game.countStars;
+            else
+                money2 = lagOrMissMoney;
         }
 
-        // Необходимо доделать
-        if (PlayerData.getInstance().progress[GameRule.planetNum][GameRule.levelNum] < game.countStars)
-            PlayerData.getInstance().progress[GameRule.planetNum][GameRule.levelNum] = game.countStars;
+        money1 = game.countStars * victoryMoney;
+        // За каждый гол - +2 монеты, начисляется даже при поражении 
+        money3 = downCount * 2;
     }
 
     // Задержка перед началом игры
@@ -127,7 +138,7 @@ public class Speed : MonoBehaviour, Mode
         capperField.SetActive(false);
         AI.GetComponent<AI>().active = true;    
         yield return new WaitForSeconds(1);
-        StartCoroutine(counter(60));
+        StartCoroutine(counter(10));
     }
 
     // Таймер игры

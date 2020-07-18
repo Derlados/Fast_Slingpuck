@@ -58,7 +58,7 @@ public class XMLManager
      */
     public static void LoadDifficulty(ref Difficulty data, string key)
     {
-        TextAsset textAsset = (TextAsset)Resources.Load("Game/Difficulties");
+        TextAsset textAsset = (TextAsset)Resources.Load("XML/Game/Difficulties");
         XElement xdoc = XDocument.Parse(textAsset.text).Element("difficulties");
 
         foreach (XElement diff in xdoc.Elements(key))
@@ -77,7 +77,7 @@ public class XMLManager
      */
     /*public static void LoadShop(ref ShopData data)
     {
-        TextAsset textAsset = (TextAsset)Resources.Load("Menu/ShopData");
+        TextAsset textAsset = (TextAsset)Resources.Load("XML/Shop/ShopData");
         XElement shopData = XDocument.Parse(textAsset.text).Element("ShopData");
 
         foreach (XElement checkers in shopData.Elements("checkers"))
