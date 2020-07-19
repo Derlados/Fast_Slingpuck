@@ -4,8 +4,8 @@
   <progress>
     <ArrayOfUnsignedByte>
       <unsignedByte>3</unsignedByte>
-      <unsignedByte>3</unsignedByte>
-      <unsignedByte>2</unsignedByte>
+      <unsignedByte>0</unsignedByte>
+      <unsignedByte>0</unsignedByte>
       <unsignedByte>0</unsignedByte>
     </ArrayOfUnsignedByte>
     <ArrayOfUnsignedByte>
@@ -29,5 +29,5 @@
       <unsignedByte>0</unsignedByte>
     </ArrayOfUnsignedByte>
   </progress>
-  <puckSprite>standart_checker</puckSprite>
+  <puckSprite>ice_checker</puckSprite>
 </PlayerData>

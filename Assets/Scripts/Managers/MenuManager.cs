@@ -52,12 +52,6 @@ public class MenuManager : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (Input.GetKey(KeyCode.Escape) && cameraStatus != Status.zoom)
-            backToStart();
-
-        if (Input.GetKey(KeyCode.Space) && cameraStatus != Status.zoom)
-            levelInformation.SetActive(false);
-
         if (cameraStatus == Status.zoom)
         {  
             if ((Vector2)thisCamera.transform.position == targetPos)
@@ -105,7 +99,7 @@ public class MenuManager : MonoBehaviour
     // Окно информации об уровне
     public void loadLevelDesc(Level level)
     {
-        levelDesc.fieldImage.sprite = Resources.Load<Sprite>("Sprites/levels/planets/" + level.type.ToString() + "_planet");
+        levelDesc.fieldImage.sprite = Resources.Load<Sprite>("Sprites/MainMenu/planets/" + level.type.ToString() + "/" + level.type.ToString() + "_planet");
 
         XElement data; // Данные XML файла
         Debug.Log("XML/Localization/" + LocalizationManager.curLanguage.ToString() + "/Level");
@@ -124,6 +118,7 @@ public class MenuManager : MonoBehaviour
         levelDesc.TargetText3.text = data.Element("target3").Value.Replace("NUMBER", GameRule.target3.ToString());
 
         levelInformation.SetActive(true);
+        backBtn.SetActive(false);
     }
 
     // Загрузка игры
