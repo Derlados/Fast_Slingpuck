@@ -59,8 +59,8 @@ public class GameMenu : MonoBehaviour
     {
         public List<Image> stars; // звезды
         public Image moneyTargetImage1, moneyTargetImage2, moneyTargetImage3; // Картинки критериев для получения монет
-        public Text targetText1, targetText2, targetText3; // текст критериев получения монет
-        public Text moneyTargetText1, moneyTargetText2, moneyTargetText3, totalText; // текст количество монет
+        public Text targetText1, targetText2, targetText3, totalText; // текст критериев получения монет
+        public Text moneyTargetText1, moneyTargetText2, moneyTargetText3, moneyTotalText; // текст количество монет
         public Text gameOver; // Текст конца игры
     }
     public GameOverMenu gameOverMenu;
@@ -77,7 +77,6 @@ public class GameMenu : MonoBehaviour
         data = data.Element(GameRule.mode.ToString());
 
         XElement images = data.Element("images"); // названия спрайтов
-
         gameOverMenu.moneyTargetImage1.sprite = Resources.Load<Sprite>("Sprites/GameOverMenu/" + images.Element("targetImage1").Value);
         gameOverMenu.moneyTargetImage2.sprite = Resources.Load<Sprite>("Sprites/GameOverMenu/" + images.Element("targetImage2").Value);
         gameOverMenu.moneyTargetImage3.sprite = Resources.Load<Sprite>("Sprites/GameOverMenu/" + images.Element("targetImage3").Value);
@@ -120,7 +119,7 @@ public class GameMenu : MonoBehaviour
         int total = money1 + money2 + money3;
         for (int i = 1; i <= total; ++i)
         {
-            gameOverMenu.totalText.text = i.ToString();
+            gameOverMenu.moneyTotalText.text = i.ToString();
             yield return new WaitForSeconds(0.015f);
         }
     }

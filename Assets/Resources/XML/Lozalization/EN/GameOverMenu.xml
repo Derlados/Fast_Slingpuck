@@ -11,19 +11,31 @@
 		<texts>
 			<targetText1>Game result</targetText1>
 			<targetText2>Time elapsed</targetText2>
-			<targetText3>Checker goals</targetText3>
+			<targetText3>Goals</targetText3>
 		</texts>
 	</normal>
 	<speed>
 		<images>
-			<targetImage1></targetImage1>
+			<targetImage1>star</targetImage1>
+			<targetImage2>accuracy</targetImage2>
+			<targetImage3>checker_goal</targetImage3>
+		</images>
+		<texts>
+			<targetText1>Game result</targetText1>
+			<targetText2>Accuracy</targetText2>
+			<targetText3>Goals</targetText3>
+		</texts>
+	</speed>
+	<speedAI>
+		<images>
+			<targetImage1>star</targetImage1>
 			<targetImage2></targetImage2>
-			<targetImage3></targetImage3>
+			<targetImage3>checker_goal</targetImage3>
 		</images>
 		<texts>
 			<targetText1>Game result</targetText1>
 			<targetText2></targetText2>
-			<targetText3></targetText3>
+			<targetText3>Goals</targetText3>
 		</texts>
-	</speed>
+	</speedAI>
 </GameOverMenu>
