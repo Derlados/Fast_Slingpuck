@@ -12,6 +12,7 @@ TagManager:
   - Window
   - MenuManager
   - modificatorBtn
+  - Game
   layers:
   - Default
   - TransparentFX

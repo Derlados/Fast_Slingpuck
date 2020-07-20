@@ -71,9 +71,7 @@ public class BezierLine : MonoBehaviour
         {
             if (checkPoint.y == 0)
                 checkPoint = DownString ? new Vector2(0, coordY + checker.getRadius() + correction) : new Vector2(0, coordY - checker.getRadius() + correction);
-
             bool check = DownString ? objTransform.position.y < checkPoint.y : objTransform.position.y > checkPoint.y;
-
 
             //Натяжение нити в зависимости от позиции шайбы
             if (check)
