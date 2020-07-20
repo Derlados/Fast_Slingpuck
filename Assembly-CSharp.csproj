@@ -169,7 +169,6 @@
     <None Include="Assets\Resources\XML\Lozalization\RU\MainMenu.xml" />
     <None Include="Assets\Resources\XML\Lozalization\EN\MainMenu.xml" />
     <None Include="Assets\Resources\XML\Lozalization\RU\Game.xml" />
-    <None Include="Assets\Resources\UserShopData.xml" />
     <None Include="Assets\Resources\XML\Shop\ShopData.xml" />
     <None Include="Assets\Resources\XML\Lozalization\UA\Game.xml" />
     <None Include="Assets\Resources\XML\Lozalization\UA\MainMenu.xml" />

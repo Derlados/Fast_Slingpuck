@@ -244,7 +244,7 @@ public class Shop : MonoBehaviour
 
         //установка доступных модификаторов
         for (int i = 0; i < modificatorsPanel.transform.childCount; ++i)
-            modificatorsPanel.transform.GetChild(i).transform.GetChild(1).gameObject.transform.GetComponent<Text>().text = userShopData.userModificators[i].ToString();
+            modificatorsPanel.transform.GetChild(i).transform.GetChild(5).gameObject.transform.GetComponent<Text>().text = userShopData.userModificators[i].ToString();
     }
 
     //добалвение модификаторов (обьектов) в меню магазина
@@ -286,19 +286,22 @@ public class Shop : MonoBehaviour
     public void BuyModificator(GameObject modificator)
     {
         //получение цены модификатора
-        int money = int.Parse(modificator.transform.GetChild(0).transform.GetComponent<Text>().text);
+        int money = int.Parse(modificator.transform.GetChild(2).transform.GetComponent<Text>().text);
+
+        Debug.Log(money);
 
         //поиск номера этого модификатора в списке
         for (int i = 0; i < modificatorsPanel.transform.childCount; ++i)
         {
-            if (modificator.GetComponent<Image>().sprite.name == modificatorsPanel.transform.GetChild(i).GetComponent<Image>().sprite.name)
+            if (modificator.transform.GetChild(4).GetComponent<Image>().sprite.name == modificatorsPanel.transform.GetChild(i).GetChild(4).GetComponent<Image>().sprite.name)
             {
+                Debug.Log("founded!");
                 //если у юзера есть такое кол-во денег, происходит покупка
                 if (playerData.money >= money)
                 {
-                    int count = int.Parse(modificator.transform.GetChild(1).GetComponent<Text>().text);
+                    int count = int.Parse(modificator.transform.GetChild(5).GetComponent<Text>().text);
                     count++;
-                    modificator.transform.GetChild(1).GetComponent<Text>().text = count.ToString();
+                    modificator.transform.GetChild(5).GetComponent<Text>().text = count.ToString();
 
                     userShopData.userModificators[i] = count;
                     XMLManager.SaveData<UserShopData>(userShopData, "UserShopData");

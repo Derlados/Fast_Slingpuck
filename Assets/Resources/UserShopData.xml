@@ -3,10 +3,10 @@
   <userCheckers>
     <boolean>false</boolean>
     <boolean>false</boolean>
-    <boolean>false</boolean>
-    <boolean>false</boolean>
+    <boolean>true</boolean>
+    <boolean>true</boolean>
   </userCheckers>
   <userModificators>
-    <int>0</int>
+    <int>6</int>
   </userModificators>
 </UserShopData>
