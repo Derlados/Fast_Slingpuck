@@ -12,6 +12,12 @@ TagManager:
   - Window
   - MenuManager
   - modificatorBtn
+  - 100
+  - 250
+  - 500
+  - 1000
+  - booster
+  - reductor
   layers:
   - Default
   - TransparentFX
