@@ -30,13 +30,14 @@ public class Level : MonoBehaviour
     public int numLevel; // Номер уровня, необходимо знать для того чтобы в дальнейшем записать результат
 
     // Установка всех игровых правил и запус игры
-    public void setGameRule()
+    public void setGameRule(GameObject planet)
     {
         GameRule.mode = mode;
         GameRule.type = type;
         GameRule.ActiveAI = AI;
         GameRule.difficulties = difficulties;
         GameRule.levelNum = numLevel;
+        GameRule.levelsCount = planet.transform.childCount-1;
 
         setTargets();
 

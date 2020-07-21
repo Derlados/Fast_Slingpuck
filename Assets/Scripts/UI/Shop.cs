@@ -116,7 +116,7 @@ public class Shop : MonoBehaviour
             checkerPanel.transform.GetChild(i).transform.GetChild(0).GetComponent<Text>().text = shopData.checkers[i].second.ToString();
         }
     }*/
-    
+
     //загрузка денег в магазине
     public static void LoadMoney()
     {

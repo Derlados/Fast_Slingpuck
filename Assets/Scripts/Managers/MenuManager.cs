@@ -1,4 +1,6 @@
-﻿using System;
+﻿using BaseStructures;
+using Boo.Lang;
+using System;
 using System.Collections;
 using System.Xml.Linq;
 using UnityEngine;
@@ -48,12 +50,15 @@ public class MenuManager : MonoBehaviour
         //-2 т.к обьект galaxy содержит еще 2 обьекта, которые не являются планетами
         allPlanets = galaxy.transform.childCount - 2;
         planets = mainMenu;
+
+        setPlanetProgress();
+
     }
 
     private void FixedUpdate()
     {
         if (cameraStatus == Status.zoom)
-        {  
+        {
             if ((Vector2)thisCamera.transform.position == targetPos)
             {
                 cameraStatus = (Vector2)thisCamera.transform.position == startPos ? Status.freeOnMenu : Status.freeOnPlanet;
@@ -74,17 +79,7 @@ public class MenuManager : MonoBehaviour
 
     }
 
-    //////////////////////////////////////////////////////////////////////////////////  MAIN MENU ///////////////////////////////////////////////////////////////////////////////////
-   
-    public void chooseGalaxy()
-    {
-        mainMenu.SetActive(false);
-        galaxy.SetActive(true);
-    }
-
-    //////////////////////////////////////////////////////////////////////////////////  SHOP MENU ///////////////////////////////////////////////////////////////////////////////////
-
-    //////////////////////////////////////////////////////////////////////////////////  GALAXY MENU ///////////////////////////////////////////////////////////////////////////////////
+    //////////////////////////////////////////////////////////////////////////////////  GALAXY  ///////////////////////////////////////////////////////////////////////////////////
 
     // Загрузка описания уровня
     [System.Serializable]
@@ -140,11 +135,15 @@ public class MenuManager : MonoBehaviour
             //сохраняем данные о планете перед изменением размеров планеты
             tmp = planet.GetComponent<RectTransform>().localScale;
             planetTmp = planet;
-            StartCoroutine(scalePlanet(planet,true));
+            StartCoroutine(scalePlanet(planet, true));
 
             for (int i = 2; i < galaxy.transform.childCount; ++i)
                 if (galaxy.transform.GetChild(i).transform.gameObject != planet.transform.gameObject)
                     StartCoroutine(fadePlanet(i, true));
+
+            Button btn = planet.GetComponent<Button>();
+            btn.enabled = !btn.enabled;
+            thisCamera.GetComponent<UIParallax>().setActive(false);
         }
     }
 
@@ -173,25 +172,38 @@ public class MenuManager : MonoBehaviour
         for (int i = 2; i < galaxy.transform.childCount; ++i)
             if (galaxy.transform.GetChild(i) != planetTmp)
                 StartCoroutine(fadePlanet(i, false));
+
+        Button btn = planetTmp.GetComponent<Button>();
+        btn.enabled = !btn.enabled;
+
+        thisCamera.GetComponent<UIParallax>().setActive(true);
     }
 
     // Анимация прорисовки уровней
-    IEnumerator Spawn(GameObject gameObject, int num)
+    IEnumerator Spawn(GameObject planet, int num)
     {
         float timeDelay;
 
-        for (int i = 0; i < gameObject.transform.childCount; ++i)
+        //пробегаемся по всем уровням планеты (planet)
+        for (int i = 0; i < planet.transform.childCount; ++i)
         {
-            GameObject ChildLvl = gameObject.transform.GetChild(i).gameObject;
-            byte progress = PlayerData.getInstance().progress[num][i];
+            //получем обьект уровня (ChildLvl) и получаем прогресс игрока
+            GameObject ChildLvl = planet.transform.GetChild(i).gameObject;
+            byte progress = PlayerData.getInstance().progress[num].first[i];
 
+            //пробегаемся по обьектам уровня level,point....
             for (int j = 0; j < ChildLvl.transform.childCount; ++j)
             {
+                //задержка
                 timeDelay = 0.1f;
+                
+                //элементы уровня
                 GameObject child = ChildLvl.transform.GetChild(j).gameObject;
 
+                //в случае если в прогрессе не 0 звезд
                 if (progress != 0)
                 {
+                    //если это planet_Level,то ставим звезды относительно прогресса
                     if (j == 0)
                         for (int k = 1; k <= progress; ++k)
                             child.transform.GetChild(k).gameObject.SetActive(true);
@@ -199,17 +211,24 @@ public class MenuManager : MonoBehaviour
                 }
                 else
                 {
-                    if (j == 0 && (i == 0 || PlayerData.getInstance().progress[num][i - 1] != 0))
+                    //есои это левел и если это 1 уровень планеты или прогресс игрока  не равен 0 звездам
+                    if (j == 0 && (i == 0 || PlayerData.getInstance().progress[num].first[i - 1] != 0))
                         child.gameObject.SetActive(true);
+                    //если это левел
                     else if (j == 0)
                     {
+                        //делаем прозрачным кнопку
                         Color32 thisColor = child.GetComponent<Image>().color;
                         child.GetComponent<Image>().color = new Color32(thisColor.r, thisColor.g, thisColor.b, 170);
+                        //выключаем возможность нажатия
+                        Button btn = child.GetComponent<Button>();
+                        btn.enabled = false;
                         child.gameObject.SetActive(true);
                     }
                     else
                     {
-                        child.gameObject.SetActive(false);
+                        //выключаем ?
+                        child.gameObject.SetActive(true);
                         timeDelay = 0;
                     }
                 }
@@ -225,11 +244,11 @@ public class MenuManager : MonoBehaviour
      * to = true - уменьшение к размеру 1.15
      * to = false - возращение к прежнему размеру
      */
-    IEnumerator scalePlanet(GameObject planet,bool to)
+    IEnumerator scalePlanet(GameObject planet, bool to)
     {
         Vector3 temp = planet.GetComponent<RectTransform>().localScale;
         float toScale;
-   
+
         if (to) toScale = 1.15f;
         else toScale = tmp.x;
 
@@ -270,8 +289,8 @@ public class MenuManager : MonoBehaviour
         if (to)
         {
             while (galaxy.transform.GetChild(num).transform.GetComponent<Image>().color.a > 0)
-            {               
-                color.a -= Time.deltaTime / 1; 
+            {
+                color.a -= Time.deltaTime / 1;
                 galaxy.transform.GetChild(num).transform.GetComponent<Image>().color = new Color(color.r, color.g, color.b, color.a);
                 yield return null;
             }
@@ -279,15 +298,29 @@ public class MenuManager : MonoBehaviour
         else
         {
             while (galaxy.transform.GetChild(num).transform.GetComponent<Image>().color.a < 1)
-            {                  
-                color.a += Time.deltaTime / 1;  
+            {
+                color.a += Time.deltaTime / 1;
                 galaxy.transform.GetChild(num).transform.GetComponent<Image>().color = new Color(color.r, color.g, color.b, color.a);
                 yield return null;
             }
         }
-     
-
     }
 
+    //устанавливаем прогресс планет
+    public void setPlanetProgress()
+    {
+        Color gray = new Color32(204, 204, 204, 255);
+
+        for (int i = 0; i < MenuManager.allPlanets; ++i)
+        {
+            if (!PlayerData.getInstance().progress[i].second.second)
+            {
+                galaxy.transform.GetChild(i + 2).GetComponent<Image>().color = gray;
+                Button btn = galaxy.transform.GetChild(i + 2).GetComponent<Button>();
+                btn.enabled = !btn.enabled;
+            }
+
+        }
+    }
 }
 
