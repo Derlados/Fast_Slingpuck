@@ -140,6 +140,10 @@ public class MenuManager : MonoBehaviour
             for (int i = 2; i < galaxy.transform.childCount; ++i)
                 if (galaxy.transform.GetChild(i).transform.gameObject != planet.transform.gameObject)
                     StartCoroutine(fadePlanet(i, true));
+
+            Button btn = planet.GetComponent<Button>();
+            btn.enabled = !btn.enabled;
+            thisCamera.GetComponent<UIParallax>().setActive(false);
         }
     }
 
@@ -168,25 +172,38 @@ public class MenuManager : MonoBehaviour
         for (int i = 2; i < galaxy.transform.childCount; ++i)
             if (galaxy.transform.GetChild(i) != planetTmp)
                 StartCoroutine(fadePlanet(i, false));
+
+        Button btn = planetTmp.GetComponent<Button>();
+        btn.enabled = !btn.enabled;
+
+        thisCamera.GetComponent<UIParallax>().setActive(true);
     }
 
     // Анимация прорисовки уровней
-    IEnumerator Spawn(GameObject gameObject, int num)
+    IEnumerator Spawn(GameObject planet, int num)
     {
         float timeDelay;
 
-        for (int i = 0; i < gameObject.transform.childCount; ++i)
+        //пробегаемся по всем уровням планеты (planet)
+        for (int i = 0; i < planet.transform.childCount; ++i)
         {
-            GameObject ChildLvl = gameObject.transform.GetChild(i).gameObject;
+            //получем обьект уровня (ChildLvl) и получаем прогресс игрока
+            GameObject ChildLvl = planet.transform.GetChild(i).gameObject;
             byte progress = PlayerData.getInstance().progress[num].first[i];
 
+            //пробегаемся по обьектам уровня level,point....
             for (int j = 0; j < ChildLvl.transform.childCount; ++j)
             {
+                //задержка
                 timeDelay = 0.1f;
+                
+                //элементы уровня
                 GameObject child = ChildLvl.transform.GetChild(j).gameObject;
 
+                //в случае если в прогрессе не 0 звезд
                 if (progress != 0)
                 {
+                    //если это planet_Level,то ставим звезды относительно прогресса
                     if (j == 0)
                         for (int k = 1; k <= progress; ++k)
                             child.transform.GetChild(k).gameObject.SetActive(true);
@@ -194,17 +211,24 @@ public class MenuManager : MonoBehaviour
                 }
                 else
                 {
+                    //есои это левел и если это 1 уровень планеты или прогресс игрока  не равен 0 звездам
                     if (j == 0 && (i == 0 || PlayerData.getInstance().progress[num].first[i - 1] != 0))
                         child.gameObject.SetActive(true);
+                    //если это левел
                     else if (j == 0)
                     {
+                        //делаем прозрачным кнопку
                         Color32 thisColor = child.GetComponent<Image>().color;
                         child.GetComponent<Image>().color = new Color32(thisColor.r, thisColor.g, thisColor.b, 170);
+                        //выключаем возможность нажатия
+                        Button btn = child.GetComponent<Button>();
+                        btn.enabled = false;
                         child.gameObject.SetActive(true);
                     }
                     else
                     {
-                        child.gameObject.SetActive(false);
+                        //выключаем ?
+                        child.gameObject.SetActive(true);
                         timeDelay = 0;
                     }
                 }
