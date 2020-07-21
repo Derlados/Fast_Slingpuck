@@ -49,7 +49,7 @@ public class Daily : MonoBehaviour
         data = new UserShopData();
 
         if (!XMLManager.LoadData<UserShopData>(ref data, "UserShopData"))
-            Debug.LogError("Something went wrong!");
+            Debug.LogWarning("UserShopData.xml not found. Maybe because it's the first run?");
 
         //отрисовка номера дней
         for (int i = 1; i <= Days.transform.childCount; ++i)

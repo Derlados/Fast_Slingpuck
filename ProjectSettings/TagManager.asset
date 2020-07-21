@@ -18,6 +18,10 @@ TagManager:
   - 1000
   - booster
   - reductor
+  - lava
+  - sand
+  - jungle
+  - ice
   layers:
   - Default
   - TransparentFX
@@ -66,4 +70,13 @@ TagManager:
     locked: 0
   - name: Planets
     uniqueID: 839931841
+    locked: 0
+  - name: levels
+    uniqueID: 4247227153
+    locked: 0
+  - name: menu
+    uniqueID: 755733737
+    locked: 0
+  - name: menuWindows
+    uniqueID: 1540910911
     locked: 0
