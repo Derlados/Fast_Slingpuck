@@ -147,7 +147,8 @@
     <Compile Include="Assets\Scripts\Modifiers\Checker_Modifier\Destroy.cs" />
     <Compile Include="Assets\Scripts\Modifiers\Checker_Modifier\Modifier.cs" />
     <Compile Include="Assets\Scripts\Modifiers\Checker_Modifier\Rotation.cs" />
-    <Compile Include="Assets\Scripts\Objects\AI.cs" />
+    <Compile Include="Assets\Scripts\Objects\AI\AI.cs" />
+    <Compile Include="Assets\Scripts\Objects\AI\RotationAI.cs" />
     <Compile Include="Assets\Scripts\Objects\BezierLine.cs" />
     <Compile Include="Assets\Scripts\Objects\Border.cs" />
     <Compile Include="Assets\Scripts\Objects\BorderHolder.cs" />

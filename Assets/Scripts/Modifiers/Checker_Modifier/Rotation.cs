@@ -16,22 +16,14 @@ public class Rotation : Modifier
     void Update()
     {
         if (checker.getMouseDown())
-        {
-           
+        {    
             Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 
             if (mousePos.y < checker.playerDownBorder.Down)
             {
                 checker.setStop(true);
                 checker.angle = 90 + calculateRotation(mousePos, checker.transform.position);
-                checker.transform.rotation = Quaternion.Euler(0, 0, checker.angle);
-               
-            }
-            else if (mousePos.y > checker.playerUpBorder.Up)
-            {
-                checker.setStop(true);
-                checker.angle = 270 - calculateRotation(mousePos, checker.transform.position);
-                checker.transform.rotation = Quaternion.Euler(0, 0, checker.angle);
+                checker.transform.rotation = Quaternion.Euler(0, 0, checker.angle);           
             }
             else
                 checker.setStop(false);

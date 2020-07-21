@@ -12,30 +12,31 @@ public class AI : MonoBehaviour
      * ready - AI готов к запуску шайбы
      * wait - ожидание AI перед запуском следующей шайбы
      */
-    enum Status : byte
+    protected enum Status : byte
     {
         free,
         keep,
         ready,
-        wait
+        wait,
+        aim
     }
 
     public List<Checker> checkers; // список всех шайб которыми может играть AI
-    public BezierLine line; // нить AI
-    private Status statusType = Status.free;
+    protected Status statusType = Status.free;
 
     public bool active;    // false - AI отключен, true - AI включен
     public static float speedAI, accuracyAI, timeRest;   // speedAi - скорость AI, accuracyAi - точность AI (разброс в процентах), time - время взятия фишки
-    private float leftBorder, rightBorder, upBorder;    // границы бота
-    private Vector2 target;     // позиция шайбы для запуска
-    private Transform keepObj;  // удерживаемая шайба
+    protected float leftBorder, rightBorder, upBorder;    // границы бота
+    protected Vector2 target, targetWindow;     // позиция шайбы для запуска
+    protected Transform keepObj;  // удерживаемая шайба
+    protected Checker keepChecker;
 
     private void Start()
     {
         active = false;
 
         Difficulty diff = new Difficulty();
-       /* if (!XMLManager.LoadData<Difficulty>(ref diff, "settings"))
+      /*if (!XMLManager.LoadData<Difficulty>(ref diff, "settings"))
         {
             XMLManager.LoadDifficulty(ref diff, "begginer");
             XMLManager.SaveData<Difficulty>(diff, "settings");
@@ -57,24 +58,24 @@ public class AI : MonoBehaviour
     {
         if (active)
         {
+
+            if (statusType == Status.free && checkers.Count > 0)
+            {
+                getChecker();
+                statusType = Status.keep;
+            }
+
             if (statusType == Status.keep)
             {
                 keepObj.position = Vector2.MoveTowards(keepObj.position, target, Time.deltaTime * speedAI);
                 if ((Vector2)keepObj.position == target)
                     statusType = Status.ready;
             }
-
-            if (statusType == Status.free && checkers.Count > 0)
+            
+            if (statusType == Status.aim)
             {
-                keepObj = checkers[0].objTransform;
-                for (int i = 1; i < checkers.Count; ++i)
-                    if (checkers[i].objTransform.position.y > keepObj.position.y)
-                        keepObj = checkers[i].objTransform;
-
-                keepObj.GetComponent<Checker>().OnMouseDown();
-                target = new Vector2(UnityEngine.Random.Range(leftBorder, rightBorder), upBorder - 1.2f * keepObj.GetComponent<Checker>().getRadius());
-
-                statusType = Status.keep;
+                aim();
+                statusType = Status.ready;
             }
 
             if (statusType == Status.ready)
@@ -83,6 +84,25 @@ public class AI : MonoBehaviour
                 StartCoroutine(delayToPush(0.3f, keepObj, timeRest));
             }
         }
+    }
+
+    // Выбирает необходимую шайбу и вычисляет позицию на которую она будет поставлена
+    public virtual void getChecker()
+    {
+        keepObj = checkers[0].objTransform;
+        for (int i = 1; i < checkers.Count; ++i)
+            if (checkers[i].objTransform.position.y > keepObj.position.y)
+                keepObj = checkers[i].objTransform;
+        keepChecker = keepObj.GetComponent<Checker>();
+
+        keepChecker.OnMouseDown();
+        target = new Vector2(UnityEngine.Random.Range(leftBorder, rightBorder), upBorder - 1.2f * keepObj.GetComponent<Checker>().getRadius());
+    }
+
+    // Прицеливание, получает точку на которую должна быть направлена шайба, если шайба летит прямо - необходимости в прицеливании нету
+    public virtual void aim()
+    {
+
     }
 
     // Добавляет новую шайбу в список шайб которые может использовать AI
