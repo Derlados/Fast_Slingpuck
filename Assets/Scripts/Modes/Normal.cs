@@ -39,8 +39,6 @@ public class Normal : MonoBehaviour, Mode
 
         // Бот
         AI = game.AI;
-        if (!GameRule.AI)
-            AI.SetActive(false);
 
         // Текст счетчиков
         upCountText = game.upCountText;

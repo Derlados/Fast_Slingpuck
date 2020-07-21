@@ -12,6 +12,7 @@ TagManager:
   - Window
   - MenuManager
   - modificatorBtn
+  - Game
   - 100
   - 250
   - 500

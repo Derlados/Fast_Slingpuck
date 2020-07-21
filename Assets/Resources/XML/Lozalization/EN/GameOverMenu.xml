@@ -2,7 +2,7 @@
 <GameOverMenu>
 	<totalText>Total</totalText>
 	<gameOver>Game Over</gameOver>
-	<normal>
+	<Normal>
 		<images>
 			<targetImage1>star</targetImage1>
 			<targetImage2>time_elapsed</targetImage2>
@@ -13,8 +13,8 @@
 			<targetText2>Time elapsed</targetText2>
 			<targetText3>Goals</targetText3>
 		</texts>
-	</normal>
-	<speed>
+	</Normal>
+	<Speed>
 		<images>
 			<targetImage1>star</targetImage1>
 			<targetImage2>accuracy</targetImage2>
@@ -25,8 +25,8 @@
 			<targetText2>Accuracy</targetText2>
 			<targetText3>Goals</targetText3>
 		</texts>
-	</speed>
-	<speedAI>
+	</Speed>
+	<SpeedAI>
 		<images>
 			<targetImage1>star</targetImage1>
 			<targetImage2></targetImage2>
@@ -37,5 +37,5 @@
 			<targetText2></targetText2>
 			<targetText3>Goals</targetText3>
 		</texts>
-	</speedAI>
+	</SpeedAI>
 </GameOverMenu>

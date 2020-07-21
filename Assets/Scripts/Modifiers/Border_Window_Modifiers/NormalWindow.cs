@@ -13,6 +13,11 @@ public class NormalWindow : MonoBehaviour
         game = gameObject.GetComponent<Window>().game;
     }
 
+    /* Если шайба удачно проходит через окно - шайба пренадлежит другому полю 
+     * Удачно прошла - означает что она зашла в окно и вышла с противоположной стороны
+     * часто бывают случаи когда шайба задевает границу окна и слегка в них заходит после 
+     * чего вылетает обратно на поле того игрока который её отправил
+     */
     private void OnTriggerExit2D(Collider2D collision)
     {
         Checker check = collision.gameObject.GetComponent<Checker>();

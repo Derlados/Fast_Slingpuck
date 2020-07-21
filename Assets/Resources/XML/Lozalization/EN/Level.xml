@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Level>
     <mode>
-        <normal>Standard</normal>
-	<speed>Speed</speed>
+        <Normal>Standard</Normal>
+	<Speed>Speed</Speed>
     </mode>
     <difficulty>
         <begginer>Begginer</begginer>
@@ -11,24 +11,24 @@
 	<god>God</god>
     </difficulty>
     <description>
-        <normal>Standard mode - a standard game in which the goal of each player to free his field from the pucks having thrown them on the opponent’s field, the one who throws all the pucks on the opponent’s field first wins</normal>
-	<speed>??????</speed>    
+        <Normal>Standard mode - a standard game in which the goal of each player to free his field from the pucks having thrown them on the opponent’s field, the one who throws all the pucks on the opponent’s field first wins</Normal>
+	<Speed>??????</Speed>    
     </description>
     <targets>
-	<normalAI>
+	<NormalAI>
 	    <target1>Victory</target1>
 	    <target2>Victory in NUMBER seconds</target2>
 	    <target3>No more than NUMBER checkers on the field at a time</target3>
-	</normalAI>
-	<speed>
+	</NormalAI>
+	<Speed>
 	    <target1>Score NUMBER goals</target1>
 	    <target2>Score NUMBER goals</target2>
 	    <target3>Accuracy NUMBER %</target3>
-	</speed>
-	<speedAI>
+	</Speed>
+	<SpeedAI>
 	    <target1>Victory</target1>
 	    <target2>Score NUMBER goals</target2>
 	    <target3>Keep up with AI</target3>
-	</speedAI>
+	</SpeedAI>
     </targets>
 </Level>

@@ -1,4 +1,5 @@
 using BaseStructures;
+using System.Runtime.CompilerServices;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -18,8 +19,9 @@ public class Checker : MonoBehaviour
     public Rigidbody2D body;
     public Transform objTransform; // компоненты Transfrom объекта
 
-    bool mouseDown = false; // Проверка нажатия на предмет
+    bool mouseDown = false, stop = false; // Проверка нажатия на предмет, stop - рехрешение на движение
     float V = 0.0f, radius; // начальная скорость объекта и радиус объекта
+    public float angle;
 
     // Границы поля
     public GameObject leftBorderHolder;
@@ -87,22 +89,24 @@ public class Checker : MonoBehaviour
 
     private void OnMouseDrag()
     {
-        Vector2 Cursor = Input.mousePosition;
-        Cursor = Camera.main.ScreenToWorldPoint(Cursor);
-
-        if (objTransform.position.y < 0)
+        if (!stop)
         {
-            Vector2 clampedMousePos = new Vector2(Mathf.Clamp(Cursor.x, playerDownBorder.Left, playerDownBorder.Right),
-            Mathf.Clamp(Cursor.y, playerDownBorder.Down, playerDownBorder.Up));
-            transform.position = Vector2.MoveTowards(transform.position, clampedMousePos, Time.deltaTime * 100f);
-        }
-        else
-        {
-            Vector2 clampedMousePos = new Vector2(Mathf.Clamp(Cursor.x, playerUpBorder.Left, playerUpBorder.Right),
-            Mathf.Clamp(Cursor.y, playerUpBorder.Down, playerUpBorder.Up));
-            transform.position = Vector2.MoveTowards(transform.position, clampedMousePos, Time.deltaTime * 100f);
-        }
+            Vector2 Cursor = Input.mousePosition;
+            Cursor = Camera.main.ScreenToWorldPoint(Cursor);
 
+            if (objTransform.position.y < 0)
+            {
+                Vector2 clampedMousePos = new Vector2(Mathf.Clamp(Cursor.x, playerDownBorder.Left, playerDownBorder.Right),
+                Mathf.Clamp(Cursor.y, playerDownBorder.Down, playerDownBorder.Up));
+                transform.position = Vector2.MoveTowards(transform.position, clampedMousePos, Time.deltaTime * 100f);
+            }
+            else
+            {
+                Vector2 clampedMousePos = new Vector2(Mathf.Clamp(Cursor.x, playerUpBorder.Left, playerUpBorder.Right),
+                Mathf.Clamp(Cursor.y, playerUpBorder.Down, playerUpBorder.Up));
+                transform.position = Vector2.MoveTowards(transform.position, clampedMousePos, Time.deltaTime * 100f);
+            }
+        }
     }
 
 
@@ -110,6 +114,7 @@ public class Checker : MonoBehaviour
     {
         body.velocity *= 0;
         V = 0.0f;
+        angle = field == Field.Down ? 90f : 270f;
         mouseDown = true;
     }
 
@@ -124,7 +129,6 @@ public class Checker : MonoBehaviour
                 ++Game.countShots;
                 V = ((checkY - objTransform.position.y) * 124 + 4) / boostModificator; // Формула рассчета начальной скорости объекта
             }
-            objTransform.rotation = Quaternion.Euler(0, 0, 90);
         }
         else
         {
@@ -134,9 +138,9 @@ public class Checker : MonoBehaviour
                 ++Game.countShots;
                 V = ((objTransform.position.y - checkY) * 124 + 4) / reductorModificator; // Формула рассчета начальной скорости объекта
             }
-            objTransform.rotation = Quaternion.Euler(0, 0, -90);
         }
 
+        objTransform.rotation = Quaternion.Euler(0, 0, angle);
         body.AddForce(transform.right * V * 300);
     }
 
@@ -148,5 +152,10 @@ public class Checker : MonoBehaviour
     public bool getMouseDown()
     {
         return mouseDown;
+    }
+
+    public void setStop(bool stop)
+    {
+        this.stop = stop;
     }
 }

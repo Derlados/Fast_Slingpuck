@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-interface Mode
+public interface Mode
 {
     void initScene();
     void calculateResult();

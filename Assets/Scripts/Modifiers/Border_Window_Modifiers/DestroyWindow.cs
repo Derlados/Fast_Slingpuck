@@ -11,6 +11,10 @@ public class DestroyWindow : MonoBehaviour
         game = gameObject.GetComponent<Window>().game;
     }
 
+    /* Окно "уничтожитель"
+     * Если шайба удачно пролетает через окно - шайба должна быть визуально уничтожена
+     * таким образом смены пренадлежности какому то полю у шайбы не происходит
+     */
     private void OnTriggerExit2D(Collider2D collision)
     {
         Checker check = collision.gameObject.GetComponent<Checker>();

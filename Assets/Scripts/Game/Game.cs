@@ -1,12 +1,6 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System;
 using UnityEngine;
 using UnityEngine.UI;
-using UnityEngine.SceneManagement;
-using System.Linq;
-using BaseStructures;
-using System.IO;
-using System.Runtime.CompilerServices;
 
 // Класс отвечающий за геймплей в самой игре
 public class Game : MonoBehaviour
@@ -51,32 +45,34 @@ public class Game : MonoBehaviour
         // Модификация компонентов относительно выбраных настроек
         switch (mode)
         {
-            case GameRule.Mode.normal:
-                gameObject.AddComponent<Normal>();
+            case GameRule.Mode.Normal:              
                 window.AddComponent<NormalWindow>();
                 for (int i = 0; i < checkersNormal.transform.childCount; ++i)
                     checkersNormal.transform.GetChild(i).gameObject.AddComponent<Modifier>();
-
-                
-                for (int i = 0; i < checkersNormal.transform.childCount / 2; ++i)
-                    checkersNormal.transform.GetChild(i).gameObject.transform.GetComponent<Image>().sprite = Resources.Load<Sprite>("Sprites/levels/checkers/" + playerData.puckSprite);
-
                  checkers = checkersNormal;
                 break;
-            case GameRule.Mode.speed:
-                gameObject.AddComponent<Speed>();
+            case GameRule.Mode.Speed:
                 window.AddComponent<DestroyWindow>();
                 for (int i = 0; i < checkersSpeed.transform.childCount; ++i)
                     checkersSpeed.transform.GetChild(i).gameObject.AddComponent<Destroy>();
-                checkersSpeed.transform.GetChild(0).transform.GetComponent<Image>().sprite = Resources.Load<Sprite>("Sprites/levels/checkers/" + playerData.puckSprite);
-
                 checkers = checkersSpeed;
                 break;
         }
 
+
+        for (int i = 0; i < checkers.transform.childCount / 2; ++i)
+            checkers.transform.GetChild(i).gameObject.transform.GetComponent<Image>().sprite = Resources.Load<Sprite>("Sprites/levels/checkers/" + playerData.puckSprite);
+        gameObject.AddComponent(Type.GetType(GameRule.mode.ToString()));
+
+        if (GameRule.ActiveAI)
+        {
+            AI.AddComponent(Type.GetType(GameRule.TypeAI.ToString()));
+            AI.SetActive(true);
+        }
+
         // Наложение соответствующий текстур
         ChangePlanetSprite(type.ToString() + "_planet");
-        if (GameRule.AI)
+        if (GameRule.ActiveAI)
             ChangeCheckerSprite(type.ToString() + "_CheckerGlowMat", checkers);
         ChangeParticle(type.ToString() + "_particle",true);
     }
