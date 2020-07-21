@@ -8,8 +8,8 @@ public static class GameRule
 {
     public enum Mode
     {
-        normal,
-        speed
+        Normal,
+        Speed
     }
     public enum Type
     {
@@ -27,6 +27,12 @@ public static class GameRule
         chinese
     }
 
+    public enum AI
+    {
+        AI, 
+        RotationAI
+    }
+
     /* Настройки уровня
      * mode - режим игры
      * type - тип поля
@@ -35,7 +41,8 @@ public static class GameRule
      */
     public static Mode mode; // Режим игры
     public static Type type; // Тип планеты
-    public static bool AI; // Наличие ИИ
+    public static AI TypeAI; // Вид ИИ
+    public static bool ActiveAI; // Наличие ИИ
     public static Difficulties difficulties; // Сложность игры
 
     public static int planetNum, levelNum; // номер планеты и номер уровня, необходимы для записи прогреса

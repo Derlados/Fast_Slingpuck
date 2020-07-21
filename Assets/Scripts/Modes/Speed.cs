@@ -48,11 +48,8 @@ public class Speed : MonoBehaviour, Mode
 
         // Бот
         AI = game.AI;
-        if (!GameRule.AI)
-        {
-            AI.SetActive(false);
+        if (!GameRule.ActiveAI)
             upCountText.gameObject.SetActive(false);
-        }
 
         // Установка начального текста для счетчиков
         downCountText.text = downCount.ToString();
@@ -109,14 +106,14 @@ public class Speed : MonoBehaviour, Mode
         double accuracy = ((double)downCount / Game.countShots);
 
         // Начисление звезд
-        if ((!GameRule.AI && downCount < winTarget) || (GameRule.AI && downCount <= upCount))
+        if ((!GameRule.ActiveAI && downCount < winTarget) || (GameRule.ActiveAI && downCount <= upCount))
             game.countStars = 0;
         else
         {
             if (downCount < targetCheckers)
                 --game.countStars;
 
-            if ((GameRule.AI && maxLag > 0) || (!GameRule.AI && accuracy < GameRule.target3))
+            if ((GameRule.ActiveAI && maxLag > 0) || (!GameRule.ActiveAI && accuracy < GameRule.target3))
                 --game.countStars;
         }
 
@@ -127,7 +124,7 @@ public class Speed : MonoBehaviour, Mode
          * Начисление монет если игра была против ИИ
          * За каждое очко на которое максимально отстал от ИИ игрок - штраф 1/5 от полного зароботка, таким образом отставание более чем на 5 голов приводит к тому что игрок получает 0 монет
          */
-        money2 = !GameRule.AI ? (int)(accuracyOrLagMoney * accuracy) : accuracyOrLagMoney - (maxLag * accuracyOrLagMoney / 5);
+        money2 = !GameRule.ActiveAI ? (int)(accuracyOrLagMoney * accuracy) : accuracyOrLagMoney - (maxLag * accuracyOrLagMoney / 5);
         if (money2 < 0 || money1 == 0)
             money2 = 0;
 

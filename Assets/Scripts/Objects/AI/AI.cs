@@ -21,7 +21,7 @@ public class AI : MonoBehaviour
         aim
     }
 
-    public List<Checker> checkers; // список всех шайб которыми может играть AI
+    public List<Checker> checkers = new List<Checker>(); // список всех шайб которыми может играть AI
     protected Status statusType = Status.free;
 
     public bool active;    // false - AI отключен, true - AI включен
@@ -63,6 +63,7 @@ public class AI : MonoBehaviour
 
             if (statusType == Status.free && checkers.Count > 0)
             {
+                Debug.Log(checkers.Count);
                 getChecker();
                 statusType = Status.keep;
             }

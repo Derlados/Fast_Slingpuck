@@ -16,11 +16,12 @@ public class RotationAI : AI
 
         // Вычисление позиция для шайбы
         keepChecker.OnMouseDown();
-        target = new Vector2(UnityEngine.Random.Range(-2.5f, 2.5f), upBorder - 1.2f * keepChecker.getRadius());
+        target = new Vector2(UnityEngine.Random.Range(leftBorder * 2, rightBorder * 2), upBorder - 1.2f * keepChecker.getRadius());
     }
 
     public override void aim()
     {
+
         keepChecker.angle -= calculateAngle(target, new Vector2(UnityEngine.Random.Range(leftBorder, rightBorder), 0));
         keepObj.rotation = Quaternion.Euler(0, 0, keepChecker.angle);
     }

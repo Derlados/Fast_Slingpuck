@@ -24,6 +24,7 @@ public class Level : MonoBehaviour
 
     public GameRule.Mode mode; // Режим игры
     public GameRule.Type type; // Тип планеты
+    public GameRule.AI typeAI;
     public bool AI; // Наличие ИИ. true - игра с ИИ, false - игра без ИИ
     public GameRule.Difficulties difficulties; // Сложность игры
     public int numLevel; // Номер уровня, необходимо знать для того чтобы в дальнейшем записать результат
@@ -33,7 +34,7 @@ public class Level : MonoBehaviour
     {
         GameRule.mode = mode;
         GameRule.type = type;
-        GameRule.AI = AI;
+        GameRule.ActiveAI = AI;
         GameRule.difficulties = difficulties;
         GameRule.levelNum = numLevel;
 
@@ -46,11 +47,11 @@ public class Level : MonoBehaviour
     {
         switch (GameRule.mode)
         {
-            case GameRule.Mode.normal:
+            case GameRule.Mode.Normal:
                 GameRule.target2 = normal.time;
                 GameRule.target3 = normal.countCheckers;
                 break;
-            case GameRule.Mode.speed:
+            case GameRule.Mode.Speed:
                 GameRule.target1 = speed.minTargetCheckers;
                 GameRule.target2 = speed.maxTargetCheckers;
                 GameRule.target3 = speed.accuracy;

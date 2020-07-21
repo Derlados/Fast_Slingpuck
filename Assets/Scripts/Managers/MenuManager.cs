@@ -110,7 +110,7 @@ public class MenuManager : MonoBehaviour
         levelDesc.GameModeText.text = data.Element("mode").Element(level.mode.ToString()).Value;
         levelDesc.GameDescriptionText.text = data.Element("description").Element(level.mode.ToString()).Value;
 
-        string el = GameRule.AI ? level.mode.ToString() + "AI" : level.mode.ToString();
+        string el = GameRule.ActiveAI ? level.mode.ToString() + "AI" : level.mode.ToString();
         data = data.Element("targets").Element(el);
 
         levelDesc.TargetText1.text = data.Element("target1").Value.Replace("NUMBER", GameRule.target1.ToString());
