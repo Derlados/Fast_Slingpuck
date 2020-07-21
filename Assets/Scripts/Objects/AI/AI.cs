@@ -25,11 +25,13 @@ public class AI : MonoBehaviour
     protected Status statusType = Status.free;
 
     public bool active;    // false - AI отключен, true - AI включен
-    public static float speedAI, accuracyAI, timeRest;   // speedAi - скорость AI, accuracyAi - точность AI (разброс в процентах), time - время взятия фишки
+    public static float speedAI, accuracyAI, timeRest;  // speedAi - скорость AI, accuracyAi - точность AI (разброс в процентах), time - время взятия фишки, timeAim - время прицеливания
     protected float leftBorder, rightBorder, upBorder;    // границы бота
-    protected Vector2 target, targetWindow;     // позиция шайбы для запуска
+    protected float angle; // угол поворота шайбы 
+    protected Vector2 target;     // позиция шайбы для запуска
     protected Transform keepObj;  // удерживаемая шайба
     protected Checker keepChecker;
+
 
     private void Start()
     {
@@ -69,7 +71,7 @@ public class AI : MonoBehaviour
             {
                 keepObj.position = Vector2.MoveTowards(keepObj.position, target, Time.deltaTime * speedAI);
                 if ((Vector2)keepObj.position == target)
-                    statusType = Status.ready;
+                    statusType = Status.aim;
             }
             
             if (statusType == Status.aim)

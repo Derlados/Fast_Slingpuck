@@ -5,20 +5,24 @@ using UnityEngine;
 
 public class RotationAI : AI
 {
-
-    public override void pushChecker()
+    public override void getChecker()
     {
-        Debug.Log("RotationAI");
+        // Выбор самой ближней к нити шайбы
         keepObj = checkers[0].objTransform;
         for (int i = 1; i < checkers.Count; ++i)
             if (checkers[i].objTransform.position.y > keepObj.position.y)
                 keepObj = checkers[i].objTransform;
         keepChecker = keepObj.GetComponent<Checker>();
 
+        // Вычисление позиция для шайбы
         keepChecker.OnMouseDown();
         target = new Vector2(UnityEngine.Random.Range(-2.5f, 2.5f), upBorder - 1.2f * keepChecker.getRadius());
+    }
 
-        StartCoroutine(waitRot());
+    public override void aim()
+    {
+        keepChecker.angle -= calculateAngle(target, new Vector2(UnityEngine.Random.Range(leftBorder, rightBorder), 0));
+        keepObj.rotation = Quaternion.Euler(0, 0, keepChecker.angle);
     }
 
     /* Подсчет угла поворота
@@ -44,14 +48,5 @@ public class RotationAI : AI
             return -alpha;
         else
             return alpha;
-    }
-
-    IEnumerator waitRot()
-    {
-        while (statusType != Status.wait)
-            yield return new WaitForSeconds(0.05f);
-        
-        keepChecker.angle -= calculateAngle(target, new Vector2(UnityEngine.Random.Range(leftBorder, rightBorder), 0));
-        keepObj.rotation = Quaternion.Euler(0, 0, keepChecker.angle);
     }
 }
