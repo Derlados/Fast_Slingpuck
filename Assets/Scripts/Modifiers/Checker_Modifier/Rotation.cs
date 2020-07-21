@@ -1,33 +1,58 @@
-﻿using BaseStructures;
-using System;
-using System.Collections;
-using System.Collections.Generic;
+﻿using System;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Rotation : Modifier
 {
     Checker checker;
+    GameObject arrowAim;
 
     private void Start()
     {
         checker = gameObject.GetComponent<Checker>();
+
+        arrowAim = new GameObject("ArrowAim");
+        arrowAim.transform.SetParent(this.gameObject.transform);
+       
+        // Загрузка изображения
+        arrowAim.AddComponent<Image>().sprite = Resources.Load<Sprite>("Sprites/levels/checkers/Effect/Arrow");
+       
+        // Корректировка изображения
+        RectTransform rect = arrowAim.GetComponent<RectTransform>();
+        float radius = gameObject.GetComponent<CircleCollider2D>().radius;
+
+        rect.localScale = new Vector3(1, 1, 1);  
+        arrowAim.transform.rotation = gameObject.transform.rotation;
+        rect.sizeDelta = new Vector2(radius * 3, radius * 2);
+        rect.localPosition = new Vector3(rect.sizeDelta.x / 2, 0, 0);
+
+        Canvas canvas = arrowAim.AddComponent<Canvas>();
+        canvas.overrideSorting = true;
+        canvas.sortingOrder = -1;
+
     }
 
     void Update()
     {
         if (checker.getMouseDown())
-        {    
+        {
             Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 
             if (mousePos.y < checker.playerDownBorder.Down)
             {
+                arrowAim.SetActive(true);
                 checker.setStop(true);
                 checker.angle = 90 + calculateRotation(mousePos, checker.transform.position);
-                checker.transform.rotation = Quaternion.Euler(0, 0, checker.angle);           
+                checker.transform.rotation = Quaternion.Euler(0, 0, checker.angle);
             }
             else
+            {
+                arrowAim.SetActive(false);
                 checker.setStop(false);
+            }
         }
+        else
+            arrowAim.SetActive(false);
     }
 
     /* Функция для вычисления угла поворота шайбы

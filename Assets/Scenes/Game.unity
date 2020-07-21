@@ -98,7 +98,7 @@ LightmapSettings:
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 0
+  m_UseShadowmask: 1
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -10162,6 +10162,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1137931240}
   - component: {fileID: 1137931241}
+  - component: {fileID: 1137931243}
   - component: {fileID: 1137931242}
   m_Layer: 5
   m_Name: UpBorderHolder(AI)
@@ -10169,7 +10170,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1137931240
 RectTransform:
   m_ObjectHideFlags: 0
@@ -10227,6 +10228,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a45c2fa02ffccf741ad008e52daa894b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1137931243
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1137931239}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 36e60e689cf95b9419fb3cfc812fb546, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  checkers: []
+  line: {fileID: 6473322893027568490}
+  active: 0
+  speedAI: 3
+  accuracyAI: 0.2
+  timeRest: 0
 --- !u!1 &1146339053
 GameObject:
   m_ObjectHideFlags: 0

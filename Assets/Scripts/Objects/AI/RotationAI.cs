@@ -14,7 +14,7 @@ public class RotationAI : AI
                 keepObj = checkers[i].objTransform;
         keepChecker = keepObj.GetComponent<Checker>();
 
-        // Вычисление позиция для шайбы
+        // Вычисление позиция для шайбы (Разброс по X необходимо скорректироваться, пока что он (leftBorder * 2, rightBorder * 2))
         keepChecker.OnMouseDown();
         target = new Vector2(UnityEngine.Random.Range(leftBorder * 2, rightBorder * 2), upBorder - 1.2f * keepChecker.getRadius());
     }
