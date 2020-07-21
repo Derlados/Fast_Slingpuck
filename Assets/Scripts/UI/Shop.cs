@@ -25,7 +25,7 @@ public class ShopData
  */
 
 [System.Serializable]
-public class UserShopData
+public class UserShopData 
 {
     public List<bool> userCheckers = new List<bool>();
     public List<int> userModificators = new List<int>();
@@ -39,8 +39,9 @@ public class Shop : MonoBehaviour
     public GameObject checkerPanel; //обьект в кот ром находятся шайбы, которые можно купить
     public GameObject modificatorsPanel; //обьект в котором находятся модификаторы, которые можно купить
     private GameObject secondTab; //2-ое меню
-    public GameObject selected_panel; //выбранная панель
+    public GameObject selectedPanel; //выбранная панель
     GameObject currenChecker; //обьект выбранной шайбы
+    public GameObject shopMenu; //обьект магазина
 
     PlayerData playerData;  //данные игрока
     //ShopData shopData; //данные об шайбах в магазине
@@ -62,7 +63,7 @@ public class Shop : MonoBehaviour
 
         //установка кол-во денег и текущий спрайт шайбы игрока
         playerData = PlayerData.getInstance();
-        PlayerMoneyText = this.transform.GetChild(4).transform.GetChild(1).gameObject;
+        PlayerMoneyText = shopMenu.transform.GetChild(4).transform.GetChild(1).gameObject;
         LoadMoney();
 
         //установка доступных шайб для покупки
@@ -122,6 +123,7 @@ public class Shop : MonoBehaviour
         PlayerData playerData = PlayerData.getInstance();
         XMLManager.LoadData<PlayerData>(ref playerData, "PlayerData");
         PlayerMoneyText.GetComponent<Text>().text = playerData.money.ToString();
+        MainMenu.LoadMoney();
     }
     
     public void ChangeChecker(GameObject checker)
@@ -228,7 +230,7 @@ public class Shop : MonoBehaviour
         {
             if (userShopData.userCheckers[i]) checkerPanel.transform.GetChild(i).transform.GetChild(2).gameObject.SetActive(userShopData.userCheckers[i]);
             else checkerPanel.transform.GetChild(i).transform.GetChild(2).transform.GetComponent<Text>().text = haveIt;
-        };
+        }
 
         //поиск номера этой шайбы в списке
         for (int i = 0; i < checkerPanel.transform.childCount; ++i)
@@ -244,7 +246,9 @@ public class Shop : MonoBehaviour
 
         //установка доступных модификаторов
         for (int i = 0; i < modificatorsPanel.transform.childCount; ++i)
-            modificatorsPanel.transform.GetChild(i).transform.GetChild(1).gameObject.transform.GetComponent<Text>().text = userShopData.userModificators[i].ToString();
+        {
+            modificatorsPanel.transform.GetChild(i).transform.GetChild(5).gameObject.transform.GetComponent<Text>().text = userShopData.userModificators[i].ToString();
+        }
     }
 
     //добалвение модификаторов (обьектов) в меню магазина
@@ -286,19 +290,19 @@ public class Shop : MonoBehaviour
     public void BuyModificator(GameObject modificator)
     {
         //получение цены модификатора
-        int money = int.Parse(modificator.transform.GetChild(0).transform.GetComponent<Text>().text);
+        int money = int.Parse(modificator.transform.GetChild(2).transform.GetComponent<Text>().text);
 
         //поиск номера этого модификатора в списке
         for (int i = 0; i < modificatorsPanel.transform.childCount; ++i)
         {
-            if (modificator.GetComponent<Image>().sprite.name == modificatorsPanel.transform.GetChild(i).GetComponent<Image>().sprite.name)
+            if (modificator.transform.GetChild(4).GetComponent<Image>().sprite.name == modificatorsPanel.transform.GetChild(i).GetChild(4).GetComponent<Image>().sprite.name)
             {
                 //если у юзера есть такое кол-во денег, происходит покупка
                 if (playerData.money >= money)
                 {
-                    int count = int.Parse(modificator.transform.GetChild(1).GetComponent<Text>().text);
+                    int count = int.Parse(modificator.transform.GetChild(5).GetComponent<Text>().text);
                     count++;
-                    modificator.transform.GetChild(1).GetComponent<Text>().text = count.ToString();
+                    modificator.transform.GetChild(5).GetComponent<Text>().text = count.ToString();
 
                     userShopData.userModificators[i] = count;
                     XMLManager.SaveData<UserShopData>(userShopData, "UserShopData");
@@ -333,8 +337,8 @@ public class Shop : MonoBehaviour
         firstTab.transform.GetComponent<Image>().sprite = Resources.Load<Sprite>(SHOP_PATH + "shop_selectedOption");
         secondTab.transform.GetComponent<Image>().sprite = Resources.Load<Sprite>(SHOP_PATH + "shop_unselectedOption");
 
-        if (firstTab.tag == "modificatorBtn") selected_panel.transform.GetComponent<Image>().sprite = Resources.Load<Sprite>(SHOP_PATH + "2shop_selected_panel");
-        else selected_panel.transform.GetComponent<Image>().sprite = Resources.Load<Sprite>(SHOP_PATH + "shop_selected_panel");
+        if (firstTab.tag == "modificatorBtn") selectedPanel.transform.GetComponent<Image>().sprite = Resources.Load<Sprite>(SHOP_PATH + "2shop_selected_panel");
+        else selectedPanel.transform.GetComponent<Image>().sprite = Resources.Load<Sprite>(SHOP_PATH + "shop_selected_panel");
     }
 
     public void setSecondTab(GameObject obj)

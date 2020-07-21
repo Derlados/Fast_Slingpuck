@@ -25,7 +25,7 @@ public class AI : MonoBehaviour
     private Status statusType = Status.free;
 
     public bool active;    // false - AI отключен, true - AI включен
-    public float speedAI, accuracyAI, timeRest;   // speedAi - скорость AI, accuracyAi - точность AI (разброс в процентах), time - время взятия фишки
+    public static float speedAI, accuracyAI, timeRest;   // speedAi - скорость AI, accuracyAi - точность AI (разброс в процентах), time - время взятия фишки
     private float leftBorder, rightBorder, upBorder;    // границы бота
     private Vector2 target;     // позиция шайбы для запуска
     private Transform keepObj;  // удерживаемая шайба

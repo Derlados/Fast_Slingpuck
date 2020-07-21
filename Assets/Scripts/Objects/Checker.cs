@@ -29,6 +29,9 @@ public class Checker : MonoBehaviour
     public Border playerDownBorder;
     public Border playerUpBorder;
 
+    public static float boostModificator = 20.0f;
+    public static float reductorModificator = 20.0f;
+
     public struct Border
     {
         public float Up, Down, Left, Right;
@@ -124,7 +127,7 @@ public class Checker : MonoBehaviour
             if (objTransform.position.y < checkY)
             {
                 ++Game.countShots;
-                V = ((checkY - objTransform.position.y) * 124 + 4) / 20.0f; // Формула рассчета начальной скорости объекта
+                V = ((checkY - objTransform.position.y) * 124 + 4) / boostModificator; // Формула рассчета начальной скорости объекта
             }
         }
         else
@@ -133,7 +136,7 @@ public class Checker : MonoBehaviour
             if (objTransform.position.y > checkY)
             {
                 ++Game.countShots;
-                V = ((objTransform.position.y - checkY) * 124 + 4) / 20.0f; // Формула рассчета начальной скорости объекта
+                V = ((objTransform.position.y - checkY) * 124 + 4) / reductorModificator; // Формула рассчета начальной скорости объекта
             }
         }
 

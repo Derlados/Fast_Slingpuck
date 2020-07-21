@@ -29,5 +29,5 @@
       <unsignedByte>0</unsignedByte>
     </ArrayOfUnsignedByte>
   </progress>
-  <puckSprite>ice_checker</puckSprite>
+  <puckSprite>standart_checker</puckSprite>
 </PlayerData>
