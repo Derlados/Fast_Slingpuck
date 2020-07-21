@@ -4,10 +4,10 @@
   <progress>
     <PairOfListOfBytePairOfTypeBoolean>
       <first>
-        <unsignedByte>0</unsignedByte>
-        <unsignedByte>0</unsignedByte>
-        <unsignedByte>0</unsignedByte>
         <unsignedByte>3</unsignedByte>
+        <unsignedByte>0</unsignedByte>
+        <unsignedByte>0</unsignedByte>
+        <unsignedByte>0</unsignedByte>
       </first>
       <second>
         <first>lava</first>
@@ -23,7 +23,7 @@
       </first>
       <second>
         <first>sand</first>
-        <second>true</second>
+        <second>false</second>
       </second>
     </PairOfListOfBytePairOfTypeBoolean>
     <PairOfListOfBytePairOfTypeBoolean>
@@ -54,5 +54,5 @@
     </PairOfListOfBytePairOfTypeBoolean>
   </progress>
   <puckSprite>standart_checker</puckSprite>
-  <currentPlanet>1</currentPlanet>
+  <currentPlanet>0</currentPlanet>
 </PlayerData>
