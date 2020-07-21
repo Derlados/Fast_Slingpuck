@@ -47,11 +47,19 @@ public class GameMenu : MonoBehaviour
 
         // Запись значений в PlayerData
         playerData.money += money1 + money2 + money3;
-        if (playerData.progress[GameRule.planetNum][GameRule.levelNum] < stars)
-            playerData.progress[GameRule.planetNum][GameRule.levelNum] = (byte)stars;
+        if (playerData.progress[GameRule.planetNum].first[GameRule.levelNum] < stars)
+            playerData.progress[GameRule.planetNum].first[GameRule.levelNum] = (byte)stars;
+
+        if (GameRule.levelNum == GameRule.levelsCount && message== "YOU WIN !")
+        {
+           playerData.currentPlanet++;
+           playerData.progress[playerData.currentPlanet].second.second = true;
+        }
+
         XMLManager.SaveData(PlayerData.getInstance(), PlayerData.getInstance().ToString());
 
         gameOverText.text = message;
+
     }
 
     [System.Serializable]

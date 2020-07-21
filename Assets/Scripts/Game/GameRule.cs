@@ -38,6 +38,8 @@ public static class GameRule
     public static bool AI; // Наличие ИИ
     public static Difficulties difficulties; // Сложность игры
 
-    public static int planetNum, levelNum; // номер планеты и номер уровня, необходимы для записи прогреса
+    public static int planetNum, levelNum, levelsCount; // номер планеты, номер уровня и кол-во уровней планеты, необходимы для записи прогреса
     public static int target1, target2, target3; // Цели, как правило это всегда числовые значение, если это касается особенности геймплея, то это обеспечивает сам режим
+
+    public static Type[] planetProgressNum = new Type[4] { Type.lava, Type.sand, Type.ice, Type.jungle };
 }
