@@ -217,9 +217,8 @@ public class MenuManager : MonoBehaviour
                     //если это левел
                     else if (j == 0)
                     {
-                        //делаем прозрачным кнопку
-                        Color32 thisColor = child.GetComponent<Image>().color;
-                        child.GetComponent<Image>().color = new Color32(thisColor.r, thisColor.g, thisColor.b, 170);
+                        //делаем затемненой кнопку
+                        child.GetComponent<Image>().color = new Color32(204, 204, 204, 255);
                         //выключаем возможность нажатия
                         Button btn = child.GetComponent<Button>();
                         btn.enabled = false;
@@ -313,11 +312,15 @@ public class MenuManager : MonoBehaviour
 
         for (int i = 0; i < MenuManager.allPlanets; ++i)
         {
+            Button btn = galaxy.transform.GetChild(i + 2).GetComponent<Button>();
             if (!PlayerData.getInstance().progress[i].second.second)
             {
                 galaxy.transform.GetChild(i + 2).GetComponent<Image>().color = gray;
-                Button btn = galaxy.transform.GetChild(i + 2).GetComponent<Button>();
-                btn.enabled = !btn.enabled;
+                btn.enabled = false;
+            }
+            else
+            {
+                btn.enabled = true;
             }
 
         }
