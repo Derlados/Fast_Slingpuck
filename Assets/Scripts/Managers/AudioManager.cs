@@ -11,7 +11,16 @@ public static class AudioManager
         click,
         checker_hit,
         zoom,
-        unzoom
+        unzoom,
+        string_pulling,
+        buy,
+        refuse,
+        select,
+        rise01,
+        rise02,
+        rise03,
+        rise04,
+        claim
     }
 
     public static void PlaySound(Audio audio)

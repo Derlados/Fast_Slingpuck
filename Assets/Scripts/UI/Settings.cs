@@ -32,16 +32,6 @@ public class Settings : MonoBehaviour
         chosenModeText.text = diff.mode;
     }
 
-    /* Универсальный выбор сложностей
-     * Параметры:
-     * mode - выбранный режим 
-     */
-    public void LoadDifficultyPressed(string mode)
-    {
-        XMLManager.LoadDifficulty(ref diff, mode);
-        XMLManager.SaveData<Difficulty>(diff, settingsFileName);
-        chosenModeText.text = diff.mode;
-    }
 
     /* Универсальный выбор языка
      * Параметры:
@@ -49,6 +39,7 @@ public class Settings : MonoBehaviour
      */
     public void LanguagePressed(string lang)
     {
+        AudioManager.PlaySound(AudioManager.Audio.select);
         switch (lang)
         {
             case "RU":
@@ -62,13 +53,6 @@ public class Settings : MonoBehaviour
                 break;
         }
         LocalizationManager.resetLanguage();
-    }
-
-    public void LevelPressed(string level)
-    {
-        GameManager.level = level;
-        GameManager.setNormalMode();
-        SceneManager.LoadScene("Game");
     }
 }
 

@@ -110,6 +110,8 @@ public class Daily : MonoBehaviour
         claimBtn.SetActive(false);
         closeBtn.SetActive(true);
         DailyMenu.SetActive(false);
+
+        AudioManager.PlaySound(AudioManager.Audio.claim);
     }
 
     public void addMoney(int money)
