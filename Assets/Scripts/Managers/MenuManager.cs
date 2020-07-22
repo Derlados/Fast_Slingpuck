@@ -2,6 +2,7 @@
 using Boo.Lang;
 using System;
 using System.Collections;
+using System.Security.Cryptography.X509Certificates;
 using System.Xml.Linq;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -17,6 +18,7 @@ public class MenuManager : MonoBehaviour
     public static GameObject planets;
     public GameObject levelInformation; // Описание уровня
     public GameObject backBtn; //кнопка назад
+    public static GameObject menu; //обьект меню
 
     // Уровни планеты и номер самой планеты
     private GameObject planetLevels;
@@ -79,7 +81,20 @@ public class MenuManager : MonoBehaviour
 
     }
 
-    //////////////////////////////////////////////////////////////////////////////////  GALAXY  ///////////////////////////////////////////////////////////////////////////////////
+    //////////////////////////////////////////////////////////////////////////////////  Main menu  ///////////////////////////////////////////////////////////////////////////////////
+
+    public void setMenu(GameObject menu)
+    {
+        MenuManager.menu = menu;
+    }
+    public void btn(bool active)
+    {
+        menu.SetActive(active);
+        thisCamera.transform.GetComponent<UIParallax>().setActive(!active);
+        AudioManager.PlaySound(AudioManager.Audio.click);
+    }
+
+    //////////////////////////////////////////////////////////////////////////////////  Galaxy  ///////////////////////////////////////////////////////////////////////////////////
 
     // Загрузка описания уровня
     [System.Serializable]
@@ -144,6 +159,8 @@ public class MenuManager : MonoBehaviour
             Button btn = planet.GetComponent<Button>();
             btn.enabled = !btn.enabled;
             thisCamera.GetComponent<UIParallax>().setActive(false);
+
+            AudioManager.PlaySound(AudioManager.Audio.zoom);
         }
     }
 
@@ -177,6 +194,8 @@ public class MenuManager : MonoBehaviour
         btn.enabled = !btn.enabled;
 
         thisCamera.GetComponent<UIParallax>().setActive(true);
+
+        AudioManager.PlaySound(AudioManager.Audio.unzoom);
     }
 
     // Анимация прорисовки уровней
@@ -217,9 +236,8 @@ public class MenuManager : MonoBehaviour
                     //если это левел
                     else if (j == 0)
                     {
-                        //делаем прозрачным кнопку
-                        Color32 thisColor = child.GetComponent<Image>().color;
-                        child.GetComponent<Image>().color = new Color32(thisColor.r, thisColor.g, thisColor.b, 170);
+                        //делаем затемненой кнопку
+                        child.GetComponent<Image>().color = new Color32(204, 204, 204, 255);
                         //выключаем возможность нажатия
                         Button btn = child.GetComponent<Button>();
                         btn.enabled = false;
@@ -313,11 +331,15 @@ public class MenuManager : MonoBehaviour
 
         for (int i = 0; i < MenuManager.allPlanets; ++i)
         {
+            Button btn = galaxy.transform.GetChild(i + 2).GetComponent<Button>();
             if (!PlayerData.getInstance().progress[i].second.second)
             {
                 galaxy.transform.GetChild(i + 2).GetComponent<Image>().color = gray;
-                Button btn = galaxy.transform.GetChild(i + 2).GetComponent<Button>();
-                btn.enabled = !btn.enabled;
+                btn.enabled = false;
+            }
+            else
+            {
+                btn.enabled = true;
             }
 
         }
