@@ -4,35 +4,9 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
-public class Difficulty
-{
-    public string mode;
-    public float speedAI;
-    public float accuracyAI;
-    public float timeRest;
-}
 
 public class Settings : MonoBehaviour
 {
-    public Text chosenModeText;
-    public Difficulty diff;
-    string settingsFileName = "settings";
-
-    private void Start()
-    {
-        diff = new Difficulty();
-
-        if (!XMLManager.LoadData<Difficulty>(ref diff, settingsFileName))
-        {
-            XMLManager.LoadDifficulty(ref diff, "begginer");
-            XMLManager.SaveData<Difficulty>(diff, settingsFileName);
-            chosenModeText.text = diff.mode;
-        }
-
-        chosenModeText.text = diff.mode;
-    }
-
-
     /* Универсальный выбор языка
      * Параметры:
      * lang - выбранный язык 

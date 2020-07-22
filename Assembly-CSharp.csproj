@@ -169,7 +169,6 @@
     <None Include="Assets\Resources\XML\Lozalization\EN\GameOverMenu.xml" />
     <None Include="Assets\Resources\XML\Game\Difficulties.xml" />
     <None Include="Assets\Data\settings.xml" />
-    <None Include="Assets\Resources\settings.xml" />
     <None Include="Assets\GooglePlayGames\Plugins\Android\GooglePlayGamesManifest.plugin\AndroidManifest.xml" />
     <None Include="Assets\Resources\XML\Lozalization\EN\Game.xml" />
     <None Include="Assets\Resources\XML\Lozalization\RU\MainMenu.xml" />

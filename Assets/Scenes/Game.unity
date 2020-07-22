@@ -98,7 +98,7 @@ LightmapSettings:
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 1
+  m_UseShadowmask: 0
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -18453,7 +18453,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2135837790}
   m_LocalRotation: {x: -0.0016563362, y: -0.69657725, z: 0.7174561, w: 0.0058536027}
-  m_LocalPosition: {x: 0, y: 0, z: -159}
+  m_LocalPosition: {x: 0, y: 0, z: -143}
   m_LocalScale: {x: 1.1397998, y: 1.1397998, z: -1.397053}
   m_Children: []
   m_Father: {fileID: 1837087575}
@@ -18461,7 +18461,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 91.798004, y: -199.613, z: -19.953003}
   m_AnchorMin: {x: 0.43963435, y: 0}
   m_AnchorMax: {x: 0.5091482, y: 0.037395354}
-  m_AnchoredPosition: {x: 7.0970917, y: -37.993317}
+  m_AnchoredPosition: {x: 1, y: -573}
   m_SizeDelta: {x: 4.060974, y: 1222.1886}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!199 &2135837792
@@ -18483,7 +18483,7 @@ ParticleSystemRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 281457efc312224428e714aecfecbe69, type: 2}
+  - {fileID: 2100000, guid: c9ecd7cdc79927047ba906f793ec4594, type: 2}
   - {fileID: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
