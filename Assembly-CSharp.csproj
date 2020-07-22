@@ -135,6 +135,7 @@
     <Compile Include="Assets\Scripts\Game\GameRule.cs" />
     <Compile Include="Assets\Scripts\Game\Level.cs" />
     <Compile Include="Assets\Scripts\Game\Modificators.cs" />
+    <Compile Include="Assets\Scripts\Managers\AudioManager.cs" />
     <Compile Include="Assets\Scripts\Managers\GameManager.cs" />
     <Compile Include="Assets\Scripts\Managers\LocalizationManager.cs" />
     <Compile Include="Assets\Scripts\Managers\MenuManager.cs" />
@@ -149,6 +150,7 @@
     <Compile Include="Assets\Scripts\Modifiers\Checker_Modifier\Rotation.cs" />
     <Compile Include="Assets\Scripts\Objects\AI\AI.cs" />
     <Compile Include="Assets\Scripts\Objects\AI\RotationAI.cs" />
+    <Compile Include="Assets\Scripts\Objects\AudioAssets.cs" />
     <Compile Include="Assets\Scripts\Objects\BezierLine.cs" />
     <Compile Include="Assets\Scripts\Objects\Border.cs" />
     <Compile Include="Assets\Scripts\Objects\BorderHolder.cs" />
