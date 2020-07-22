@@ -42,6 +42,7 @@ public class Shop : MonoBehaviour
     public GameObject selectedPanel; //выбранная панель
     GameObject currenChecker; //обьект выбранной шайбы
     public GameObject shopMenu; //обьект магазина
+    public GameObject backgroundAudio;
 
     PlayerData playerData;  //данные игрока
     //ShopData shopData; //данные об шайбах в магазине
@@ -177,19 +178,47 @@ public class Shop : MonoBehaviour
                         playerData.money -= money;
                         playerData.Save();
                         LoadMoney();
+
+                        StartCoroutine(fadeAudio());
+                        AudioManager.PlaySound(AudioManager.Audio.buy);
+
+
                     }
                     else
                     {
                         Debug.Log("Not enough money to buy!");
+                        AudioManager.PlaySound(AudioManager.Audio.refuse);
                     }
                 }
                 else
                 {
                     if(currenChecker != checker)
+                    {
                         ChangeChecker(checker);
+                        AudioManager.PlaySound(AudioManager.Audio.select);
+                    }
+                       
                 }
             }
         }
+    }
+
+    IEnumerator fadeAudio()
+    {
+        float targetVolume = backgroundAudio.transform.GetComponent<AudioSource>().volume;
+
+        for (float i = targetVolume; i >= 0; i -= 0.05f)
+        {
+            backgroundAudio.transform.GetComponent<AudioSource>().volume = i;
+            yield return new WaitForSeconds(0.1f);
+        }
+
+        for (float i = 0; i <= targetVolume; i += 0.05f)    
+        {
+            backgroundAudio.transform.GetComponent<AudioSource>().volume = i;
+            yield return new WaitForSeconds(0.1f);
+        }
+
     }
 
     //загрузка данных про купленные шайбы и модификаторы
@@ -311,10 +340,14 @@ public class Shop : MonoBehaviour
                     playerData.money -= money;
                     playerData.Save();
                     LoadMoney();
+
+                    AudioManager.PlaySound(AudioManager.Audio.select);
+
                 }
                 else
                 {
                     Debug.Log("Not enough money to buy or you already have it!");
+                    AudioManager.PlaySound(AudioManager.Audio.refuse);
                 }
             }
         }
@@ -339,6 +372,8 @@ public class Shop : MonoBehaviour
 
         if (firstTab.tag == "modificatorBtn") selectedPanel.transform.GetComponent<Image>().sprite = Resources.Load<Sprite>(SHOP_PATH + "2shop_selected_panel");
         else selectedPanel.transform.GetComponent<Image>().sprite = Resources.Load<Sprite>(SHOP_PATH + "shop_selected_panel");
+
+        AudioManager.PlaySound(AudioManager.Audio.click);
     }
 
     public void setSecondTab(GameObject obj)

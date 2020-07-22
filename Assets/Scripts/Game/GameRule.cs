@@ -50,3 +50,11 @@ public static class GameRule
 
     public static Type[] planetProgressNum = new Type[4] { Type.lava, Type.sand, Type.ice, Type.jungle };
 }
+
+public class Difficulty
+{
+    public string mode;
+    public float speedAI;
+    public float accuracyAI;
+    public float timeRest;
+}

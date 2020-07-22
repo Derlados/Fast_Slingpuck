@@ -23,6 +23,7 @@ TagManager:
   - sand
   - jungle
   - ice
+  - string
   layers:
   - Default
   - TransparentFX

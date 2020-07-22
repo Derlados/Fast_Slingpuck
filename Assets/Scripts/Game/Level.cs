@@ -46,6 +46,7 @@ public class Level : MonoBehaviour
 
     public void setTargets()
     {
+        AudioManager.PlaySound(AudioManager.Audio.select);
         switch (GameRule.mode)
         {
             case GameRule.Mode.Normal:

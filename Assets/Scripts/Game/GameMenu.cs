@@ -100,6 +100,7 @@ public class GameMenu : MonoBehaviour
         for (int i = 0; i < stars; ++i)
         {
             gameOverMenu.stars[i].gameObject.SetActive(true);
+            AudioManager.PlaySound(AudioManager.Audio.rise01);
             yield return new WaitForSeconds(0.5f);
         }
         StartCoroutine(spawnCount(money1, money2, money3));
@@ -124,6 +125,7 @@ public class GameMenu : MonoBehaviour
             yield return new WaitForSeconds(0.015f);
         }
 
+        AudioManager.PlaySound(AudioManager.Audio.rise04);
         int total = money1 + money2 + money3;
         for (int i = 1; i <= total; ++i)
         {
