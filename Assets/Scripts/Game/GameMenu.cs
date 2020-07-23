@@ -76,7 +76,7 @@ public class GameMenu : MonoBehaviour
     void createGameOverMenu()
     {
         XElement data; // Данные XML файла
-        TextAsset textAsset = (TextAsset)Resources.Load("XML/Lozalization/" + LocalizationManager.curLanguage.ToString() + "/GameOverMenu");
+        TextAsset textAsset = (TextAsset)Resources.Load("XML/Lozalization/" + PlayerData.getInstance().lang.ToString() + "/GameOverMenu");
         data = XDocument.Parse(textAsset.text).Element("GameOverMenu");
 
         gameOverMenu.gameOver.text = data.Element("gameOver").Value;

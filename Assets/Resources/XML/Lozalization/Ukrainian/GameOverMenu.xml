@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<GameOverMenu>
+	<totalText>Total</totalText>
+	<gameOver>Game Over</gameOver>
+	<Normal>
+		<images>
+			<targetImage1>star</targetImage1>
+			<targetImage2>time_elapsed</targetImage2>
+			<targetImage3>checker_goal</targetImage3>
+		</images>
+		<texts>
+			<targetText1>Game result</targetText1>
+			<targetText2>Time elapsed</targetText2>
+			<targetText3>Goals</targetText3>
+		</texts>
+	</Normal>
+	<Speed>
+		<images>
+			<targetImage1>star</targetImage1>
+			<targetImage2>accuracy</targetImage2>
+			<targetImage3>checker_goal</targetImage3>
+		</images>
+		<texts>
+			<targetText1>Game result</targetText1>
+			<targetText2>Accuracy</targetText2>
+			<targetText3>Goals</targetText3>
+		</texts>
+	</Speed>
+	<SpeedAI>
+		<images>
+			<targetImage1>star</targetImage1>
+			<targetImage2></targetImage2>
+			<targetImage3>checker_goal</targetImage3>
+		</images>
+		<texts>
+			<targetText1>Game result</targetText1>
+			<targetText2></targetText2>
+			<targetText3>Goals</targetText3>
+		</texts>
+	</SpeedAI>
+</GameOverMenu>
