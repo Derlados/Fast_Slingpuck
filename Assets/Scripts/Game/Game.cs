@@ -16,7 +16,8 @@ public class Game : MonoBehaviour
     public GameObject downBorderHolder, upBorderHolder, window;
     public GameObject checkersNormal, checkersSpeed;
     public GameObject gameMenu;
-    public GameObject particles;    
+    public GameObject particles;
+    public GameObject gate;
 
     // Текст счетчиков
     public Text upCountText, downCountText, gameCounter;

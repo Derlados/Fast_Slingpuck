@@ -21,10 +21,11 @@ public class RotationAI : AI
 
     public override void aim()
     {
-
         keepChecker.angle -= calculateAngle(target, new Vector2(UnityEngine.Random.Range(leftBorder, rightBorder), 0));
         keepObj.rotation = Quaternion.Euler(0, 0, keepChecker.angle);
     }
+
+
 
     /* Подсчет угла поворота
      * Входные параметры:

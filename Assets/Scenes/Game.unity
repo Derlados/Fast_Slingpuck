@@ -1431,6 +1431,7 @@ MonoBehaviour:
   checkersSpeed: {fileID: 79411981}
   gameMenu: {fileID: 407324426}
   particles: {fileID: 813878396}
+  gate: {fileID: 572560284}
   upCountText: {fileID: 458943231}
   downCountText: {fileID: 1820441981}
   gameCounter: {fileID: 1701238457}
@@ -7943,9 +7944,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f8eb2f2665a11184ca821424c5ec1e3e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  window: {fileID: 0}
-  leftBorder: {fileID: 0}
-  rightBorder: {fileID: 0}
 --- !u!114 &572560287
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10264,15 +10262,15 @@ GameObject:
   m_Component:
   - component: {fileID: 1137931240}
   - component: {fileID: 1137931241}
-  - component: {fileID: 1137931243}
   - component: {fileID: 1137931242}
+  - component: {fileID: 1137931243}
   m_Layer: 5
   m_Name: UpBorderHolder(AI)
   m_TagString: Field
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1137931240
 RectTransform:
   m_ObjectHideFlags: 0
@@ -10339,11 +10337,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 1137931239}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 36e60e689cf95b9419fb3cfc812fb546, type: 3}
+  m_Script: {fileID: 11500000, guid: dad1fd3ca7531e14b9d740f3be4195c1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   checkers: []
-  active: 0
+  active: 1
 --- !u!1 &1146339053
 GameObject:
   m_ObjectHideFlags: 0

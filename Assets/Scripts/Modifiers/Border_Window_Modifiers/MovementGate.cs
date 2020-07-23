@@ -1,21 +1,15 @@
-﻿using System.Collections;
-using UnityEngine;
+﻿using UnityEngine;
 
-public class Movement : MonoBehaviour
+// Движущееся окно
+public class MovementGate : Gate
 {
-    // Start is called before the first frame update
-    public GameObject window, leftBorder, rightBorder; // окно и границы
-    RectTransform rectLeft, rectRight, rectWindow;
-    float speedTime = 2f; // Время за которое окно делает полное перемещение с левой границы до правой, разумеется чем меньше это значение тем выше скорость
+    RectTransform rectLeft, rectRight;
+    
     float stepScreen, stepWorld; // шаг, для движения за один такт (в экранном режиме и в режиме реального пространтсва)
 
     Transform leftPos, rightPos, windowPos;
     BoxCollider2D leftBorderCol, rightBorderCol;
     Game game;
-
-    bool debug = false;
-
-    float leftWindow, rightWindow; // Границы координат по X, на которые может сдвинуться окно
 
     void Start()
     {
@@ -30,7 +24,6 @@ public class Movement : MonoBehaviour
         // RectTransform окон и границ
         rectLeft = leftBorder.GetComponent<RectTransform>();
         rectRight = rightBorder.GetComponent<RectTransform>();
-        rectWindow = window.GetComponent<RectTransform>();
 
         // Transform окон и границ
         leftPos = rectLeft.transform;
@@ -80,7 +73,7 @@ public class Movement : MonoBehaviour
     }
 
     // Вариант через симуляцию
-    public void calculatePos(float sec)
+    public override float calculatePos(float sec)
     {
         float leftSize = rectLeft.rect.width, rightSize = rectRight.rect.width, posX = windowPos.position.x;
         float tempStepWorld = stepWorld, tempStepScreen = stepScreen;
@@ -98,6 +91,8 @@ public class Movement : MonoBehaviour
                 tempStepScreen = -tempStepScreen;
             }
         }
+
+        return posX;
     }
 
 }
