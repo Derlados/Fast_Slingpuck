@@ -14,6 +14,7 @@ public class PlayerData
     public List<Pair<List<byte> ,Pair <GameRule.Type,bool>>> progress = new List<Pair<List<byte>, Pair<GameRule.Type, bool>>>(); // список в котором находятся пары, сотоящие из списка уровней и доступности планет
     public string puckSprite; //выбранный спрайт игрока
     public int currentPlanet;
+    public SystemLanguage lang;
 
     public static PlayerData getInstance()
     {
@@ -22,7 +23,14 @@ public class PlayerData
             if (!XMLManager.LoadData(ref instance, (new PlayerData()).ToString()))
             {
                 instance = new PlayerData();
-                instance.puckSprite = "userChecker1";
+                instance.puckSprite = "userChecker1";;
+                if (Application.systemLanguage == SystemLanguage.English ||
+                    Application.systemLanguage == SystemLanguage.Russian ||
+                    Application.systemLanguage == SystemLanguage.Ukrainian)
+                    instance.lang = Application.systemLanguage;
+                else
+                    instance.lang = SystemLanguage.English;
+
                 instance.Init();
                 instance.Save();
             }

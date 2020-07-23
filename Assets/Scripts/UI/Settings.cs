@@ -14,18 +14,21 @@ public class Settings : MonoBehaviour
     public void LanguagePressed(string lang)
     {
         AudioManager.PlaySound(AudioManager.Audio.select);
+
+        PlayerData playerData = PlayerData.getInstance();
         switch (lang)
         {
             case "RU":
-                LocalizationManager.curLanguage = LocalizationManager.language.RU;
+                playerData.lang = SystemLanguage.Russian;
                 break;
             case "EN":
-                LocalizationManager.curLanguage = LocalizationManager.language.EN;
+                playerData.lang = SystemLanguage.English;
                 break;
             case "UA":
-                LocalizationManager.curLanguage = LocalizationManager.language.UA;
+                playerData.lang = SystemLanguage.Ukrainian;
                 break;
         }
+        playerData.Save();
         LocalizationManager.resetLanguage();
     }
 }

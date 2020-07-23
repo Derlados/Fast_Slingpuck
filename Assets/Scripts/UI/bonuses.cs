@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class bonuses : MonoBehaviour
+public class Bonuses : MonoBehaviour
 {
     public GameObject Days; //массив дней
 

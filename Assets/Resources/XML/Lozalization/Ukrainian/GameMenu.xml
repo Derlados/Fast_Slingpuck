@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<localization>
+   <ua>Ukranian</ua>
+   <en>English</en>
+   <ru>Russian</ru>
+   <settingsHead>Settings</settingsHead>
+   <lang>Language</lang>
+   <dailyHead>Daily Reward</dailyHead>
+   <claim>Claim!</claim>
+   <close>Close</close>
+   <day>Day</day>
+   <coins>coins</coins>
+   <boosters>boosters</boosters>
+   <reductors>reductors</reductors>
+   <shop>Shop</shop>
+   <checkers>Checkers</checkers>
+   <modificators>Modificators</modificators>
+   <booster>Booster</booster>
+   <reductor>Reductor</reductor>
+   <boosterDescr>This will boost your checker  for 3 seconds</boosterDescr>
+   <reductorDescr>This will reduct your enemy for 3 seconds</reductorDescr>
+   <back>Back</back>
+   <start>Start</start>
+   <leveInfoHead>Level info</leveInfoHead>
+   <difficulty>Difficulty</difficulty>
+   <gameMode>Game mode</gameMode>
+</localization>
