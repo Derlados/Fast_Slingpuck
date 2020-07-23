@@ -160,7 +160,7 @@ public class MenuManager : MonoBehaviour
             btn.enabled = !btn.enabled;
             thisCamera.GetComponent<UIParallax>().setActive(false);
 
-            AudioManager.PlaySound(AudioManager.Audio.zoom);
+            //AudioManager.PlaySound(AudioManager.Audio.zoom);
         }
     }
 
@@ -195,7 +195,7 @@ public class MenuManager : MonoBehaviour
 
         thisCamera.GetComponent<UIParallax>().setActive(true);
 
-        AudioManager.PlaySound(AudioManager.Audio.unzoom);
+        //AudioManager.PlaySound(AudioManager.Audio.unzoom);
     }
 
     // Анимация прорисовки уровней

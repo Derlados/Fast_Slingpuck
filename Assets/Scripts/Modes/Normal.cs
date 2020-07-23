@@ -84,6 +84,7 @@ public class Normal : MonoBehaviour, Mode
         gameCounterText.text = "GO!"; // Заменить и локализовать
         capperField.SetActive(false);
         AI.GetComponent<AI>().active = true;
+        game.activeGame = true;
         yield return new WaitForSeconds(1);
         StartCoroutine(Timer());
     }

@@ -63,7 +63,6 @@ public class AI : MonoBehaviour
 
             if (statusType == Status.free && checkers.Count > 0)
             {
-                Debug.Log(checkers.Count);
                 getChecker();
                 statusType = Status.keep;
             }

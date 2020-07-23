@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <PlayerData xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-  <money>13193</money>
+  <money>14413</money>
   <progress>
     <PairOfListOfBytePairOfTypeBoolean>
       <first>
@@ -23,7 +23,7 @@
       </first>
       <second>
         <first>sand</first>
-        <second>false</second>
+        <second>true</second>
       </second>
     </PairOfListOfBytePairOfTypeBoolean>
     <PairOfListOfBytePairOfTypeBoolean>
@@ -36,7 +36,7 @@
       </first>
       <second>
         <first>ice</first>
-        <second>false</second>
+        <second>true</second>
       </second>
     </PairOfListOfBytePairOfTypeBoolean>
     <PairOfListOfBytePairOfTypeBoolean>
@@ -54,5 +54,5 @@
     </PairOfListOfBytePairOfTypeBoolean>
   </progress>
   <puckSprite>standart_checker</puckSprite>
-  <currentPlanet>0</currentPlanet>
+  <currentPlanet>2</currentPlanet>
 </PlayerData>

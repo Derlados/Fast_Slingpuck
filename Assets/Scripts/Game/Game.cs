@@ -32,6 +32,8 @@ public class Game : MonoBehaviour
     // Действия игрока
     public static int countShots;
 
+    public bool activeGame = false;
+
     private void Start()
     {
         countShots = 0;
