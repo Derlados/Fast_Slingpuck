@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Level>
+    <mode>
+        <Normal>Стандартный</Normal>
+	<Speed>Скорость</Speed>
+    </mode>
+    <difficulty>
+        <begginer>Новичок</begginer>
+	<skilled>Эксперт</skilled>
+	<master>Мастер </master>
+	<god>Бог</god>
+    </difficulty>
+    <description>
+        <Normal>Стандартный режим - стандартная игра, в которой цель каждого игрока освободить свое поле от шайб, бросив их на поле противника, побеждает тот, кто перебрасывает все шайбы на поле противника</Normal>
+	<Speed>??????</Speed>    
+    </description>
+    <targets>
+	<NormalAI>
+	    <target1>Победа </target1>
+	    <target2>Победа в NUMBER секундах </target2>
+	    <target3>Одновременно на поле должно быть не более NUMBER шайб</target3>
+	</NormalAI>
+	<Speed>
+	    <target1>Забить NUMBER голов</target1>
+	    <target2>Забить NUMBER голов</target2>
+	    <target3>Точность NUMBER %</target3>
+	</Speed>
+	<SpeedAI>
+	    <target1>Победа </target1>
+	    <target2>Забить  NUMBER голов</target2>
+	    <target3>Идите в ногу с ИИ</target3>
+	</SpeedAI>
+    </targets>
+</Level>

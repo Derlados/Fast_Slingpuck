@@ -1,12 +1,12 @@
 <?xml version="1.0"?>
 <PlayerData xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-  <money>14413</money>
+  <money>98068</money>
   <progress>
     <PairOfListOfBytePairOfTypeBoolean>
       <first>
         <unsignedByte>3</unsignedByte>
-        <unsignedByte>3</unsignedByte>
-        <unsignedByte>3</unsignedByte>
+        <unsignedByte>0</unsignedByte>
+        <unsignedByte>0</unsignedByte>
         <unsignedByte>0</unsignedByte>
       </first>
       <second>
@@ -53,6 +53,11 @@
       </second>
     </PairOfListOfBytePairOfTypeBoolean>
   </progress>
+<<<<<<< HEAD
+  <puckSprite>userChecker6</puckSprite>
+  <currentPlanet>0</currentPlanet>
+=======
   <puckSprite>standart_checker</puckSprite>
   <currentPlanet>2</currentPlanet>
+>>>>>>> remotes/origin/master
 </PlayerData>

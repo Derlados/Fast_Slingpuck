@@ -62,9 +62,15 @@ public class Game : MonoBehaviour
                 break;
         }
 
-
+        //изменение спрайтов чекеров игрока
         for (int i = 0; i < checkers.transform.childCount / 2; ++i)
-            checkers.transform.GetChild(i).gameObject.transform.GetComponent<Image>().sprite = Resources.Load<Sprite>("Sprites/levels/checkers/" + playerData.puckSprite);
+        {
+            Image userImg = checkers.transform.GetChild(i).gameObject.transform.GetComponent<Image>();
+            userImg.sprite = Resources.Load<Sprite>("Sprites/levels/checkers/" + playerData.puckSprite);
+            userImg.material = Resources.Load<Material>("Sprites/Materials/Checker/" + playerData.puckSprite + "_glowMat");
+        }
+
+        
         gameObject.AddComponent(Type.GetType(GameRule.mode.ToString()));
 
         if (GameRule.ActiveAI)
