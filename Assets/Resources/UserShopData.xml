@@ -2,12 +2,14 @@
 <UserShopData xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <userCheckers>
     <boolean>false</boolean>
-    <boolean>true</boolean>
-    <boolean>true</boolean>
-    <boolean>true</boolean>
+    <boolean>false</boolean>
+    <boolean>false</boolean>
+    <boolean>false</boolean>
+    <boolean>false</boolean>
+    <boolean>false</boolean>
   </userCheckers>
   <userModificators>
-    <int>0</int>
-    <int>0</int>
+    <int>6</int>
+    <int>5</int>
   </userModificators>
 </UserShopData>

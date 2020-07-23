@@ -22,7 +22,7 @@ public class PlayerData
             if (!XMLManager.LoadData(ref instance, (new PlayerData()).ToString()))
             {
                 instance = new PlayerData();
-                instance.puckSprite = "standart_checker";
+                instance.puckSprite = "userChecker1";
                 instance.Init();
                 instance.Save();
             }
