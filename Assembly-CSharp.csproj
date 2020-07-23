@@ -169,12 +169,15 @@
     <None Include="Assets\Resources\XML\Lozalization\EN\GameOverMenu.xml" />
     <None Include="Assets\Resources\XML\Game\Difficulties.xml" />
     <None Include="Assets\Data\settings.xml" />
+    <None Include="Assets\Resources\XML\Lozalization\EN\GameMenu.xml" />
     <None Include="Assets\GooglePlayGames\Plugins\Android\GooglePlayGamesManifest.plugin\AndroidManifest.xml" />
     <None Include="Assets\Resources\XML\Lozalization\EN\Game.xml" />
     <None Include="Assets\Resources\XML\Lozalization\RU\MainMenu.xml" />
     <None Include="Assets\Resources\XML\Lozalization\EN\MainMenu.xml" />
     <None Include="Assets\Resources\XML\Lozalization\RU\Game.xml" />
+    <None Include="Assets\Resources\XML\Lozalization\RU\GameMenu.xml" />
     <None Include="Assets\Resources\UserShopData.xml" />
+    <None Include="Assets\Resources\NewSurfaceShader.shader" />
     <None Include="Assets\Resources\XML\Shop\ShopData.xml" />
     <None Include="Assets\Resources\XML\Lozalization\UA\Game.xml" />
     <None Include="Assets\Resources\XML\Lozalization\UA\MainMenu.xml" />
