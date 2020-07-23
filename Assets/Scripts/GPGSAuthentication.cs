@@ -11,7 +11,7 @@ public class GPGSAuthentication : MonoBehaviour
 
     void Start()
     {
-        if(platform == null)
+        if (platform == null)
         {
             PlayGamesClientConfiguration config = new PlayGamesClientConfiguration.Builder().Build();
             PlayGamesPlatform.InitializeInstance(config);

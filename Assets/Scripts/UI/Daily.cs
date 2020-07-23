@@ -51,10 +51,6 @@ public class Daily : MonoBehaviour
         if (!XMLManager.LoadData<UserShopData>(ref data, "UserShopData"))
             Debug.LogWarning("UserShopData.xml not found. Maybe because it's the first run?");
 
-        //отрисовка номера дней
-        for (int i = 1; i <= Days.transform.childCount; ++i)
-            Days.transform.GetChild(i-1).GetChild(1).GetComponent<Text>().text += " " + i.ToString();
-
         //загрузка сохраненого дня
         if (!XMLManager.LoadData<Date>(ref date, "daily"))
             XMLManager.SaveData<Date>(date, "daily");

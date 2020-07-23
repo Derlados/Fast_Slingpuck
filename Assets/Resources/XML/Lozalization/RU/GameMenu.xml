@@ -3,4 +3,25 @@
    <ua>Украинский</ua>
    <en>Английский</en>
    <ru>Русский</ru>
+   <settingsHead>Настройки</settingsHead>
+   <lang>Язык</lang>
+   <dailyHead>Ежедневная награда</dailyHead>
+   <claim>Забрать!</claim>
+   <close>Закрыть</close>
+   <day>День</day>
+   <coins>монет</coins>
+   <boosters>бустеров</boosters>
+   <reductors>замедлителей</reductors>
+   <shop>Магазин</shop>
+   <checkers>Шайбы</checkers>
+   <modificators>Модификаторы</modificators>
+   <booster>Бустер</booster>
+   <reductor>Замедлитель</reductor>
+   <boosterDescr>Это ускорит вашу шайбы на 3 секунды</boosterDescr>
+   <reductorDescr>Это замедлит шайбы противника на 3 секунды</reductorDescr>
+   <back>Назад</back>
+   <start>Играть</start>
+   <leveInfoHead>Информация об уровне</leveInfoHead>
+   <difficulty>Сложность</difficulty>
+   <gameMode>Игровой режим</gameMode>
 </localization>
