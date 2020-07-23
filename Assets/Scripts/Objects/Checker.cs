@@ -1,5 +1,7 @@
 using BaseStructures;
 using System.Runtime.CompilerServices;
+using TMPro;
+using UnityEditor.UIElements;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -158,4 +160,11 @@ public class Checker : MonoBehaviour
     {
         this.stop = stop;
     }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if(collision.transform.tag == "Border") 
+          AudioManager.PlaySound(AudioManager.Audio.checker_hit);
+    }
+
 }
