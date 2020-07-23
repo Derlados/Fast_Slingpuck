@@ -144,6 +144,8 @@
     <Compile Include="Assets\Scripts\Modes\Normal.cs" />
     <Compile Include="Assets\Scripts\Modes\Speed.cs" />
     <Compile Include="Assets\Scripts\Modifiers\Border_Window_Modifiers\DestroyWindow.cs" />
+    <Compile Include="Assets\Scripts\Modifiers\Border_Window_Modifiers\Gate.cs" />
+    <Compile Include="Assets\Scripts\Modifiers\Border_Window_Modifiers\MovementGate.cs" />
     <Compile Include="Assets\Scripts\Modifiers\Border_Window_Modifiers\NormalWindow.cs" />
     <Compile Include="Assets\Scripts\Modifiers\Checker_Modifier\Destroy.cs" />
     <Compile Include="Assets\Scripts\Modifiers\Checker_Modifier\Modifier.cs" />

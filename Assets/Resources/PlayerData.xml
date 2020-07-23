@@ -23,7 +23,7 @@
       </first>
       <second>
         <first>sand</first>
-        <second>false</second>
+        <second>true</second>
       </second>
     </PairOfListOfBytePairOfTypeBoolean>
     <PairOfListOfBytePairOfTypeBoolean>
@@ -36,7 +36,7 @@
       </first>
       <second>
         <first>ice</first>
-        <second>false</second>
+        <second>true</second>
       </second>
     </PairOfListOfBytePairOfTypeBoolean>
     <PairOfListOfBytePairOfTypeBoolean>
@@ -53,6 +53,11 @@
       </second>
     </PairOfListOfBytePairOfTypeBoolean>
   </progress>
+<<<<<<< HEAD
   <puckSprite>userChecker6</puckSprite>
   <currentPlanet>0</currentPlanet>
+=======
+  <puckSprite>standart_checker</puckSprite>
+  <currentPlanet>2</currentPlanet>
+>>>>>>> remotes/origin/master
 </PlayerData>

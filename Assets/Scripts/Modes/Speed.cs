@@ -143,6 +143,7 @@ public class Speed : MonoBehaviour, Mode
 
         gameCounterText.text = "GO!"; // Заменить и локализовать
         capperField.SetActive(false);
+        game.activeGame = true;
         AI.GetComponent<AI>().active = true;    
         yield return new WaitForSeconds(1);
         StartCoroutine(counter(60));

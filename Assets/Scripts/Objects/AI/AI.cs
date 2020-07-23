@@ -26,15 +26,20 @@ public class AI : MonoBehaviour
 
     public bool active;    // false - AI отключен, true - AI включен
     public static float speedAI, accuracyAI, timeRest;  // speedAi - скорость AI, accuracyAi - точность AI (разброс в процентах), time - время взятия фишки, timeAim - время прицеливания
-    protected float leftBorder, rightBorder, upBorder;    // границы бота
+    protected float dispersion, upBorder;    // границы бота
     protected float angle; // угол поворота шайбы 
+    protected float leftBorder, rightBorder; // границы разброса точности (разброс куда бот может попасть при запуске шайбы)
     protected Vector2 target;     // позиция шайбы для запуска
     protected Transform keepObj;  // удерживаемая шайба
     protected Checker keepChecker;
-
+    protected Gate gate;
+    Game game;
 
     private void Start()
     {
+        game = GameObject.FindGameObjectWithTag("Game").GetComponent<Game>();
+        gate = game.gate.GetComponent<Gate>();
+
         active = false;
 
         Difficulty diff = new Difficulty();
@@ -52,8 +57,7 @@ public class AI : MonoBehaviour
 
         accuracyAI /= 2;
         upBorder = ScreenOptimization.GetWorldCoord2D(gameObject).first.y;
-        leftBorder = Camera.main.ScreenToWorldPoint(new Vector2((0.5f - accuracyAI) * Screen.width, 0)).x;
-        rightBorder = Camera.main.ScreenToWorldPoint(new Vector2((0.5f + accuracyAI) * Screen.width, 0)).x;
+        dispersion = Camera.main.ScreenToWorldPoint(new Vector2(accuracyAI * Screen.width, 0)).x;
     }
 
     void Update()
@@ -63,8 +67,8 @@ public class AI : MonoBehaviour
 
             if (statusType == Status.free && checkers.Count > 0)
             {
-                Debug.Log(checkers.Count);
                 getChecker();
+                getTarget();
                 statusType = Status.keep;
             }
 
@@ -98,14 +102,23 @@ public class AI : MonoBehaviour
                 keepObj = checkers[i].objTransform;
         keepChecker = keepObj.GetComponent<Checker>();
 
-        keepChecker.OnMouseDown();
+        keepChecker.OnMouseDown();    
+    }
+
+    // Функция возвращающаяя цель, куда необходимо целится
+    public void getTarget()
+    {
+        float posX = gate.calculatePos(timeRest);
+        leftBorder = posX - dispersion;
+        rightBorder = posX + dispersion;
         target = new Vector2(UnityEngine.Random.Range(leftBorder, rightBorder), upBorder - 1.2f * keepObj.GetComponent<Checker>().getRadius());
     }
+
 
     // Прицеливание, получает точку на которую должна быть направлена шайба, если шайба летит прямо - необходимости в прицеливании нету
     public virtual void aim()
     {
-
+      
     }
 
     // Добавляет новую шайбу в список шайб которые может использовать AI
