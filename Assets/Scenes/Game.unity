@@ -1450,6 +1450,7 @@ MonoBehaviour:
   downCountText: {fileID: 1820441981}
   gameCounter: {fileID: 1701238457}
   imgField: {fileID: 968482488}
+  backgroundMusic: {fileID: 567662441}
   countStars: 3
   activeGame: 0
 --- !u!4 &153113610
@@ -8123,7 +8124,7 @@ GameObject:
   - component: {fileID: 567662442}
   - component: {fileID: 567662443}
   m_Layer: 0
-  m_Name: background
+  m_Name: backgroundMusic
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

@@ -5594,7 +5594,7 @@ PrefabInstance:
     - target: {fileID: 9004831237760379576, guid: fe6ef68fcb158c04ca07ba4bd1672cf5,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 110
+      value: 110.00001
       objectReference: {fileID: 0}
     - target: {fileID: 9004831237760379576, guid: fe6ef68fcb158c04ca07ba4bd1672cf5,
         type: 3}
@@ -18036,7 +18036,7 @@ GameObject:
   - component: {fileID: 1651777601}
   - component: {fileID: 1651777602}
   m_Layer: 0
-  m_Name: background
+  m_Name: backgroundMusic
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -22522,7 +22522,7 @@ PrefabInstance:
     - target: {fileID: 9004831237760379576, guid: b2f54662d1802b0469829b107941328c,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 124
+      value: 124.00001
       objectReference: {fileID: 0}
     - target: {fileID: 9004831237760379576, guid: b2f54662d1802b0469829b107941328c,
         type: 3}
