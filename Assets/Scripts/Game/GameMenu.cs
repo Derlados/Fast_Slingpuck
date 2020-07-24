@@ -11,33 +11,57 @@ public class GameMenu : MonoBehaviour
     public GameObject pauseMenuCanvas, gameOverCanvas, capperField, PauseBtnCanvas;
     public Text gameOverText, scoreText;
     PlayerData playerData;
+    public GameObject[] goalsTexts; //goals text в паузе
+    public GameObject audioBackground;
 
     public void Start()
     {
         playerData = PlayerData.getInstance();
+        StartCoroutine(fadeInBackground());
     }
+
     public void Pause()
     {
+        audioBackground.transform.GetComponent<AudioSource>().volume = 0;
+        AudioManager.PlaySound(AudioManager.Audio.click);
         Time.timeScale = 0f;
+
         capperField.SetActive(true);
         pauseMenuCanvas.SetActive(true);
         PauseBtnCanvas.SetActive(false);
+
+        XElement data; // Данные XML файла
+        TextAsset textAsset = (TextAsset)Resources.Load("XML/Lozalization/" + PlayerData.getInstance().lang.ToString() + "/level");
+        data = XDocument.Parse(textAsset.text).Element("Level");
+
+        string el = GameRule.ActiveAI ? MenuManager.level.mode.ToString() + "AI" : MenuManager.level.mode.ToString();
+        data = data.Element("targets").Element(el);
+
+        goalsTexts[0].transform.GetComponent<Text>().text = data.Element("target1").Value.Replace("NUMBER", GameRule.target1.ToString());
+        goalsTexts[1].transform.GetComponent<Text>().text = data.Element("target2").Value.Replace("NUMBER", GameRule.target2.ToString());
+        goalsTexts[2].transform.GetComponent<Text>().text = data.Element("target3").Value.Replace("NUMBER", GameRule.target3.ToString());
     }
+
     public void UnPause()
     {
         Time.timeScale = 1f;
+        audioBackground.transform.GetComponent<AudioSource>().volume = 0.119f;
         capperField.SetActive(false);
         pauseMenuCanvas.SetActive(false);
         PauseBtnCanvas.SetActive(true);
+        AudioManager.PlaySound(AudioManager.Audio.click);
     }
+
     public void ToMainMenuPressed()
     {
-        Debug.Log("GGG");
         Time.timeScale = 1f;
+        AudioManager.PlaySound(AudioManager.Audio.click);
         SceneManager.LoadScene("GameMenu");
     }
     public void gameOver(string message, int stars, int money1, int money2, int money3)
     {
+        StartCoroutine(fadeOutBackground());
+
         PlayerData playerData = PlayerData.getInstance();
 
         createGameOverMenu();
@@ -107,18 +131,21 @@ public class GameMenu : MonoBehaviour
     }
     IEnumerator spawnCount(int money1, int money2, int money3)
     {
+        AudioManager.PlaySound(AudioManager.Audio.rise01);
         for (int i = 1; i <= money1; ++i)
         {
             gameOverMenu.moneyTargetText1.text = i.ToString();
             yield return new WaitForSeconds(0.015f);
         }
 
+        AudioManager.PlaySound(AudioManager.Audio.rise02);
         for (int i = 1; i <= money2; ++i)
         {
             gameOverMenu.moneyTargetText2.text = i.ToString();
             yield return new WaitForSeconds(0.015f);
         }
 
+        AudioManager.PlaySound(AudioManager.Audio.rise03);
         for (int i = 1; i <= money3; ++i)
         {
             gameOverMenu.moneyTargetText3.text = i.ToString();
@@ -132,6 +159,26 @@ public class GameMenu : MonoBehaviour
             gameOverMenu.moneyTotalText.text = i.ToString();
             yield return new WaitForSeconds(0.015f);
         }
+    }
+
+    IEnumerator fadeInBackground()
+    {
+        for (float f = 0; f <= 0.119; f += 0.001f)
+        {
+            audioBackground.transform.GetComponent<AudioSource>().volume = f;
+            yield return new WaitForSeconds(0.06f);
+        }
+    }
+
+    IEnumerator fadeOutBackground()
+    {
+        for (float f = audioBackground.transform.GetComponent<AudioSource>().volume; f >=0 ; f -= 0.005f)
+        {
+            Debug.Log(f);
+            audioBackground.transform.GetComponent<AudioSource>().volume = f;
+            yield return new WaitForSeconds(0.06f);
+        }
+
     }
 }
 

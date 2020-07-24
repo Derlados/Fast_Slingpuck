@@ -1,3 +1,4 @@
+using BaseStructures;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -81,7 +82,7 @@ public class Normal : MonoBehaviour, Mode
             yield return new WaitForSeconds(1);
         }
 
-        gameCounterText.text = "GO!"; // Заменить и локализовать
+        LocalizationManager.add(new Pair<Text, string>(gameCounterText, "go"));
         capperField.SetActive(false);
         AI.GetComponent<AI>().active = true;
         game.activeGame = true;
@@ -102,6 +103,7 @@ public class Normal : MonoBehaviour, Mode
         {
             --downCount;
             ++upCount;
+            AudioManager.PlaySound(AudioManager.Audio.rise03);
         }
         else
         {

@@ -6,13 +6,18 @@ using UnityEngine.UI;
 public class Bonuses : MonoBehaviour
 {
     public GameObject Days; //массив дней
+    public static bool changed = true;
 
-    private void Start()
+    private void OnEnable()
+    {
+        if(!changed) Start();
+        changed = true;
+    }
+
+    public void Start()
     {
         for (int i = 1; i <= Days.transform.childCount; ++i)
         {
-            Days.transform.GetChild(i - 1).GetChild(1).GetComponent<Text>().text += " " + i.ToString();
-
             //установка текста бонусов, сам бонус устанавливается в виде тега на кнопку
             Text text = Days.transform.GetChild(i - 1).GetChild(4).GetComponent<Text>();
             Transform tag = Days.transform.GetChild(i - 1);
@@ -57,6 +62,7 @@ public class Bonuses : MonoBehaviour
                     tag.tag = "1000";
                     break;
             }
+            Days.transform.GetChild(i - 1).GetChild(1).GetComponent<Text>().text += " " + i.ToString();
         }
     }
 }

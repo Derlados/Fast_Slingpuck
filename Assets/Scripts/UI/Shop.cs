@@ -50,7 +50,7 @@ public class Shop : MonoBehaviour
     UserShopData userShopData; //данные о доступных шайбах
 
     const string SHOP_PATH = "Sprites/Shop/"; // путь к спрайтам магазина
-    string haveIt = "Have it", selected = "Selected";
+  //  string haveIt = "Have it", selected = "Selected";
 
     void Start()
     {
@@ -63,6 +63,7 @@ public class Shop : MonoBehaviour
         AddModificators(shopData.modificators.Count);
         */
 
+
         //установка кол-во денег и текущий спрайт шайбы игрока
         playerData = PlayerData.getInstance();
         PlayerMoneyText = shopMenu.transform.GetChild(4).transform.GetChild(1).gameObject;
@@ -73,7 +74,7 @@ public class Shop : MonoBehaviour
         LoadUserData();
     }
 
-    //добалвение шайб (обьектов) в меню магазина
+    //добавление шайб (обьектов) в меню магазина
     /*public void AddCheckers(int count)
     {
         //получение координат исходной шайбы
@@ -130,8 +131,8 @@ public class Shop : MonoBehaviour
     
     public void ChangeChecker(GameObject checker)
     {
-        checker.transform.GetChild(2).transform.GetComponent<Text>().text = selected;
-        currenChecker.transform.GetChild(2).transform.GetComponent<Text>().text = haveIt;
+        LocalizationManager.add( new Pair<Text, string>(checker.transform.GetChild(2).transform.GetComponent<Text>(), "selected"));
+        LocalizationManager.add(new Pair<Text, string>(currenChecker.transform.GetChild(2).transform.GetComponent<Text>(), "haveIt"));
 
         checker.transform.GetChild(0).transform.GetComponent<Image>().sprite =  Resources.Load<Sprite>(SHOP_PATH+"selectedChecker");
         currenChecker.transform.GetChild(0).transform.GetComponent<Image>().sprite = Resources.Load<Sprite>(SHOP_PATH+"unSelectedChecker");
@@ -259,7 +260,7 @@ public class Shop : MonoBehaviour
         for (int i = 0; i < checkerPanel.transform.childCount; ++i)
         {
             if (userShopData.userCheckers[i]) checkerPanel.transform.GetChild(i).transform.GetChild(2).gameObject.SetActive(userShopData.userCheckers[i]);
-            else checkerPanel.transform.GetChild(i).transform.GetChild(2).transform.GetComponent<Text>().text = haveIt;
+            else LocalizationManager.add(new Pair<Text, string>(checkerPanel.transform.GetChild(i).transform.GetChild(2).transform.GetComponent<Text>(), "haveIt"));
         }
 
         //поиск номера этой шайбы в списке
@@ -268,7 +269,7 @@ public class Shop : MonoBehaviour
             if (playerData.puckSprite == checkerPanel.transform.GetChild(i).transform.GetChild(4).GetComponent<Image>().sprite.name)
             {
                 GameObject tmp = checkerPanel.transform.GetChild(i).gameObject;
-                tmp.transform.GetChild(2).GetComponent<Text>().text = selected;
+                LocalizationManager.add(new Pair<Text, string>(tmp.transform.GetChild(2).GetComponent<Text>(), "selected"));
                 tmp.transform.GetChild(0).GetComponent<Image>().sprite = Resources.Load<Sprite>(SHOP_PATH + "selectedChecker");
                 currenChecker = tmp;
             }

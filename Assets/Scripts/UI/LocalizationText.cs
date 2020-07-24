@@ -8,8 +8,7 @@ public class LocalizationText : MonoBehaviour
 {
     public string id;
 
-    // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         LocalizationManager.add(new Pair<Text, string>(gameObject.GetComponent<Text>(), id));
     }

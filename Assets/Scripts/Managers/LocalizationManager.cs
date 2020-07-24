@@ -12,11 +12,12 @@ public static class LocalizationManager
 {
     private static List<Pair<Text, string>> texts = new List<Pair<Text, string>>();
     private static XElement data; // Данные XML файла
+    private static string scene;
 
     // Добавление текста в список текста который необходимо локализовать
     public static void add(Pair<Text, string> text)
     {
-        if (data == null)
+        if (data == null || SceneManager.GetActiveScene().name != scene)
             loadXML();
         texts.Add(text);
         text.first.text = data.Element(text.second).Value;
@@ -27,6 +28,7 @@ public static class LocalizationManager
     {
         TextAsset textAsset = (TextAsset) Resources.Load("XML/Lozalization/" + PlayerData.getInstance().lang.ToString() + "/" + SceneManager.GetActiveScene().name);
         data = XDocument.Parse(textAsset.text).Element("localization");
+        scene = SceneManager.GetActiveScene().name;
     }
 
     // Установка языка

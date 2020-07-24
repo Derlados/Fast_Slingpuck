@@ -24,4 +24,6 @@
    <leveInfoHead>Информация об уровне</leveInfoHead>
    <difficulty>Сложность</difficulty>
    <gameMode>Игровой режим</gameMode>
+   <selected>Взято</selected>
+   <haveIt>Имеется</haveIt>
 </localization>

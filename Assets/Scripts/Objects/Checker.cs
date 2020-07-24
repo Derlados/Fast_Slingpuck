@@ -1,7 +1,4 @@
 using BaseStructures;
-using System.Runtime.CompilerServices;
-using TMPro;
-using UnityEditor.UIElements;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -144,6 +141,8 @@ public class Checker : MonoBehaviour
 
         objTransform.rotation = Quaternion.Euler(0, 0, angle);
         body.AddForce(transform.right * V * 300);
+
+        AudioManager.PlaySound(AudioManager.Audio.string_pulling);
     }
 
     public float getRadius()

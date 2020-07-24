@@ -24,6 +24,8 @@ public class Game : MonoBehaviour
     //картинка фишки из быстрого режима
     public Image imgField;
 
+    public GameObject backgroundMusic;
+
     GameRule.Mode mode; // Режим игры
     GameRule.Type type; // Тип карты (текстуры)
 
@@ -85,6 +87,14 @@ public class Game : MonoBehaviour
         if (GameRule.ActiveAI)
             ChangeCheckerSprite(type.ToString() + "_CheckerGlowMat", checkers);
         ChangeParticle(type.ToString() + "_particle",true);
+
+        //установка небходимой музыки
+        if(GameRule.levelNum == GameRule.levelsCount)
+            backgroundMusic.transform.GetComponent<AudioSource>().clip = Resources.Load<AudioClip>("Audio/Game/songs/boss");
+        else
+            backgroundMusic.transform.GetComponent<AudioSource>().clip = Resources.Load<AudioClip>("Audio/Game/songs/" + GameRule.type.ToString() + "_level");
+
+        backgroundMusic.transform.GetComponent<AudioSource>().Play();
     }
 
     // Установка спрайтов поля и шайб
