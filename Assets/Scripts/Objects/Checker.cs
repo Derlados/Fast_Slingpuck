@@ -166,5 +166,4 @@ public class Checker : MonoBehaviour
         if(collision.transform.tag == "Border") 
           AudioManager.PlaySound(AudioManager.Audio.checker_hit);
     }
-
 }
