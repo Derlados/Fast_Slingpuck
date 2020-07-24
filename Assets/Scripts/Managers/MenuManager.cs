@@ -1,8 +1,6 @@
 ﻿using BaseStructures;
-using Boo.Lang;
 using System;
 using System.Collections;
-using System.Security.Cryptography.X509Certificates;
 using System.Xml.Linq;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -15,10 +13,11 @@ public class MenuManager : MonoBehaviour
     private Vector2 startPos, targetPos; // StartPos - начальная позиция камеры, targetPos - позиция планеты к которой необходимо приблизить камеру
     private float stepMove, stepSize; // stepMove - шаг передвижения камеры , stepSize - шаг приближения камеры
     public GameObject mainMenu, galaxy; // mainMenu - UI главного меню, galaxy - UI режима прохождения уровней 
-    public static GameObject planets;
+    public static GameObject planets; //обьект mainMenu
     public GameObject levelInformation; // Описание уровня
     public GameObject backBtn; //кнопка назад
     public static GameObject menu; //обьект меню
+    public static Level level; //текущий уровень
 
     // Уровни планеты и номер самой планеты
     private GameObject planetLevels;
@@ -112,7 +111,6 @@ public class MenuManager : MonoBehaviour
         levelDesc.fieldImage.sprite = Resources.Load<Sprite>("Sprites/MainMenu/planets/" + level.type.ToString() + "/" + level.type.ToString() + "_planet");
 
         XElement data; // Данные XML файла
-        Debug.Log("XML/Localization/" + PlayerData.getInstance().lang.ToString() + "/Level");
         TextAsset textAsset = (TextAsset)Resources.Load("XML/Lozalization/" + PlayerData.getInstance().lang.ToString() + "/level");
         data = XDocument.Parse(textAsset.text).Element("Level");
 
@@ -129,6 +127,7 @@ public class MenuManager : MonoBehaviour
 
         levelInformation.SetActive(true);
         backBtn.SetActive(false);
+        MenuManager.level = level;
     }
 
     // Загрузка игры

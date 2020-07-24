@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Media;
 using UnityEngine;
 
 public static class AudioManager 
@@ -20,7 +19,8 @@ public static class AudioManager
         rise02,
         rise03,
         rise04,
-        claim
+        claim,
+        modificator
     }
 
     public static void PlaySound(Audio audio)
