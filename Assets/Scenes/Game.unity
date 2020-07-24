@@ -3315,6 +3315,16 @@ PrefabInstance:
       propertyPath: m_CollisionDetection
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 8123074049590772509, guid: 87673815b8b84a54bab8eb13a6d0c988,
+        type: 3}
+      propertyPath: m_SortingOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8123074049590772509, guid: 87673815b8b84a54bab8eb13a6d0c988,
+        type: 3}
+      propertyPath: m_SortingLayerID
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 87673815b8b84a54bab8eb13a6d0c988, type: 3}
 --- !u!224 &554876725 stripped
@@ -8438,7 +8448,7 @@ PrefabInstance:
     - target: {fileID: 1095559404968874081, guid: 87673815b8b84a54bab8eb13a6d0c988,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1095559404968874082, guid: 87673815b8b84a54bab8eb13a6d0c988,
         type: 3}
@@ -8549,6 +8559,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_CollisionDetection
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8123074049590772509, guid: 87673815b8b84a54bab8eb13a6d0c988,
+        type: 3}
+      propertyPath: m_SortingOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8123074049590772509, guid: 87673815b8b84a54bab8eb13a6d0c988,
+        type: 3}
+      propertyPath: m_SortingLayerID
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 87673815b8b84a54bab8eb13a6d0c988, type: 3}

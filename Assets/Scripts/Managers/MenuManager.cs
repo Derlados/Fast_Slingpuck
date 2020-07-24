@@ -39,6 +39,12 @@ public class MenuManager : MonoBehaviour
     // Количество планет всего
     public static int allPlanets;
 
+    private void Awake()
+    {
+        allPlanets = galaxy.transform.childCount - 2;
+        planets = mainMenu;
+    }
+
     private void Start()
     {
         cameraStatus = Status.freeOnMenu;
@@ -49,9 +55,6 @@ public class MenuManager : MonoBehaviour
         startPos = thisCamera.transform.position;
 
         //-2 т.к обьект galaxy содержит еще 2 обьекта, которые не являются планетами
-        allPlanets = galaxy.transform.childCount - 2;
-        planets = mainMenu;
-
         setPlanetProgress();
 
     }
