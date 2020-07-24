@@ -30,6 +30,8 @@ public class Settings : MonoBehaviour
         }
         playerData.Save();
         LocalizationManager.resetLanguage();
+
+        Bonuses.changed = false;
     }
 }
 

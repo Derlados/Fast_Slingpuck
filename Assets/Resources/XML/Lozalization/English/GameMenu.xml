@@ -24,4 +24,6 @@
    <leveInfoHead>Level info</leveInfoHead>
    <difficulty>Difficulty</difficulty>
    <gameMode>Game mode</gameMode>
+   <selected>Selected</selected>
+   <haveIt>Have it</haveIt>
 </localization>

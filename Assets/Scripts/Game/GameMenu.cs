@@ -11,18 +11,32 @@ public class GameMenu : MonoBehaviour
     public GameObject pauseMenuCanvas, gameOverCanvas, capperField, PauseBtnCanvas;
     public Text gameOverText, scoreText;
     PlayerData playerData;
+    public GameObject[] goalsTexts; //goals text в паузе
 
     public void Start()
     {
         playerData = PlayerData.getInstance();
     }
+
     public void Pause()
     {
         Time.timeScale = 0f;
         capperField.SetActive(true);
         pauseMenuCanvas.SetActive(true);
         PauseBtnCanvas.SetActive(false);
+
+        XElement data; // Данные XML файла
+        TextAsset textAsset = (TextAsset)Resources.Load("XML/Lozalization/" + PlayerData.getInstance().lang.ToString() + "/level");
+        data = XDocument.Parse(textAsset.text).Element("Level");
+
+        string el = GameRule.ActiveAI ? MenuManager.level.mode.ToString() + "AI" : MenuManager.level.mode.ToString();
+        data = data.Element("targets").Element(el);
+
+        goalsTexts[0].transform.GetComponent<Text>().text = data.Element("target1").Value.Replace("NUMBER", GameRule.target1.ToString());
+        goalsTexts[1].transform.GetComponent<Text>().text = data.Element("target2").Value.Replace("NUMBER", GameRule.target2.ToString());
+        goalsTexts[2].transform.GetComponent<Text>().text = data.Element("target3").Value.Replace("NUMBER", GameRule.target3.ToString());
     }
+
     public void UnPause()
     {
         Time.timeScale = 1f;

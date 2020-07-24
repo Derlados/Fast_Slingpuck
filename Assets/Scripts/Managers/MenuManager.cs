@@ -1,8 +1,6 @@
 ﻿using BaseStructures;
-using Boo.Lang;
 using System;
 using System.Collections;
-using System.Security.Cryptography.X509Certificates;
 using System.Xml.Linq;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -15,10 +13,11 @@ public class MenuManager : MonoBehaviour
     private Vector2 startPos, targetPos; // StartPos - начальная позиция камеры, targetPos - позиция планеты к которой необходимо приблизить камеру
     private float stepMove, stepSize; // stepMove - шаг передвижения камеры , stepSize - шаг приближения камеры
     public GameObject mainMenu, galaxy; // mainMenu - UI главного меню, galaxy - UI режима прохождения уровней 
-    public static GameObject planets;
+    public static GameObject planets; //обьект mainMenu
     public GameObject levelInformation; // Описание уровня
     public GameObject backBtn; //кнопка назад
     public static GameObject menu; //обьект меню
+    public static Level level; //текущий уровень
 
     // Уровни планеты и номер самой планеты
     private GameObject planetLevels;
@@ -129,6 +128,7 @@ public class MenuManager : MonoBehaviour
 
         levelInformation.SetActive(true);
         backBtn.SetActive(false);
+        MenuManager.level = level;
     }
 
     // Загрузка игры
