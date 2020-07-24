@@ -25,6 +25,7 @@ public class Level : MonoBehaviour
     public GameRule.Mode mode; // Режим игры
     public GameRule.Type type; // Тип планеты
     public GameRule.AI typeAI;
+    public GameRule.Gate typeGate;
     public bool AI; // Наличие ИИ. true - игра с ИИ, false - игра без ИИ
     public GameRule.Difficulties difficulties; // Сложность игры
     public int numLevel; // Номер уровня, необходимо знать для того чтобы в дальнейшем записать результат

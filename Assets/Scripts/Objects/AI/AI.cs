@@ -87,7 +87,6 @@ public class AI : MonoBehaviour
             if (statusType == Status.keep)
             {
                 keepObj.position = Vector2.MoveTowards(keepObj.position, moveTarget, Time.fixedDeltaTime * speedAI);
-
                 if ((Vector2)keepObj.position == moveTarget)
                     statusType = Status.aim;
             }
@@ -116,8 +115,8 @@ public class AI : MonoBehaviour
         // 0.14f - примерно за столько времени у AI всегда летит шайба, если будет изменяться скорость - необходимо будет исправить (да, это пока что такой костыль)
         float posX = gate.calculatePos(timeAim + keepTime + 0.14f);
 
-        leftBorder = posX;// - dispersion;
-        rightBorder = posX;// + dispersion;
+        leftBorder = posX - dispersion;
+        rightBorder = posX + dispersion;
         aimTarget = moveTarget = new Vector2(UnityEngine.Random.Range(border.Left < leftBorder ? leftBorder : border.Left, border.Right > rightBorder ? rightBorder : border.Right), border.Up);
     }
 

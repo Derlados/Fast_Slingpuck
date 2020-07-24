@@ -72,6 +72,7 @@ public class Game : MonoBehaviour
 
         
         gameObject.AddComponent(Type.GetType(GameRule.mode.ToString()));
+        gate.AddComponent(Type.GetType(GameRule.typeGate.ToString()));
 
         if (GameRule.ActiveAI)
         {
