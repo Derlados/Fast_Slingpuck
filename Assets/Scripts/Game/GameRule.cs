@@ -33,6 +33,12 @@ public static class GameRule
         RotationAI
     }
 
+    public enum Gate
+    {
+        Gate,
+        MovementGate
+    }
+
     /* Настройки уровня
      * mode - режим игры
      * type - тип поля
@@ -42,6 +48,7 @@ public static class GameRule
     public static Mode mode; // Режим игры
     public static Type type; // Тип планеты
     public static AI TypeAI; // Вид ИИ
+    public static Gate typeGate; // Вид ворот
     public static bool ActiveAI; // Наличие ИИ
     public static Difficulties difficulties; // Сложность игры
 
