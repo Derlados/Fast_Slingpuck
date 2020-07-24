@@ -46,7 +46,6 @@ public class GameMenu : MonoBehaviour
     }
     public void ToMainMenuPressed()
     {
-        Debug.Log("GGG");
         Time.timeScale = 1f;
         SceneManager.LoadScene("GameMenu");
     }

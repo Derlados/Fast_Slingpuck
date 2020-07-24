@@ -713,6 +713,7 @@ GameObject:
   - component: {fileID: 50973797}
   - component: {fileID: 50973799}
   - component: {fileID: 50973798}
+  - component: {fileID: 50973800}
   m_Layer: 5
   m_Name: PauseText
   m_TagString: Untagged
@@ -780,6 +781,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 50973796}
   m_CullTransparentMesh: 0
+--- !u!114 &50973800
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 50973796}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d2787bfbb44935c408ec2c72744e905c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  id: pause
 --- !u!1 &51499364
 GameObject:
   m_ObjectHideFlags: 0
@@ -2194,6 +2208,7 @@ GameObject:
   - component: {fileID: 346424552}
   - component: {fileID: 346424554}
   - component: {fileID: 346424553}
+  - component: {fileID: 346424555}
   m_Layer: 5
   m_Name: level_goals_head
   m_TagString: Untagged
@@ -2261,6 +2276,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 346424551}
   m_CullTransparentMesh: 0
+--- !u!114 &346424555
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 346424551}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d2787bfbb44935c408ec2c72744e905c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  id: goals
 --- !u!1 &378417633
 GameObject:
   m_ObjectHideFlags: 0

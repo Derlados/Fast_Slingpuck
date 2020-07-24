@@ -141,7 +141,7 @@ public class Speed : MonoBehaviour, Mode
             yield return new WaitForSeconds(1);
         }
 
-        gameCounterText.text = "GO!"; // Заменить и локализовать
+        LocalizationManager.add(new Pair<Text, string>(gameCounterText, "go"));
         capperField.SetActive(false);
         game.activeGame = true;
         AI.GetComponent<AI>().active = true;    
