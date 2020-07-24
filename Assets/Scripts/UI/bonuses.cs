@@ -62,7 +62,6 @@ public class Bonuses : MonoBehaviour
                     tag.tag = "1000";
                     break;
             }
-
             Days.transform.GetChild(i - 1).GetChild(1).GetComponent<Text>().text += " " + i.ToString();
         }
     }

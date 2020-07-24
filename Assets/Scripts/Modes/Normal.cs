@@ -103,6 +103,7 @@ public class Normal : MonoBehaviour, Mode
         {
             --downCount;
             ++upCount;
+            AudioManager.PlaySound(AudioManager.Audio.rise03);
         }
         else
         {

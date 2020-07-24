@@ -31,6 +31,7 @@ public class Modificators : MonoBehaviour
             texts.Add(this.transform.GetChild(i).GetChild(0).GetComponent<Text>());
             texts[i].text = data.userModificators[i].ToString();
             images.Add(this.transform.GetChild(i).GetComponent<Image>());
+            if (data.userModificators[i] == 0) disableForever(i);
         }
     }
 
@@ -39,7 +40,6 @@ public class Modificators : MonoBehaviour
     {
         int boosting = 2; //ускорение шайбы в 2 раза
         Checker.boostModificator /= boosting;
-        decrease(Type.booster);
         StartCoroutine(Timer(Type.booster, boosting));
     }
 
@@ -49,25 +49,33 @@ public class Modificators : MonoBehaviour
         int reduction = 2, AIreduction = 4; //reduction - замедление шайбы в 2 раза, AIreduction - замедление противника в 3 раза
         Checker.reductorModificator *= reduction;
         AI.speedAI /= AIreduction;
-        decrease(Type.reductor);
         StartCoroutine(Timer(Type.reductor, reduction, AIreduction));
     }
 
     //применение модификатора на 3 секунды
     IEnumerator Timer(Type type, params int[] values)
     {
-        yield return new WaitForSeconds(3);
-        switch (type)
+        decrease(type);
+        if (int.Parse(texts[calculateNum(type)].text) != 0)
         {
-            case Type.booster:
-                Checker.boostModificator = Checker.boostModificator * values[0];
-                break;
-            case Type.reductor:
-                Checker.reductorModificator = Checker.reductorModificator / values[0];
-                AI.speedAI *= values[1];
-                break;
+            yield return new WaitForSeconds(3);
+            switch (type)
+            {
+                case Type.booster:
+                    Checker.boostModificator = Checker.boostModificator * values[0];
+                    break;
+                case Type.reductor:
+                    Checker.reductorModificator = Checker.reductorModificator / values[0];
+                    AI.speedAI *= values[1];
+                    break;
+            }
+            enable(type);
         }
-        enable(type);
+        else
+        {
+            yield return null;
+        }
+        
     }
 
     public void decrease(Type type)
@@ -79,6 +87,8 @@ public class Modificators : MonoBehaviour
 
         if (count > 0)
         {
+            AudioManager.PlaySound(AudioManager.Audio.modificator);
+
             count--;
 
             //меняем текст у модификатора
@@ -104,7 +114,7 @@ public class Modificators : MonoBehaviour
         btn.enabled = !btn.enabled;
     }
 
-    //включение конпки модификатора
+    //включение кнопки модификатора
     public void enable(Type type)
     {
         int num = calculateNum(type);
@@ -130,5 +140,14 @@ public class Modificators : MonoBehaviour
                 break;
         }
         return num;
+    }
+
+    public void disableForever(int num)
+    {
+        Color gray = new Color32(204, 204, 204, 255);
+        images[num].color = gray;
+
+        Button btn = this.transform.GetChild(num).GetComponent<Button>();
+        btn.enabled = false;
     }
 }

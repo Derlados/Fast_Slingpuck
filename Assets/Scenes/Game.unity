@@ -2684,6 +2684,7 @@ MonoBehaviour:
   - {fileID: 1103512530}
   - {fileID: 277554022}
   - {fileID: 276987242}
+  audioBackground: {fileID: 567662441}
   gameOverMenu:
     stars:
     - {fileID: 1748046519}
@@ -8122,7 +8123,7 @@ GameObject:
   - component: {fileID: 567662442}
   - component: {fileID: 567662443}
   m_Layer: 0
-  m_Name: Audio Source
+  m_Name: background
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -8156,7 +8157,7 @@ AudioSource:
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
-  Loop: 0
+  Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0

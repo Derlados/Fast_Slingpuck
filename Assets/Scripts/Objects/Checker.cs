@@ -141,6 +141,8 @@ public class Checker : MonoBehaviour
 
         objTransform.rotation = Quaternion.Euler(0, 0, angle);
         body.AddForce(transform.right * V * 300);
+
+        AudioManager.PlaySound(AudioManager.Audio.string_pulling);
     }
 
     public float getRadius()
