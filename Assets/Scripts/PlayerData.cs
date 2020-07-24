@@ -11,7 +11,7 @@ public class PlayerData
     private static PlayerData instance;
 
     public int money;
-    public List<Pair<List<byte> ,Pair <GameRule.Type,bool>>> progress = new List<Pair<List<byte>, Pair<GameRule.Type, bool>>>(); // список в котором находятся пары, сотоящие из списка уровней и доступности планет
+    public List<Pair<List<byte>, Pair<GameRule.Type, bool>>> progress = new List<Pair<List<byte>, Pair<GameRule.Type, bool>>>(); // список в котором находятся пары, сотоящие из списка уровней и доступности планет
     public string puckSprite; //выбранный спрайт игрока
     public int currentPlanet;
     public SystemLanguage lang;
@@ -23,7 +23,7 @@ public class PlayerData
             if (!XMLManager.LoadData(ref instance, (new PlayerData()).ToString()))
             {
                 instance = new PlayerData();
-                instance.puckSprite = "userChecker1";;
+                instance.puckSprite = "userChecker1"; ;
                 if (Application.systemLanguage == SystemLanguage.English ||
                     Application.systemLanguage == SystemLanguage.Russian ||
                     Application.systemLanguage == SystemLanguage.Ukrainian)
@@ -38,7 +38,7 @@ public class PlayerData
         }
         return instance;
     }
- 
+
     public void Init()
     {
         for (int i = progress.Count; i < MenuManager.allPlanets; ++i)

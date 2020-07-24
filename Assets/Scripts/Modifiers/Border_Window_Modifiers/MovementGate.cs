@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEngine;
 
 // Движущееся окно
 public class MovementGate : Gate
@@ -47,7 +48,6 @@ public class MovementGate : Gate
     // Update is called once per frame
     void FixedUpdate()
     {
-
         if (game.activeGame)
         {
             // Модифицируем объекты по размеру и смещаем позиции
@@ -78,6 +78,8 @@ public class MovementGate : Gate
         float leftSize = rectLeft.rect.width, rightSize = rectRight.rect.width, posX = windowPos.position.x;
         float tempStepWorld = stepWorld, tempStepScreen = stepScreen;
 
+        sec += 0.03f;
+
         for (float i = 0; i <= sec; i += Time.fixedDeltaTime)
         {
             leftSize -= tempStepScreen;
@@ -94,5 +96,4 @@ public class MovementGate : Gate
 
         return posX;
     }
-
 }

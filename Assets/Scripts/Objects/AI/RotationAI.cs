@@ -5,26 +5,25 @@ using UnityEngine;
 
 public class RotationAI : AI
 {
-    public override void getChecker()
-    {
-        // Выбор самой ближней к нити шайбы
-        keepObj = checkers[0].objTransform;
-        for (int i = 1; i < checkers.Count; ++i)
-            if (checkers[i].objTransform.position.y > keepObj.position.y)
-                keepObj = checkers[i].objTransform;
-        keepChecker = keepObj.GetComponent<Checker>();
-
-        // Вычисление позиция для шайбы (Разброс по X необходимо скорректироваться, пока что он (leftBorder * 2, rightBorder * 2))
-        keepChecker.OnMouseDown();
-        target = new Vector2(UnityEngine.Random.Range(leftBorder * 2, rightBorder * 2), upBorder - 1.2f * keepChecker.getRadius());
-    }
-
     public override void aim()
     {
-        keepChecker.angle -= calculateAngle(target, new Vector2(UnityEngine.Random.Range(leftBorder, rightBorder), 0));
+        keepChecker.angle += calculateAngle(aimTarget, new Vector2(moveTarget.x, 0));
+        Debug.Log(keepChecker.angle);
         keepObj.rotation = Quaternion.Euler(0, 0, keepChecker.angle);
     }
+    public override void getTarget()
+    {
+        Checker.Border border = keepChecker.playerUpBorder;
+        moveTarget = new Vector2(UnityEngine.Random.Range(border.Left, border.Right), border.Up);
+        //keepTime - время за которое бот тянет  ̶л̶я̶м̶к̶у̶  шайбу на позицию
+        float keepTime = (((Vector2)keepObj.position - moveTarget).magnitude / (Time.fixedDeltaTime * speedAI)) * Time.fixedDeltaTime * 1.2f;
+        // 0.14f - примерно за столько времени у AI всегда летит шайба, если будет изменяться скорость - необходимо будет исправить (да, это пока что такой костыль)
+        float posX = gate.calculatePos(timeAim + keepTime + 0.14f);
 
+        leftBorder = posX - dispersion;
+        rightBorder = posX + dispersion;
+        aimTarget = new Vector2(UnityEngine.Random.Range(border.Left < leftBorder ? leftBorder : border.Left, border.Right > rightBorder ? rightBorder : border.Right), border.Up);
+    }
 
 
     /* Подсчет угла поворота

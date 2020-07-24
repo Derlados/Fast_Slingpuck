@@ -25,11 +25,11 @@ public class AI : MonoBehaviour
     protected Status statusType = Status.free;
 
     public bool active;    // false - AI отключен, true - AI включен
-    public static float speedAI, accuracyAI, timeRest;  // speedAi - скорость AI, accuracyAi - точность AI (разброс в процентах), time - время взятия фишки, timeAim - время прицеливания
+    public static float speedAI, accuracyAI, timeRest, timeAim = 0.3f;  // speedAi - скорость AI, accuracyAi - точность AI (разброс в процентах), time - время взятия фишки, timeAim - время прицеливания
     protected float dispersion, upBorder;    // границы бота
     protected float angle; // угол поворота шайбы 
     protected float leftBorder, rightBorder; // границы разброса точности (разброс куда бот может попасть при запуске шайбы)
-    protected Vector2 target;     // позиция шайбы для запуска
+    protected Vector2 moveTarget, aimTarget; // позиция шайбы для запуска и точка в которую целится AI 
     protected Transform keepObj;  // удерживаемая шайба
     protected Checker keepChecker;
     protected Gate gate;
@@ -60,7 +60,7 @@ public class AI : MonoBehaviour
         dispersion = Camera.main.ScreenToWorldPoint(new Vector2(accuracyAI * Screen.width, 0)).x;
     }
 
-    void Update()
+    void FixedUpdate()
     {
         if (active)
         {
@@ -70,14 +70,7 @@ public class AI : MonoBehaviour
                 getChecker();
                 getTarget();
                 statusType = Status.keep;
-            }
-
-            if (statusType == Status.keep)
-            {
-                keepObj.position = Vector2.MoveTowards(keepObj.position, target, Time.deltaTime * speedAI);
-                if ((Vector2)keepObj.position == target)
-                    statusType = Status.aim;
-            }
+            }       
             
             if (statusType == Status.aim)
             {
@@ -88,13 +81,20 @@ public class AI : MonoBehaviour
             if (statusType == Status.ready)
             {
                 statusType = Status.wait;
-                StartCoroutine(delayToPush(0.3f, keepObj, timeRest));
+                StartCoroutine(delayToPush(timeAim, keepObj, timeRest));
+            }
+
+            if (statusType == Status.keep)
+            {
+                keepObj.position = Vector2.MoveTowards(keepObj.position, moveTarget, Time.fixedDeltaTime * speedAI);
+                if ((Vector2)keepObj.position == moveTarget)
+                    statusType = Status.aim;
             }
         }
     }
 
-    // Выбирает необходимую шайбу и вычисляет позицию на которую она будет поставлена
-    public virtual void getChecker()
+    // Выбирает необходимую шайбу
+    public void getChecker()
     {
         keepObj = checkers[0].objTransform;
         for (int i = 1; i < checkers.Count; ++i)
@@ -102,18 +102,23 @@ public class AI : MonoBehaviour
                 keepObj = checkers[i].objTransform;
         keepChecker = keepObj.GetComponent<Checker>();
 
-        keepChecker.OnMouseDown();    
+        keepChecker.OnMouseDown();
+        keepChecker.angle = 270f; // Иногда происходит баг, что шайба не успевает переключится и не разворачивается на 270 градусов у AI
     }
 
-    // Функция возвращающаяя цель, куда необходимо целится
-    public void getTarget()
+    // Функция возвращающаяя цель, куда необходимо целится  и куда поставить шайбу
+    public virtual void getTarget()
     {
-        float posX = gate.calculatePos(timeRest);
+        Checker.Border border = keepChecker.playerUpBorder;
+        //keepTime - время за которое бот тянет  ̶л̶я̶м̶к̶у̶  шайбу на позицию
+        float keepTime = (((Vector2)keepObj.position - new Vector2(keepObj.position.x, border.Up)).magnitude / (Time.fixedDeltaTime * speedAI)) * Time.fixedDeltaTime * 1.2f;
+        // 0.14f - примерно за столько времени у AI всегда летит шайба, если будет изменяться скорость - необходимо будет исправить (да, это пока что такой костыль)
+        float posX = gate.calculatePos(timeAim + keepTime + 0.14f);
+
         leftBorder = posX - dispersion;
         rightBorder = posX + dispersion;
-        target = new Vector2(UnityEngine.Random.Range(leftBorder, rightBorder), upBorder - 1.2f * keepObj.GetComponent<Checker>().getRadius());
+        aimTarget = moveTarget = new Vector2(UnityEngine.Random.Range(border.Left < leftBorder ? leftBorder : border.Left, border.Right > rightBorder ? rightBorder : border.Right), border.Up);
     }
-
 
     // Прицеливание, получает точку на которую должна быть направлена шайба, если шайба летит прямо - необходимости в прицеливании нету
     public virtual void aim()
