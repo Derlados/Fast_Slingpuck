@@ -16,7 +16,8 @@ public static class GameRule
         lava,
         ice,
         sand,
-        jungle
+        jungle,
+        water
     }
     public enum Difficulties
     {
@@ -56,7 +57,8 @@ public static class GameRule
     public static int planetNum, levelNum, levelsCount; // номер планеты, номер уровня и кол-во уровней планеты, необходимы для записи прогреса
     public static int target1, target2, target3; // Цели, как правило это всегда числовые значение, если это касается особенности геймплея, то это обеспечивает сам режим
 
-    public static Type[] planetProgressNum = new Type[4] { Type.lava, Type.sand, Type.ice, Type.jungle };
+    //для удобства
+    public static Type[] planetProgressNum = new Type[] { Type.lava, Type.sand, Type.ice, Type.water, Type.jungle, };
 }
 
 public class Difficulty

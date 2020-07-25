@@ -56,6 +56,7 @@ public class GameMenu : MonoBehaviour
     {
         Time.timeScale = 1f;
         AudioManager.PlaySound(AudioManager.Audio.click);
+        LocalizationManager.clear();
         SceneManager.LoadScene("GameMenu");
     }
     public void gameOver(string message, int stars, int money1, int money2, int money3)

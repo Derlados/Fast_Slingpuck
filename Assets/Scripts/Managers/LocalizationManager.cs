@@ -37,5 +37,10 @@ public static class LocalizationManager
         loadXML();
         for (int i = 0; i < texts.Count; ++i)
             texts[i].first.text = data.Element(texts[i].second).Value;
-    }    
+    }   
+    
+    public static void clear()
+    {
+        texts.Clear();
+    }
 }

@@ -137,6 +137,7 @@ public class MenuManager : MonoBehaviour
     public void loadGame()
     {
         AudioManager.PlaySound(AudioManager.Audio.click);
+        LocalizationManager.clear();
         SceneManager.LoadScene("Game");
     }
 
