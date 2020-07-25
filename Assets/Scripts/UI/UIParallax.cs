@@ -6,7 +6,6 @@ using UnityEngine;
 public class UIParallax : MonoBehaviour
 {
     public GameObject[] layers;
-    public GameObject[] menus;
     public static bool active;
 
     float dragSpeed = 0.01f; //0.01f ANDROID, 0.001f PC

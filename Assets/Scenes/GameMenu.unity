@@ -249,7 +249,7 @@ GameObject:
   - component: {fileID: 19355740}
   - component: {fileID: 19355742}
   - component: {fileID: 19355741}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: MoneyText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -684,6 +684,98 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: -0.5, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!1 &53185132
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 53185134}
+  - component: {fileID: 53185133}
+  m_Layer: 0
+  m_Name: Directional Light
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!108 &53185133
+Light:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 53185132}
+  m_Enabled: 1
+  serializedVersion: 10
+  m_Type: 1
+  m_Shape: 0
+  m_Color: {r: 1, g: 0.95686275, b: 0.8392157, a: 1}
+  m_Intensity: 2
+  m_Range: 10
+  m_SpotAngle: 30
+  m_InnerSpotAngle: 21.802082
+  m_CookieSize: 10
+  m_Shadows:
+    m_Type: 2
+    m_Resolution: -1
+    m_CustomResolution: -1
+    m_Strength: 1
+    m_Bias: 0.02
+    m_NormalBias: 0.1
+    m_NearPlane: 0.1
+    m_CullingMatrixOverride:
+      e00: 1
+      e01: 0
+      e02: 0
+      e03: 0
+      e10: 0
+      e11: 1
+      e12: 0
+      e13: 0
+      e20: 0
+      e21: 0
+      e22: 1
+      e23: 0
+      e30: 0
+      e31: 0
+      e32: 0
+      e33: 1
+    m_UseCullingMatrixOverride: 0
+  m_Cookie: {fileID: 0}
+  m_DrawHalo: 0
+  m_Flare: {fileID: 0}
+  m_RenderMode: 0
+  m_CullingMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_RenderingLayerMask: 1
+  m_Lightmapping: 4
+  m_LightShadowCasterMode: 0
+  m_AreaSize: {x: 1, y: 1}
+  m_BounceIntensity: 1
+  m_ColorTemperature: 6570
+  m_UseColorTemperature: 0
+  m_BoundingSphereOverride: {x: 0, y: 0, z: 0, w: 0}
+  m_UseBoundingSphereOverride: 0
+  m_ShadowRadius: 0
+  m_ShadowAngle: 0
+--- !u!4 &53185134
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 53185132}
+  m_LocalRotation: {x: 0.7064338, y: 0.47771442, z: 0.030843567, w: 0.5213338}
+  m_LocalPosition: {x: 0.24, y: 3, z: 4.18}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 15
+  m_LocalEulerAnglesHint: {x: 45, y: 130, z: 90}
 --- !u!1 &53263103
 GameObject:
   m_ObjectHideFlags: 0
@@ -1462,7 +1554,7 @@ GameObject:
   - component: {fileID: 105264276}
   - component: {fileID: 105264278}
   - component: {fileID: 105264277}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: CheckerIcon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2021,7 +2113,7 @@ GameObject:
   m_Component:
   - component: {fileID: 154741452}
   - component: {fileID: 154741453}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: Checker (5)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2191,7 +2283,7 @@ GameObject:
   - component: {fileID: 194423362}
   - component: {fileID: 194423364}
   - component: {fileID: 194423363}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: Panel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2763,7 +2855,7 @@ GameObject:
   - component: {fileID: 223349582}
   - component: {fileID: 223349581}
   - component: {fileID: 223349580}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: Scrollbar Vertical
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2832,8 +2924,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 445488701}
   m_HandleRect: {fileID: 445488700}
   m_Direction: 2
-  m_Value: 1
-  m_Size: 0.75699073
+  m_Value: 1.0000004
+  m_Size: 0.7569907
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -3056,7 +3148,7 @@ GameObject:
   - component: {fileID: 260551308}
   - component: {fileID: 260551310}
   - component: {fileID: 260551309}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: Panel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3130,7 +3222,7 @@ GameObject:
   - component: {fileID: 261648696}
   - component: {fileID: 261648698}
   - component: {fileID: 261648697}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: MoneyText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3208,7 +3300,7 @@ GameObject:
   - component: {fileID: 262114591}
   - component: {fileID: 262114593}
   - component: {fileID: 262114592}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: CheckerIcon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3253,7 +3345,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 3b9c2d8a9ee4f074e80c748455346d8b, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 1d5b4266d7289054a98dc54b3301c9a8, type: 3}
   m_Type: 0
   m_PreserveAspect: 1
   m_FillCenter: 1
@@ -5140,7 +5232,7 @@ GameObject:
   - component: {fileID: 404164572}
   - component: {fileID: 404164574}
   - component: {fileID: 404164573}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: MoneyPanel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5330,7 +5422,7 @@ GameObject:
   - component: {fileID: 445488700}
   - component: {fileID: 445488702}
   - component: {fileID: 445488701}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: Handle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5351,7 +5443,7 @@ RectTransform:
   m_Father: {fileID: 2127833167}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0.24300927}
+  m_AnchorMin: {x: 0, y: 0.24300933}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 4}
   m_SizeDelta: {x: 20, y: 12}
@@ -5589,7 +5681,7 @@ PrefabInstance:
     - target: {fileID: 9004831237760379576, guid: fe6ef68fcb158c04ca07ba4bd1672cf5,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 122.99997
+      value: 123
       objectReference: {fileID: 0}
     - target: {fileID: 9004831237760379576, guid: fe6ef68fcb158c04ca07ba4bd1672cf5,
         type: 3}
@@ -6088,7 +6180,8 @@ GameObject:
   m_Component:
   - component: {fileID: 528351765}
   - component: {fileID: 528351766}
-  m_Layer: 5
+  - component: {fileID: 528351767}
+  m_Layer: 0
   m_Name: Checker (6)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6173,6 +6266,45 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!23 &528351767
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 528351764}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 0}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
 --- !u!1 &557895970
 GameObject:
   m_ObjectHideFlags: 0
@@ -6503,7 +6635,7 @@ GameObject:
   - component: {fileID: 577154733}
   - component: {fileID: 577154735}
   - component: {fileID: 577154734}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: MoneyText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6581,7 +6713,7 @@ GameObject:
   - component: {fileID: 579920147}
   - component: {fileID: 579920149}
   - component: {fileID: 579920148}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: MoneyText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6938,7 +7070,7 @@ GameObject:
   - component: {fileID: 591807670}
   - component: {fileID: 591807673}
   - component: {fileID: 591807672}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: CheckerIcon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7251,7 +7383,7 @@ GameObject:
   - component: {fileID: 643619954}
   - component: {fileID: 643619956}
   - component: {fileID: 643619955}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: MoneyIcon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7787,7 +7919,7 @@ PrefabInstance:
     - target: {fileID: 282064770350450046, guid: 89777450b68e4d44c879a3ffab8a7a21,
         type: 3}
       propertyPath: m_Text
-      value: +250 coins
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 1346275069341764171, guid: 89777450b68e4d44c879a3ffab8a7a21,
         type: 3}
@@ -7913,6 +8045,13 @@ PrefabInstance:
         type: 3}
       propertyPath: m_TagString
       value: 250
+      objectReference: {fileID: 0}
+    - target: {fileID: 8437018386677243735, guid: 89777450b68e4d44c879a3ffab8a7a21,
+        type: 3}
+      propertyPath: m_Text
+      value: '
+
+'
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 89777450b68e4d44c879a3ffab8a7a21, type: 3}
@@ -8195,7 +8334,7 @@ PrefabInstance:
     - target: {fileID: 9004831237760379576, guid: b2f54662d1802b0469829b107941328c,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 352.9935
+      value: 352.99243
       objectReference: {fileID: 0}
     - target: {fileID: 9004831237760379576, guid: b2f54662d1802b0469829b107941328c,
         type: 3}
@@ -8495,7 +8634,7 @@ PrefabInstance:
     - target: {fileID: 9004831237760379576, guid: fe6ef68fcb158c04ca07ba4bd1672cf5,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 438.9935
+      value: 438.99243
       objectReference: {fileID: 0}
     - target: {fileID: 9004831237760379576, guid: fe6ef68fcb158c04ca07ba4bd1672cf5,
         type: 3}
@@ -8673,7 +8812,7 @@ PrefabInstance:
     - target: {fileID: 9004831237760379576, guid: b2f54662d1802b0469829b107941328c,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 165.99997
+      value: 166
       objectReference: {fileID: 0}
     - target: {fileID: 9004831237760379576, guid: b2f54662d1802b0469829b107941328c,
         type: 3}
@@ -9768,7 +9907,7 @@ PrefabInstance:
     - target: {fileID: 9004831237760379576, guid: 799c0823fe5592c408e4e4a64887ee7f,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 83.99997
+      value: 84
       objectReference: {fileID: 0}
     - target: {fileID: 9004831237760379576, guid: 799c0823fe5592c408e4e4a64887ee7f,
         type: 3}
@@ -9960,7 +10099,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 889515185}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: checkerPanel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9989,7 +10128,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: -0.00012207031}
   m_SizeDelta: {x: -0.0010375977, y: 404.77307}
   m_Pivot: {x: 0, y: 1}
 --- !u!1 &895434186
@@ -10158,7 +10297,7 @@ GameObject:
   - component: {fileID: 921739666}
   - component: {fileID: 921739665}
   m_Layer: 8
-  m_Name: gameover_particle
+  m_Name: meteorParticle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -10236,8 +10375,8 @@ ParticleSystem:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 921739664}
   serializedVersion: 6
-  lengthInSec: 2.48
-  simulationSpeed: 4.09
+  lengthInSec: 1
+  simulationSpeed: 11.88
   stopAction: 0
   cullingMode: 0
   ringBufferMode: 0
@@ -10311,7 +10450,7 @@ ParticleSystem:
     startLifetime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 144.9
+      scalar: 67.88
       minScalar: 5
       maxCurve:
         serializedVersion: 2
@@ -10480,7 +10619,7 @@ ParticleSystem:
     startSize:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 0.61
+      scalar: 0.71
       minScalar: 0.2
       maxCurve:
         serializedVersion: 2
@@ -10796,7 +10935,7 @@ ParticleSystem:
         m_PostInfinity: 2
         m_RotationOrder: 4
     randomizeRotationDirection: 0
-    maxNumParticles: 5
+    maxNumParticles: 3
     size3D: 0
     rotation3D: 0
     gravityModifier:
@@ -11061,7 +11200,7 @@ ParticleSystem:
     rateOverTime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 100
+      scalar: 1
       minScalar: 10
       maxCurve:
         serializedVersion: 2
@@ -11114,7 +11253,7 @@ ParticleSystem:
     rateOverDistance:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 0
+      scalar: 1
       minScalar: 0
       maxCurve:
         serializedVersion: 2
@@ -11680,7 +11819,7 @@ ParticleSystem:
     flipU: 0
     flipV: 0
   VelocityModule:
-    enabled: 0
+    enabled: 1
     x:
       serializedVersion: 2
       minMaxState: 0
@@ -11737,7 +11876,7 @@ ParticleSystem:
     y:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 0
+      scalar: 0.09
       minScalar: 0
       maxCurve:
         serializedVersion: 2
@@ -11790,7 +11929,7 @@ ParticleSystem:
     z:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 0
+      scalar: 0.09
       minScalar: 0
       maxCurve:
         serializedVersion: 2
@@ -12214,7 +12353,7 @@ ParticleSystem:
     speedModifier:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 1
+      scalar: 1.5
       minScalar: 1
       maxCurve:
         serializedVersion: 2
@@ -12490,7 +12629,7 @@ ParticleSystem:
     multiplierCurve:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 1
+      scalar: 2.17
       minScalar: 1
       maxCurve:
         serializedVersion: 2
@@ -12979,7 +13118,7 @@ ParticleSystem:
         m_PostInfinity: 2
         m_RotationOrder: 4
     separateAxes: 0
-    frequency: 0.5
+    frequency: 0.9
     damping: 1
     octaves: 1
     octaveMultiplier: 0.5
@@ -12988,7 +13127,7 @@ ParticleSystem:
     scrollSpeed:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 0
+      scalar: 0.45
       minScalar: 0
       maxCurve:
         serializedVersion: 2
@@ -13955,7 +14094,7 @@ ParticleSystem:
     - serializedVersion: 3
       emitter: {fileID: 0}
       type: 0
-      properties: 0
+      properties: 8
       emitProbability: 1
   LightsModule:
     enabled: 0
@@ -14074,7 +14213,7 @@ ParticleSystem:
     maxLights: 20
   TrailModule:
     enabled: 0
-    mode: 0
+    mode: 1
     ratio: 1
     lifetime:
       serializedVersion: 2
@@ -15207,7 +15346,7 @@ GameObject:
   m_Component:
   - component: {fileID: 934164758}
   - component: {fileID: 934164759}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: Checker (4)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -15482,7 +15621,7 @@ GameObject:
   - component: {fileID: 956963815}
   - component: {fileID: 956963817}
   - component: {fileID: 956963816}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: MoneyText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -15752,7 +15891,7 @@ GameObject:
   - component: {fileID: 963602217}
   - component: {fileID: 963602219}
   - component: {fileID: 963602218}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: CheckerIcon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -16212,7 +16351,7 @@ GameObject:
   - component: {fileID: 979633870}
   - component: {fileID: 979633872}
   - component: {fileID: 979633871}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: MoneyIcon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -16285,7 +16424,7 @@ GameObject:
   m_Component:
   - component: {fileID: 981659722}
   - component: {fileID: 981659723}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: Checker (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -16313,7 +16452,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.05954824, y: 0.48689067}
   m_AnchorMax: {x: 0.929, y: 0.6376891}
-  m_AnchoredPosition: {x: -1, y: 4}
+  m_AnchoredPosition: {x: -1, y: 3.999878}
   m_SizeDelta: {x: 4.762451, y: 1.6160278}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &981659723
@@ -16971,7 +17110,7 @@ PrefabInstance:
     - target: {fileID: 282064770350450046, guid: 89777450b68e4d44c879a3ffab8a7a21,
         type: 3}
       propertyPath: m_Text
-      value: +5 reductors
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 1346275069341764171, guid: 89777450b68e4d44c879a3ffab8a7a21,
         type: 3}
@@ -17104,6 +17243,13 @@ PrefabInstance:
       propertyPath: m_TagString
       value: booster
       objectReference: {fileID: 0}
+    - target: {fileID: 8437018386677243735, guid: 89777450b68e4d44c879a3ffab8a7a21,
+        type: 3}
+      propertyPath: m_Text
+      value: '
+
+'
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 89777450b68e4d44c879a3ffab8a7a21, type: 3}
 --- !u!1 &1018100579
@@ -17117,7 +17263,7 @@ GameObject:
   - component: {fileID: 1018100580}
   - component: {fileID: 1018100582}
   - component: {fileID: 1018100581}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: MoneyPanel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -17140,7 +17286,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.4083483, y: 0.086597115}
   m_AnchorMax: {x: 0.92300004, y: 0.975}
-  m_AnchoredPosition: {x: -0.69999695, y: -1.5}
+  m_AnchoredPosition: {x: -0.69999695, y: -1.5000076}
   m_SizeDelta: {x: 0.698761, y: 1.9456024}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1018100581
@@ -17585,7 +17731,7 @@ GameObject:
   - component: {fileID: 1095501601}
   - component: {fileID: 1095501600}
   - component: {fileID: 1095501599}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: ScrollChecker
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -18036,7 +18182,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1141900189}
   - component: {fileID: 1141900190}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: Checker (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -18064,7 +18210,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.05954824, y: 0.82800007}
   m_AnchorMax: {x: 0.929, y: 0.98131096}
-  m_AnchoredPosition: {x: -0.59997565, y: -0.9000244}
+  m_AnchoredPosition: {x: -0.5999757, y: -0.9000244}
   m_SizeDelta: {x: 4.762451, y: -2.3839722}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1141900190
@@ -18137,7 +18283,7 @@ PrefabInstance:
     - target: {fileID: 282064770350450046, guid: 89777450b68e4d44c879a3ffab8a7a21,
         type: 3}
       propertyPath: m_Text
-      value: +500 coins
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 1346275069341764171, guid: 89777450b68e4d44c879a3ffab8a7a21,
         type: 3}
@@ -18259,6 +18405,13 @@ PrefabInstance:
       propertyPath: m_TagString
       value: 500
       objectReference: {fileID: 0}
+    - target: {fileID: 8437018386677243735, guid: 89777450b68e4d44c879a3ffab8a7a21,
+        type: 3}
+      propertyPath: m_Text
+      value: '
+
+'
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 89777450b68e4d44c879a3ffab8a7a21, type: 3}
 --- !u!224 &1158586285 stripped
@@ -18277,7 +18430,7 @@ PrefabInstance:
     - target: {fileID: 282064770350450046, guid: 89777450b68e4d44c879a3ffab8a7a21,
         type: 3}
       propertyPath: m_Text
-      value: +1000 coins
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 1346275069341764171, guid: 89777450b68e4d44c879a3ffab8a7a21,
         type: 3}
@@ -18403,6 +18556,13 @@ PrefabInstance:
         type: 3}
       propertyPath: m_TagString
       value: 250
+      objectReference: {fileID: 0}
+    - target: {fileID: 8437018386677243735, guid: 89777450b68e4d44c879a3ffab8a7a21,
+        type: 3}
+      propertyPath: m_Text
+      value: '
+
+'
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 89777450b68e4d44c879a3ffab8a7a21, type: 3}
@@ -18663,7 +18823,7 @@ PrefabInstance:
     - target: {fileID: 9004831237760379576, guid: fe6ef68fcb158c04ca07ba4bd1672cf5,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 437.9935
+      value: 437.99243
       objectReference: {fileID: 0}
     - target: {fileID: 9004831237760379576, guid: fe6ef68fcb158c04ca07ba4bd1672cf5,
         type: 3}
@@ -19282,7 +19442,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1318914818}
   - component: {fileID: 1318914819}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: Checker (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -19378,7 +19538,7 @@ GameObject:
   - component: {fileID: 1330028512}
   - component: {fileID: 1330028514}
   - component: {fileID: 1330028513}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: Panel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -19452,7 +19612,7 @@ GameObject:
   - component: {fileID: 1330157413}
   - component: {fileID: 1330157415}
   - component: {fileID: 1330157414}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: MoneyPanel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -19526,7 +19686,7 @@ GameObject:
   - component: {fileID: 1347019728}
   - component: {fileID: 1347019730}
   - component: {fileID: 1347019729}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: CheckerIcon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -19571,7 +19731,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: d492ee0da0498c84f950914ec14ab5d8, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 86510cdd5f4e1e24f8f8c6aa566d885d, type: 3}
   m_Type: 0
   m_PreserveAspect: 1
   m_FillCenter: 1
@@ -19975,7 +20135,7 @@ PrefabInstance:
     - target: {fileID: 9004831237760379576, guid: fe6ef68fcb158c04ca07ba4bd1672cf5,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 164.99997
+      value: 165
       objectReference: {fileID: 0}
     - target: {fileID: 9004831237760379576, guid: fe6ef68fcb158c04ca07ba4bd1672cf5,
         type: 3}
@@ -21025,7 +21185,7 @@ PrefabInstance:
     - target: {fileID: 282064770350450046, guid: 89777450b68e4d44c879a3ffab8a7a21,
         type: 3}
       propertyPath: m_Text
-      value: +500 coins
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 1346275069341764171, guid: 89777450b68e4d44c879a3ffab8a7a21,
         type: 3}
@@ -21157,6 +21317,13 @@ PrefabInstance:
         type: 3}
       propertyPath: m_TagString
       value: booster
+      objectReference: {fileID: 0}
+    - target: {fileID: 8437018386677243735, guid: 89777450b68e4d44c879a3ffab8a7a21,
+        type: 3}
+      propertyPath: m_Text
+      value: '
+
+'
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 89777450b68e4d44c879a3ffab8a7a21, type: 3}
@@ -21409,7 +21576,7 @@ GameObject:
   - component: {fileID: 1456074609}
   - component: {fileID: 1456074611}
   - component: {fileID: 1456074610}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: MoneyPanel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -21483,7 +21650,7 @@ GameObject:
   - component: {fileID: 1466655686}
   - component: {fileID: 1466655688}
   - component: {fileID: 1466655687}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: MoneyIcon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -21557,7 +21724,7 @@ GameObject:
   - component: {fileID: 1499666705}
   - component: {fileID: 1499666707}
   - component: {fileID: 1499666706}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: MoneyIcon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -21710,7 +21877,7 @@ GameObject:
   - component: {fileID: 1527293363}
   - component: {fileID: 1527293365}
   - component: {fileID: 1527293364}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: MoneyIcon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -22013,7 +22180,7 @@ GameObject:
   - component: {fileID: 1567397679}
   - component: {fileID: 1567397681}
   - component: {fileID: 1567397680}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: Panel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -22125,7 +22292,7 @@ GameObject:
   - component: {fileID: 1585041375}
   - component: {fileID: 1585041374}
   - component: {fileID: 1585041373}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: Viewport
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -22152,7 +22319,15 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: -17.06781, y: 0}
   m_Pivot: {x: 0, y: 1}
---- !u!114 &1585041373
+--- !u!222 &1585041373
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1585041371}
+  m_CullTransparentMesh: 0
+--- !u!114 &1585041374
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -22164,8 +22339,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 31a19414c41e5ae4aae2af33fee712f6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_ShowMaskGraphic: 0
---- !u!114 &1585041374
+  m_ShowMaskGraphic: 1
+--- !u!114 &1585041375
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -22194,14 +22369,6 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!222 &1585041375
-CanvasRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1585041371}
-  m_CullTransparentMesh: 0
 --- !u!224 &1590236649 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 9004831237760379576, guid: 799c0823fe5592c408e4e4a64887ee7f,
@@ -24206,7 +24373,7 @@ GameObject:
   - component: {fileID: 1747954208}
   - component: {fileID: 1747954210}
   - component: {fileID: 1747954209}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: CheckerIcon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -24878,7 +25045,7 @@ GameObject:
   - component: {fileID: 1815289636}
   - component: {fileID: 1815289638}
   - component: {fileID: 1815289637}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: Panel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -24951,7 +25118,7 @@ PrefabInstance:
     - target: {fileID: 282064770350450046, guid: 89777450b68e4d44c879a3ffab8a7a21,
         type: 3}
       propertyPath: m_Text
-      value: //
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 1346275069341764171, guid: 89777450b68e4d44c879a3ffab8a7a21,
         type: 3}
@@ -25084,6 +25251,13 @@ PrefabInstance:
       propertyPath: m_TagString
       value: booster
       objectReference: {fileID: 0}
+    - target: {fileID: 8437018386677243735, guid: 89777450b68e4d44c879a3ffab8a7a21,
+        type: 3}
+      propertyPath: m_Text
+      value: '
+
+'
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 89777450b68e4d44c879a3ffab8a7a21, type: 3}
 --- !u!224 &1846146697 stripped
@@ -25102,7 +25276,7 @@ PrefabInstance:
     - target: {fileID: 282064770350450046, guid: 89777450b68e4d44c879a3ffab8a7a21,
         type: 3}
       propertyPath: m_Text
-      value: +500 coins
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 1346275069341764171, guid: 89777450b68e4d44c879a3ffab8a7a21,
         type: 3}
@@ -25223,6 +25397,13 @@ PrefabInstance:
         type: 3}
       propertyPath: m_TagString
       value: 500
+      objectReference: {fileID: 0}
+    - target: {fileID: 8437018386677243735, guid: 89777450b68e4d44c879a3ffab8a7a21,
+        type: 3}
+      propertyPath: m_Text
+      value: '
+
+'
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 89777450b68e4d44c879a3ffab8a7a21, type: 3}
@@ -25644,7 +25825,7 @@ GameObject:
   - component: {fileID: 1904493738}
   - component: {fileID: 1904493740}
   - component: {fileID: 1904493739}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: MoneyPanel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -26174,7 +26355,7 @@ PrefabInstance:
     - target: {fileID: 9004831237760379576, guid: b2f54662d1802b0469829b107941328c,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 452.9935
+      value: 452.99243
       objectReference: {fileID: 0}
     - target: {fileID: 9004831237760379576, guid: b2f54662d1802b0469829b107941328c,
         type: 3}
@@ -26347,7 +26528,7 @@ MonoBehaviour:
     m_Bits: 1
   m_VolumeTrigger: {fileID: 0}
   m_RenderPostProcessing: 1
-  m_Antialiasing: 0
+  m_Antialiasing: 1
   m_AntialiasingQuality: 2
   m_StopNaN: 0
   m_Dithering: 0
@@ -26371,7 +26552,7 @@ MonoBehaviour:
   priority: 0
   blendDistance: 0
   weight: 1
-  sharedProfile: {fileID: 11400000, guid: 4752c4acf70e6154196401ca57d32367, type: 2}
+  sharedProfile: {fileID: 11400000, guid: be7df68ef95a9cb42a127802ea081476, type: 2}
 --- !u!114 &1977894713
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -26386,12 +26567,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   layers:
   - {fileID: 1858029563}
+  - {fileID: 921739664}
   - {fileID: 1648849930}
   - {fileID: 53263103}
   - {fileID: 958313930}
   - {fileID: 1953028271}
   - {fileID: 2011891647}
-  menus: []
 --- !u!1 &1978842440
 GameObject:
   m_ObjectHideFlags: 0
@@ -26814,7 +26995,7 @@ PrefabInstance:
     - target: {fileID: 282064770350450046, guid: 89777450b68e4d44c879a3ffab8a7a21,
         type: 3}
       propertyPath: m_Text
-      value: +5 boosters
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 1346275069341764171, guid: 89777450b68e4d44c879a3ffab8a7a21,
         type: 3}
@@ -26946,6 +27127,13 @@ PrefabInstance:
         type: 3}
       propertyPath: m_TagString
       value: booster
+      objectReference: {fileID: 0}
+    - target: {fileID: 8437018386677243735, guid: 89777450b68e4d44c879a3ffab8a7a21,
+        type: 3}
+      propertyPath: m_Text
+      value: '
+
+'
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 89777450b68e4d44c879a3ffab8a7a21, type: 3}
@@ -27351,7 +27539,7 @@ GameObject:
   - component: {fileID: 2075630917}
   - component: {fileID: 2075630919}
   - component: {fileID: 2075630918}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: Panel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -27425,7 +27613,7 @@ GameObject:
   - component: {fileID: 2102062080}
   - component: {fileID: 2102062082}
   - component: {fileID: 2102062081}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: MoneyText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -27621,7 +27809,7 @@ GameObject:
   - component: {fileID: 2125072219}
   - component: {fileID: 2125072221}
   - component: {fileID: 2125072220}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: MoneyPanel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -27693,7 +27881,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2127833167}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: Sliding Area
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -27731,7 +27919,7 @@ GameObject:
   - component: {fileID: 2136104405}
   - component: {fileID: 2136104407}
   - component: {fileID: 2136104406}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: MoneyIcon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -27942,6 +28130,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 332356973}
     m_Modifications:
+    - target: {fileID: 282064770350450046, guid: 89777450b68e4d44c879a3ffab8a7a21,
+        type: 3}
+      propertyPath: m_Text
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 1346275069341764171, guid: 89777450b68e4d44c879a3ffab8a7a21,
         type: 3}
       propertyPath: m_TagString
@@ -28061,6 +28254,13 @@ PrefabInstance:
         type: 3}
       propertyPath: m_TagString
       value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 8437018386677243735, guid: 89777450b68e4d44c879a3ffab8a7a21,
+        type: 3}
+      propertyPath: m_Text
+      value: '
+
+'
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 89777450b68e4d44c879a3ffab8a7a21, type: 3}
