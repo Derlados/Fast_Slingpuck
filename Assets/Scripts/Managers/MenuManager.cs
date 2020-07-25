@@ -49,8 +49,8 @@ public class MenuManager : MonoBehaviour
     {
         cameraStatus = Status.freeOnMenu;
         // Оптимизация второго поля под разные екраны так как поле Планет не закреплено за камерой
-        float posX = -Math.Abs(Camera.main.ScreenToWorldPoint(new Vector2(Screen.width, Screen.height)).x - (GalaxyCanvas.GetComponent<RectTransform>().sizeDelta.x / 2));
-        thisCamera.transform.position = new Vector3(posX, thisCamera.transform.position.y, thisCamera.transform.position.z);
+        //float posX = -Math.Abs(Camera.main.ScreenToWorldPoint(new Vector2(Screen.width, Screen.height)).x - (GalaxyCanvas.GetComponent<RectTransform>().sizeDelta.x / 2)); // Сдвиг карты к левому краю второго поля 
+        thisCamera.transform.position = new Vector3(0, thisCamera.transform.position.y, thisCamera.transform.position.z);
 
         startPos = thisCamera.transform.position;
 
@@ -330,21 +330,18 @@ public class MenuManager : MonoBehaviour
     //устанавливаем прогресс планет
     public void setPlanetProgress()
     {
-        Color gray = new Color32(204, 204, 204, 255);
+        Color gray = new Color32(72, 72, 72, 255);
 
         for (int i = 0; i < MenuManager.allPlanets; ++i)
         {
-            Button btn = galaxy.transform.GetChild(i + 2).GetComponent<Button>();
+            Transform planet = galaxy.transform.GetChild(i + 2);
+
             if (!PlayerData.getInstance().progress[i].second.second)
             {
-                galaxy.transform.GetChild(i + 2).GetComponent<Image>().color = gray;
-                btn.enabled = false;
+                planet.GetChild(0).gameObject.SetActive(true);
+                planet.GetComponent<Image>().color = gray;
+                planet.GetComponent<Button>().enabled = false;
             }
-            else
-            {
-                btn.enabled = true;
-            }
-
         }
     }
 }

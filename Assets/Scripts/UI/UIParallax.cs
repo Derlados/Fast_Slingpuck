@@ -8,7 +8,7 @@ public class UIParallax : MonoBehaviour
     public GameObject[] layers;
     public static bool active;
 
-    float dragSpeed = 0.01f; //0.01f ANDROID, 0.001f PC
+    float dragSpeed = 0.001f; //0.01f ANDROID, 0.001f PC
     float mousePosYStart = 0f;
     float minDragY = -10.0f;
     float maxDragY = 10.0f;

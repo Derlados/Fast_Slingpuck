@@ -39,7 +39,7 @@ public class Game : MonoBehaviour
 
     public bool activeGame = false;
 
-    private void Start()
+    private void Awake()
     {
         countShots = 0;
 
@@ -157,9 +157,9 @@ public class Game : MonoBehaviour
    
 
 
+        // Добавляем режим, тип ворот и тип бота
         gameObject.AddComponent(Type.GetType(GameRule.mode.ToString()));
         gate.AddComponent(Type.GetType(GameRule.typeGate.ToString()));
-
         if (GameRule.ActiveAI)
         {
             AI.AddComponent(Type.GetType(GameRule.TypeAI.ToString()));

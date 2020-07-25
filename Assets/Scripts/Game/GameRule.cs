@@ -36,7 +36,8 @@ public static class GameRule
     public enum Gate
     {
         Gate,
-        MovementGate
+        MovementGate,
+        TeleportGate
     }
 
     /* Настройки уровня
