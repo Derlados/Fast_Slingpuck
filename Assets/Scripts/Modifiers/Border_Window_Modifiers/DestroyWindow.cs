@@ -2,14 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DestroyWindow : MonoBehaviour
+public class DestroyWindow : Window
 {
-    GameObject game;
-
-    private void Start()
-    {
-        game = gameObject.GetComponent<Window>().game;
-    }
 
     /* Окно "уничтожитель"
      * Если шайба удачно пролетает через окно - шайба должна быть визуально уничтожена
@@ -18,7 +12,10 @@ public class DestroyWindow : MonoBehaviour
     private void OnTriggerExit2D(Collider2D collision)
     {
         Checker check = collision.gameObject.GetComponent<Checker>();
-        if ((collision.gameObject.transform.position.y > 0 && check.field == Checker.Field.Down) || (collision.gameObject.transform.position.y < 0 && check.field == Checker.Field.Up)) 
-            game.GetComponent<Mode>().changeCount(collision.gameObject);    
+        if ((collision.gameObject.transform.position.y > 0 && check.field == Checker.Field.Down) || (collision.gameObject.transform.position.y < 0 && check.field == Checker.Field.Up))
+        {
+            game.GetComponent<Mode>().changeCount(collision.gameObject);
+            gate.goalReaction();
+        }   
     }
 }
