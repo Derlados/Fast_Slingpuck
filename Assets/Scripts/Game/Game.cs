@@ -18,6 +18,8 @@ public class Game : MonoBehaviour
     public GameObject gameMenu;
     public GameObject particles;
     public GameObject gate;
+    public GameObject borders;
+    public GameObject[] strings;
 
     // Текст счетчиков
     public Text upCountText, downCountText, gameCounter;
@@ -64,15 +66,97 @@ public class Game : MonoBehaviour
                 break;
         }
 
+        Material GreenBorderGlowMat = Resources.Load<Material>("Sprites/Materials/Borders/GreenBorderGlowMat");
+        Material BlueBorderGlowMat = Resources.Load<Material>("Sprites/Materials/Borders/BlueBorderGlowMat");
+        Material YellowBorderGlowMat = Resources.Load<Material>("Sprites/Materials/Borders/YellowBorderGlowMat");
+        Material RedBorderGlowMat = Resources.Load<Material>("Sprites/Materials/Borders/RedBorderGlowMat");
+
+        switch (GameRule.type)
+        {
+            case GameRule.Type.lava:
+                //стенки ворот
+                for (int i = 1; i <= 2; ++i)
+                    gate.transform.GetChild(i).GetComponent<Image>().material = GreenBorderGlowMat;
+
+                //верхняя и нижняя стенки
+                for (int i = 0; i < 2; ++i)
+                    borders.transform.GetChild(i).GetComponent<Image>().material = BlueBorderGlowMat;
+
+                //левая и правая стенки
+                for (int i = 2; i < 4; ++i)
+                    borders.transform.GetChild(i).GetComponent<Image>().material = YellowBorderGlowMat;
+
+                //верхняя и нижняя нитка
+                for (int i = 0; i < 2; ++i)
+                    strings[i].transform.GetComponent<LineRenderer>().material = BlueBorderGlowMat;
+                break;
+
+            case GameRule.Type.sand:
+                //стенки ворот
+                for (int i = 1; i <= 2; ++i)
+                    gate.transform.GetChild(i).GetComponent<Image>().material = RedBorderGlowMat;
+
+                //верхняя и нижняя стенки
+                for (int i = 0; i < 2; ++i)
+                    borders.transform.GetChild(i).GetComponent<Image>().material = BlueBorderGlowMat;
+
+                //левая и правая стенки
+                for (int i = 2; i < 4; ++i)
+                    borders.transform.GetChild(i).GetComponent<Image>().material = GreenBorderGlowMat;
+
+                //верхняя и нижняя нитка
+                for (int i = 0; i < 2; ++i)
+                    strings[i].transform.GetComponent<LineRenderer>().material = BlueBorderGlowMat;
+                break;
+
+            case GameRule.Type.ice:
+                //стенки ворот
+                for (int i = 1; i <= 2; ++i)
+                    gate.transform.GetChild(i).GetComponent<Image>().material = GreenBorderGlowMat;
+
+                //верхняя и нижняя стенки
+                for (int i = 0; i < 2; ++i)
+                    borders.transform.GetChild(i).GetComponent<Image>().material = RedBorderGlowMat;
+
+                //левая и правая стенки
+                for (int i = 2; i < 4; ++i)
+                    borders.transform.GetChild(i).GetComponent<Image>().material = GreenBorderGlowMat;
+
+                //верхняя и нижняя нитка
+                for (int i = 0; i < 2; ++i)
+                    strings[i].transform.GetComponent<LineRenderer>().material = YellowBorderGlowMat;
+                break;
+
+            case GameRule.Type.jungle:
+                //стенки ворот
+                for (int i = 1; i <= 2; ++i)
+                    gate.transform.GetChild(i).GetComponent<Image>().material = RedBorderGlowMat;
+
+                //верхняя и нижняя стенки
+                for (int i = 0; i < 2; ++i)
+                    borders.transform.GetChild(i).GetComponent<Image>().material = BlueBorderGlowMat;
+
+                //левая и правая стенки
+                for (int i = 2; i < 4; ++i)
+                    borders.transform.GetChild(i).GetComponent<Image>().material = YellowBorderGlowMat;
+
+                //верхняя и нижняя нитка
+                for (int i = 0; i < 2; ++i)
+                    strings[i].transform.GetComponent<LineRenderer>().material = BlueBorderGlowMat;
+                break;
+        }
+
+
         //изменение спрайтов чекеров игрока
         for (int i = 0; i < checkers.transform.childCount / 2; ++i)
         {
             Image userImg = checkers.transform.GetChild(i).gameObject.transform.GetComponent<Image>();
             userImg.sprite = Resources.Load<Sprite>("Sprites/levels/checkers/" + playerData.puckSprite);
-            userImg.material = Resources.Load<Material>("Sprites/Materials/Checker/" + playerData.puckSprite + "_glowMat");
+           // userImg.material = Resources.Load<Material>("Sprites/Materials/Checker/" + playerData.puckSprite + "_glowMat");
         }
+   
 
-        
+
         // Добавляем режим, тип ворот и тип бота
         gameObject.AddComponent(Type.GetType(GameRule.mode.ToString()));
         gate.AddComponent(Type.GetType(GameRule.typeGate.ToString()));

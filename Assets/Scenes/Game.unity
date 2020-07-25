@@ -1446,6 +1446,10 @@ MonoBehaviour:
   gameMenu: {fileID: 407324426}
   particles: {fileID: 813878396}
   gate: {fileID: 572560284}
+  borders: {fileID: 378417633}
+  strings:
+  - {fileID: 1705149841}
+  - {fileID: 628759885}
   upCountText: {fileID: 458943231}
   downCountText: {fileID: 1820441981}
   gameCounter: {fileID: 1701238457}
@@ -2845,7 +2849,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.93927485, g: 1, b: 0.4392157, a: 0.7019608}
+  m_Color: {r: 1, g: 1, b: 1, a: 0.7176471}
   m_RaycastTarget: 1
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -2864,7 +2868,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 
+  m_Text: 4
 --- !u!222 &458943232
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -8681,7 +8685,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Material
       value: 
-      objectReference: {fileID: 2100000, guid: d1db4aa4908c71a458eaac4c237d7109, type: 2}
+      objectReference: {fileID: 2100000, guid: 26651bf9cb198744d86145a8de509475, type: 2}
     - target: {fileID: 2535719098411759165, guid: 6bf36e7648fa93e44b4af861ccb60171,
         type: 3}
       propertyPath: m_Name
@@ -8826,7 +8830,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Material
       value: 
-      objectReference: {fileID: 2100000, guid: d1db4aa4908c71a458eaac4c237d7109, type: 2}
+      objectReference: {fileID: 2100000, guid: 26651bf9cb198744d86145a8de509475, type: 2}
     - target: {fileID: 1183558787485101255, guid: 6bf36e7648fa93e44b4af861ccb60171,
         type: 3}
       propertyPath: m_Enabled
@@ -9910,7 +9914,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 41962eb0e7354c4408490e003c3694f4, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 832071454139e6244b01c83b59f21315, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -10956,7 +10960,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Material
       value: 
-      objectReference: {fileID: 2100000, guid: 26651bf9cb198744d86145a8de509475, type: 2}
+      objectReference: {fileID: 2100000, guid: f97343cd1e65e4c4eb929a05b49d7f02, type: 2}
     - target: {fileID: 1183558787485101255, guid: 6bf36e7648fa93e44b4af861ccb60171,
         type: 3}
       propertyPath: m_RaycastTarget
@@ -17616,7 +17620,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 0.88235295}
   m_RaycastTarget: 1
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -17814,7 +17818,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.93927485, g: 1, b: 0.4392157, a: 0.7019608}
+  m_Color: {r: 1, g: 1, b: 1, a: 0.7176471}
   m_RaycastTarget: 1
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -17833,7 +17837,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 
+  m_Text: 4
 --- !u!222 &1820441982
 CanvasRenderer:
   m_ObjectHideFlags: 0
