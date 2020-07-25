@@ -41,11 +41,13 @@ public class PlayerData
 
     public void Init()
     {
+        //allPlanets - обьект galaxy
         for (int i = progress.Count; i < MenuManager.allPlanets; ++i)
         {
             progress.Add(new Pair<List<byte>, Pair<GameRule.Type, bool>>());
             progress[i].first = new List<byte>();
 
+            //planets - обьект mainMenu
             for (int j = 0; j < MenuManager.planets.transform.GetChild(i + 5).transform.childCount; ++j)
                 progress[i].first.Add(0);
 
