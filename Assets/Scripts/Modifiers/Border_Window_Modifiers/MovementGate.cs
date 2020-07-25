@@ -14,11 +14,6 @@ public class MovementGate : Gate
 
     void Start()
     {
-        // Получаем окно и две границы
-        window = gameObject.transform.GetChild(0).gameObject;
-        leftBorder = gameObject.transform.GetChild(1).gameObject;
-        rightBorder = gameObject.transform.GetChild(2).gameObject;
-
         // Объект Game
         game = GameObject.FindGameObjectWithTag("Game").GetComponent<Game>();
 
