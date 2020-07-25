@@ -12,9 +12,6 @@ public class Gate : MonoBehaviour
         leftBorder = gameObject.transform.GetChild(1).gameObject;
         rightBorder = gameObject.transform.GetChild(2).gameObject;
     }
-
-    // Функция которая возвращает координату X по которой необходимо будет целится
-    // В случае с простым окном вычисления не нужны и можно сразу возвращать координату X
     public virtual float calculatePos(float sec)
     {
         return window.transform.position.x; 

@@ -57,7 +57,7 @@ public class AI : MonoBehaviour
 
         accuracyAI /= 2;
         upBorder = ScreenOptimization.GetWorldCoord2D(gameObject).first.y;
-        dispersion = Camera.main.ScreenToWorldPoint(new Vector2(accuracyAI * Screen.width, 0)).x;
+        dispersion = Camera.main.ScreenToWorldPoint(new Vector2(accuracyAI * Screen.width, 0)).x + Camera.main.ScreenToWorldPoint(new Vector2(Screen.width, 0)).x;
     }
 
     void FixedUpdate()
@@ -117,6 +117,7 @@ public class AI : MonoBehaviour
 
         leftBorder = posX - dispersion;
         rightBorder = posX + dispersion;
+        Debug.Log(dispersion);
         aimTarget = moveTarget = new Vector2(UnityEngine.Random.Range(border.Left < leftBorder ? leftBorder : border.Left, border.Right > rightBorder ? rightBorder : border.Right), border.Up);
     }
 

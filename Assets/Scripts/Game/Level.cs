@@ -36,9 +36,11 @@ public class Level : MonoBehaviour
         GameRule.mode = mode;
         GameRule.type = type;
         GameRule.ActiveAI = AI;
+        GameRule.typeGate = typeGate;
         GameRule.difficulties = difficulties;
         GameRule.levelNum = numLevel;
         GameRule.levelsCount = planet.transform.childCount-1;
+        
 
         setTargets();
 
