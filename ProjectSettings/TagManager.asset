@@ -24,6 +24,7 @@ TagManager:
   - jungle
   - ice
   - string
+  - UpString
   layers:
   - Default
   - TransparentFX

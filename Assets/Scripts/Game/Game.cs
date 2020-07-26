@@ -46,25 +46,9 @@ public class Game : MonoBehaviour
         mode = GameRule.mode;
         type = GameRule.type;
 
-        GameObject checkers = null;
+        
         PlayerData playerData = PlayerData.getInstance();
-
-        // Модификация компонентов относительно выбраных настроек
-        switch (mode)
-        {
-            case GameRule.Mode.Normal:              
-                window.AddComponent<NormalWindow>();
-                for (int i = 0; i < checkersNormal.transform.childCount; ++i)
-                    checkersNormal.transform.GetChild(i).gameObject.AddComponent<Modifier>();
-                 checkers = checkersNormal;
-                break;
-            case GameRule.Mode.Speed:
-                window.AddComponent<DestroyWindow>();
-                for (int i = 0; i < checkersSpeed.transform.childCount; ++i)
-                    checkersSpeed.transform.GetChild(i).gameObject.AddComponent<Destroy>();
-                checkers = checkersSpeed;
-                break;
-        }
+        GameObject checkers = initGameRule();
 
         Material GreenBorderGlowMat = Resources.Load<Material>("Sprites/Materials/Borders/GreenBorderGlowMat");
         Material BlueBorderGlowMat = Resources.Load<Material>("Sprites/Materials/Borders/BlueBorderGlowMat");
@@ -146,24 +130,12 @@ public class Game : MonoBehaviour
                 break;
         }
 
-
         //изменение спрайтов чекеров игрока
         for (int i = 0; i < checkers.transform.childCount / 2; ++i)
         {
             Image userImg = checkers.transform.GetChild(i).gameObject.transform.GetComponent<Image>();
             userImg.sprite = Resources.Load<Sprite>("Sprites/levels/checkers/" + playerData.puckSprite);
            // userImg.material = Resources.Load<Material>("Sprites/Materials/Checker/" + playerData.puckSprite + "_glowMat");
-        }
-   
-
-
-        // Добавляем режим, тип ворот и тип бота
-        gameObject.AddComponent(Type.GetType(GameRule.mode.ToString()));
-        gate.AddComponent(Type.GetType(GameRule.typeGate.ToString()));
-        if (GameRule.ActiveAI)
-        {
-            AI.AddComponent(Type.GetType(GameRule.TypeAI.ToString()));
-            AI.SetActive(true);
         }
 
         // Наложение соответствующий текстур
@@ -179,6 +151,41 @@ public class Game : MonoBehaviour
             backgroundMusic.transform.GetComponent<AudioSource>().clip = Resources.Load<AudioClip>("Audio/Game/songs/" + GameRule.type.ToString() + "_level");
 
         backgroundMusic.transform.GetComponent<AudioSource>().Play();
+    }
+
+    // Устанавливает все необходимые настройки для уровня и возвращает активные шайбы
+    private GameObject initGameRule()
+    {
+        GameObject checkers = null;
+
+        // Модификация компонентов относительно выбраных настроек
+        switch (mode)
+        {
+            case GameRule.Mode.Normal:
+                window.AddComponent<NormalWindow>();
+                for (int i = 0; i < checkersNormal.transform.childCount; ++i)
+                    checkersNormal.transform.GetChild(i).gameObject.AddComponent<Modifier>();
+                checkers = checkersNormal;
+                break;
+            case GameRule.Mode.Speed:
+                window.AddComponent<DestroyWindow>();
+                for (int i = 0; i < checkersSpeed.transform.childCount; ++i)
+                    checkersSpeed.transform.GetChild(i).gameObject.AddComponent<Destroy>();
+                checkers = checkersSpeed;
+                break;
+        }
+
+
+        // Добавляем режим, тип ворот и тип бота
+        gameObject.AddComponent(Type.GetType(GameRule.mode.ToString()));
+        gate.AddComponent(Type.GetType(GameRule.typeGate.ToString()));
+        if (GameRule.ActiveAI)
+        {
+            AI.AddComponent(Type.GetType(GameRule.TypeAI.ToString()));
+            AI.SetActive(true);
+        }
+
+        return checkers;
     }
 
     // Установка спрайтов поля и шайб

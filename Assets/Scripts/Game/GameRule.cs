@@ -41,6 +41,13 @@ public static class GameRule
         TeleportGate
     }
 
+    public enum CheckerModifier
+    {
+        Modifier,
+        Destroy,
+        Slip
+    }
+
     /* Настройки уровня
      * mode - режим игры
      * type - тип поля
