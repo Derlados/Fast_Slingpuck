@@ -31,12 +31,17 @@ public class AI : MonoBehaviour
     protected float leftBorder, rightBorder; // границы разброса точности (разброс куда бот может попасть при запуске шайбы)
     protected Vector2 moveTarget, aimTarget; // позиция шайбы для запуска и точка в которую целится AI 
     protected Transform keepObj;  // удерживаемая шайба
+
+    // Объекты необходимые AI для анализа
     protected Checker keepChecker;
     protected Gate gate;
+    protected BezierLine AIString;
+
     Game game;
 
     private void Start()
     {
+        AIString = GameObject.FindGameObjectWithTag("UpString").GetComponent<BezierLine>();
         game = GameObject.FindGameObjectWithTag("Game").GetComponent<Game>();
         gate = game.gate.GetComponent<Gate>();
 
@@ -86,9 +91,9 @@ public class AI : MonoBehaviour
 
             if (statusType == Status.keep)
             {
-                keepObj.position = Vector2.MoveTowards(keepObj.position, moveTarget, Time.fixedDeltaTime * speedAI);
                 if ((Vector2)keepObj.position == moveTarget)
                     statusType = Status.aim;
+                keepObj.position = Vector2.MoveTowards(keepChecker.transform.position, moveTarget, Time.fixedDeltaTime * speedAI);
             }
         }
     }
@@ -117,8 +122,11 @@ public class AI : MonoBehaviour
 
         leftBorder = posX - dispersion;
         rightBorder = posX + dispersion;
-        Debug.Log(dispersion);
-        aimTarget = moveTarget = new Vector2(UnityEngine.Random.Range(border.Left < leftBorder ? leftBorder : border.Left, border.Right > rightBorder ? rightBorder : border.Right), border.Up);
+
+        float coordY = AIString.coordY + (border.Up - (AIString.coordY - AIString.correction)) * (keepChecker.GetComponent<Rigidbody2D>().drag / Checker.DRAG);
+
+        aimTarget = moveTarget = new Vector2(UnityEngine.Random.Range(border.Left < leftBorder ? leftBorder : border.Left, border.Right > rightBorder ? rightBorder : border.Right), coordY);
+        Debug.Log(moveTarget);
     }
 
     // Прицеливание, получает точку на которую должна быть направлена шайба, если шайба летит прямо - необходимости в прицеливании нету
@@ -130,7 +138,7 @@ public class AI : MonoBehaviour
     // Добавляет новую шайбу в список шайб которые может использовать AI
     private void OnTriggerEnter2D(Collider2D col)
     {
-        if (col.gameObject.GetComponent<Modifier>().playableForAI)
+        if (col.gameObject.GetComponent<Checker>().playableForAI)
             checkers.Add(col.gameObject.GetComponent<Checker>());
     }
 
@@ -149,7 +157,8 @@ public class AI : MonoBehaviour
     IEnumerator delayToPush(float sec, Transform obj, float timeRest)
     {
         yield return new WaitForSeconds(sec);
-        obj.GetComponent<Checker>().OnMouseUp();
+        keepChecker.OnMouseUp();
+        Debug.Log(keepChecker.transform.position);
         StartCoroutine(delaySec(timeRest));
     }
 

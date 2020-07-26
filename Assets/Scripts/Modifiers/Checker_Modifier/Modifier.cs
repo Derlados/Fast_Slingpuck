@@ -4,5 +4,5 @@ using UnityEngine;
 
 public class Modifier : MonoBehaviour
 {
-    public bool playableForAI = true;
+
 }

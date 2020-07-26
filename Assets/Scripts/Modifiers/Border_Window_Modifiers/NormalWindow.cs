@@ -11,20 +11,13 @@ public class NormalWindow : Window
      * часто бывают случаи когда шайба задевает границу окна и слегка в них заходит после 
      * чего вылетает обратно на поле того игрока который её отправил
      */
-    private void OnTriggerExit2D(Collider2D collision)
+    public override void Action(Collider2D collision)
     {
         Checker check = collision.gameObject.GetComponent<Checker>();
-        if (collision.gameObject.transform.position.y > 0 && check.field == Checker.Field.Down)
+        if ((collision.gameObject.transform.position.y > 0 && check.field == Checker.Field.Down) || (collision.gameObject.transform.position.y < 0 && check.field == Checker.Field.Up))
         {
-            check.field = Checker.Field.Up;
             game.GetComponent<Mode>().changeCount(collision.gameObject);
-            gate.goalReaction();
-        }
-
-        if (collision.gameObject.transform.position.y < 0 && check.field == Checker.Field.Up)
-        {
-            check.field = Checker.Field.Down;
-            game.GetComponent<Mode>().changeCount(collision.gameObject);
+            check.changeField();
             gate.goalReaction();
         }
     }
