@@ -1,14 +1,16 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using BaseStructures;
-using System.Security.Cryptography;
 
+
+/* Эта модификация по логике не должна была быть модификацией, фишку должно уничтожать само DestroyWindow
+ * Проблема заключается в том что при одновременном успешном прохождении нескольких фишек через окно, окно не может их одновременно обработать 
+ */
 public class Destroy : Modifier
 {
     Checker checker;
     Checker.Border field;
+    bool destroy = false;
 
     private void Start()
     {
@@ -22,22 +24,20 @@ public class Destroy : Modifier
         {
             field = checker.playerDownBorder;
             field.Down = checker.DownString.transform.position.y + checker.getRadius();
-            playableForAI = false;
+            checker.playableForAI = false;
         }     
     }
 
-    private void OnTriggerExit2D(Collider2D collision)
+    public void OnTrigger()
     {
-        Checker check = gameObject.GetComponent<Checker>();
-        Rigidbody2D body = gameObject.GetComponent<Checker>().body;
-
-        if (collision.gameObject.tag == "Window" && (check.transform.position.y > 0 && check.field == Checker.Field.Down) || (check.transform.position.y < 0 && check.field == Checker.Field.Up))
+        if (!destroy)
         {
-            body.velocity /= 4;
+            destroy = true;
+            checker.body.velocity /= 4;
             gameObject.GetComponent<CircleCollider2D>().isTrigger = true;
             StartCoroutine(delayBeforeDissolve());
         }
-    }   
+    }
 
     // Анимация уничтожения шайбы
     IEnumerator delayBeforeDissolve()
@@ -56,10 +56,10 @@ public class Destroy : Modifier
     void RandomPosition()
     {
         Vector2 randomPos = new Vector2(Random.Range(field.Left, field.Right), Random.Range(field.Down, field.Up));
-
-
         gameObject.GetComponent<Checker>().OnMouseDown();
         gameObject.transform.position = randomPos;
         gameObject.GetComponent<CircleCollider2D>().isTrigger = false;
+        destroy = false;
+        checker.changeField();
     }
 }

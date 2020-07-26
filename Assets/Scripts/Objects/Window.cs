@@ -7,12 +7,25 @@ public class Window : MonoBehaviour
     public GameObject game;
     public Gate gate;
 
-    void Awake()
+    void Start()
     {
         ScreenOptimization.setColider(gameObject, this.GetComponent<BoxCollider2D>());
         game = GameObject.FindGameObjectWithTag("Game");
         gate = game.GetComponent<Game>().gate.GetComponent<Gate>();
     }
 
+    private void OnTriggerStay2D(Collider2D collision)
+    {
+        Action(collision);
+    }
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        Action(collision);
+    }
+
+    public virtual void Action(Collider2D collision)
+    {
+
+    }
 
 }

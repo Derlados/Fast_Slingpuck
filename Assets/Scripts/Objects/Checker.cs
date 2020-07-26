@@ -5,11 +5,12 @@ using UnityEngine.UI;
 public class Checker : MonoBehaviour
 {
     /* coiuntId - cчетчик id для шайб
-     * upCount - счетчик количества шайб у верхнего игрока
-     * downCoun - счетчик количества шайб у нижнего игрока
+     * id - текущий id
+     * playableForAI - играбельность шайбы для AI
      */
     public static byte countId = 0;
     public byte id;
+    public bool playableForAI = true;
 
     //Нитка
     public BezierLine DownString, UpString;
@@ -21,6 +22,7 @@ public class Checker : MonoBehaviour
     bool mouseDown = false, stop = false; // Проверка нажатия на предмет, stop - рехрешение на движение
     float V = 0.0f, radius; // начальная скорость объекта и радиус объекта
     public float angle;
+    public const float DRAG = 8f;
 
     // Границы поля
     public GameObject leftBorderHolder;
@@ -142,7 +144,8 @@ public class Checker : MonoBehaviour
         objTransform.rotation = Quaternion.Euler(0, 0, angle);
         body.AddForce(transform.right * V * 300);
 
-        AudioManager.PlaySound(AudioManager.Audio.string_pulling);
+        if (V > 0)
+            AudioManager.PlaySound(AudioManager.Audio.string_pulling);
     }
 
     public float getRadius()
@@ -158,6 +161,12 @@ public class Checker : MonoBehaviour
     public void setStop(bool stop)
     {
         this.stop = stop;
+    }
+
+    // Меняет флаг пренадлежности шайбы к полю
+    public void changeField()
+    {
+        field = field == Field.Up ? Field.Down : Field.Up;
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
