@@ -96,6 +96,11 @@ public class MenuManager : MonoBehaviour
         AudioManager.PlaySound(AudioManager.Audio.click);
     }
 
+    public void loadShopMoney()
+    {
+        Shop.LoadMoney();
+    }
+
     //////////////////////////////////////////////////////////////////////////////////  Galaxy  ///////////////////////////////////////////////////////////////////////////////////
 
     // Загрузка описания уровня
