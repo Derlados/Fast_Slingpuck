@@ -28,4 +28,22 @@ public class NormalWindow : Window
             gate.goalReaction();
         }
     }
+
+    private void OnTriggerStay2D(Collider2D collision)
+    {
+        Checker check = collision.gameObject.GetComponent<Checker>();
+        if (collision.gameObject.transform.position.y > 0 && check.field == Checker.Field.Down)
+        {
+            check.field = Checker.Field.Up;
+            game.GetComponent<Mode>().changeCount(collision.gameObject);
+            gate.goalReaction();
+        }
+
+        if (collision.gameObject.transform.position.y < 0 && check.field == Checker.Field.Up)
+        {
+            check.field = Checker.Field.Down;
+            game.GetComponent<Mode>().changeCount(collision.gameObject);
+            gate.goalReaction();
+        }
+    }
 }

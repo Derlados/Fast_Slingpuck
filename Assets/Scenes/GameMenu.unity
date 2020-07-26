@@ -5922,6 +5922,21 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1652058691}
     m_Modifications:
+    - target: {fileID: 2201327307925175933, guid: cf6d3c973f2c6fd47988df2a50bed8ea,
+        type: 3}
+      propertyPath: GlobalModifier.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2201327307925175933, guid: cf6d3c973f2c6fd47988df2a50bed8ea,
+        type: 3}
+      propertyPath: GlobalModifier.Array.data[0]
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2201327307925175933, guid: cf6d3c973f2c6fd47988df2a50bed8ea,
+        type: 3}
+      propertyPath: GlobalModifier.Array.data[1]
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3142716791157189776, guid: cf6d3c973f2c6fd47988df2a50bed8ea,
         type: 3}
       propertyPath: m_IsActive
@@ -14572,6 +14587,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 13999101}
     m_Modifications:
+    - target: {fileID: 2201327307925175933, guid: cf6d3c973f2c6fd47988df2a50bed8ea,
+        type: 3}
+      propertyPath: GlobalModifier.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2201327307925175933, guid: cf6d3c973f2c6fd47988df2a50bed8ea,
+        type: 3}
+      propertyPath: GlobalModifier.Array.data[0]
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3142716791157189776, guid: cf6d3c973f2c6fd47988df2a50bed8ea,
         type: 3}
       propertyPath: m_IsActive
@@ -16196,7 +16221,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3081e20901f0457408a7a52ac922b0d3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Days: {fileID: 332356972}
 --- !u!224 &1122654399 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 3679753495307697896, guid: 939b01fbc40c38f4288a1a13b8c84c74,

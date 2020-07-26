@@ -21,7 +21,7 @@ public class Checker : MonoBehaviour
     bool mouseDown = false, stop = false; // Проверка нажатия на предмет, stop - рехрешение на движение
     float V = 0.0f, radius; // начальная скорость объекта и радиус объекта
     public float angle;
-    public const float DRAG = 7f;
+    public const float DRAG = 8f;
 
     // Границы поля
     public GameObject leftBorderHolder;

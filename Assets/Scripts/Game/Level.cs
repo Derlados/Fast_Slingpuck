@@ -31,13 +31,13 @@ public class Level : MonoBehaviour
     public GameRule.Difficulties difficulties; // Сложность игры
     public int numLevel; // Номер уровня, необходимо знать для того чтобы в дальнейшем записать результат
 
-    // Модификаторы шайб
-    public List<GameRule.CheckerModifier> AIModifier = new List<GameRule.CheckerModifier>();
-    public List<GameRule.CheckerModifier> GlobalModifier = new List<GameRule.CheckerModifier>();
+    CheckerModifiers сheckerModifiers;
 
     // Установка всех игровых правил и запус игры
     public void setGameRule(GameObject planet)
     {
+        сheckerModifiers = GetComponent<CheckerModifiers>();
+
         GameRule.mode = mode;
         GameRule.type = type;
         GameRule.ActiveAI = AI;
@@ -46,11 +46,11 @@ public class Level : MonoBehaviour
         GameRule.levelNum = numLevel;
         GameRule.levelsCount = planet.transform.childCount-1;
 
-        for (int i = 0; i < AIModifier.Count; ++i)  
-            GameRule.AIModifier.Add(AIModifier[i]);
+        for (int i = 0; i < сheckerModifiers.AIModifier.Count; ++i)  
+            GameRule.AIModifier.Add(сheckerModifiers.AIModifier[i]);
 
-        for (int i = 0; i < GlobalModifier.Count; ++i)
-            GameRule.GlobalModifier.Add(GlobalModifier[i]);
+        for (int i = 0; i < сheckerModifiers.GlobalModifier.Count; ++i)
+            GameRule.GlobalModifier.Add(сheckerModifiers.GlobalModifier[i]);
 
 
         setTargets();

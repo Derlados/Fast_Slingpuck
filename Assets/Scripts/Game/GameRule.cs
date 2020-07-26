@@ -64,6 +64,10 @@ public static class GameRule
     public static int planetNum, levelNum, levelsCount; // номер планеты, номер уровня и кол-во уровней планеты, необходимы для записи прогреса
     public static int target1, target2, target3; // Цели, как правило это всегда числовые значение, если это касается особенности геймплея, то это обеспечивает сам режим
 
+    // Модификаторы шайб на уровни
+    public static List<CheckerModifier> AIModifier = new List<CheckerModifier>();
+    public static List<CheckerModifier> GlobalModifier = new List<CheckerModifier>();
+
     //для удобства
     public static Type[] planetProgressNum = new Type[] { Type.lava, Type.sand, Type.ice, Type.water, Type.jungle, };
 }

@@ -163,17 +163,18 @@ public class Game : MonoBehaviour
         {
             case GameRule.Mode.Normal:
                 window.AddComponent<NormalWindow>();
-                for (int i = 0; i < checkersNormal.transform.childCount; ++i)
-                    checkersNormal.transform.GetChild(i).gameObject.AddComponent<Modifier>();
                 checkers = checkersNormal;
                 break;
             case GameRule.Mode.Speed:
                 window.AddComponent<DestroyWindow>();
-                for (int i = 0; i < checkersSpeed.transform.childCount; ++i)
-                    checkersSpeed.transform.GetChild(i).gameObject.AddComponent<Destroy>();
                 checkers = checkersSpeed;
                 break;
         }
+
+        // Устанавливаем глобальные модификаторы для шайб
+        for (int i = 0; i < checkers.transform.childCount; ++i)
+            for (int j = 0; j < GameRule.GlobalModifier.Count; ++j)
+                checkers.transform.GetChild(i).gameObject.AddComponent(Type.GetType(GameRule.GlobalModifier[j].ToString()));
 
 
         // Добавляем режим, тип ворот и тип бота
