@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Boo.Lang;
+using System;
+using System.Xml.Linq;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -12,7 +14,7 @@ public class Game : MonoBehaviour
      * scoreText - текст показывающий набранные очки в игре
      */
     public GameObject AI;
-    public GameObject capperField;  
+    public GameObject capperField;
     public GameObject downBorderHolder, upBorderHolder, window;
     public GameObject checkersNormal, checkersSpeed;
     public GameObject gameMenu;
@@ -46,87 +48,24 @@ public class Game : MonoBehaviour
         mode = GameRule.mode;
         type = GameRule.type;
 
-        
+
         PlayerData playerData = PlayerData.getInstance();
         GameObject checkers = initGameRule();
 
-        Material GreenBorderGlowMat = Resources.Load<Material>("Sprites/Materials/Borders/GreenBorderGlowMat");
-        Material BlueBorderGlowMat = Resources.Load<Material>("Sprites/Materials/Borders/BlueBorderGlowMat");
-        Material YellowBorderGlowMat = Resources.Load<Material>("Sprites/Materials/Borders/YellowBorderGlowMat");
-        Material RedBorderGlowMat = Resources.Load<Material>("Sprites/Materials/Borders/RedBorderGlowMat");
 
         switch (GameRule.type)
         {
             case GameRule.Type.lava:
-                //стенки ворот
-                for (int i = 1; i <= 2; ++i)
-                    gate.transform.GetChild(i).GetComponent<Image>().material = GreenBorderGlowMat;
-
-                //верхняя и нижняя стенки
-                for (int i = 0; i < 2; ++i)
-                    borders.transform.GetChild(i).GetComponent<Image>().material = BlueBorderGlowMat;
-
-                //левая и правая стенки
-                for (int i = 2; i < 4; ++i)
-                    borders.transform.GetChild(i).GetComponent<Image>().material = YellowBorderGlowMat;
-
-                //верхняя и нижняя нитка
-                for (int i = 0; i < 2; ++i)
-                    strings[i].transform.GetComponent<LineRenderer>().material = BlueBorderGlowMat;
+                loadNeon(GameRule.Type.lava.ToString());
                 break;
-
             case GameRule.Type.sand:
-                //стенки ворот
-                for (int i = 1; i <= 2; ++i)
-                    gate.transform.GetChild(i).GetComponent<Image>().material = RedBorderGlowMat;
-
-                //верхняя и нижняя стенки
-                for (int i = 0; i < 2; ++i)
-                    borders.transform.GetChild(i).GetComponent<Image>().material = BlueBorderGlowMat;
-
-                //левая и правая стенки
-                for (int i = 2; i < 4; ++i)
-                    borders.transform.GetChild(i).GetComponent<Image>().material = GreenBorderGlowMat;
-
-                //верхняя и нижняя нитка
-                for (int i = 0; i < 2; ++i)
-                    strings[i].transform.GetComponent<LineRenderer>().material = BlueBorderGlowMat;
+                loadNeon(GameRule.Type.sand.ToString());
                 break;
-
             case GameRule.Type.ice:
-                //стенки ворот
-                for (int i = 1; i <= 2; ++i)
-                    gate.transform.GetChild(i).GetComponent<Image>().material = GreenBorderGlowMat;
-
-                //верхняя и нижняя стенки
-                for (int i = 0; i < 2; ++i)
-                    borders.transform.GetChild(i).GetComponent<Image>().material = RedBorderGlowMat;
-
-                //левая и правая стенки
-                for (int i = 2; i < 4; ++i)
-                    borders.transform.GetChild(i).GetComponent<Image>().material = GreenBorderGlowMat;
-
-                //верхняя и нижняя нитка
-                for (int i = 0; i < 2; ++i)
-                    strings[i].transform.GetComponent<LineRenderer>().material = YellowBorderGlowMat;
+                loadNeon(GameRule.Type.ice.ToString());
                 break;
-
             case GameRule.Type.jungle:
-                //стенки ворот
-                for (int i = 1; i <= 2; ++i)
-                    gate.transform.GetChild(i).GetComponent<Image>().material = RedBorderGlowMat;
-
-                //верхняя и нижняя стенки
-                for (int i = 0; i < 2; ++i)
-                    borders.transform.GetChild(i).GetComponent<Image>().material = BlueBorderGlowMat;
-
-                //левая и правая стенки
-                for (int i = 2; i < 4; ++i)
-                    borders.transform.GetChild(i).GetComponent<Image>().material = YellowBorderGlowMat;
-
-                //верхняя и нижняя нитка
-                for (int i = 0; i < 2; ++i)
-                    strings[i].transform.GetComponent<LineRenderer>().material = BlueBorderGlowMat;
+                loadNeon(GameRule.Type.jungle.ToString());
                 break;
         }
 
@@ -135,17 +74,17 @@ public class Game : MonoBehaviour
         {
             Image userImg = checkers.transform.GetChild(i).gameObject.transform.GetComponent<Image>();
             userImg.sprite = Resources.Load<Sprite>("Sprites/levels/checkers/" + playerData.puckSprite);
-           // userImg.material = Resources.Load<Material>("Sprites/Materials/Checker/" + playerData.puckSprite + "_glowMat");
+            // userImg.material = Resources.Load<Material>("Sprites/Materials/Checker/" + playerData.puckSprite + "_glowMat");
         }
 
         // Наложение соответствующий текстур
         ChangePlanetSprite(type.ToString() + "_planet");
         if (GameRule.ActiveAI)
             ChangeCheckerSprite(type.ToString() + "_CheckerGlowMat", checkers);
-        ChangeParticle(type.ToString() + "_particle",true);
+        ChangeParticle(type.ToString() + "_particle", true);
 
         //установка небходимой музыки
-        if(GameRule.levelNum == GameRule.levelsCount)
+        if (GameRule.levelNum == GameRule.levelsCount)
             backgroundMusic.transform.GetComponent<AudioSource>().clip = Resources.Load<AudioClip>("Audio/Game/songs/boss");
         else
             backgroundMusic.transform.GetComponent<AudioSource>().clip = Resources.Load<AudioClip>("Audio/Game/songs/" + GameRule.type.ToString() + "_level");
@@ -229,12 +168,39 @@ public class Game : MonoBehaviour
         }
     }
 
-    public void ChangeParticle(string particleName,bool active)
+    public void ChangeParticle(string particleName, bool active)
     {
-        foreach(Transform t in particles.transform)
+        foreach (Transform t in particles.transform)
         {
             if (t.name == particleName)
                 t.gameObject.SetActive(active);
         }
     }
+
+    //загрузка цвета стенок
+    public void loadNeon(string key)
+    {
+        TextAsset textAsset = (TextAsset)Resources.Load("XML/Game/levelData");
+        XElement xdoc = XDocument.Parse(textAsset.text).Element("levelData");
+
+        foreach (XElement diff in xdoc.Elements(key))
+        {
+            //стенки ворот
+            for (int i = 1; i <= 2; ++i)
+                gate.transform.GetChild(i).GetComponent<Image>().material = Resources.Load<Material>("Sprites/Materials/Borders/" + diff.Element("gate").Value.ToString());
+
+            //верхняя и нижняя стенки
+            for (int i = 0; i < 2; ++i)
+                borders.transform.GetChild(i).GetComponent<Image>().material = Resources.Load<Material>("Sprites/Materials/Borders/" + diff.Element("topBorders").Value.ToString());
+            
+            //левая и правая стенки
+            for (int i = 2; i < 4; ++i)
+                borders.transform.GetChild(i).GetComponent<Image>().material = Resources.Load<Material>("Sprites/Materials/Borders/" + diff.Element("sideBorders").Value.ToString());
+
+            //верхняя и нижняя нитка
+            for (int i = 0; i < 2; ++i)
+                strings[i].transform.GetComponent<LineRenderer>().material = Resources.Load<Material>("Sprites/Materials/Borders/" + diff.Element("string").Value.ToString());
+        }
+    }
 }
+

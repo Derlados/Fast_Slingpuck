@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<levelData>
+  <lava>
+    <gate>GreenBorderGlowMat</gate>
+	<sideBorders>BlueBorderGlowMat</sideBorders>
+	<topBorders>YellowBorderGlowMat</topBorders>
+	<string>BlueBorderGlowMat</string>
+  </lava>
+  <sand>
+    <gate>RedBorderGlowMat</gate>
+	<sideBorders>BlueBorderGlowMat</sideBorders>
+	<topBorders>GreenBorderGlowMat</topBorders>
+	<string>BlueBorderGlowMat</string>
+  </sand>
+  <ice>
+    <gate>GreenBorderGlowMat</gate>
+	<sideBorders>RedBorderGlowMat</sideBorders>
+	<topBorders>GreenBorderGlowMat</topBorders>
+	<string>YellowBorderGlowMat</string>
+  </ice>
+  <jungle>
+    <gate>RedBorderGlowMat</gate>
+	<sideBorders>BlueBorderGlowMat</sideBorders>
+	<topBorders>YellowBorderGlowMat</topBorders>
+	<string>BlueBorderGlowMat</string>
+  </jungle>
+</levelData>

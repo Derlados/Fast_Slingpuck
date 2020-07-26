@@ -22,8 +22,8 @@ public class GPGSAuthentication : MonoBehaviour
 
         Social.Active.localUser.Authenticate(success =>
         {
-            //if (success) Debug.Log("Logged in successfully!");
-            //else Debug.LogError("Failed to log in");
+            if (success) Debug.Log("Logged in successfully!");
+            else Debug.LogError("Failed to log in");
         });
     }
 }
