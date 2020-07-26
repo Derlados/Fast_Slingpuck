@@ -5,11 +5,12 @@ using UnityEngine.UI;
 public class Checker : MonoBehaviour
 {
     /* coiuntId - cчетчик id для шайб
-     * upCount - счетчик количества шайб у верхнего игрока
-     * downCoun - счетчик количества шайб у нижнего игрока
+     * id - текущий id
+     * playableForAI - играбельность шайбы для AI
      */
     public static byte countId = 0;
     public byte id;
+    public bool playableForAI = true;
 
     //Нитка
     public BezierLine DownString, UpString;
@@ -159,6 +160,12 @@ public class Checker : MonoBehaviour
     public void setStop(bool stop)
     {
         this.stop = stop;
+    }
+
+    // Меняет флаг пренадлежности шайбы к полю
+    public void changeField()
+    {
+        field = field == Field.Up ? Field.Down : Field.Up;
     }
 
     private void OnCollisionEnter2D(Collision2D collision)

@@ -138,7 +138,7 @@ public class AI : MonoBehaviour
     // Добавляет новую шайбу в список шайб которые может использовать AI
     private void OnTriggerEnter2D(Collider2D col)
     {
-        if (col.gameObject.GetComponent<Modifier>().playableForAI)
+        if (col.gameObject.GetComponent<Checker>().playableForAI)
             checkers.Add(col.gameObject.GetComponent<Checker>());
     }
 

@@ -554,7 +554,7 @@ PrefabInstance:
     - target: {fileID: 1095559404968874083, guid: 87673815b8b84a54bab8eb13a6d0c988,
         type: 3}
       propertyPath: m_LinearDrag
-      value: 16
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 8123074049590772509, guid: 87673815b8b84a54bab8eb13a6d0c988,
         type: 3}
@@ -1803,7 +1803,7 @@ PrefabInstance:
     - target: {fileID: 1095559404968874083, guid: 87673815b8b84a54bab8eb13a6d0c988,
         type: 3}
       propertyPath: m_LinearDrag
-      value: 16
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 8123074049590772509, guid: 87673815b8b84a54bab8eb13a6d0c988,
         type: 3}
@@ -10364,7 +10364,7 @@ PrefabInstance:
     - target: {fileID: 1095559404968874083, guid: 87673815b8b84a54bab8eb13a6d0c988,
         type: 3}
       propertyPath: m_LinearDrag
-      value: 16
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 8123074049590772509, guid: 87673815b8b84a54bab8eb13a6d0c988,
         type: 3}
@@ -16563,7 +16563,7 @@ PrefabInstance:
     - target: {fileID: 1095559404968874083, guid: 87673815b8b84a54bab8eb13a6d0c988,
         type: 3}
       propertyPath: m_LinearDrag
-      value: 16
+      value: 8
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 14326800, guid: 87673815b8b84a54bab8eb13a6d0c988, type: 3}
@@ -17630,7 +17630,7 @@ PrefabInstance:
     - target: {fileID: 1095559404968874083, guid: 87673815b8b84a54bab8eb13a6d0c988,
         type: 3}
       propertyPath: m_LinearDrag
-      value: 16
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 8123074049590772509, guid: 87673815b8b84a54bab8eb13a6d0c988,
         type: 3}
@@ -18417,7 +18417,7 @@ PrefabInstance:
     - target: {fileID: 1095559404968874083, guid: 87673815b8b84a54bab8eb13a6d0c988,
         type: 3}
       propertyPath: m_LinearDrag
-      value: 16
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 8123074049590772509, guid: 87673815b8b84a54bab8eb13a6d0c988,
         type: 3}
@@ -18745,7 +18745,7 @@ PrefabInstance:
     - target: {fileID: 1095559404968874083, guid: 87673815b8b84a54bab8eb13a6d0c988,
         type: 3}
       propertyPath: m_LinearDrag
-      value: 16
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 8123074049590772509, guid: 87673815b8b84a54bab8eb13a6d0c988,
         type: 3}

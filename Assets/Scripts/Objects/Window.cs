@@ -14,5 +14,18 @@ public class Window : MonoBehaviour
         gate = game.GetComponent<Game>().gate.GetComponent<Gate>();
     }
 
+    private void OnTriggerStay2D(Collider2D collision)
+    {
+        Action(collision);
+    }
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        Action(collision);
+    }
+
+    public virtual void Action(Collider2D collision)
+    {
+
+    }
 
 }
