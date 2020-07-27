@@ -1,34 +1,34 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Level>
     <mode>
-        <Normal>Standard</Normal>
-	<Speed>Speed</Speed>
+        <Normal>Стандартний</Normal>
+		<Speed>Швидкий</Speed>
     </mode>
     <difficulty>
-        <begginer>Begginer</begginer>
-	<skilled>Skilled</skilled>
-	<master>Master</master>
-	<god>God</god>
+        <begginer>Новачок</begginer>
+		<skilled>Експерт</skilled>
+		<master>Майстер</master>
+		<god>Бог</god>
     </difficulty>
     <description>
-        <Normal>Standard mode - a standard game in which the goal of each player to free his field from the pucks having thrown them on the opponent’s field, the one who throws all the pucks on the opponent’s field first wins</Normal>
-	<Speed>??????</Speed>    
+        <Normal>Стандартний режим - стандартна гра, в якій мета кожного гравця звільнити своє поле від шайб, перекинувши їх на поле ворога. Перемагає той, хто перекидає всі шайби на поле ворога</Normal>
+		<Speed>Швидкий режим - гра на швидкість, в якій мета кожного гравця забити якомога більше шайб на поле ворога. Перемагає той хто забив більше шайб</Speed>    
     </description>
     <targets>
 	<NormalAI>
-	    <target1>Victory</target1>
-	    <target2>Victory in NUMBER seconds</target2>
-	    <target3>No more than NUMBER checkers on the field at a time</target3>
+	    <target1>Перемога</target1>
+	    <target2>Перемога за NUMBER секундах</target2>
+	    <target3>Одночасно на полі повинно бути не більше NUMBER шайб</target3>
 	</NormalAI>
 	<Speed>
-	    <target1>Score NUMBER goals</target1>
-	    <target2>Score NUMBER goals</target2>
-	    <target3>Accuracy NUMBER %</target3>
+	    <target1>Забити NUMBER голів</target1>
+	    <target2>Забити NUMBER голів</target2>
+	    <target3>Точність NUMBER %</target3>
 	</Speed>
 	<SpeedAI>
-	    <target1>Victory</target1>
-	    <target2>Score NUMBER goals</target2>
-	    <target3>Keep up with AI</target3>
+	    <target1>Перемога</target1>
+	    <target2>Забити NUMBER голів</target2>
+	    <target3>Встигнути за ворогом</target3>
 	</SpeedAI>
     </targets>
 </Level>

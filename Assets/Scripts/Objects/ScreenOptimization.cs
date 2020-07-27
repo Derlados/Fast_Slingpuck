@@ -38,11 +38,11 @@ public static class ScreenOptimization
         return new Pair<Vector2, Vector2>(Camera.main.ScreenToWorldPoint(first), Camera.main.ScreenToWorldPoint(second));
     }
 
+    //установка радиуса неона относительно разрешения экрана
     public static void setNeonRadius(GameObject obj)
     {
-        Bloom bloom = null;
         Volume volume = obj.transform.GetComponent<Volume>();
-        volume.sharedProfile.TryGet<Bloom>(out bloom);
+        volume.sharedProfile.TryGet<Bloom>(out Bloom bloom);
 
         double delta = (double)Screen.height / (double)Screen.width;
         bloom.threshold.SetValue(new MinFloatParameter((float)Math.Exp(1.0892182f + 0.37382208f * delta / Math.Log(delta)), 0, true));
