@@ -12920,7 +12920,7 @@ MonoBehaviour:
         m_MethodName: setPlanetsLevels
         m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 79180487}
+          m_ObjectArgument: {fileID: 1949213422}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
@@ -21287,6 +21287,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3081e20901f0457408a7a52ac922b0d3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Days: {fileID: 332356972}
 --- !u!224 &1122654399 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 3679753495307697896, guid: 939b01fbc40c38f4288a1a13b8c84c74,
@@ -35675,7 +35676,7 @@ PrefabInstance:
     - target: {fileID: 3431030227263662423, guid: b2f54662d1802b0469829b107941328c,
         type: 3}
       propertyPath: type
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 3431030227263662423, guid: b2f54662d1802b0469829b107941328c,
         type: 3}
@@ -35701,6 +35702,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9004831237760379575, guid: b2f54662d1802b0469829b107941328c,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1949213422}
+    - target: {fileID: 9004831237760379575, guid: b2f54662d1802b0469829b107941328c,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 9004831237760379576, guid: b2f54662d1802b0469829b107941328c,
         type: 3}
@@ -45347,17 +45358,6 @@ MonoBehaviour:
       - m_Target: {fileID: 557895971}
         m_MethodName: btn
         m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 1
-        m_CallState: 2
-      - m_Target: {fileID: 557895971}
-        m_MethodName: loadShopMoney
-        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine

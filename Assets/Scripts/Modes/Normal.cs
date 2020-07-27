@@ -1,6 +1,7 @@
 using BaseStructures;
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -76,20 +77,60 @@ public class Normal : MonoBehaviour, Mode
     // Задержка перед стартом игры
     IEnumerator delayBeforeStart(int sec)
     {
+        //раскрутка надписей
         for (int i = sec; i >= 1; --i)
         {
-            gameCounterText.text = i.ToString();
+            //раскрутка цифр
+            if (i != 1)
+            {
+                //поворот на 360 градусов
+                for (float j = 1; j <= 360; ++j)
+                {
+                    Vector3 rotPos = gameCounterText.GetComponent<RectTransform>().rotation.eulerAngles;
+                    rotPos.z -= 1;
+                    gameCounterText.GetComponent<RectTransform>().rotation = Quaternion.Euler(rotPos);
+
+                    //на максимальных оборотах меняем цифру на 1 меньше
+                    if (j == 360)
+                        gameCounterText.text = (i - 1).ToString();
+                       
+                    if (j % 10 == 0) yield return new WaitForSeconds(0.52f / j);
+                }
+
+                AudioManager.PlaySound(AudioManager.Audio.count);
+                //проделываем обороты до нормальной видимой скорости
+                for (float j = 360; j >= 1; --j)
+                {
+                    Vector3 rotPos = gameCounterText.GetComponent<RectTransform>().rotation.eulerAngles;
+                    rotPos.z -= 1;
+                    gameCounterText.GetComponent<RectTransform>().rotation = Quaternion.Euler(rotPos);
+                    if (j % 10 == 0) yield return new WaitForSeconds(0.52f / j);
+                }
+            }
+            //затухание последней цифры 1
+            else 
+            {
+                AudioManager.PlaySound(AudioManager.Audio.endCount);
+                while (gameCounterText.color.a >= 0)
+                {
+                    float time = Time.deltaTime / 1;
+                    Color color = gameCounterText.color;
+                    color.a -= time; ;
+                    gameCounterText.color = new Color(color.r, color.g, color.b, color.a);
+                    yield return new WaitForSeconds(0.001f);
+                }
+
+                capperField.SetActive(false);
+                AI.GetComponent<AI>().active = true;
+                Game.activeGame = true;
+            }
+
             yield return new WaitForSeconds(1);
         }
 
-        LocalizationManager.add(new Pair<Text, string>(gameCounterText, "go"));
-        capperField.SetActive(false);
-        AI.GetComponent<AI>().active = true;
-        Game.activeGame = true;
         yield return new WaitForSeconds(1);
         StartCoroutine(Timer());
     }
-
 
     /* Функция счета очков при удачном попадании в "окно"
     * Параметры:
@@ -119,7 +160,6 @@ public class Normal : MonoBehaviour, Mode
 
         if (upCount == 0 || downCount == 0)
             gameOver();
-
     }
 
     // Окончание игры
@@ -134,8 +174,6 @@ public class Normal : MonoBehaviour, Mode
 
     public void calculateResult()
     {
-        PlayerData playerData = PlayerData.getInstance();
-
         // Подсчет звезд
         if (downCount != 0)
             game.countStars = 0;

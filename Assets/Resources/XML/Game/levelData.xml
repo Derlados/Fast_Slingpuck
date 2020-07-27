@@ -24,4 +24,10 @@
 	<topBorders>YellowBorderGlowMat</topBorders>
 	<string>BlueBorderGlowMat</string>
   </jungle>
+  <water>
+    <gate>RedBorderGlowMat</gate>
+	<sideBorders>GreenBorderGlowMat</sideBorders>
+	<topBorders>BlueBorderGlowMat</topBorders>
+	<string>BlueBorderGlowMat</string>
+  </water>
 </levelData>

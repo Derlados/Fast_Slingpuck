@@ -20,7 +20,9 @@ public static class AudioManager
         rise03,
         rise04,
         claim,
-        modificator
+        modificator,
+        count,
+        endCount
     }
 
     public static void PlaySound(Audio audio)

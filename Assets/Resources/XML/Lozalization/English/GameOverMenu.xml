@@ -2,6 +2,8 @@
 <GameOverMenu>
 	<totalText>Total</totalText>
 	<gameOver>Game Over</gameOver>
+	<win>YOU WIN!</win>
+    <lose>YOU LOSE!</lose>
 	<Normal>
 		<images>
 			<targetImage1>star</targetImage1>

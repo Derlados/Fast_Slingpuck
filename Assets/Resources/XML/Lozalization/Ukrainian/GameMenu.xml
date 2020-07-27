@@ -1,29 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
 <localization>
-   <ua>Ukranian</ua>
-   <en>English</en>
-   <ru>Russian</ru>
-   <settingsHead>Settings</settingsHead>
-   <lang>Language</lang>
-   <dailyHead>Daily Reward</dailyHead>
-   <claim>Claim!</claim>
-   <close>Close</close>
-   <day>Day</day>
-   <coins>coins</coins>
-   <boosters>boosters</boosters>
-   <reductors>reductors</reductors>
-   <shop>Shop</shop>
-   <checkers>Checkers</checkers>
-   <modificators>Modificators</modificators>
-   <booster>Booster</booster>
-   <reductor>Reductor</reductor>
-   <boosterDescr>This will boost your checker  for 3 seconds</boosterDescr>
-   <reductorDescr>This will reduct your enemy for 3 seconds</reductorDescr>
-   <back>Back</back>
-   <start>Start</start>
-   <leveInfoHead>Level info</leveInfoHead>
-   <difficulty>Difficulty</difficulty>
-   <gameMode>Game mode</gameMode>
-   <selected>Selected</selected>
-   <haveIt>Have it</haveIt>
+   <ua>Українська</ua>
+   <en>Англійська</en>
+   <ru>Російська</ru>
+   <settingsHead>Налаштування</settingsHead>
+   <lang>Мова</lang>
+   <dailyHead>Щоденна винагорода</dailyHead>
+   <claim>Забрати!</claim>
+   <close>Закрити</close>
+   <day>День</day>
+   <coins>монет</coins>
+   <boosters>бустерів</boosters>
+   <reductors>призупинувачів</reductors>
+   <shop>Магазин</shop>
+   <checkers>Шайби</checkers>
+   <modificators>Модифікатори</modificators>
+   <booster>Бустер</booster>
+   <reductor>Призупинувач</reductor>
+   <boosterDescr>Це прискорить ваші шайби на 3 секунди</boosterDescr>
+   <reductorDescr>Це призупине шайби ворога на 3 секунди</reductorDescr>
+   <back>Назад</back>
+   <start>Почати</start>
+   <leveInfoHead>Інформація про рівень</leveInfoHead>
+   <difficulty>Складність</difficulty>
+   <gameMode>Режим гри</gameMode>
+   <selected>Вибрано</selected>
+   <haveIt>Куплено</haveIt>
 </localization>

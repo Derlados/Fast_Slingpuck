@@ -83,7 +83,14 @@ public class GameMenu : MonoBehaviour
 
         XMLManager.SaveData(PlayerData.getInstance(), PlayerData.getInstance().ToString());
 
-        gameOverText.text = message;
+        XElement data; // Данные XML файла
+        TextAsset textAsset = (TextAsset)Resources.Load("XML/Lozalization/" + PlayerData.getInstance().lang.ToString() + "/GameOverMenu");
+        data = XDocument.Parse(textAsset.text).Element("GameOverMenu");
+
+        if (message == "YOU WIN !")
+            gameOverText.text = data.Element("win").Value;
+        else
+            gameOverText.text = data.Element("lose").Value;
 
     }
 

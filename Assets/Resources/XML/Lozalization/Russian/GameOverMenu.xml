@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <GameOverMenu>
-	<totalText>Total</totalText>
-	<gameOver>Game Over</gameOver>
+	<totalText>Всего</totalText>
+	<gameOver>Конец игры</gameOver>
+	<win>ПОБЕДА!</win>
+    <lose>ПРОИГРЫШ!</lose>
 	<Normal>
 		<images>
 			<targetImage1>star</targetImage1>
@@ -9,9 +11,9 @@
 			<targetImage3>checker_goal</targetImage3>
 		</images>
 		<texts>
-			<targetText1>Game result</targetText1>
-			<targetText2>Time elapsed</targetText2>
-			<targetText3>Goals</targetText3>
+			<targetText1>Результат</targetText1>
+			<targetText2>Время</targetText2>
+			<targetText3>Голы</targetText3>
 		</texts>
 	</Normal>
 	<Speed>
@@ -21,9 +23,9 @@
 			<targetImage3>checker_goal</targetImage3>
 		</images>
 		<texts>
-			<targetText1>Game result</targetText1>
-			<targetText2>Accuracy</targetText2>
-			<targetText3>Goals</targetText3>
+			<targetText1>Результат</targetText1>
+			<targetText2>Точность</targetText2>
+			<targetText3>Голы</targetText3>
 		</texts>
 	</Speed>
 	<SpeedAI>
@@ -33,9 +35,9 @@
 			<targetImage3>checker_goal</targetImage3>
 		</images>
 		<texts>
-			<targetText1>Game result</targetText1>
+			<targetText1>Результат</targetText1>
 			<targetText2></targetText2>
-			<targetText3>Goals</targetText3>
+			<targetText3>Голы</targetText3>
 		</texts>
 	</SpeedAI>
 </GameOverMenu>

@@ -1,11 +1,11 @@
 <?xml version="1.0"?>
 <PlayerData xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-  <money>725</money>
+  <money>100</money>
   <progress>
     <PairOfListOfBytePairOfTypeBoolean>
       <first>
-        <unsignedByte>3</unsignedByte>
-        <unsignedByte>3</unsignedByte>
+        <unsignedByte>0</unsignedByte>
+        <unsignedByte>0</unsignedByte>
         <unsignedByte>0</unsignedByte>
         <unsignedByte>0</unsignedByte>
         <unsignedByte>0</unsignedByte>
@@ -25,7 +25,7 @@
       </first>
       <second>
         <first>sand</first>
-        <second>true</second>
+        <second>false</second>
       </second>
     </PairOfListOfBytePairOfTypeBoolean>
     <PairOfListOfBytePairOfTypeBoolean>
@@ -41,7 +41,7 @@
       </first>
       <second>
         <first>ice</first>
-        <second>true</second>
+        <second>false</second>
       </second>
     </PairOfListOfBytePairOfTypeBoolean>
     <PairOfListOfBytePairOfTypeBoolean>
@@ -54,7 +54,7 @@
       </first>
       <second>
         <first>water</first>
-        <second>true</second>
+        <second>false</second>
       </second>
     </PairOfListOfBytePairOfTypeBoolean>
     <PairOfListOfBytePairOfTypeBoolean>
@@ -67,11 +67,11 @@
       </first>
       <second>
         <first>jungle</first>
-        <second>true</second>
+        <second>false</second>
       </second>
     </PairOfListOfBytePairOfTypeBoolean>
   </progress>
   <puckSprite>userChecker1</puckSprite>
-  <currentPlanet>4</currentPlanet>
+  <currentPlanet>0</currentPlanet>
   <lang>Ukrainian</lang>
 </PlayerData>

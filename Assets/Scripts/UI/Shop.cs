@@ -50,7 +50,6 @@ public class Shop : MonoBehaviour
     UserShopData userShopData; //данные о доступных шайбах
 
     const string SHOP_PATH = "Sprites/Shop/"; // путь к спрайтам магазина
-  //  string haveIt = "Have it", selected = "Selected";
 
     void Start()
     {
