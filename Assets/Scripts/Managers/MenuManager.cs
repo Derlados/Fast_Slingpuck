@@ -96,11 +96,6 @@ public class MenuManager : MonoBehaviour
         AudioManager.PlaySound(AudioManager.Audio.click);
     }
 
-    public void loadShopMoney()
-    {
-        Shop.LoadMoney();
-    }
-
     //////////////////////////////////////////////////////////////////////////////////  Galaxy  ///////////////////////////////////////////////////////////////////////////////////
 
     // Загрузка описания уровня
@@ -311,14 +306,30 @@ public class MenuManager : MonoBehaviour
      */
     IEnumerator fadePlanet(int num, bool to)
     {
-        Color color = galaxy.transform.GetChild(num).transform.GetComponent<Image>().color;
+        Transform planet = galaxy.transform.GetChild(num).transform;
+        Color color = planet.GetComponent<Image>().color;
+        Color[] planetChild = new Color[planet.childCount];
+
+        for(int i = 0; i < planet.childCount; ++i)
+            planetChild[i] = planet.GetChild(i).GetComponent<Image>().color;
+        
 
         if (to)
         {
             while (galaxy.transform.GetChild(num).transform.GetComponent<Image>().color.a > 0)
             {
-                color.a -= Time.deltaTime / 1;
-                galaxy.transform.GetChild(num).transform.GetComponent<Image>().color = new Color(color.r, color.g, color.b, color.a);
+                float time = Time.deltaTime / 1;
+
+                //изменение альфа канала планеты
+                color.a -= time;
+                planet.GetComponent<Image>().color = new Color(color.r, color.g, color.b, color.a);
+
+                //изменение альфа канала обьектов планеты
+                for (int i = 0; i < planet.childCount; ++i)
+                {
+                    planetChild[i].a -= time;
+                    planet.GetChild(i).GetComponent<Image>().color = new Color(planetChild[i].r, planetChild[i].g, planetChild[i].b, planetChild[i].a);
+                }
                 yield return null;
             }
         }
@@ -326,8 +337,18 @@ public class MenuManager : MonoBehaviour
         {
             while (galaxy.transform.GetChild(num).transform.GetComponent<Image>().color.a < 1)
             {
-                color.a += Time.deltaTime / 1;
-                galaxy.transform.GetChild(num).transform.GetComponent<Image>().color = new Color(color.r, color.g, color.b, color.a);
+                float time = Time.deltaTime / 1;
+
+                //изменение альфа канала планеты
+                color.a += time;
+                planet.GetComponent<Image>().color = new Color(color.r, color.g, color.b, color.a);
+
+                //изменение альфа канала обьектов планеты
+                for (int i = 0; i < planet.childCount; ++i)
+                {
+                    planetChild[i].a += time;
+                    planet.GetChild(i).GetComponent<Image>().color = new Color(planetChild[i].r, planetChild[i].g, planetChild[i].b, planetChild[i].a);
+                }
                 yield return null;
             }
         }

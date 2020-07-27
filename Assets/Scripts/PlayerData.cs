@@ -3,6 +3,8 @@ using System.Xml.Serialization;
 using UnityEngine;
 using System.IO;
 using BaseStructures;
+using UnityEditor;
+using System;
 
 // Этот класс должен будет хранить все данные пользователя
 [System.Serializable]
@@ -15,7 +17,7 @@ public class PlayerData
     public string puckSprite; //выбранный спрайт игрока
     public int currentPlanet;
     public SystemLanguage lang;
-
+    
     public static PlayerData getInstance()
     {
         if (instance == null)
@@ -31,15 +33,23 @@ public class PlayerData
                 else
                     instance.lang = SystemLanguage.English;
 
-                instance.Init();
+                instance.add();
+                //ставим 0-ую планета как начальную
+                instance.progress[0].second.second = true;
+
                 instance.Save();
             }
 
+            if(MenuManager.allPlanets != instance.progress.Count)
+            {
+                instance.add();
+                instance.Save();
+            }
         }
         return instance;
     }
 
-    public void Init()
+    public void add()
     {
         //allPlanets - обьект galaxy
         for (int i = progress.Count; i < MenuManager.allPlanets; ++i)
@@ -53,8 +63,6 @@ public class PlayerData
 
             progress[i].second = new Pair<GameRule.Type, bool>(GameRule.planetProgressNum[i], false);
         }
-        //ставим 0-ую планета как начальную
-        progress[0].second.second = true;
     }
 
     public void Save()

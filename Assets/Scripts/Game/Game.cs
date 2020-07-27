@@ -48,48 +48,10 @@ public class Game : MonoBehaviour
         mode = GameRule.mode;
         type = GameRule.type;
 
+        loadNeon(type.ToString());
+        loadSprites();
+        loadMusic();
 
-        PlayerData playerData = PlayerData.getInstance();
-        GameObject checkers = initGameRule();
-
-
-        switch (GameRule.type)
-        {
-            case GameRule.Type.lava:
-                loadNeon(GameRule.Type.lava.ToString());
-                break;
-            case GameRule.Type.sand:
-                loadNeon(GameRule.Type.sand.ToString());
-                break;
-            case GameRule.Type.ice:
-                loadNeon(GameRule.Type.ice.ToString());
-                break;
-            case GameRule.Type.jungle:
-                loadNeon(GameRule.Type.jungle.ToString());
-                break;
-        }
-
-        //изменение спрайтов чекеров игрока
-        for (int i = 0; i < checkers.transform.childCount / 2; ++i)
-        {
-            Image userImg = checkers.transform.GetChild(i).gameObject.transform.GetComponent<Image>();
-            userImg.sprite = Resources.Load<Sprite>("Sprites/levels/checkers/" + playerData.puckSprite);
-            // userImg.material = Resources.Load<Material>("Sprites/Materials/Checker/" + playerData.puckSprite + "_glowMat");
-        }
-
-        // Наложение соответствующий текстур
-        ChangePlanetSprite(type.ToString() + "_planet");
-        if (GameRule.ActiveAI)
-            ChangeCheckerSprite(type.ToString() + "_CheckerGlowMat", checkers);
-        ChangeParticle(type.ToString() + "_particle", true);
-
-        //установка небходимой музыки
-        if (GameRule.levelNum == GameRule.levelsCount)
-            backgroundMusic.transform.GetComponent<AudioSource>().clip = Resources.Load<AudioClip>("Audio/Game/songs/boss");
-        else
-            backgroundMusic.transform.GetComponent<AudioSource>().clip = Resources.Load<AudioClip>("Audio/Game/songs/" + GameRule.type.ToString() + "_level");
-
-        backgroundMusic.transform.GetComponent<AudioSource>().Play();
     }
 
     // Устанавливает все необходимые настройки для уровня и возвращает активные шайбы
@@ -117,7 +79,7 @@ public class Game : MonoBehaviour
 
 
         // Добавляем режим, тип ворот и тип бота
-        gameObject.AddComponent(Type.GetType(GameRule.mode.ToString()));
+        gameObject.AddComponent(Type.GetType(mode.ToString()));
         gate.AddComponent(Type.GetType(GameRule.typeGate.ToString()));
         if (GameRule.ActiveAI)
         {
@@ -128,10 +90,10 @@ public class Game : MonoBehaviour
         return checkers;
     }
 
-    // Установка спрайтов поля и шайб
+    // Установка спрайта поля
     void ChangePlanetSprite(string spriteName)
     {
-        imgField.sprite = Resources.Load<Sprite>("Sprites/levels/planets/" + spriteName);
+        imgField.sprite = Resources.Load<Sprite>("Sprites/levels/fields/" + spriteName);
     }
 
     void ChangeCheckerSprite(string matName, GameObject checkers)
@@ -201,6 +163,36 @@ public class Game : MonoBehaviour
             for (int i = 0; i < 2; ++i)
                 strings[i].transform.GetComponent<LineRenderer>().material = Resources.Load<Material>("Sprites/Materials/Borders/" + diff.Element("string").Value.ToString());
         }
+    }
+
+    //установка небходимой музыки
+    public void loadMusic()
+    {
+        if (GameRule.levelNum == GameRule.levelsCount)
+            backgroundMusic.transform.GetComponent<AudioSource>().clip = Resources.Load<AudioClip>("Audio/Game/songs/boss");
+        else
+            backgroundMusic.transform.GetComponent<AudioSource>().clip = Resources.Load<AudioClip>("Audio/Game/songs/" + type.ToString() + "_level");
+
+        backgroundMusic.transform.GetComponent<AudioSource>().Play();
+    }
+
+    public void loadSprites()
+    {
+        GameObject checkers = initGameRule();
+
+        //изменение спрайтов чекеров игрока
+        for (int i = 0; i < checkers.transform.childCount / 2; ++i)
+        {
+            Image userImg = checkers.transform.GetChild(i).gameObject.transform.GetComponent<Image>();
+            userImg.sprite = Resources.Load<Sprite>("Sprites/levels/checkers/" + PlayerData.getInstance().puckSprite);
+            // userImg.material = Resources.Load<Material>("Sprites/Materials/Checker/" + playerData.puckSprite + "_glowMat");
+        }
+
+        // Наложение соответствующий текстур
+        ChangePlanetSprite(type.ToString() + "_planet");
+        if (GameRule.ActiveAI)
+            ChangeCheckerSprite(type.ToString() + "_CheckerGlowMat", checkers);
+        ChangeParticle(type.ToString() + "_particle", true);
     }
 }
 
