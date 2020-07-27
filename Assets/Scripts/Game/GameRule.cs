@@ -30,6 +30,7 @@ public static class GameRule
 
     public enum AI
     {
+        None,
         AI, 
         RotationAI
     }
@@ -58,7 +59,6 @@ public static class GameRule
     public static Type type; // Тип планеты
     public static AI TypeAI; // Вид ИИ
     public static Gate typeGate; // Вид ворот
-    public static bool ActiveAI; // Наличие ИИ
     public static Difficulties difficulties; // Сложность игры
 
     public static int planetNum, levelNum, levelsCount; // номер планеты, номер уровня и кол-во уровней планеты, необходимы для записи прогреса

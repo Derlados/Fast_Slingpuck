@@ -10,14 +10,9 @@ public class MovementGate : Gate
 
     Transform leftPos, rightPos, windowPos;
     BoxCollider2D leftBorderCol, rightBorderCol;
-    Game game;
-
 
     void Start()
     {
-        // Объект Game
-        game = GameObject.FindGameObjectWithTag("Game").GetComponent<Game>();
-
         // RectTransform окон и границ
         rectLeft = leftBorder.GetComponent<RectTransform>();
         rectRight = rightBorder.GetComponent<RectTransform>();
@@ -44,7 +39,7 @@ public class MovementGate : Gate
     // Update is called once per frame
     void FixedUpdate()
     {
-        if (game.activeGame)
+        if (Game.activeGame)
         {
             // Модифицируем объекты по размеру и смещаем позиции
             rectLeft.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, rectLeft.rect.width - stepScreen);

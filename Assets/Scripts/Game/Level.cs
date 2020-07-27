@@ -27,31 +27,19 @@ public class Level : MonoBehaviour
     public GameRule.Type type; // Тип планеты
     public GameRule.AI typeAI;
     public GameRule.Gate typeGate;
-    public bool AI; // Наличие ИИ. true - игра с ИИ, false - игра без ИИ
     public GameRule.Difficulties difficulties; // Сложность игры
     public int numLevel; // Номер уровня, необходимо знать для того чтобы в дальнейшем записать результат
-
-    CheckerModifiers сheckerModifiers;
 
     // Установка всех игровых правил и запус игры
     public void setGameRule(GameObject planet)
     {
-        сheckerModifiers = GetComponent<CheckerModifiers>();
-
         GameRule.mode = mode;
         GameRule.type = type;
-        GameRule.ActiveAI = AI;
         GameRule.typeGate = typeGate;
         GameRule.difficulties = difficulties;
         GameRule.levelNum = numLevel;
         GameRule.levelsCount = planet.transform.childCount-1;
-
-        for (int i = 0; i < сheckerModifiers.AIModifier.Count; ++i)  
-            GameRule.AIModifier.Add(сheckerModifiers.AIModifier[i]);
-
-        for (int i = 0; i < сheckerModifiers.GlobalModifier.Count; ++i)
-            GameRule.GlobalModifier.Add(сheckerModifiers.GlobalModifier[i]);
-
+        GameRule.TypeAI = typeAI;
 
         setTargets();
 

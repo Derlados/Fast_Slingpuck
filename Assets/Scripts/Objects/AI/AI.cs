@@ -11,6 +11,7 @@ public class AI : MonoBehaviour
      * keep - AI удерживает шайбу и ведет её к нити
      * ready - AI готов к запуску шайбы
      * wait - ожидание AI перед запуском следующей шайбы
+     * aim - прицеливание
      */
     protected enum Status : byte
     {
@@ -108,7 +109,7 @@ public class AI : MonoBehaviour
         keepChecker = keepObj.GetComponent<Checker>();
 
         keepChecker.OnMouseDown();
-        keepChecker.angle = 270f; // Иногда происходит баг, что шайба не успевает переключится и не разворачивается на 270 градусов у AI
+        keepChecker.angle = 180f; // Иногда происходит баг, что шайба не успевает переключится и не разворачивается на 270 градусов у AI
     }
 
     // Функция возвращающаяя цель, куда необходимо целится  и куда поставить шайбу
@@ -126,7 +127,6 @@ public class AI : MonoBehaviour
         float coordY = AIString.coordY + (border.Up - (AIString.coordY - AIString.correction)) * (keepChecker.GetComponent<Rigidbody2D>().drag / Checker.DRAG);
 
         aimTarget = moveTarget = new Vector2(UnityEngine.Random.Range(border.Left < leftBorder ? leftBorder : border.Left, border.Right > rightBorder ? rightBorder : border.Right), coordY);
-        Debug.Log(moveTarget);
     }
 
     // Прицеливание, получает точку на которую должна быть направлена шайба, если шайба летит прямо - необходимости в прицеливании нету

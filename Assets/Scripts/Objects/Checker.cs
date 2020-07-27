@@ -115,7 +115,7 @@ public class Checker : MonoBehaviour
     {
         body.velocity *= 0;
         V = 0.0f;
-        angle = field == Field.Down ? 90f : 270f;
+        angle = field == Field.Down ? 0f : 180f;
         mouseDown = true;
     }
 
@@ -142,7 +142,7 @@ public class Checker : MonoBehaviour
         }
 
         objTransform.rotation = Quaternion.Euler(0, 0, angle);
-        body.AddForce(transform.right * V * 300);
+        body.AddForce(transform.up * V * 300);
 
         if (V > 0)
             AudioManager.PlaySound(AudioManager.Audio.string_pulling);

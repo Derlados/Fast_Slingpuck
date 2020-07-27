@@ -42,7 +42,7 @@ public class Rotation : Modifier
             {
                 arrowAim.SetActive(true);
                 checker.setStop(true);
-                checker.angle = 90 + calculateRotation(mousePos, checker.transform.position);
+                checker.angle = calculateRotation(mousePos, checker.transform.position);
                 checker.transform.rotation = Quaternion.Euler(0, 0, checker.angle);
             }
             else

@@ -39,7 +39,7 @@ public class Game : MonoBehaviour
     // Действия игрока
     public static int countShots;
 
-    public bool activeGame = false;
+    public static bool activeGame = false;
 
     private void Awake()
     {
@@ -79,7 +79,7 @@ public class Game : MonoBehaviour
 
         // Наложение соответствующий текстур
         ChangePlanetSprite(type.ToString() + "_planet");
-        if (GameRule.ActiveAI)
+        if (GameRule.TypeAI != GameRule.AI.None)
             ChangeCheckerSprite(type.ToString() + "_CheckerGlowMat", checkers);
         ChangeParticle(type.ToString() + "_particle", true);
 
@@ -101,25 +101,27 @@ public class Game : MonoBehaviour
         switch (mode)
         {
             case GameRule.Mode.Normal:
-                window.AddComponent<NormalWindow>();
                 checkers = checkersNormal;
+                for (int i = 0; i < checkers.transform.childCount; ++i)
+                    checkers.transform.GetChild(i).gameObject.AddComponent<Modifier>();
+                window.AddComponent<NormalWindow>();
                 break;
             case GameRule.Mode.Speed:
-                window.AddComponent<DestroyWindow>();
                 checkers = checkersSpeed;
+                for (int i = 0; i < checkers.transform.childCount; ++i)
+                    checkers.transform.GetChild(i).gameObject.AddComponent<Destroy>();
+                window.AddComponent<DestroyWindow>();      
                 break;
         }
 
-        // Устанавливаем глобальные модификаторы для шайб
-        for (int i = 0; i < checkers.transform.childCount; ++i)
-            for (int j = 0; j < GameRule.GlobalModifier.Count; ++j)
-                checkers.transform.GetChild(i).gameObject.AddComponent(Type.GetType(GameRule.GlobalModifier[j].ToString()));
-
+        // Устанавливаем свойства поля (планеты)
+        gameObject.AddComponent(Type.GetType(GameRule.type.ToString()));
+        gameObject.GetComponent<Field>().setGlobalModififers(checkers);
 
         // Добавляем режим, тип ворот и тип бота
         gameObject.AddComponent(Type.GetType(GameRule.mode.ToString()));
         gate.AddComponent(Type.GetType(GameRule.typeGate.ToString()));
-        if (GameRule.ActiveAI)
+        if (GameRule.TypeAI != GameRule.AI.None)
         {
             AI.AddComponent(Type.GetType(GameRule.TypeAI.ToString()));
             AI.SetActive(true);
