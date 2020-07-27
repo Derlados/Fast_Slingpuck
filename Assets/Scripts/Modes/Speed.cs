@@ -48,7 +48,7 @@ public class Speed : MonoBehaviour, Mode
 
         // Бот
         AI = game.AI;
-        if (!GameRule.ActiveAI)
+        if (GameRule.TypeAI == GameRule.AI.None)
             upCountText.gameObject.SetActive(false);
 
         // Установка начального текста для счетчиков
@@ -106,14 +106,14 @@ public class Speed : MonoBehaviour, Mode
         double accuracy = ((double)downCount / Game.countShots);
 
         // Начисление звезд
-        if ((!GameRule.ActiveAI && downCount < winTarget) || (GameRule.ActiveAI && downCount <= upCount))
+        if ((GameRule.TypeAI == GameRule.AI.None && downCount < winTarget) || (GameRule.TypeAI != GameRule.AI.None && downCount <= upCount))
             game.countStars = 0;
         else
         {
             if (downCount < targetCheckers)
                 --game.countStars;
 
-            if ((GameRule.ActiveAI && maxLag > 0) || (!GameRule.ActiveAI && accuracy < GameRule.target3))
+            if ((GameRule.TypeAI != GameRule.AI.None && maxLag > 0) || (GameRule.TypeAI == GameRule.AI.None && accuracy < GameRule.target3))
                 --game.countStars;
         }
 
@@ -124,7 +124,7 @@ public class Speed : MonoBehaviour, Mode
          * Начисление монет если игра была против ИИ
          * За каждое очко на которое максимально отстал от ИИ игрок - штраф 1/5 от полного зароботка, таким образом отставание более чем на 5 голов приводит к тому что игрок получает 0 монет
          */
-        money2 = !GameRule.ActiveAI ? (int)(accuracyOrLagMoney * accuracy) : accuracyOrLagMoney - (maxLag * accuracyOrLagMoney / 5);
+        money2 = GameRule.TypeAI == GameRule.AI.None ? (int)(accuracyOrLagMoney * accuracy) : accuracyOrLagMoney - (maxLag * accuracyOrLagMoney / 5);
         if (money2 < 0 || money1 == 0)
             money2 = 0;
 
@@ -143,7 +143,7 @@ public class Speed : MonoBehaviour, Mode
 
         LocalizationManager.add(new Pair<Text, string>(gameCounterText, "go"));
         capperField.SetActive(false);
-        game.activeGame = true;
+        Game.activeGame = true;
         AI.GetComponent<AI>().active = true;    
         yield return new WaitForSeconds(1);
         StartCoroutine(counter(60));
