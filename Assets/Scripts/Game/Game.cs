@@ -2,6 +2,8 @@
 using System;
 using System.Xml.Linq;
 using UnityEngine;
+using UnityEngine.Rendering;
+using UnityEngine.Rendering.Universal;
 using UnityEngine.UI;
 
 // Класс отвечающий за геймплей в самой игре
@@ -22,6 +24,7 @@ public class Game : MonoBehaviour
     public GameObject gate;
     public GameObject borders;
     public GameObject[] strings;
+    public GameObject MainCamera;
 
     // Текст счетчиков
     public Text upCountText, downCountText, gameCounter;
@@ -94,6 +97,7 @@ public class Game : MonoBehaviour
     void ChangePlanetSprite(string spriteName)
     {
         imgField.sprite = Resources.Load<Sprite>("Sprites/levels/fields/" + spriteName);
+        if(type.ToString() == "water") imgField.color = new Color32(188, 188, 188, 255);
     }
 
     void ChangeCheckerSprite(string matName, GameObject checkers)
@@ -163,6 +167,9 @@ public class Game : MonoBehaviour
             for (int i = 0; i < 2; ++i)
                 strings[i].transform.GetComponent<LineRenderer>().material = Resources.Load<Material>("Sprites/Materials/Borders/" + diff.Element("string").Value.ToString());
         }
+
+        ScreenOptimization.setNeonRadius(MainCamera);
+
     }
 
     //установка небходимой музыки

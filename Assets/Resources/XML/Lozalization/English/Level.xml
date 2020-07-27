@@ -12,7 +12,7 @@
     </difficulty>
     <description>
         <Normal>Standard mode - a standard game in which the goal of each player to free his field from the pucks having thrown them on the opponent’s field, the one who throws all the pucks on the opponent’s field first wins</Normal>
-	<Speed>??????</Speed>    
+		<Speed>Speed mode - a speed game in which the goal of each player to get as many goals on the opposing player's field as possible, the one who scored more goals wins</Speed> 
     </description>
     <targets>
 	<NormalAI>

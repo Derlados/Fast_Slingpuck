@@ -1,6 +1,9 @@
 using UnityEngine;
 using BaseStructures;
 using UnityEditor;
+using UnityEngine.Rendering;
+using UnityEngine.Rendering.Universal;
+using System;
 
 public static class ScreenOptimization
 {
@@ -33,5 +36,17 @@ public static class ScreenOptimization
         Vector2 first = new Vector2(Screen.width * rect.anchorMin.x, Screen.height * rect.anchorMax.y);
         Vector2 second = new Vector2(Screen.width * rect.anchorMax.x, Screen.height * rect.anchorMin.y);
         return new Pair<Vector2, Vector2>(Camera.main.ScreenToWorldPoint(first), Camera.main.ScreenToWorldPoint(second));
+    }
+
+    public static void setNeonRadius(GameObject obj)
+    {
+        Bloom bloom = null;
+        Volume volume = obj.transform.GetComponent<Volume>();
+        volume.sharedProfile.TryGet<Bloom>(out bloom);
+
+        double delta = (double)Screen.height / (double)Screen.width;
+        bloom.threshold.SetValue(new MinFloatParameter((float)Math.Exp(1.0892182f + 0.37382208f * delta / Math.Log(delta)), 0, true));
+        bloom.intensity.SetValue(new MinFloatParameter((float)Math.Exp(2.0676649f - 1.5169059f * Math.Log(delta)), 0, true));
+        bloom.scatter.SetValue(new MinFloatParameter((float)(0.70737272f - 1.0811167f / delta), 0, true));
     }
 }
