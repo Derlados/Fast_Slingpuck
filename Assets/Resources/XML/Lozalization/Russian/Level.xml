@@ -17,7 +17,7 @@
     <targets>
 	<NormalAI>
 	    <target1>Победа</target1>
-	    <target2>Победа за NUMBER секундах</target2>
+	    <target2>Победа за NUMBER секунд</target2>
 	    <target3>Одновременно на поле должно быть не более NUMBER шайб</target3>
 	</NormalAI>
 	<Speed>

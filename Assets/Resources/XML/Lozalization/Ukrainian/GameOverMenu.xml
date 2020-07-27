@@ -2,6 +2,8 @@
 <GameOverMenu>
 	<totalText>Всього</totalText>
 	<gameOver>Кінець гри</gameOver>
+	<win>ПЕРЕМОГА!</win>
+    <lose>ПОРАЗКА!</lose>
 	<Normal>
 		<images>
 			<targetImage1>star</targetImage1>
