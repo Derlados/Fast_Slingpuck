@@ -106,8 +106,6 @@ public class Normal : MonoBehaviour, Mode
                     gameCounterText.GetComponent<RectTransform>().rotation = Quaternion.Euler(rotPos);
                     if (j % 10 == 0) yield return new WaitForSeconds(0.52f / j);
                 }
-
-
             }
             //затухание последней цифры 1
             else 
@@ -124,7 +122,7 @@ public class Normal : MonoBehaviour, Mode
 
                 capperField.SetActive(false);
                 AI.GetComponent<AI>().active = true;
-                game.activeGame = true;
+                Game.activeGame = true;
             }
 
             yield return new WaitForSeconds(1);
@@ -162,7 +160,6 @@ public class Normal : MonoBehaviour, Mode
 
         if (upCount == 0 || downCount == 0)
             gameOver();
-
     }
 
     // Окончание игры

@@ -34,7 +34,7 @@ public class GameMenu : MonoBehaviour
         TextAsset textAsset = (TextAsset)Resources.Load("XML/Lozalization/" + PlayerData.getInstance().lang.ToString() + "/level");
         data = XDocument.Parse(textAsset.text).Element("Level");
 
-        string el = GameRule.ActiveAI ? MenuManager.level.mode.ToString() + "AI" : MenuManager.level.mode.ToString();
+        string el = GameRule.TypeAI != GameRule.AI.None ? MenuManager.level.mode.ToString() + "AI" : MenuManager.level.mode.ToString();
         data = data.Element("targets").Element(el);
 
         goalsTexts[0].transform.GetComponent<Text>().text = data.Element("target1").Value.Replace("NUMBER", GameRule.target1.ToString());

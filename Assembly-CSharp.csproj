@@ -130,7 +130,6 @@
     <Compile Include="Assets\GooglePlayGames\PluginVersion.cs" />
     <Compile Include="Assets\Libraries\BaseStructures\Pair.cs" />
     <Compile Include="Assets\Scripts\GPGSAuthentication.cs" />
-    <Compile Include="Assets\Scripts\Game\CheckerModifiers.cs" />
     <Compile Include="Assets\Scripts\Game\Game.cs" />
     <Compile Include="Assets\Scripts\Game\GameMenu.cs" />
     <Compile Include="Assets\Scripts\Game\GameRule.cs" />
@@ -150,9 +149,15 @@
     <Compile Include="Assets\Scripts\Modifiers\Border_Window_Modifiers\NormalWindow.cs" />
     <Compile Include="Assets\Scripts\Modifiers\Border_Window_Modifiers\TeleportGate.cs" />
     <Compile Include="Assets\Scripts\Modifiers\Checker_Modifier\Destroy.cs" />
+    <Compile Include="Assets\Scripts\Modifiers\Checker_Modifier\Magnet.cs" />
     <Compile Include="Assets\Scripts\Modifiers\Checker_Modifier\Modifier.cs" />
     <Compile Include="Assets\Scripts\Modifiers\Checker_Modifier\Rotation.cs" />
-    <Compile Include="Assets\Scripts\Modifiers\Checker_Modifier\Slip.cs" />
+    <Compile Include="Assets\Scripts\Modifiers\Fields\Field.cs" />
+    <Compile Include="Assets\Scripts\Modifiers\Fields\ice.cs" />
+    <Compile Include="Assets\Scripts\Modifiers\Fields\jungle.cs" />
+    <Compile Include="Assets\Scripts\Modifiers\Fields\lava.cs" />
+    <Compile Include="Assets\Scripts\Modifiers\Fields\sand.cs" />
+    <Compile Include="Assets\Scripts\Modifiers\Fields\water.cs" />
     <Compile Include="Assets\Scripts\Objects\AI\AI.cs" />
     <Compile Include="Assets\Scripts\Objects\AI\RotationAI.cs" />
     <Compile Include="Assets\Scripts\Objects\AudioAssets.cs" />
