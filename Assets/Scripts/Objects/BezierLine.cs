@@ -24,21 +24,22 @@ public class BezierLine : MonoBehaviour
     public float coordY; // середина нити по координате Y
 
     public float correction, correctionForEdge; // визуальная коррекция нитки
-
+                                                
     void Start()
     {
         // Установка двух крайних опорных точек для прорисовки линии
-        ScreenOptimization.setColider(gameObject, gameObject.GetComponent<BoxCollider2D>());
-        Pair<Vector2, Vector2> coords = ScreenOptimization.GetWorldCoord2D(gameObject);
-        coordY = ((coords.second.y + coords.first.y) / 2);
-        startPoint = new Vector2(coords.first.x, coordY);
-        endPoint = new Vector2(coords.second.x, coordY);
+        coordY = transform.position.y;
+        startPoint = new Vector2(Camera.main.ScreenToWorldPoint(new Vector2(stringCollider.points[0].x + Screen.width / 2, 0)).x, transform.position.y);
+        endPoint = new Vector2(Camera.main.ScreenToWorldPoint(new Vector2(stringCollider.points[1].x + Screen.width / 2, 0)).x, transform.position.y);
 
         // Прорисовка
         Bezier = this.GetComponent<LineRenderer>();
 
         // Подсчет коррекции 
-        correction = DownString ? Math.Abs(coordY - coords.first.y) : -Math.Abs(coordY - coords.first.y);
+        correction = Camera.main.ScreenToWorldPoint(new Vector2(0, (GetComponent<BoxCollider2D>().size.y + Screen.height) / 2)).y;
+        if (!DownString)
+            correction = -correction;
+
         correctionForEdge = Camera.main.WorldToScreenPoint(new Vector2(startPoint.x, 1.5f * correction)).y - Screen.height / 2;
         checker = null;
 
