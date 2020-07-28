@@ -18,7 +18,8 @@ public class NormalWindow : Window
         {
             game.GetComponent<Mode>().changeCount(collision.gameObject);
             check.changeField();
-            gate.goalReaction();
+            for (int i = 0; i < gate.Length; ++i)
+                gate[i].goalReaction();
         }
     }
 }

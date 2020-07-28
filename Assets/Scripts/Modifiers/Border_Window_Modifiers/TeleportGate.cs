@@ -31,11 +31,9 @@ public class TeleportGate : Gate
         rightBorder.transform.position = new Vector2(Camera.main.ScreenToWorldPoint(new Vector2(Screen.width * rectRightBorder.anchorMax.x, 0)).x, rightBorder.transform.position.y);
 
         // Модифицикация колайдеров
-        leftBorder.GetComponent<BoxCollider2D>().size *= 2;
-        rightBorder.GetComponent<BoxCollider2D>().size *= 2;
-
-        Debug.Log(leftBorder.GetComponent<BoxCollider2D>().size);
-        Debug.Log(rightBorder.GetComponent<BoxCollider2D>().size);
+        BoxCollider2D leftBorderCol = leftBorder.GetComponent<BoxCollider2D>(), rightBorderCol = rightBorder.GetComponent<BoxCollider2D>();
+        leftBorderCol.size = new Vector2(leftBorderCol.size.x * 2, leftBorderCol.size.y);
+        rightBorderCol.size = new Vector2(rightBorderCol.size.x * 2, rightBorderCol.size.y); ;
     }
 
     public override void goalReaction()

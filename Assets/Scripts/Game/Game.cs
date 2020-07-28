@@ -1,9 +1,7 @@
-﻿using Boo.Lang;
+﻿
 using System;
 using System.Xml.Linq;
 using UnityEngine;
-using UnityEngine.Rendering;
-using UnityEngine.Rendering.Universal;
 using UnityEngine.UI;
 
 // Класс отвечающий за геймплей в самой игре
