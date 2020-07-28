@@ -182,7 +182,6 @@ public class GameMenu : MonoBehaviour
     {
         for (float f = audioBackground.transform.GetComponent<AudioSource>().volume; f >=0 ; f -= 0.005f)
         {
-            Debug.Log(f);
             audioBackground.transform.GetComponent<AudioSource>().volume = f;
             yield return new WaitForSeconds(0.06f);
         }

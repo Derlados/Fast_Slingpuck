@@ -211,9 +211,9 @@ RectTransform:
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 90}
   m_AnchorMin: {x: 0.76071423, y: 0.37561047}
-  m_AnchorMax: {x: 0.90000004, y: 0.45269865}
-  m_AnchoredPosition: {x: -0.3999939, y: 0.05999756}
-  m_SizeDelta: {x: -1.5, y: -0.06}
+  m_AnchorMax: {x: 0.89900005, y: 0.45269865}
+  m_AnchoredPosition: {x: 0.1000061, y: -0.7899933}
+  m_SizeDelta: {x: -2.2049103, y: -0.05999756}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1095559404968874015
 CanvasRenderer:
@@ -235,7 +235,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Material: {fileID: 2100000, guid: 14262823d653b01418aea570b2f1e4eb, type: 2}
+  m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_Maskable: 1
@@ -244,7 +244,7 @@ MonoBehaviour:
       m_Calls: []
   m_Sprite: {fileID: 21300000, guid: d31a17c205e8a64429f53e16b2a8b766, type: 3}
   m_Type: 0
-  m_PreserveAspect: 0
+  m_PreserveAspect: 1
   m_FillCenter: 1
   m_FillMethod: 4
   m_FillAmount: 1
@@ -265,10 +265,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   id: 0
+  playableForAI: 1
   DownString: {fileID: 0}
   UpString: {fileID: 0}
   body: {fileID: 0}
   objTransform: {fileID: 0}
+  angle: 0
   leftBorderHolder: {fileID: 0}
   rightBorderHolder: {fileID: 0}
   field: 0
@@ -287,7 +289,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 10
+  m_Radius: 68.078766
 --- !u!50 &1095559404968874083
 Rigidbody2D:
   serializedVersion: 4

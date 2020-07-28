@@ -1,10 +1,10 @@
 <?xml version="1.0"?>
 <PlayerData xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-  <money>100</money>
+  <money>122</money>
   <progress>
     <PairOfListOfBytePairOfTypeBoolean>
       <first>
-        <unsignedByte>0</unsignedByte>
+        <unsignedByte>3</unsignedByte>
         <unsignedByte>0</unsignedByte>
         <unsignedByte>0</unsignedByte>
         <unsignedByte>0</unsignedByte>
@@ -73,5 +73,5 @@
   </progress>
   <puckSprite>userChecker1</puckSprite>
   <currentPlanet>0</currentPlanet>
-  <lang>Ukrainian</lang>
+  <lang>English</lang>
 </PlayerData>
