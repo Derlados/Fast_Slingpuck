@@ -38,7 +38,7 @@ public class AI : MonoBehaviour
     protected Gate gate;
     protected BezierLine AIString;
 
-    Game game;
+    protected Game game;
 
     private void Start()
     {
@@ -118,15 +118,19 @@ public class AI : MonoBehaviour
         Checker.Border border = keepChecker.playerUpBorder;
         //keepTime - время за которое бот тянет  ̶л̶я̶м̶к̶у̶  шайбу на позицию
         float keepTime = (((Vector2)keepObj.position - new Vector2(keepObj.position.x, border.Up)).magnitude / (Time.fixedDeltaTime * speedAI)) * Time.fixedDeltaTime * 1.2f;
-        // 0.14f - примерно за столько времени у AI всегда летит шайба, если будет изменяться скорость - необходимо будет исправить (да, это пока что такой костыль)
-        float posX = gate.calculatePos(timeAim + keepTime + 0.14f);
+        // 0.08f - примерно за столько времени у AI всегда летит шайба, если будет изменяться скорость - необходимо будет исправить (да, это пока что такой костыль)
+        float posX = gate.calculatePos(timeAim + keepTime + 0.08f);
 
-        leftBorder = posX - dispersion;
-        rightBorder = posX + dispersion;
+        leftBorder = posX;// - dispersion;
+        rightBorder = posX;// + dispersion;
 
         float coordY = AIString.coordY + (border.Up - (AIString.coordY - AIString.correction)) * (keepChecker.GetComponent<Rigidbody2D>().drag / Checker.DRAG);
 
-        aimTarget = moveTarget = new Vector2(UnityEngine.Random.Range(border.Left < leftBorder ? leftBorder : border.Left, border.Right > rightBorder ? rightBorder : border.Right), coordY);
+        aimTarget = new Vector2(UnityEngine.Random.Range(border.Left < leftBorder ? leftBorder : border.Left, border.Right > rightBorder ? rightBorder : border.Right), coordY);
+        Debug.Log(aimTarget.x);
+        aimTarget = game.GetComponent<Field>().correctionForAI(aimTarget);
+        Debug.Log(aimTarget.x);
+        moveTarget = aimTarget;
     }
 
     // Прицеливание, получает точку на которую должна быть направлена шайба, если шайба летит прямо - необходимости в прицеливании нету

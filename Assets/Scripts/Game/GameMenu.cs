@@ -54,6 +54,7 @@ public class GameMenu : MonoBehaviour
 
     public void ToMainMenuPressed()
     {
+        Game.activeGame = false;
         Time.timeScale = 1f;
         AudioManager.PlaySound(AudioManager.Audio.click);
         LocalizationManager.clear();
@@ -61,6 +62,7 @@ public class GameMenu : MonoBehaviour
     }
     public void gameOver(string message, int stars, int money1, int money2, int money3)
     {
+        Game.activeGame = false;
         StartCoroutine(fadeOutBackground());
 
         PlayerData playerData = PlayerData.getInstance();

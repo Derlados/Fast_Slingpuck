@@ -33,4 +33,15 @@ public class sand : MonoBehaviour, Field
         yield return new WaitForSeconds(sec);
         randomDir();
     }
+
+
+    public Vector2 correctionForAI(Vector2 aimTarget)
+    {
+        if (Magnet.border == checkerData.playerUpBorder.Right)
+            aimTarget = new Vector2(aimTarget.x - 4 * Magnet.force * Time.fixedDeltaTime, aimTarget.y);
+        else if (Magnet.border == checkerData.playerUpBorder.Left)
+            aimTarget = new Vector2(aimTarget.x + 4 * Magnet.force * Time.fixedDeltaTime, aimTarget.y);
+
+        return aimTarget;
+    }
 }

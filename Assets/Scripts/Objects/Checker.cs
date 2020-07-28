@@ -20,7 +20,8 @@ public class Checker : MonoBehaviour
     public Transform objTransform; // компоненты Transfrom объекта
 
     bool mouseDown = false, stop = false; // Проверка нажатия на предмет, stop - рехрешение на движение
-    float V = 0.0f, radius; // начальная скорость объекта и радиус объекта
+    float startV, V = 0.0f, radius; // начальная скорость объекта и радиус объекта
+    const float startV_16_9 = 1300, startV_18_9 = 1000; // максимальные силы для разных соотношений экрана (почему то на соотношеня 16:9 и 18:9, шайбы летят по разному)
     public float angle;
     public const float DRAG = 8f;
 
@@ -30,8 +31,8 @@ public class Checker : MonoBehaviour
     public Border playerDownBorder;
     public Border playerUpBorder;
 
-    public static float boostModificator = 20.0f;
-    public static float reductorModificator = 20.0f;
+    public static float boostModificator = 1f;
+    public static float reductorModificator = 1f;
 
     public struct Border
     {
@@ -55,6 +56,9 @@ public class Checker : MonoBehaviour
 
     private void Awake()
     {
+        startV = Screen.height % 18 == 0 ? startV_18_9 : startV_16_9;
+        Debug.Log(startV);
+
         id = ++countId;
         // Оптимизация под разные экраны
         ScreenOptimization.setSize(gameObject, this.GetComponent<CircleCollider2D>(), 0.12f);
@@ -125,24 +129,32 @@ public class Checker : MonoBehaviour
         if (objTransform.position.y < 0)
         {
             float checkY = DownString.coordY + radius + DownString.correction;
+            float K = (checkY - objTransform.position.y) / (checkY - playerDownBorder.Down);
+
+            Debug.Log(K);
+
             if (objTransform.position.y < checkY)
             {
                 ++Game.countShots;
-                V = ((checkY - objTransform.position.y) * 124 + 4) / boostModificator; // Формула рассчета начальной скорости объекта
+                V = (K * startV) / boostModificator; // Формула рассчета начальной скорости объекта
             }
         }
         else
         {
-            float checkY = UpString.coordY - radius - UpString.correction;
+            float checkY = UpString.coordY - radius + UpString.correction;
+            float K =  (objTransform.position.y - checkY) / (playerUpBorder.Up - checkY);
             if (objTransform.position.y > checkY)
             {
                 ++Game.countShots;
-                V = ((objTransform.position.y - checkY) * 124 + 4) / reductorModificator; // Формула рассчета начальной скорости объекта
+                V = (K * startV) / reductorModificator; // Формула рассчета начальной скорости объекта
             }
         }
 
+        //Debug.Log(V);
+
+
         objTransform.rotation = Quaternion.Euler(0, 0, angle);
-        body.AddForce(transform.up * V * 300);
+        body.AddForce(transform.up * V);
 
         if (V > 0)
             AudioManager.PlaySound(AudioManager.Audio.string_pulling);
@@ -168,6 +180,7 @@ public class Checker : MonoBehaviour
     {
         field = field == Field.Up ? Field.Down : Field.Up;
     }
+
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
