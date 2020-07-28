@@ -66,6 +66,8 @@ public class AI : MonoBehaviour
         dispersion = Camera.main.ScreenToWorldPoint(new Vector2(accuracyAI * Screen.width, 0)).x + Camera.main.ScreenToWorldPoint(new Vector2(Screen.width, 0)).x;
     }
 
+    int watchdogTimer = 0; // Нсли бот зависнет в режиме keep (максимум 20 тактов)
+
     void FixedUpdate()
     {
         if (active)
@@ -75,6 +77,7 @@ public class AI : MonoBehaviour
             {
                 getChecker();
                 getTarget();
+                watchdogTimer = 0;
                 statusType = Status.keep;
             }       
             
@@ -92,7 +95,8 @@ public class AI : MonoBehaviour
 
             if (statusType == Status.keep)
             {
-                if ((Vector2)keepObj.position == moveTarget)
+                ++watchdogTimer;
+                if ((Vector2)keepObj.position == moveTarget || watchdogTimer == 20)
                     statusType = Status.aim;
                 keepObj.position = Vector2.MoveTowards(keepChecker.transform.position, moveTarget, Time.fixedDeltaTime * speedAI);
             }
