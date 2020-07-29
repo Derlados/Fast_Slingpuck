@@ -4,6 +4,8 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using System.Xml.Linq;
+using System;
+using GooglePlayGames;
 
 // Класс отвечающий за весь UI в самой игре
 public class GameMenu : MonoBehaviour
@@ -81,6 +83,16 @@ public class GameMenu : MonoBehaviour
         {
            playerData.currentPlanet++;
            playerData.progress[playerData.currentPlanet].second.second = true;
+
+            switch (GameRule.type)
+            {
+                case GameRule.Type.lava: Social.ReportProgress(GPGSIds.achievement_youre_on_fire, 100f, null); break;
+                case GameRule.Type.ice: Social.ReportProgress(GPGSIds.achievement_too_slippery, 100f, null); break;
+                case GameRule.Type.jungle: Social.ReportProgress(GPGSIds.achievement_did_you_see_a_parrot, 100f, null); break;
+                case GameRule.Type.sand: Social.ReportProgress(GPGSIds.achievement_mr_sandman, 100f, null); break;
+                case GameRule.Type.water: Social.ReportProgress(GPGSIds.achievement_have_you_drown, 100f, null); break;
+                default: Debug.LogError("Please, provide achievement for this planet"); break;
+            }      
         }
 
         XMLManager.SaveData(PlayerData.getInstance(), PlayerData.getInstance().ToString());
@@ -90,10 +102,16 @@ public class GameMenu : MonoBehaviour
         data = XDocument.Parse(textAsset.text).Element("GameOverMenu");
 
         if (message == "YOU WIN !")
+        {
             gameOverText.text = data.Element("win").Value;
+            Social.ReportProgress(GPGSIds.achievement_hallelujah, 100f, null);
+        }   
         else
+        {
             gameOverText.text = data.Element("lose").Value;
-
+            PlayGamesPlatform.Instance.IncrementAchievement(GPGSIds.achievement_you_need_a_coach, 1, null);
+        }
+          
     }
 
     [System.Serializable]
@@ -188,6 +206,11 @@ public class GameMenu : MonoBehaviour
             yield return new WaitForSeconds(0.06f);
         }
 
+    }
+
+    public void achievementBtn()
+    {
+        Social.ShowAchievementsUI();
     }
 }
 

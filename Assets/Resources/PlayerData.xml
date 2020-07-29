@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <PlayerData xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-  <money>781</money>
+  <money>592</money>
   <progress>
     <PairOfListOfBytePairOfTypeBoolean>
       <first>
@@ -74,4 +74,6 @@
   <puckSprite>userChecker1</puckSprite>
   <currentPlanet>0</currentPlanet>
   <lang>English</lang>
+  <incScore>32</incScore>
+  <loses>0</loses>
 </PlayerData>

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using BaseStructures;
+using GooglePlayGames;
 
 public class Speed : MonoBehaviour, Mode
 {
@@ -82,7 +83,11 @@ public class Speed : MonoBehaviour, Mode
     public void changeCount(GameObject obj)
     {
         if (obj.GetComponent<Checker>().field == Checker.Field.Down)
+        {
             downCountText.text = (++downCount).ToString();
+            PlayGamesPlatform.Instance.IncrementAchievement(GPGSIds.achievement_control_of_universe, 1, null);
+            AudioManager.PlaySound(AudioManager.Audio.rise03);
+        }  
         else
             upCountText.text = (++upCount).ToString();
 
@@ -146,7 +151,7 @@ public class Speed : MonoBehaviour, Mode
         Game.activeGame = true;
         AI.GetComponent<AI>().active = true;    
         yield return new WaitForSeconds(1);
-        StartCoroutine(counter(60));
+        StartCoroutine(counter(10));
     }
 
     // Таймер игры

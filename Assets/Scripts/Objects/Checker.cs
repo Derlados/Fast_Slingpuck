@@ -21,7 +21,7 @@ public class Checker : MonoBehaviour
 
     bool mouseDown = false, stop = false; // Проверка нажатия на предмет, stop - рехрешение на движение
     float startMass = 0.25f, startV, V = 0.0f, radius; // начальная скорость объекта и радиус объекта
-    const float startV_16_9 = 1200, startV_18_9 = 1000; // максимальные силы для разных соотношений экрана (почему то на соотношеня 16:9 и 18:9, шайбы летят по разному)
+    const float startV_16_9 = 1200, startV_18_9 = 900; // максимальные силы для разных соотношений экрана (почему то на соотношеня 16:9 и 18:9, шайбы летят по разному)
     public float angle;
     public float coefForce = 1f; // коефициент силы, умножается на стандартную силу (можно использовать для всяких модификаций)
     public const float DRAG = 8f;

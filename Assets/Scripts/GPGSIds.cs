@@ -24,9 +24,21 @@
 
 public static class GPGSIds
 {
-        public const string achievement_goals = "CgkIh6LjiKQYEAIQAw"; // <GPGSID>
-        public const string achievement_achieve = "CgkIh6LjiKQYEAIQAQ"; // <GPGSID>
-        public const string achievement_lava_boss = "CgkIh6LjiKQYEAIQAg"; // <GPGSID>
+        public const string achievement_adventure_has_started = "CgkIh6LjiKQYEAIQBA"; // <GPGSID>
+        public const string achievement_youre_on_fire = "CgkIh6LjiKQYEAIQCQ"; // <GPGSID>
+        public const string achievement_control_of_universe = "CgkIh6LjiKQYEAIQEg"; // <GPGSID>
+        public const string achievement_mr_sandman = "CgkIh6LjiKQYEAIQCg"; // <GPGSID>
+        public const string achievement_did_you_see_a_parrot = "CgkIh6LjiKQYEAIQDQ"; // <GPGSID>
+        public const string achievement_are_you_using_a_time_machine = "CgkIh6LjiKQYEAIQDw"; // <GPGSID>
+        public const string achievement_have_you_drown = "CgkIh6LjiKQYEAIQDA"; // <GPGSID>
+        public const string achievement_hallelujah = "CgkIh6LjiKQYEAIQCA"; // <GPGSID>
+        public const string achievement_do_cyborgs_play_games = "CgkIh6LjiKQYEAIQBw"; // <GPGSID>
+        public const string achievement_just_a_master = "CgkIh6LjiKQYEAIQBg"; // <GPGSID>
+        public const string achievement_is_this_the_end = "CgkIh6LjiKQYEAIQEQ"; // <GPGSID>
+        public const string achievement_too_slippery = "CgkIh6LjiKQYEAIQCw"; // <GPGSID>
+        public const string achievement_you_need_a_coach = "CgkIh6LjiKQYEAIQEA"; // <GPGSID>
+        public const string achievement_hello_there = "CgkIh6LjiKQYEAIQDg"; // <GPGSID>
+        public const string achievement_youre_almost_expert = "CgkIh6LjiKQYEAIQBQ"; // <GPGSID>
 
 }
 

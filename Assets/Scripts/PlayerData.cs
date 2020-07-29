@@ -17,6 +17,8 @@ public class PlayerData
     public string puckSprite; //выбранный спрайт игрока
     public int currentPlanet;
     public SystemLanguage lang;
+    public int incScore = 0;
+    public int loses = 0;
     
     public static PlayerData getInstance()
     {
