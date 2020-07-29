@@ -16,10 +16,10 @@ public class GPGSAchievements : MonoBehaviour
     public static void updateIncrementalScore()
     {
         int score = PlayerData.getInstance().incScore;
-        if(score <= 1) PlayGamesPlatform.Instance.IncrementAchievement(GPGSIds.achievement_adventure_has_started, 1, null);
-        if(score <= 15) PlayGamesPlatform.Instance.IncrementAchievement(GPGSIds.achievement_youre_almost_expert, 1, null);
-        if(score <= 50) PlayGamesPlatform.Instance.IncrementAchievement(GPGSIds.achievement_just_a_master, 1, null);
-        if(score <= 100) PlayGamesPlatform.Instance.IncrementAchievement(GPGSIds.achievement_do_cyborgs_play_games, 1, null);
+        if(score < 1) PlayGamesPlatform.Instance.IncrementAchievement(GPGSIds.achievement_adventure_has_started, 1, null);
+        if(score < 15) PlayGamesPlatform.Instance.IncrementAchievement(GPGSIds.achievement_youre_almost_expert, 1, null);
+        if(score < 50) PlayGamesPlatform.Instance.IncrementAchievement(GPGSIds.achievement_just_a_master, 1, null);
+        if(score < 100) PlayGamesPlatform.Instance.IncrementAchievement(GPGSIds.achievement_do_cyborgs_play_games, 1, null);
 
         PlayerData.getInstance().incScore++;
         PlayerData.getInstance().Save();

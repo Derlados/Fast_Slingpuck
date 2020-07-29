@@ -202,5 +202,10 @@ public class GameMenu : MonoBehaviour
         }
 
     }
+
+    public void achievementBtn()
+    {
+        Social.ShowAchievementsUI();
+    }
 }
 

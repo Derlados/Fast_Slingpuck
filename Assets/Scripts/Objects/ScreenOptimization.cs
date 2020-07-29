@@ -49,4 +49,17 @@ public static class ScreenOptimization
         bloom.intensity.SetValue(new MinFloatParameter((float)Math.Exp(2.0676649f - 1.5169059f * Math.Log(delta)), 0, true));
         bloom.scatter.SetValue(new MinFloatParameter((float)(0.70737272f - 1.0811167f / delta), 0, true));
     }
+
+    public static void fix18_9(BoxCollider2D box)
+    {
+        Debug.Log(box.size);
+        box.size = new Vector2(box.size.x * 0.935f, box.size.y);
+        Debug.Log(box.size);
+    }
+
+    public static void fix18_9(EdgeCollider2D edge)
+    {
+        for (int i = 0; i < edge.points.Length; ++i)
+            edge.points[i] = new Vector2(edge.points[i].x * 0.935f, edge.points[i].y);
+    }
 }
