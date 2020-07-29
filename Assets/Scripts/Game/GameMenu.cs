@@ -102,7 +102,10 @@ public class GameMenu : MonoBehaviour
         data = XDocument.Parse(textAsset.text).Element("GameOverMenu");
 
         if (message == "YOU WIN !")
+        {
             gameOverText.text = data.Element("win").Value;
+            Social.ReportProgress(GPGSIds.achievement_hallelujah, 100f, null);
+        }   
         else
         {
             gameOverText.text = data.Element("lose").Value;
