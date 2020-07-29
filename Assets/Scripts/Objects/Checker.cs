@@ -23,6 +23,7 @@ public class Checker : MonoBehaviour
     float startV, V = 0.0f, radius; // начальная скорость объекта и радиус объекта
     const float startV_16_9 = 1300, startV_18_9 = 1000; // максимальные силы для разных соотношений экрана (почему то на соотношеня 16:9 и 18:9, шайбы летят по разному)
     public float angle;
+    public float coefForce = 1f; // коефициент силы, умножается на стандартную силу (можно использовать для всяких модификаций)
     public const float DRAG = 8f;
 
     // Границы поля
@@ -113,8 +114,6 @@ public class Checker : MonoBehaviour
             }
         }
     }
-
-
     public void OnMouseDown()
     {
         body.velocity *= 0;
@@ -150,8 +149,7 @@ public class Checker : MonoBehaviour
             }
         }
 
-        //Debug.Log(V);
-
+        V *= coefForce;
 
         objTransform.rotation = Quaternion.Euler(0, 0, angle);
         body.AddForce(transform.up * V);

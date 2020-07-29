@@ -76,7 +76,10 @@ public class Game : MonoBehaviour
                 break;
         }
 
-        // Устанавливаем свойства поля (планеты)
+        // Устанавливаем модификаторы шайб для бота и свойства поля (планеты)
+        for (int i = checkers.transform.childCount / 2; i < checkers.transform.childCount; ++i)
+            for (int j = 0; j < GameRule.AIModifier.Count; ++j)
+                checkers.transform.GetChild(i).gameObject.AddComponent(Type.GetType(GameRule.AIModifier[j].ToString()));
         gameObject.AddComponent(Type.GetType(GameRule.type.ToString()));
         gameObject.GetComponent<Field>().setGlobalModififers(checkers);
 

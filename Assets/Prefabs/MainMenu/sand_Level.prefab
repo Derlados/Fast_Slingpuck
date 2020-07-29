@@ -234,6 +234,7 @@ GameObject:
   - component: {fileID: 9004831237760379573}
   - component: {fileID: 9004831237760379574}
   - component: {fileID: 9004831237760379575}
+  - component: {fileID: 183513420643277993}
   - component: {fileID: 3431030227263662423}
   m_Layer: 5
   m_Name: sand_Level
@@ -356,6 +357,19 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &183513420643277993
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9004831237760379577}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6953c1721bc1cb04e8ef9d0ba01b3eae, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  AIModifier: 
 --- !u!114 &3431030227263662423
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -368,10 +382,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e26676a2c6fcc5e47a1ee912328bce53, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  normal:
+    time: 0
+    countCheckers: 0
+  speed:
+    minTargetCheckers: 0
+    maxTargetCheckers: 0
+    accuracy: 0
   mode: 0
   type: 0
-  AI: 0
+  typeAI: 0
+  typeGate: 0
   difficulties: 0
+  numLevel: 0
 --- !u!1 &9004831238610122371
 GameObject:
   m_ObjectHideFlags: 0
