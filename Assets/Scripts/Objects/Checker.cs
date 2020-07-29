@@ -60,7 +60,7 @@ public class Checker : MonoBehaviour
         startV = Screen.height % 18 == 0 ? startV_18_9 : startV_16_9;    
         id = ++countId;
         // Оптимизация под разные экраны
-        ScreenOptimization.setSize(gameObject, this.GetComponent<CircleCollider2D>(), 0.12f);
+        //ScreenOptimization.setSize(gameObject, this.GetComponent<CircleCollider2D>(), 0.12f);
 
         radius = Camera.main.ScreenToWorldPoint(new Vector3(Screen.width, 0f, 0f)).x * (gameObject.GetComponent<CircleCollider2D>().radius / Screen.width) * 2; // радиус в мировых координатах
 

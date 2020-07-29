@@ -4,6 +4,7 @@ using UnityEngine;
 using GooglePlayGames;
 using GooglePlayGames.BasicApi;
 using UnityEngine.SocialPlatforms;
+using UnityEngine.UI;
 
 public class GPGSAuthentication : MonoBehaviour
 {
@@ -22,8 +23,8 @@ public class GPGSAuthentication : MonoBehaviour
 
         Social.Active.localUser.Authenticate(success =>
         {
-            if (success) Debug.Log("Logged in successfully!");
-            else Debug.LogError("Failed to log in");
+            if (success) Debug.Log("Success");
+            else Debug.Log("Access denied.");
         });
     }
 }

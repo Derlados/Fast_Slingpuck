@@ -130,6 +130,7 @@
     <Compile Include="Assets\GooglePlayGames\PluginVersion.cs" />
     <Compile Include="Assets\Libraries\BaseStructures\Pair.cs" />
     <Compile Include="Assets\Scripts\GPGSAuthentication.cs" />
+    <Compile Include="Assets\Scripts\GPGSIds.cs" />
     <Compile Include="Assets\Scripts\Game\CheckerModifiers.cs" />
     <Compile Include="Assets\Scripts\Game\Game.cs" />
     <Compile Include="Assets\Scripts\Game\GameMenu.cs" />
