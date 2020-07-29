@@ -162,9 +162,8 @@
     <Compile Include="Assets\Scripts\Objects\AI\RotationAI.cs" />
     <Compile Include="Assets\Scripts\Objects\AudioAssets.cs" />
     <Compile Include="Assets\Scripts\Objects\BezierLine.cs" />
-    <Compile Include="Assets\Scripts\Objects\Border.cs" />
-    <Compile Include="Assets\Scripts\Objects\BorderHolder.cs" />
     <Compile Include="Assets\Scripts\Objects\Checker.cs" />
+    <Compile Include="Assets\Scripts\Objects\ScreenFix.cs" />
     <Compile Include="Assets\Scripts\Objects\ScreenOptimization.cs" />
     <Compile Include="Assets\Scripts\Objects\Window.cs" />
     <Compile Include="Assets\Scripts\PlayerData.cs" />

@@ -9,7 +9,6 @@ public class Window : MonoBehaviour
 
     void Start()
     {
-        ScreenOptimization.setColider(gameObject, this.GetComponent<BoxCollider2D>());
         game = GameObject.FindGameObjectWithTag("Game");
         gate = game.GetComponent<Game>().gate.GetComponent<Gate>();
     }
