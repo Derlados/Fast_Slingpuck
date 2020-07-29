@@ -5,13 +5,13 @@ using UnityEngine;
 public class Window : MonoBehaviour
 {
     public GameObject game;
-    public Gate gate;
+    public Gate[] gate;
 
     void Start()
     {
         ScreenOptimization.setColider(gameObject, this.GetComponent<BoxCollider2D>());
         game = GameObject.FindGameObjectWithTag("Game");
-        gate = game.GetComponent<Game>().gate.GetComponent<Gate>();
+        gate = game.GetComponent<Game>().gate.GetComponents<Gate>();
     }
 
     private void OnTriggerStay2D(Collider2D collision)

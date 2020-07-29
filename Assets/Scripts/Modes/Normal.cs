@@ -97,7 +97,7 @@ public class Normal : MonoBehaviour, Mode
                     if (j % 10 == 0) yield return new WaitForSeconds(0.52f / j);
                 }
 
-                AudioManager.PlaySound(AudioManager.Audio.count);
+               // AudioManager.PlaySound(AudioManager.Audio.count);
                 //проделываем обороты до нормальной видимой скорости
                 for (float j = 360; j >= 1; --j)
                 {
@@ -110,7 +110,7 @@ public class Normal : MonoBehaviour, Mode
             //затухание последней цифры 1
             else 
             {
-                AudioManager.PlaySound(AudioManager.Audio.endCount);
+                //AudioManager.PlaySound(AudioManager.Audio.endCount);
                 while (gameCounterText.color.a >= 0)
                 {
                     float time = Time.deltaTime / 1;

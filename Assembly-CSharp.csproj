@@ -8,9 +8,8 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <RootNamespace>
-    </RootNamespace>
-    <ProjectGuid>{E78F889F-DCAF-70AD-6B33-AD4C3A0E2212}</ProjectGuid>
+    <RootNamespace></RootNamespace>
+    <ProjectGuid>{C0A1B88B-DCB4-181A-CD27-958EF9D85E3F}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <AssemblyName>Assembly-CSharp</AssemblyName>
@@ -132,6 +131,7 @@
     <Compile Include="Assets\Libraries\BaseStructures\Pair.cs" />
     <Compile Include="Assets\Scripts\GPGSAuthentication.cs" />
     <Compile Include="Assets\Scripts\GPGSIds.cs" />
+    <Compile Include="Assets\Scripts\Game\CheckerModifiers.cs" />
     <Compile Include="Assets\Scripts\Game\Game.cs" />
     <Compile Include="Assets\Scripts\Game\GameMenu.cs" />
     <Compile Include="Assets\Scripts\Game\GameRule.cs" />
@@ -151,6 +151,7 @@
     <Compile Include="Assets\Scripts\Modifiers\Border_Window_Modifiers\NormalWindow.cs" />
     <Compile Include="Assets\Scripts\Modifiers\Border_Window_Modifiers\TeleportGate.cs" />
     <Compile Include="Assets\Scripts\Modifiers\Checker_Modifier\Destroy.cs" />
+    <Compile Include="Assets\Scripts\Modifiers\Checker_Modifier\Heavy.cs" />
     <Compile Include="Assets\Scripts\Modifiers\Checker_Modifier\Magnet.cs" />
     <Compile Include="Assets\Scripts\Modifiers\Checker_Modifier\Modifier.cs" />
     <Compile Include="Assets\Scripts\Modifiers\Checker_Modifier\Rotation.cs" />
@@ -843,8 +844,7 @@
       <HintPath>D:/GAMES/Unity/Projects/FastSlingpuck/Library/ScriptAssemblies/UnityEditor.UI.dll</HintPath>
     </Reference>
   </ItemGroup>
-  <ItemGroup>
-  </ItemGroup>
+  <ItemGroup></ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="GenerateTargetFrameworkMonikerAttribute" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

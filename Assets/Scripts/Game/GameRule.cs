@@ -44,9 +44,7 @@ public static class GameRule
 
     public enum CheckerModifier
     {
-        Modifier,
-        Destroy,
-        Slip
+        Heavy
     }
 
     /* Настройки уровня

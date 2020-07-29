@@ -234,6 +234,7 @@ GameObject:
   - component: {fileID: 9004831237760379573}
   - component: {fileID: 9004831237760379574}
   - component: {fileID: 9004831237760379575}
+  - component: {fileID: 2542514170387414754}
   - component: {fileID: 3431030227263662423}
   m_Layer: 5
   m_Name: ice_Level
@@ -356,6 +357,19 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &2542514170387414754
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9004831237760379577}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6953c1721bc1cb04e8ef9d0ba01b3eae, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  AIModifier: 
 --- !u!114 &3431030227263662423
 MonoBehaviour:
   m_ObjectHideFlags: 0
