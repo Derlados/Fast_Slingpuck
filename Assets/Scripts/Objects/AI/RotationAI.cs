@@ -23,6 +23,7 @@ public class RotationAI : AI
         leftBorder = posX - dispersion;
         rightBorder = posX + dispersion;
         aimTarget = new Vector2(UnityEngine.Random.Range(border.Left < leftBorder ? leftBorder : border.Left, border.Right > rightBorder ? rightBorder : border.Right), border.Up);
+        aimTarget = game.GetComponent<Field>().correctionForAI(aimTarget);
     }
 
 

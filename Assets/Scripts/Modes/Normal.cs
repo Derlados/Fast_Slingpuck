@@ -114,7 +114,7 @@ public class Normal : MonoBehaviour, Mode
             //затухание последней цифры 1
             else 
             {
-                AudioManager.PlaySound(AudioManager.Audio.endCount);
+                //AudioManager.PlaySound(AudioManager.Audio.endCount);
                 while (gameCounterText.color.a >= 0)
                 {
                     float time = Time.deltaTime / 1;
@@ -128,7 +128,6 @@ public class Normal : MonoBehaviour, Mode
                 AI.GetComponent<AI>().active = true;
                 Game.activeGame = true;
             }
-
             yield return new WaitForSeconds(1);
         }
 

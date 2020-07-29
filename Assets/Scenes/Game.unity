@@ -1330,16 +1330,16 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 57
+    m_FontSize: 43
     m_FontStyle: 0
-    m_BestFit: 1
-    m_MinSize: 15
-    m_MaxSize: 57
+    m_BestFit: 0
+    m_MinSize: 4
+    m_MaxSize: 47
     m_Alignment: 3
     m_AlignByGeometry: 1
     m_RichText: 1
     m_HorizontalOverflow: 0
-    m_VerticalOverflow: 0
+    m_VerticalOverflow: 1
     m_LineSpacing: 1
   m_Text: Victory
 --- !u!222 &276987244
@@ -1427,16 +1427,16 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 57
+    m_FontSize: 43
     m_FontStyle: 0
-    m_BestFit: 1
-    m_MinSize: 15
-    m_MaxSize: 57
+    m_BestFit: 0
+    m_MinSize: 4
+    m_MaxSize: 47
     m_Alignment: 3
     m_AlignByGeometry: 1
     m_RichText: 1
     m_HorizontalOverflow: 0
-    m_VerticalOverflow: 0
+    m_VerticalOverflow: 1
     m_LineSpacing: 1
   m_Text: Victory
 --- !u!222 &277554025
@@ -2056,7 +2056,7 @@ PrefabInstance:
     - target: {fileID: 1095559404968874083, guid: 87673815b8b84a54bab8eb13a6d0c988,
         type: 3}
       propertyPath: m_UseAutoMass
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1095559404968874083, guid: 87673815b8b84a54bab8eb13a6d0c988,
         type: 3}
@@ -3166,6 +3166,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_CollisionDetection
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1095559404968874083, guid: 87673815b8b84a54bab8eb13a6d0c988,
+        type: 3}
+      propertyPath: m_Mass
+      value: 0.25
       objectReference: {fileID: 0}
     - target: {fileID: 8123074049590772509, guid: 87673815b8b84a54bab8eb13a6d0c988,
         type: 3}
@@ -8421,6 +8426,11 @@ PrefabInstance:
       propertyPath: m_CollisionDetection
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1095559404968874083, guid: 87673815b8b84a54bab8eb13a6d0c988,
+        type: 3}
+      propertyPath: m_Mass
+      value: 0.25
+      objectReference: {fileID: 0}
     - target: {fileID: 8123074049590772509, guid: 87673815b8b84a54bab8eb13a6d0c988,
         type: 3}
       propertyPath: m_SortingOrder
@@ -8775,7 +8785,7 @@ PrefabInstance:
     - target: {fileID: 1095559404968874083, guid: 87673815b8b84a54bab8eb13a6d0c988,
         type: 3}
       propertyPath: m_UseAutoMass
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1095559404968874083, guid: 87673815b8b84a54bab8eb13a6d0c988,
         type: 3}
@@ -9320,7 +9330,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5422465, y: 0.29218572}
   m_AnchorMax: {x: 0.75600004, y: 0.38659284}
-  m_AnchoredPosition: {x: 0, y: 0.00021362305}
+  m_AnchoredPosition: {x: 0, y: 0.00024414062}
   m_SizeDelta: {x: 230.6972, y: 181.17853}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &705727027
@@ -9523,7 +9533,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.23600002, y: 0.29218572}
   m_AnchorMax: {x: 0.4487489, y: 0.38940716}
-  m_AnchoredPosition: {x: -0.00021362305, y: 0}
+  m_AnchoredPosition: {x: -0.00024414062, y: 0}
   m_SizeDelta: {x: 229.61194, y: 186.57855}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &785196017
@@ -10760,7 +10770,7 @@ PrefabInstance:
     - target: {fileID: 1095559404968874083, guid: 87673815b8b84a54bab8eb13a6d0c988,
         type: 3}
       propertyPath: m_UseAutoMass
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1095559404968874083, guid: 87673815b8b84a54bab8eb13a6d0c988,
         type: 3}
@@ -10909,16 +10919,16 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 57
+    m_FontSize: 43
     m_FontStyle: 0
-    m_BestFit: 1
-    m_MinSize: 15
-    m_MaxSize: 57
+    m_BestFit: 0
+    m_MinSize: 4
+    m_MaxSize: 47
     m_Alignment: 3
     m_AlignByGeometry: 1
     m_RichText: 1
     m_HorizontalOverflow: 0
-    m_VerticalOverflow: 0
+    m_VerticalOverflow: 1
     m_LineSpacing: 1
   m_Text: Victory
 --- !u!222 &1103512533
@@ -11265,7 +11275,7 @@ PrefabInstance:
     - target: {fileID: 1095559404968874083, guid: 87673815b8b84a54bab8eb13a6d0c988,
         type: 3}
       propertyPath: m_UseAutoMass
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1095559404968874083, guid: 87673815b8b84a54bab8eb13a6d0c988,
         type: 3}
@@ -11542,7 +11552,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.081, y: 0.5245352}
   m_AnchorMax: {x: 0.93556255, y: 0.921509}
-  m_AnchoredPosition: {x: 1.9006348, y: -2.419983}
+  m_AnchoredPosition: {x: 1.9006348, y: -2.420044}
   m_SizeDelta: {x: -2.1987915, y: 5.206482}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!61 &1137931241
@@ -11621,7 +11631,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   game: {fileID: 153113608}
-  gate: {fileID: 0}
+  gate:
+  - {fileID: 0}
 --- !u!61 &1146339056
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -11978,7 +11989,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.7836296, y: 0}
   m_AnchorMax: {x: 1, y: 0.4963542}
-  m_AnchoredPosition: {x: -0.20019531, y: 3.9309082}
+  m_AnchoredPosition: {x: -0.20019531, y: 3.9309998}
   m_SizeDelta: {x: -0.9038086, y: 10.142334}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1277068899
@@ -17011,7 +17022,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.186, y: 0.46859288}
   m_AnchorMax: {x: 0.28850228, y: 0.51711076}
-  m_AnchoredPosition: {x: -0.2652, y: 0.52415}
+  m_AnchoredPosition: {x: -0.26519775, y: 0.52415466}
   m_SizeDelta: {x: 23464.734, y: 19620.455}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1466581286
@@ -17110,7 +17121,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -0.625, y: -17.285278}
+  m_AnchoredPosition: {x: -0.625, y: -17.285461}
   m_SizeDelta: {x: -0.0949707, y: 35.868652}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &1486391922 stripped
@@ -18226,7 +18237,7 @@ PrefabInstance:
     - target: {fileID: 1095559404968874083, guid: 87673815b8b84a54bab8eb13a6d0c988,
         type: 3}
       propertyPath: m_UseAutoMass
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1095559404968874083, guid: 87673815b8b84a54bab8eb13a6d0c988,
         type: 3}
@@ -18383,7 +18394,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.06729167, y: 0.047475267}
   m_AnchorMax: {x: 0.9501488, y: 0.49}
-  m_AnchoredPosition: {x: 2, y: 10.500122}
+  m_AnchoredPosition: {x: 2, y: 10.5}
   m_SizeDelta: {x: -0.7434082, y: 10.459717}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1820441981
@@ -18875,7 +18886,7 @@ PrefabInstance:
     - target: {fileID: 1095559404968874083, guid: 87673815b8b84a54bab8eb13a6d0c988,
         type: 3}
       propertyPath: m_UseAutoMass
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1095559404968874083, guid: 87673815b8b84a54bab8eb13a6d0c988,
         type: 3}
@@ -19578,7 +19589,7 @@ PrefabInstance:
     - target: {fileID: 1095559404968874083, guid: 87673815b8b84a54bab8eb13a6d0c988,
         type: 3}
       propertyPath: m_UseAutoMass
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1095559404968874083, guid: 87673815b8b84a54bab8eb13a6d0c988,
         type: 3}
@@ -19661,7 +19672,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.186, y: 0.4175211}
   m_AnchorMax: {x: 0.28850228, y: 0.46140715}
-  m_AnchoredPosition: {x: -0.26535034, y: 0.11000061}
+  m_AnchoredPosition: {x: -0.26538086, y: 0.10998535}
   m_SizeDelta: {x: 23464.666, y: 17885.19}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2100876569
@@ -24852,7 +24863,7 @@ PrefabInstance:
     - target: {fileID: 1095559404968874083, guid: 87673815b8b84a54bab8eb13a6d0c988,
         type: 3}
       propertyPath: m_UseAutoMass
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1095559404968874083, guid: 87673815b8b84a54bab8eb13a6d0c988,
         type: 3}

@@ -9,7 +9,6 @@ public class ScreenFix : MonoBehaviour
     public List<BoxCollider2D> strings;
     public List<BoxCollider2D> borderHolders;
 
-    // Start is called before the first frame update
     void Start()
     {
         if (Screen.height / (Screen.width / 9) > 16)
@@ -27,5 +26,5 @@ public class ScreenFix : MonoBehaviour
                 ScreenOptimization.fix18_9(borderHolders[i]);
         }
     }
-
+    
 }

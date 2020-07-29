@@ -5,7 +5,7 @@ using UnityEngine;
 public class Magnet : MonoBehaviour
 {
     public static float border;
-    public static float force;
+    public static float force = 10f;
     Checker checker;
 
     private void Start()

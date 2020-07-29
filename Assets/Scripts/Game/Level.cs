@@ -2,7 +2,6 @@
 
 public class Level : MonoBehaviour
 {
-
     // Цели для режима Normal
     [System.Serializable]
     public class Normal
@@ -39,6 +38,10 @@ public class Level : MonoBehaviour
         GameRule.levelNum = numLevel;
         GameRule.levelsCount = planet.transform.childCount-1;
         GameRule.TypeAI = typeAI;
+
+        CheckerModifiers checkerModifiers = GetComponent<CheckerModifiers>();
+        for (int i = 0; i < checkerModifiers.AIModifier.Count; ++i)
+            GameRule.AIModifier.Add(checkerModifiers.AIModifier[i]);
 
         setTargets();
 

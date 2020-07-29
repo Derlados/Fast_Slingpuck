@@ -8,4 +8,9 @@ public class jungle : MonoBehaviour, Field
     {
 
     }
+
+    public Vector2 correctionForAI(Vector2 aimTarget)
+    {
+        return aimTarget;
+    }
 }

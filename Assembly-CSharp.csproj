@@ -131,6 +131,7 @@
     <Compile Include="Assets\Resources\Audio\Libraries\BaseStructures\Pair.cs" />
     <Compile Include="Assets\Scripts\GPGSAuthentication.cs" />
     <Compile Include="Assets\Scripts\GPGSIds.cs" />
+    <Compile Include="Assets\Scripts\Game\CheckerModifiers.cs" />
     <Compile Include="Assets\Scripts\Game\Game.cs" />
     <Compile Include="Assets\Scripts\Game\GameMenu.cs" />
     <Compile Include="Assets\Scripts\Game\GameRule.cs" />
@@ -150,6 +151,7 @@
     <Compile Include="Assets\Scripts\Modifiers\Border_Window_Modifiers\NormalWindow.cs" />
     <Compile Include="Assets\Scripts\Modifiers\Border_Window_Modifiers\TeleportGate.cs" />
     <Compile Include="Assets\Scripts\Modifiers\Checker_Modifier\Destroy.cs" />
+    <Compile Include="Assets\Scripts\Modifiers\Checker_Modifier\Heavy.cs" />
     <Compile Include="Assets\Scripts\Modifiers\Checker_Modifier\Magnet.cs" />
     <Compile Include="Assets\Scripts\Modifiers\Checker_Modifier\Modifier.cs" />
     <Compile Include="Assets\Scripts\Modifiers\Checker_Modifier\Rotation.cs" />
