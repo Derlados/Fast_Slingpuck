@@ -20,8 +20,8 @@ public class Checker : MonoBehaviour
     public Transform objTransform; // компоненты Transfrom объекта
 
     bool mouseDown = false, stop = false; // Проверка нажатия на предмет, stop - рехрешение на движение
-    float startV, V = 0.0f, radius; // начальная скорость объекта и радиус объекта
-    const float startV_16_9 = 1300, startV_18_9 = 1000; // максимальные силы для разных соотношений экрана (почему то на соотношеня 16:9 и 18:9, шайбы летят по разному)
+    float startMass = 0.25f, startV, V = 0.0f, radius; // начальная скорость объекта и радиус объекта
+    const float startV_16_9 = 1200, startV_18_9 = 1000; // максимальные силы для разных соотношений экрана (почему то на соотношеня 16:9 и 18:9, шайбы летят по разному)
     public float angle;
     public float coefForce = 1f; // коефициент силы, умножается на стандартную силу (можно использовать для всяких модификаций)
     public const float DRAG = 8f;
@@ -57,9 +57,7 @@ public class Checker : MonoBehaviour
 
     private void Awake()
     {
-        startV = Screen.height % 18 == 0 ? startV_18_9 : startV_16_9;
-        Debug.Log(startV);
-
+        startV = Screen.height % 18 == 0 ? startV_18_9 : startV_16_9;    
         id = ++countId;
         // Оптимизация под разные экраны
         ScreenOptimization.setSize(gameObject, this.GetComponent<CircleCollider2D>(), 0.12f);
@@ -68,6 +66,7 @@ public class Checker : MonoBehaviour
 
         objTransform = GetComponent<Transform>(); // Оптимизация чтобы не вызывать постоянно GetComponent для Transform
         body = GetComponent<Rigidbody2D>(); // Оптимизация чтобы не вызывать постоянно GetComponent для Rigidbody2D
+        body.mass = startMass;
 
         gameObject.transform.GetChild(0).GetComponent<TrailRenderer>().emitting = true; // След шайбы
 
