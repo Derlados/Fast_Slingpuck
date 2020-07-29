@@ -1,4 +1,5 @@
 using BaseStructures;
+using GooglePlayGames;
 using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
@@ -77,36 +78,39 @@ public class Normal : MonoBehaviour, Mode
     // Задержка перед стартом игры
     IEnumerator delayBeforeStart(int sec)
     {
+        RectTransform rect = gameCounterText.GetComponent<RectTransform>();
+        Vector3 rotPos = rect.rotation.eulerAngles;
+        gameCounterText.text = sec.ToString();
+
         //раскрутка надписей
         for (int i = sec; i >= 1; --i)
         {
             //раскрутка цифр
             if (i != 1)
             {
+                rotPos.z = 0;
                 //поворот на 360 градусов
-                for (float j = 1; j <= 360; ++j)
+                for (float j = 1; j <= 361; j+=30)
                 {
-                    Vector3 rotPos = gameCounterText.GetComponent<RectTransform>().rotation.eulerAngles;
-                    rotPos.z -= 1;
-                    gameCounterText.GetComponent<RectTransform>().rotation = Quaternion.Euler(rotPos);
+                    yield return new WaitForSeconds(0.20f / j);
+                    rect.rotation = Quaternion.Euler(rotPos);
+                    rotPos.z -= 30;
 
-                    //на максимальных оборотах меняем цифру на 1 меньше
-                    if (j == 360)
-                        gameCounterText.text = (i - 1).ToString();
-                       
-                    if (j % 10 == 0) yield return new WaitForSeconds(0.52f / j);
                 }
 
+                //на максимальных оборотах меняем цифру на 1 меньше     
+                gameCounterText.text = (i - 1).ToString();
                 AudioManager.PlaySound(AudioManager.Audio.count);
+
                 //проделываем обороты до нормальной видимой скорости
-                for (float j = 360; j >= 1; --j)
+                for (float j = 361; j > 1; j-=30)
                 {
-                    Vector3 rotPos = gameCounterText.GetComponent<RectTransform>().rotation.eulerAngles;
-                    rotPos.z -= 1;
-                    gameCounterText.GetComponent<RectTransform>().rotation = Quaternion.Euler(rotPos);
-                    if (j % 10 == 0) yield return new WaitForSeconds(0.52f / j);
+                    yield return new WaitForSeconds(0.20f / j);
+                    rect.rotation = Quaternion.Euler(rotPos);
+                    rotPos.z -= 30;
                 }
             }
+
             //затухание последней цифры 1
             else 
             {
@@ -145,11 +149,13 @@ public class Normal : MonoBehaviour, Mode
             --downCount;
             ++upCount;
             AudioManager.PlaySound(AudioManager.Audio.rise03);
+            GPGSAchievements.updateIncrementalScore();
         }
         else
         {
             ++downCount;
             --upCount;
+            PlayGamesPlatform.Instance.IncrementAchievement(GPGSIds.achievement_is_this_the_end, 1, null);
         }
 
         upCountText.text = upCount.ToString();
@@ -174,6 +180,7 @@ public class Normal : MonoBehaviour, Mode
 
     public void calculateResult()
     {
+        if(time <=5) PlayGamesPlatform.Instance.IncrementAchievement(GPGSIds.achievement_are_you_using_a_time_machine, 1, null);
         // Подсчет звезд
         if (downCount != 0)
             game.countStars = 0;
@@ -219,6 +226,7 @@ public class Normal : MonoBehaviour, Mode
         {
             yield return new WaitForSeconds(1);
             ++time;
+            if(time == 60) PlayGamesPlatform.Instance.IncrementAchievement(GPGSIds.achievement_hello_there, 1, null);
         }
     }
 }

@@ -5,6 +5,7 @@ using GooglePlayGames;
 using GooglePlayGames.BasicApi;
 using UnityEngine.SocialPlatforms;
 using UnityEngine.UI;
+using JetBrains.Annotations;
 
 public class GPGSAuthentication : MonoBehaviour
 {
