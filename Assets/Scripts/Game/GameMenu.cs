@@ -6,16 +6,18 @@ using UnityEngine.SceneManagement;
 using System.Xml.Linq;
 using System;
 using GooglePlayGames;
+using UnityEditor;
 
 // Класс отвечающий за весь UI в самой игре
 public class GameMenu : MonoBehaviour
 {
-    public GameObject pauseMenuCanvas, gameOverCanvas, capperField, PauseBtnCanvas;
+    public GameObject pauseMenuCanvas, gameOverCanvas, capperField, PauseBtnCanvas, AdvertBtn;
     public Text gameOverText, scoreText;
     PlayerData playerData;
     public GameObject[] goalsTexts; //goals text в паузе
     public GameObject audioBackground;
-
+    public int totalMoney;
+   
     public void Start()
     {
         playerData = PlayerData.getInstance();
@@ -75,7 +77,8 @@ public class GameMenu : MonoBehaviour
         StartCoroutine(spawnStars(stars, money1, money2, money3));
 
         // Запись значений в PlayerData
-        playerData.money += money1 + money2 + money3;
+        totalMoney = money1 + money2 + money3;
+        playerData.money += totalMoney;
         if (playerData.progress[GameRule.planetNum].first[GameRule.levelNum] < stars)
             playerData.progress[GameRule.planetNum].first[GameRule.levelNum] = (byte)stars;
 
@@ -187,6 +190,9 @@ public class GameMenu : MonoBehaviour
             gameOverMenu.moneyTotalText.text = i.ToString();
             yield return new WaitForSeconds(0.015f);
         }
+
+        AdvertBtn.GetComponent<Button>().enabled = true;
+        AdvertBtn.GetComponent<Image>().color = new Color32(255, 255, 255, 255);
     }
 
     IEnumerator fadeInBackground()
@@ -211,6 +217,11 @@ public class GameMenu : MonoBehaviour
     public void achievementBtn()
     {
         Social.ShowAchievementsUI();
+    }
+
+    public void advertBtn()
+    {
+        StartCoroutine(Ads.getInstance().StartAd(totalMoney, gameOverMenu.moneyTotalText));
     }
 }
 
