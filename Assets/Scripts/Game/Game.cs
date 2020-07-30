@@ -1,3 +1,4 @@
+using GooglePlayGames.BasicApi.Multiplayer;
 using System;
 using System.Xml.Linq;
 using UnityEngine;
@@ -79,6 +80,12 @@ public class Game : MonoBehaviour
         for (int i = checkers.transform.childCount / 2; i < checkers.transform.childCount; ++i)
             for (int j = 0; j < GameRule.AIModifier.Count; ++j)
                 checkers.transform.GetChild(i).gameObject.AddComponent(Type.GetType(GameRule.AIModifier[j].ToString()));
+
+        // Добавляем пользователю возможность поворачивать шайбу, если он такую возможность выбрал
+        if (PlayerData.getInstance().checkerRotation)
+            for (int i = 0; i < checkers.transform.childCount; ++i)
+                checkers.transform.GetChild(i).gameObject.AddComponent<Rotation>();
+
         gameObject.AddComponent(Type.GetType(GameRule.type.ToString()));
         gameObject.GetComponent<Field>().setGlobalModififers(checkers);
 
