@@ -183,12 +183,14 @@ public class Game : MonoBehaviour
     //установка небходимой музыки
     public void loadMusic()
     {
+        AudioSource audioSource = backgroundMusic.transform.GetComponent<AudioSource>();
         if (GameRule.levelNum == GameRule.levelsCount)
-            backgroundMusic.transform.GetComponent<AudioSource>().clip = Resources.Load<AudioClip>("Audio/Game/songs/boss");
+            audioSource.clip = Resources.Load<AudioClip>("Audio/Game/songs/boss");
         else
-            backgroundMusic.transform.GetComponent<AudioSource>().clip = Resources.Load<AudioClip>("Audio/Game/songs/" + type.ToString() + "_level");
+            audioSource.clip = Resources.Load<AudioClip>("Audio/Game/songs/" + type.ToString() + "_level");
 
-        backgroundMusic.transform.GetComponent<AudioSource>().Play();
+        audioSource.volume = PlayerData.getInstance().volume;
+        audioSource.Play();
     }
 
     public void loadSprites()

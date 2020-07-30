@@ -24,7 +24,7 @@
 	  <accuracyAI>0.02</accuracyAI>
 	  <timeRest>0.4</timeRest>
   </god>
-  <chinese>
+  <chinese> 
     <mode>Chinese</mode>
     <speedAI>200</speedAI>
 	  <accuracyAI>0.001</accuracyAI>

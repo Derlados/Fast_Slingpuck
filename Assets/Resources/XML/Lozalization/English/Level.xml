@@ -5,10 +5,11 @@
 	<Speed>Speed</Speed>
     </mode>
     <difficulty>
-        <begginer>Begginer</begginer>
-	<skilled>Skilled</skilled>
-	<master>Master</master>
-	<god>God</god>
+		<begginer>Begginer</begginer>
+		<skilled>Skilled</skilled>
+		<master>Master</master>
+		<god>God</god>
+		<chinese>Chinese</chinese>
     </difficulty>
     <description>
         <Normal>Standard mode - a standard game in which the goal of each player to free his field from the pucks having thrown them on the opponent’s field, the one who throws all the pucks on the opponent’s field first wins</Normal>

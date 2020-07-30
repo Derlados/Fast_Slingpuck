@@ -26,4 +26,9 @@
    <gameMode>Game mode</gameMode>
    <selected>Selected</selected>
    <haveIt>Have it</haveIt>
+   <gameSettings>Game settings</gameSettings>
+   <rotateChecker>Rotate checker</rotateChecker>
+   <volumeSettings>Volume settings</volumeSettings>
+   <musicVolume>Music volume</musicVolume>
+   <effectsVolume>Effects volume</effectsVolume>
 </localization>

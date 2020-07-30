@@ -26,4 +26,9 @@
    <gameMode>Режим гри</gameMode>
    <selected>Вибрано</selected>
    <haveIt>Куплено</haveIt>
+   <gameSettings>Налаштування гри</gameSettings>
+   <rotateChecker>Обертальність шайби</rotateChecker>
+   <volumeSettings>Налаштування гучност</volumeSettings>
+   <musicVolume>Гучність музики</musicVolume>
+   <effectsVolume>Гучність ефектів</effectsVolume>
 </localization>

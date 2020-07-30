@@ -48,6 +48,8 @@ public class MenuManager : MonoBehaviour
 
     private void Start()
     {
+        StartCoroutine(Ads.getInstance().StartBanner());
+
         cameraStatus = Status.freeOnMenu;
         // Оптимизация второго поля под разные екраны так как поле Планет не закреплено за камерой
         //float posX = -Math.Abs(Camera.main.ScreenToWorldPoint(new Vector2(Screen.width, Screen.height)).x - (GalaxyCanvas.GetComponent<RectTransform>().sizeDelta.x / 2)); // Сдвиг карты к левому краю второго поля 
@@ -363,7 +365,7 @@ public class MenuManager : MonoBehaviour
     //устанавливаем прогресс планет
     public void setPlanetProgress()
     {
-        Color gray = new Color32(72, 72, 72, 255);
+        Color gray = new Color32(126, 126, 126, 255);
 
         for (int i = 0; i < MenuManager.allPlanets; ++i)
         {

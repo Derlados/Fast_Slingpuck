@@ -16,6 +16,7 @@ public class Settings : MonoBehaviour
     {
         gameRuleSlider.value = PlayerData.getInstance().checkerRotation == false ? 0 : 1;
         volumeSlider.value = PlayerData.getInstance().volume;
+        effectsVolumeSlider.value = PlayerData.getInstance().effectsVolume;
         audio.volume = volumeSlider.value;
     }
 
