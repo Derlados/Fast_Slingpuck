@@ -1,4 +1,5 @@
 ﻿using BaseStructures;
+using GooglePlayGames.BasicApi.Multiplayer;
 using System;
 using System.Collections;
 using System.Xml.Linq;
@@ -81,6 +82,11 @@ public class MenuManager : MonoBehaviour
             }
         }
 
+    }
+
+    private void OnApplicationQuit()
+    {
+        PlayerData.getInstance().Save();
     }
 
     //////////////////////////////////////////////////////////////////////////////////  Main menu  ///////////////////////////////////////////////////////////////////////////////////

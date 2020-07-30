@@ -19,13 +19,13 @@ public static class GameRule
         jungle,
         water
     }
-    public enum Difficulties
+    public enum Difficulties : byte
     {
-        begginer,
-        skilled,
-        master,
-        god,
-        chinese
+        begginer = 0,
+        skilled = 1,
+        master = 2,
+        god = 3,
+        chinese = 4
     }
 
     public enum AI
@@ -68,6 +68,8 @@ public static class GameRule
 
     //для удобства
     public static Type[] planetProgressNum = new Type[] { Type.lava, Type.sand, Type.ice, Type.water, Type.jungle, };
+
+    public static bool globalDiff = true; // false - сложность обычная, true - повышенная сложность для всех уровней
 }
 
 public class Difficulty
