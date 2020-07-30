@@ -12,13 +12,13 @@ public class GameMenu : MonoBehaviour
 {
     public GameObject pauseMenuCanvas, gameOverCanvas, capperField, PauseBtnCanvas;
     public Text gameOverText, scoreText;
-    PlayerData playerData;
     public GameObject[] goalsTexts; //goals text в паузе
     public GameObject audioBackground;
 
+
     public void Start()
     {
-        playerData = PlayerData.getInstance();
+        audioBackground.transform.GetComponent<AudioSource>().volume = PlayerData.getInstance().volume;
         StartCoroutine(fadeInBackground());
     }
 
@@ -47,7 +47,7 @@ public class GameMenu : MonoBehaviour
     public void UnPause()
     {
         Time.timeScale = 1f;
-        audioBackground.transform.GetComponent<AudioSource>().volume = 0.119f;
+        audioBackground.transform.GetComponent<AudioSource>().volume = PlayerData.getInstance().volume;
         capperField.SetActive(false);
         pauseMenuCanvas.SetActive(false);
         PauseBtnCanvas.SetActive(true);

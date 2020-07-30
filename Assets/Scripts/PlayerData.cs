@@ -18,7 +18,7 @@ public class PlayerData
     public int currentPlanet;
     public SystemLanguage lang;
     public bool checkerRotation;
-    public float volume;
+    public float volume, effectsVolume;
     public int incScore = 0;
     public int loses = 0;
     
@@ -38,6 +38,7 @@ public class PlayerData
                     instance.lang = SystemLanguage.English;
 
                 instance.volume = 1f;
+                instance.effectsVolume = 1f;
                 instance.checkerRotation = false;
 
                 instance.add();

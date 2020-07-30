@@ -8,7 +8,7 @@ using UnityEngine.Rendering;
 public class Settings : MonoBehaviour
 {
     public Slider gameRuleSlider; // Слайдер игровых правил
-    public Slider volumeSlider; // Слайдер громкости
+    public Slider volumeSlider, effectsVolumeSlider; // Слайдер громкости
     public AudioSource audio;
 
     // Устанавливаем слайдеры относительно настроек которые были записаны
@@ -51,6 +51,11 @@ public class Settings : MonoBehaviour
     {
         PlayerData.getInstance().volume = volumeSlider.value;
         audio.volume = volumeSlider.value;
+    }
+
+    public void setEffectsVolume()
+    {
+        PlayerData.getInstance().effectsVolume = effectsVolumeSlider.value;
     }
 
     // Установка игровых правил
