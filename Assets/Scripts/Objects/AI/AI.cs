@@ -55,7 +55,9 @@ public class AI : MonoBehaviour
             XMLManager.SaveData<Difficulty>(diff, "settings");
         }*/
 
-        XMLManager.LoadDifficulty(ref diff, GameRule.difficulties.ToString());
+        XMLManager.LoadDifficulty(ref diff, (GameRule.globalDiff ? GameRule.difficulties + 2 : GameRule.difficulties).ToString());
+
+        //Debug.Log((GameRule.globalDiff ? GameRule.difficulties + 2 : GameRule.difficulties).ToString());
 
         speedAI = diff.speedAI;
         accuracyAI = diff.accuracyAI;
@@ -131,9 +133,7 @@ public class AI : MonoBehaviour
         float coordY = AIString.coordY + (border.Up - (AIString.coordY - AIString.correction)) * (keepChecker.GetComponent<Rigidbody2D>().drag / Checker.DRAG);
 
         aimTarget = new Vector2(UnityEngine.Random.Range(border.Left < leftBorder ? leftBorder : border.Left, border.Right > rightBorder ? rightBorder : border.Right), coordY);
-        Debug.Log(aimTarget.x);
         aimTarget = game.GetComponent<Field>().correctionForAI(aimTarget);
-        Debug.Log(aimTarget.x);
         moveTarget = aimTarget;
     }
 
@@ -166,7 +166,6 @@ public class AI : MonoBehaviour
     {
         yield return new WaitForSeconds(sec);
         keepChecker.OnMouseUp();
-        Debug.Log(keepChecker.transform.position);
         StartCoroutine(delaySec(timeRest));
     }
 

@@ -11,16 +11,16 @@ using UnityEditor;
 // Класс отвечающий за весь UI в самой игре
 public class GameMenu : MonoBehaviour
 {
-    public GameObject pauseMenuCanvas, gameOverCanvas, capperField, PauseBtnCanvas, AdvertBtn;
+    public GameObject pauseMenuCanvas, gameOverCanvas, capperField, PauseBtnCanvas, AdvertBtn, HomeBtn;
     public Text gameOverText, scoreText;
-    PlayerData playerData;
     public GameObject[] goalsTexts; //goals text в паузе
     public GameObject audioBackground;
+
     public int totalMoney;
    
     public void Start()
     {
-        playerData = PlayerData.getInstance();
+        audioBackground.transform.GetComponent<AudioSource>().volume = PlayerData.getInstance().volume;
         StartCoroutine(fadeInBackground());
     }
 
@@ -49,7 +49,7 @@ public class GameMenu : MonoBehaviour
     public void UnPause()
     {
         Time.timeScale = 1f;
-        audioBackground.transform.GetComponent<AudioSource>().volume = 0.119f;
+        audioBackground.transform.GetComponent<AudioSource>().volume = PlayerData.getInstance().volume;
         capperField.SetActive(false);
         pauseMenuCanvas.SetActive(false);
         PauseBtnCanvas.SetActive(true);
@@ -191,13 +191,16 @@ public class GameMenu : MonoBehaviour
             yield return new WaitForSeconds(0.015f);
         }
 
+        Color32 gray = new Color32(255, 255, 255, 255);
         AdvertBtn.GetComponent<Button>().enabled = true;
-        AdvertBtn.GetComponent<Image>().color = new Color32(255, 255, 255, 255);
+        HomeBtn.GetComponent<Button>().enabled = true;
+        AdvertBtn.GetComponent<Image>().color = gray;
+        HomeBtn.GetComponent<Image>().color = gray;
     }
 
     IEnumerator fadeInBackground()
     {
-        for (float f = 0; f <= 0.119; f += 0.001f)
+        for (float f = 0; f <= PlayerData.getInstance().volume; f += 0.001f)
         {
             audioBackground.transform.GetComponent<AudioSource>().volume = f;
             yield return new WaitForSeconds(0.06f);

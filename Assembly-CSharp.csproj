@@ -128,6 +128,7 @@
     <Compile Include="Assets\GooglePlayGames\Platforms\PlayGamesClientFactory.cs" />
     <Compile Include="Assets\GooglePlayGames\Platforms\TokenClient.cs" />
     <Compile Include="Assets\GooglePlayGames\PluginVersion.cs" />
+    <Compile Include="Assets\Libraries\BaseStructures\Pair.cs" />
     <Compile Include="Assets\Resources\Audio\Libraries\BaseStructures\Pair.cs" />
     <Compile Include="Assets\Scripts\Ads.cs" />
     <Compile Include="Assets\Scripts\GPGSAuthentication.cs" />

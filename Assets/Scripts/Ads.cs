@@ -8,7 +8,7 @@ public class Ads : MonoBehaviour
 {
     private static Ads instance;
 
-    private const string ID = "3739541", TYPE = "video";
+    private const string ID = "3739541", VIDEO = "rewardedVideo", BANNER = "banner";
     private const bool TEST_MODE = true;
 
     public static Ads getInstance()
@@ -25,9 +25,9 @@ public class Ads : MonoBehaviour
     {
         while (true)
         {
-            if (Advertisement.IsReady(TYPE))
+            if (Advertisement.IsReady(VIDEO))
             {
-                Advertisement.Show(TYPE);
+                Advertisement.Show(VIDEO);
                 // if x3
                 // money *= 2;
                 text.text = (int.Parse(text.text) + money).ToString();
@@ -37,6 +37,17 @@ public class Ads : MonoBehaviour
             }
             yield return new WaitForSeconds(1f);
         }
+    }
+
+    public IEnumerator StartBanner()
+    {
+        while (!Advertisement.IsReady(BANNER))
+        {
+            yield return new WaitForSeconds(0.5f);
+        }
+
+        Advertisement.Banner.SetPosition(BannerPosition.BOTTOM_CENTER);
+        Advertisement.Show(BANNER);
     }
 }
   

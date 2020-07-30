@@ -2141,6 +2141,7 @@ MonoBehaviour:
   capperField: {fileID: 1485364683}
   PauseBtnCanvas: {fileID: 1041357036}
   AdvertBtn: {fileID: 1599444947}
+  HomeBtn: {fileID: 2038599859}
   gameOverText: {fileID: 652561171}
   scoreText: {fileID: 1107275804}
   goalsTexts:
@@ -2148,7 +2149,7 @@ MonoBehaviour:
   - {fileID: 277554022}
   - {fileID: 276987242}
   audioBackground: {fileID: 567662441}
-  totalMoneyText: {fileID: 130401014}
+  totalMoney: 0
   gameOverMenu:
     stars:
     - {fileID: 1748046519}
@@ -19587,7 +19588,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2038599859}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
   m_Name: 
@@ -19647,7 +19648,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
   m_RaycastTarget: 1
   m_Maskable: 1
   m_OnCullStateChanged:

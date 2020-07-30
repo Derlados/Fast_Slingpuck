@@ -129,8 +129,6 @@ public class Checker : MonoBehaviour
             float checkY = DownString.coordY + radius + DownString.correction;
             float K = (checkY - objTransform.position.y) / (checkY - playerDownBorder.Down);
 
-            Debug.Log(K);
-
             if (objTransform.position.y < checkY)
             {
                 ++Game.countShots;

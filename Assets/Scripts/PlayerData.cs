@@ -17,6 +17,8 @@ public class PlayerData
     public string puckSprite; //выбранный спрайт игрока
     public int currentPlanet;
     public SystemLanguage lang;
+    public bool checkerRotation;
+    public float volume, effectsVolume;
     public int incScore = 0;
     public int loses = 0;
     
@@ -35,9 +37,14 @@ public class PlayerData
                 else
                     instance.lang = SystemLanguage.English;
 
+                instance.volume = 1f;
+                instance.effectsVolume = 1f;
+                instance.checkerRotation = false;
+
                 instance.add();
                 //ставим 0-ую планета как начальную
                 instance.progress[0].second.second = true;
+
 
                 instance.Save();
             }
@@ -48,6 +55,7 @@ public class PlayerData
                 instance.Save();
             }
         }
+
         return instance;
     }
 

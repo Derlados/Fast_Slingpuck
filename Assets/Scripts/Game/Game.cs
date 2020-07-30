@@ -1,3 +1,4 @@
+using GooglePlayGames.BasicApi.Multiplayer;
 using System;
 using System.Xml.Linq;
 using UnityEngine;
@@ -79,6 +80,12 @@ public class Game : MonoBehaviour
         for (int i = checkers.transform.childCount / 2; i < checkers.transform.childCount; ++i)
             for (int j = 0; j < GameRule.AIModifier.Count; ++j)
                 checkers.transform.GetChild(i).gameObject.AddComponent(Type.GetType(GameRule.AIModifier[j].ToString()));
+
+        // Добавляем пользователю возможность поворачивать шайбу, если он такую возможность выбрал
+        if (PlayerData.getInstance().checkerRotation)
+            for (int i = 0; i < checkers.transform.childCount; ++i)
+                checkers.transform.GetChild(i).gameObject.AddComponent<Rotation>();
+
         gameObject.AddComponent(Type.GetType(GameRule.type.ToString()));
         gameObject.GetComponent<Field>().setGlobalModififers(checkers);
 
@@ -176,12 +183,14 @@ public class Game : MonoBehaviour
     //установка небходимой музыки
     public void loadMusic()
     {
+        AudioSource audioSource = backgroundMusic.transform.GetComponent<AudioSource>();
         if (GameRule.levelNum == GameRule.levelsCount)
-            backgroundMusic.transform.GetComponent<AudioSource>().clip = Resources.Load<AudioClip>("Audio/Game/songs/boss");
+            audioSource.clip = Resources.Load<AudioClip>("Audio/Game/songs/boss");
         else
-            backgroundMusic.transform.GetComponent<AudioSource>().clip = Resources.Load<AudioClip>("Audio/Game/songs/" + type.ToString() + "_level");
+            audioSource.clip = Resources.Load<AudioClip>("Audio/Game/songs/" + type.ToString() + "_level");
 
-        backgroundMusic.transform.GetComponent<AudioSource>().Play();
+        audioSource.volume = PlayerData.getInstance().volume;
+        audioSource.Play();
     }
 
     public void loadSprites()

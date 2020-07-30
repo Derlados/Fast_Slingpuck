@@ -1,4 +1,5 @@
 ﻿using BaseStructures;
+using GooglePlayGames.BasicApi.Multiplayer;
 using System;
 using System.Collections;
 using System.Xml.Linq;
@@ -47,6 +48,8 @@ public class MenuManager : MonoBehaviour
 
     private void Start()
     {
+        StartCoroutine(Ads.getInstance().StartBanner());
+
         cameraStatus = Status.freeOnMenu;
         // Оптимизация второго поля под разные екраны так как поле Планет не закреплено за камерой
         //float posX = -Math.Abs(Camera.main.ScreenToWorldPoint(new Vector2(Screen.width, Screen.height)).x - (GalaxyCanvas.GetComponent<RectTransform>().sizeDelta.x / 2)); // Сдвиг карты к левому краю второго поля 
@@ -81,6 +84,11 @@ public class MenuManager : MonoBehaviour
             }
         }
 
+    }
+
+    private void OnApplicationQuit()
+    {
+        PlayerData.getInstance().Save();
     }
 
     //////////////////////////////////////////////////////////////////////////////////  Main menu  ///////////////////////////////////////////////////////////////////////////////////

@@ -29,6 +29,7 @@ public static class AudioManager
     {
         GameObject audioGameObject = new GameObject("Audio");
         AudioSource audioSource = audioGameObject.AddComponent<AudioSource>();
+        audioSource.volume = PlayerData.getInstance().effectsVolume;
         AudioClip audioClip = GetAudioClip(audio);
         audioSource.PlayOneShot(audioClip);
         UnityEngine.Object.Destroy(audioGameObject, audioClip.length);
