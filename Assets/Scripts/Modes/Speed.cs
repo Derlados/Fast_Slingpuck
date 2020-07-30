@@ -140,16 +140,59 @@ public class Speed : MonoBehaviour, Mode
     // Задержка перед началом игры
     IEnumerator delayBeforeStart(int sec)
     {
+        RectTransform rect = gameCounterText.GetComponent<RectTransform>();
+        Vector3 rotPos = rect.rotation.eulerAngles;
+        gameCounterText.text = sec.ToString();
+
+        //раскрутка надписей
         for (int i = sec; i >= 1; --i)
         {
-            gameCounterText.text = i.ToString();
+            //раскрутка цифр
+            if (i != 1)
+            {
+                rotPos.z = 0;
+                //поворот на 360 градусов
+                for (float j = 1; j <= 361; j += 30)
+                {
+                    yield return new WaitForSeconds(0.20f / j);
+                    rect.rotation = Quaternion.Euler(rotPos);
+                    rotPos.z -= 30;
+
+                }
+
+                //на максимальных оборотах меняем цифру на 1 меньше     
+                gameCounterText.text = (i - 1).ToString();
+                AudioManager.PlaySound(AudioManager.Audio.count);
+
+                //проделываем обороты до нормальной видимой скорости
+                for (float j = 361; j > 1; j -= 30)
+                {
+                    yield return new WaitForSeconds(0.20f / j);
+                    rect.rotation = Quaternion.Euler(rotPos);
+                    rotPos.z -= 30;
+                }
+            }
+
+            //затухание последней цифры 1
+            else
+            {
+                AudioManager.PlaySound(AudioManager.Audio.endCount);
+                while (gameCounterText.color.a >= 0)
+                {
+                    float time = Time.deltaTime / 1;
+                    Color color = gameCounterText.color;
+                    color.a -= time; ;
+                    gameCounterText.color = new Color(color.r, color.g, color.b, color.a);
+                    yield return new WaitForSeconds(0.001f);
+                }
+
+                capperField.SetActive(false);
+                AI.GetComponent<AI>().active = true;
+                Game.activeGame = true;
+            }
             yield return new WaitForSeconds(1);
         }
 
-        LocalizationManager.add(new Pair<Text, string>(gameCounterText, "go"));
-        capperField.SetActive(false);
-        Game.activeGame = true;
-        AI.GetComponent<AI>().active = true;    
         yield return new WaitForSeconds(1);
         StartCoroutine(counter(10));
     }

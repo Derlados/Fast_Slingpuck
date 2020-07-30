@@ -29,12 +29,15 @@ public class Normal : MonoBehaviour, Mode
 
     // Монеты
     int money1, money2, money3;
-   
+
+
     void Start()
     {
         initScene();
         StartCoroutine(delayBeforeStart(3));
     }
+
+
 
     public void initScene()
     {
@@ -114,7 +117,7 @@ public class Normal : MonoBehaviour, Mode
             //затухание последней цифры 1
             else 
             {
-                //AudioManager.PlaySound(AudioManager.Audio.endCount);
+                AudioManager.PlaySound(AudioManager.Audio.endCount);
                 while (gameCounterText.color.a >= 0)
                 {
                     float time = Time.deltaTime / 1;

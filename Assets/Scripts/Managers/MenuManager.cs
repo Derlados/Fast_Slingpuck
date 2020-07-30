@@ -357,7 +357,7 @@ public class MenuManager : MonoBehaviour
     //устанавливаем прогресс планет
     public void setPlanetProgress()
     {
-        Color gray = new Color32(72, 72, 72, 255);
+        Color gray = new Color32(126, 126, 126, 255);
 
         for (int i = 0; i < MenuManager.allPlanets; ++i)
         {
