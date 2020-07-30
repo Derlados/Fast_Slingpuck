@@ -243,8 +243,8 @@ PlayerSettings:
   AndroidTargetArchitectures: 3
   AndroidSplashScreenScale: 0
   androidSplashScreen: {fileID: 0}
-  AndroidKeystoreName: '{inproject}: Fast_Slingpuck.keystore'
-  AndroidKeyaliasName: 'fast_slingpuck_demo '
+  AndroidKeystoreName: '{inproject}: key.keystore'
+  AndroidKeyaliasName: com.bslcommunity.fast_slingpuck_demo
   AndroidBuildApkPerCpuArchitecture: 0
   AndroidTVCompatibility: 0
   AndroidIsGame: 1
