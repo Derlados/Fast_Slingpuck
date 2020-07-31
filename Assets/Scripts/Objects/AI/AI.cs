@@ -127,8 +127,8 @@ public class AI : MonoBehaviour
         // 0.08f - примерно за столько времени у AI всегда летит шайба, если будет изменяться скорость - необходимо будет исправить (да, это пока что такой костыль)
         float posX = gate.calculatePos(timeAim + keepTime + 0.08f);
 
-        leftBorder = posX;// - dispersion;
-        rightBorder = posX;// + dispersion;
+        leftBorder = posX - dispersion;
+        rightBorder = posX + dispersion;
 
         float coordY = AIString.coordY + (border.Up - (AIString.coordY - AIString.correction)) * (keepChecker.GetComponent<Rigidbody2D>().drag / Checker.DRAG);
 
