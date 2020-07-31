@@ -108,13 +108,14 @@ public class Game : MonoBehaviour
         if(type.ToString() == "water") imgField.color = new Color32(188, 188, 188, 255);
     }
 
-    void ChangeCheckerSprite(string matName, GameObject checkers)
+    void ChangeCheckerSprite(string matName, string spriteName, GameObject checkers)
     {
         for (int i = checkers.transform.childCount / 2; i < checkers.transform.childCount; ++i)
         {
             checkers.transform.GetChild(i).gameObject.SetActive(true);
             Image img = checkers.transform.GetChild(i).gameObject.GetComponent<Image>();
             img.material = Resources.Load<Material>("Sprites/Materials/Checker/" + matName);
+            img.sprite = Resources.Load<Sprite>("Sprites/levels/checkers/" + spriteName); 
 
             Gradient gradient;
             GradientColorKey[] colorKey;
@@ -205,10 +206,16 @@ public class Game : MonoBehaviour
             // userImg.material = Resources.Load<Material>("Sprites/Materials/Checker/" + playerData.puckSprite + "_glowMat");
         }
 
+        for (int i = 0; i < checkers.transform.childCount / 2; ++i)
+        {
+            Image userImg = checkers.transform.GetChild(i).gameObject.transform.GetComponent<Image>();
+            userImg.sprite = Resources.Load<Sprite>("Sprites/levels/checkers/" + PlayerData.getInstance().puckSprite);
+            // userImg.material = Resources.Load<Material>("Sprites/Materials/Checker/" + playerData.puckSprite + "_glowMat");
+        }
+
         // Наложение соответствующий текстур
         ChangePlanetSprite(type.ToString() + "_planet");
-        if (GameRule.TypeAI != GameRule.AI.None)
-            ChangeCheckerSprite(type.ToString() + "_CheckerGlowMat", checkers);
+        ChangeCheckerSprite(type.ToString() + "_CheckerGlowMat", type.ToString() + "_checker", checkers);
         ChangeParticle(type.ToString() + "_particle", true);
     }
 }
