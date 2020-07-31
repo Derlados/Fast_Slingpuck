@@ -678,7 +678,7 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    m_TransformParent: {fileID: 1980960375}
+    m_TransformParent: {fileID: 370829588}
     m_Modifications:
     - target: {fileID: 3679753495307697895, guid: 0fd26d7c00739404d9d6acb33603cbbe,
         type: 3}
@@ -724,7 +724,7 @@ PrefabInstance:
     - target: {fileID: 3679753495307697896, guid: 0fd26d7c00739404d9d6acb33603cbbe,
         type: 3}
       propertyPath: m_RootOrder
-      value: 4
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3679753495307697896, guid: 0fd26d7c00739404d9d6acb33603cbbe,
         type: 3}
@@ -744,7 +744,7 @@ PrefabInstance:
     - target: {fileID: 3679753495307697896, guid: 0fd26d7c00739404d9d6acb33603cbbe,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -0.000061035156
+      value: 0.066589355
       objectReference: {fileID: 0}
     - target: {fileID: 3679753495307697896, guid: 0fd26d7c00739404d9d6acb33603cbbe,
         type: 3}
@@ -754,7 +754,7 @@ PrefabInstance:
     - target: {fileID: 3679753495307697896, guid: 0fd26d7c00739404d9d6acb33603cbbe,
         type: 3}
       propertyPath: m_SizeDelta.x
-      value: -0.00007247925
+      value: 0.025806427
       objectReference: {fileID: 0}
     - target: {fileID: 3679753495307697896, guid: 0fd26d7c00739404d9d6acb33603cbbe,
         type: 3}
@@ -960,7 +960,7 @@ MonoBehaviour:
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 3
+          m_IntArgument: 4
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -10051,7 +10051,7 @@ RectTransform:
   m_Children:
   - {fileID: 1722576761}
   m_Father: {fileID: 1980960375}
-  m_RootOrder: 7
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -10210,6 +10210,8 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1870899542}
+  - {fileID: 34961236}
+  - {fileID: 1861844876}
   m_Father: {fileID: 1980960375}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -13329,7 +13331,7 @@ MonoBehaviour:
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 2
+          m_IntArgument: 3
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -13402,7 +13404,7 @@ RectTransform:
   - {fileID: 481628158}
   - {fileID: 692871262}
   m_Father: {fileID: 1980960375}
-  m_RootOrder: 6
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -37620,7 +37622,7 @@ MonoBehaviour:
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 1
+          m_IntArgument: 2
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -46015,7 +46017,7 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    m_TransformParent: {fileID: 1980960375}
+    m_TransformParent: {fileID: 370829588}
     m_Modifications:
     - target: {fileID: 3679753495307697895, guid: 0fd26d7c00739404d9d6acb33603cbbe,
         type: 3}
@@ -46061,7 +46063,7 @@ PrefabInstance:
     - target: {fileID: 3679753495307697896, guid: 0fd26d7c00739404d9d6acb33603cbbe,
         type: 3}
       propertyPath: m_RootOrder
-      value: 5
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 3679753495307697896, guid: 0fd26d7c00739404d9d6acb33603cbbe,
         type: 3}
@@ -46081,7 +46083,7 @@ PrefabInstance:
     - target: {fileID: 3679753495307697896, guid: 0fd26d7c00739404d9d6acb33603cbbe,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 0
+      value: 0.085754395
       objectReference: {fileID: 0}
     - target: {fileID: 3679753495307697896, guid: 0fd26d7c00739404d9d6acb33603cbbe,
         type: 3}
@@ -46091,7 +46093,7 @@ PrefabInstance:
     - target: {fileID: 3679753495307697896, guid: 0fd26d7c00739404d9d6acb33603cbbe,
         type: 3}
       propertyPath: m_SizeDelta.x
-      value: 0.000022888184
+      value: 0.025535583
       objectReference: {fileID: 0}
     - target: {fileID: 3679753495307697896, guid: 0fd26d7c00739404d9d6acb33603cbbe,
         type: 3}
@@ -56657,7 +56659,7 @@ MonoBehaviour:
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 2
+          m_IntArgument: 1
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -57219,8 +57221,6 @@ RectTransform:
   - {fileID: 1508005422}
   - {fileID: 690841571}
   - {fileID: 370829588}
-  - {fileID: 34961236}
-  - {fileID: 1861844876}
   - {fileID: 552813615}
   - {fileID: 359429531}
   m_Father: {fileID: 943238160}
