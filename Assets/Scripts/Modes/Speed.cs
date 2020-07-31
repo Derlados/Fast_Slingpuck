@@ -172,6 +172,7 @@ public class Speed : MonoBehaviour, Mode
                     rect.rotation = Quaternion.Euler(rotPos);
                     rotPos.z -= 30;
                 }
+                yield return new WaitForSeconds(1);
             }
 
             //затухание последней цифры 1
@@ -182,7 +183,7 @@ public class Speed : MonoBehaviour, Mode
                 {
                     float time = Time.deltaTime / 1;
                     Color color = gameCounterText.color;
-                    color.a -= time; ;
+                    color.a -= time;
                     gameCounterText.color = new Color(color.r, color.g, color.b, color.a);
                     yield return new WaitForSeconds(0.001f);
                 }
@@ -192,16 +193,25 @@ public class Speed : MonoBehaviour, Mode
                     AI.GetComponent<AI>().active = true;
                 Game.activeGame = true;
             }
-            yield return new WaitForSeconds(1);
         }
 
-        yield return new WaitForSeconds(1);
         StartCoroutine(counter(10));
     }
 
     // Таймер игры
     IEnumerator counter(int sec)
     {
+        gameCounterText.text = sec.ToString();
+
+        while (gameCounterText.color.a <= 1)
+        {
+            float time = Time.deltaTime / 1;
+            Color color = gameCounterText.color;
+            color.a += time;
+            gameCounterText.color = new Color(color.r, color.g, color.b, color.a);
+            yield return new WaitForSeconds(0.001f);
+        }
+
         for (int i = sec; i >= 0; --i)
         {
             gameCounterText.text = i.ToString();

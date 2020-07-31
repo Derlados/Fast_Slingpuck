@@ -122,7 +122,7 @@ public class Normal : MonoBehaviour, Mode
                 {
                     float time = Time.deltaTime / 1;
                     Color color = gameCounterText.color;
-                    color.a -= time; ;
+                    color.a -= time;
                     gameCounterText.color = new Color(color.r, color.g, color.b, color.a);
                     yield return new WaitForSeconds(0.001f);
                 }
