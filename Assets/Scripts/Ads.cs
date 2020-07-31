@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Advertisements;
 using UnityEngine.UI;
+using UnityEngine.XR.WSA.Input;
 
 public class Ads : MonoBehaviour, IUnityAdsListener
 {
@@ -42,7 +43,7 @@ public class Ads : MonoBehaviour, IUnityAdsListener
 
     public IEnumerator StartBanner()
     {
-        while (!Advertisement.isInitialized)
+        while (!Advertisement.IsReady(BANNER))
         {
             yield return new WaitForSeconds(0.5f);
         }
