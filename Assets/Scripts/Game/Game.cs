@@ -215,7 +215,9 @@ public class Game : MonoBehaviour
 
         // Наложение соответствующий текстур
         ChangePlanetSprite(type.ToString() + "_planet");
-        ChangeCheckerSprite(type.ToString() + "_CheckerGlowMat", type.ToString() + "_checker", checkers);
+
+        if(GameRule.TypeAI != GameRule.AI.None)
+           ChangeCheckerSprite(type.ToString() + "_CheckerGlowMat", type.ToString() + "_checker", checkers);
         ChangeParticle(type.ToString() + "_particle", true);
     }
 }

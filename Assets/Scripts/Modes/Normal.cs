@@ -182,7 +182,8 @@ public class Normal : MonoBehaviour, Mode
 
     public void calculateResult()
     {
-        if(time <=5) PlayGamesPlatform.Instance.IncrementAchievement(GPGSIds.achievement_are_you_using_a_time_machine, 1, null);
+        if(time <=6) Social.ReportProgress(GPGSIds.achievement_are_you_using_a_time_machine, 100f, null);
+
         // Подсчет звезд
         if (downCount != 0)
             game.countStars = 0;
