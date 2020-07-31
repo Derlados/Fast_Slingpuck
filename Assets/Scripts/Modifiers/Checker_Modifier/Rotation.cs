@@ -22,7 +22,7 @@ public class Rotation : Modifier
         float radius = gameObject.GetComponent<CircleCollider2D>().radius;
 
         rect.localScale = new Vector3(1, 1, 1);  
-        arrowAim.transform.rotation = Quaternion.Euler(new Vector3(0, 0, 90));
+        arrowAim.transform.rotation = Quaternion.Euler(new Vector3(0, 0, 180));
         rect.sizeDelta = new Vector2(radius * 3, radius * 2);
         rect.localPosition = new Vector3(0, rect.sizeDelta.y / 2, 0);
 

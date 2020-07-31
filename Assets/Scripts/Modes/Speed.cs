@@ -98,7 +98,8 @@ public class Speed : MonoBehaviour, Mode
     public void gameOver()
     {
         calculateResult();
-        AI.GetComponent<AI>().active = false;
+        if (GameRule.TypeAI != GameRule.AI.None)
+            AI.GetComponent<AI>().active = false;
         gameMenu.GetComponent<GameMenu>().gameOver("Game Over !", game.countStars, money1, money2, money3); 
     }
 
@@ -187,7 +188,8 @@ public class Speed : MonoBehaviour, Mode
                 }
 
                 capperField.SetActive(false);
-                AI.GetComponent<AI>().active = true;
+                if (GameRule.TypeAI != GameRule.AI.None)
+                    AI.GetComponent<AI>().active = true;
                 Game.activeGame = true;
             }
             yield return new WaitForSeconds(1);
@@ -206,7 +208,8 @@ public class Speed : MonoBehaviour, Mode
             yield return new WaitForSeconds(1);
         }
 
-        AI.GetComponent<AI>().active = false;
+        if (GameRule.TypeAI != GameRule.AI.None)
+            AI.GetComponent<AI>().active = false;
         gameOver();
     }
 
