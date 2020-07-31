@@ -7,6 +7,7 @@ using System.Xml.Linq;
 using System;
 using GooglePlayGames;
 using UnityEditor;
+using UnityEngine.Rendering;
 
 // Класс отвечающий за весь UI в самой игре
 public class GameMenu : MonoBehaviour
@@ -20,7 +21,6 @@ public class GameMenu : MonoBehaviour
    
     public void Start()
     {
-        audioBackground.transform.GetComponent<AudioSource>().volume = PlayerData.getInstance().volume;
         StartCoroutine(fadeInBackground());
     }
 
@@ -113,8 +113,7 @@ public class GameMenu : MonoBehaviour
         {
             gameOverText.text = data.Element("lose").Value;
             PlayGamesPlatform.Instance.IncrementAchievement(GPGSIds.achievement_you_need_a_coach, 1, null);
-        }
-          
+        }   
     }
 
     [System.Serializable]
@@ -200,21 +199,23 @@ public class GameMenu : MonoBehaviour
 
     IEnumerator fadeInBackground()
     {
+        AudioSource audioSource = audioBackground.transform.GetComponent<AudioSource>();
         for (float f = 0; f <= PlayerData.getInstance().volume; f += 0.001f)
         {
-            audioBackground.transform.GetComponent<AudioSource>().volume = f;
-            yield return new WaitForSeconds(0.06f);
+            audioSource.volume = f;
+            yield return new WaitForSeconds(0.006f);
         }
     }
 
     IEnumerator fadeOutBackground()
     {
-        for (float f = audioBackground.transform.GetComponent<AudioSource>().volume; f >=0 ; f -= 0.005f)
+        AudioSource audioSource = audioBackground.transform.GetComponent<AudioSource>();
+        float fadedVolume = ((audioSource.volume * 10f) / 100f);
+        for (float f = audioSource.volume; f >= fadedVolume; f -= 0.002f)
         {
-            audioBackground.transform.GetComponent<AudioSource>().volume = f;
-            yield return new WaitForSeconds(0.06f);
+            audioSource.volume = f;
+            yield return new WaitForSeconds(0.006f);
         }
-
     }
 
     public void achievementBtn()

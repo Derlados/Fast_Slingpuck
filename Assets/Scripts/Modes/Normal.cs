@@ -122,7 +122,7 @@ public class Normal : MonoBehaviour, Mode
                 {
                     float time = Time.deltaTime / 1;
                     Color color = gameCounterText.color;
-                    color.a -= time; ;
+                    color.a -= time;
                     gameCounterText.color = new Color(color.r, color.g, color.b, color.a);
                     yield return new WaitForSeconds(0.001f);
                 }
@@ -182,7 +182,8 @@ public class Normal : MonoBehaviour, Mode
 
     public void calculateResult()
     {
-        if(time <=5) PlayGamesPlatform.Instance.IncrementAchievement(GPGSIds.achievement_are_you_using_a_time_machine, 1, null);
+        if(time <=6) Social.ReportProgress(GPGSIds.achievement_are_you_using_a_time_machine, 100f, null);
+
         // Подсчет звезд
         if (downCount != 0)
             game.countStars = 0;

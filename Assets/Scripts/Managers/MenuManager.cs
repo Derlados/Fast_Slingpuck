@@ -48,8 +48,6 @@ public class MenuManager : MonoBehaviour
 
     private void Start()
     {
-        StartCoroutine(Ads.getInstance().StartBanner());
-
         cameraStatus = Status.freeOnMenu;
         // Оптимизация второго поля под разные екраны так как поле Планет не закреплено за камерой
         //float posX = -Math.Abs(Camera.main.ScreenToWorldPoint(new Vector2(Screen.width, Screen.height)).x - (GalaxyCanvas.GetComponent<RectTransform>().sizeDelta.x / 2)); // Сдвиг карты к левому краю второго поля 
@@ -60,6 +58,7 @@ public class MenuManager : MonoBehaviour
         //-2 т.к обьект galaxy содержит еще 2 обьекта, которые не являются планетами
         setPlanetProgress();
 
+        StartCoroutine(Ads.getInstance().StartBanner());
     }
 
     private void FixedUpdate()
@@ -147,6 +146,7 @@ public class MenuManager : MonoBehaviour
         AudioManager.PlaySound(AudioManager.Audio.click);
         LocalizationManager.clear();
         SceneManager.LoadScene("Game");
+        Ads.getInstance().DestroyBanner();
     }
 
     // Приближение к планете

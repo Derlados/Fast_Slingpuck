@@ -67,7 +67,7 @@ public static class GameRule
     public static List<CheckerModifier> GlobalModifier = new List<CheckerModifier>();
 
     //для удобства
-    public static Type[] planetProgressNum = new Type[] { Type.lava, Type.sand, Type.ice, Type.water, Type.jungle, };
+    public static Type[] planetProgressNum = new Type[] { Type.lava, Type.ice, Type.sand,  Type.water, Type.jungle, };
 
     public static bool globalDiff = false; // false - сложность обычная, true - повышенная сложность для всех уровней
 }
