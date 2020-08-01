@@ -28,6 +28,7 @@ public class Level : MonoBehaviour
     public GameRule.Difficulties difficulties; // Сложность игры
     public int numLevel; // Номер уровня, необходимо знать для того чтобы в дальнейшем записать результат
 
+
     // Установка всех игровых правил и запус игры
     public void setGameRule(GameObject planet)
     {

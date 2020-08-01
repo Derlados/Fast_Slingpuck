@@ -39,7 +39,8 @@ public static class GameRule
     {
         Gate,
         MovementGate,
-        TeleportGate
+        TeleportGate,
+        RandomMovementGate,
     }
 
     public enum CheckerModifier

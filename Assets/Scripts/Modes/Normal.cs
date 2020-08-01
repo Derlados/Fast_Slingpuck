@@ -128,7 +128,8 @@ public class Normal : MonoBehaviour, Mode
                 }
 
                 capperField.SetActive(false);
-                AI.GetComponent<AI>().active = true;
+                if (GameRule.TypeAI != GameRule.AI.None)
+                    AI.GetComponent<AI>().active = true;
                 Game.activeGame = true;
             }
             yield return new WaitForSeconds(1);
