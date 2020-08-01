@@ -14024,7 +14024,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: b36fc3d8a20d7bb47a8b51ba61a2d774, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 2fa89971137dbf0449bbc30b775172fd, type: 3}
   m_Type: 0
   m_PreserveAspect: 1
   m_FillCenter: 1
@@ -24347,6 +24347,11 @@ PrefabInstance:
       propertyPath: numLevel
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 3431030227263662423, guid: fe6ef68fcb158c04ca07ba4bd1672cf5,
+        type: 3}
+      propertyPath: typeAI
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4331401105193270650, guid: fe6ef68fcb158c04ca07ba4bd1672cf5,
         type: 3}
       propertyPath: m_IsActive
@@ -24362,6 +24367,16 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgument
       value: 
       objectReference: {fileID: 1980960374}
+    - target: {fileID: 9004831237760379575, guid: fe6ef68fcb158c04ca07ba4bd1672cf5,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 2008454917}
+    - target: {fileID: 9004831237760379575, guid: fe6ef68fcb158c04ca07ba4bd1672cf5,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: setGameRule
+      objectReference: {fileID: 0}
     - target: {fileID: 9004831237760379576, guid: fe6ef68fcb158c04ca07ba4bd1672cf5,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -60051,6 +60066,18 @@ RectTransform:
     type: 3}
   m_PrefabInstance: {fileID: 763965568}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &2008454917 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3431030227263662423, guid: fe6ef68fcb158c04ca07ba4bd1672cf5,
+    type: 3}
+  m_PrefabInstance: {fileID: 1206287186}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e26676a2c6fcc5e47a1ee912328bce53, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &2011507979
 PrefabInstance:
   m_ObjectHideFlags: 0

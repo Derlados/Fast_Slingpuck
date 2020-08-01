@@ -108,7 +108,6 @@ public class Shop : MonoBehaviour
                 Vector2 offset = rectTransformPanel.offsetMax;
                 offset.x += 350;
                 rectTransformPanel.offsetMax = offset;
-                //Debug.Log(ScreenOptimization.GetWorldCoord2D(checkerPanel).second.x);
             }
         }
 

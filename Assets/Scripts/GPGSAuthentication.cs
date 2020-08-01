@@ -17,8 +17,7 @@ public class GPGSAuthentication : MonoBehaviour
         {
             PlayGamesClientConfiguration config = new PlayGamesClientConfiguration.Builder().Build();
             PlayGamesPlatform.InitializeInstance(config);
-            PlayGamesPlatform.DebugLogEnabled = true;
-
+            //PlayGamesPlatform.DebugLogEnabled = true;
             platform = PlayGamesPlatform.Activate();
         }
 

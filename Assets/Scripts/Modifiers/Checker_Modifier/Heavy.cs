@@ -6,9 +6,7 @@ public class Heavy : Modifier
 {
     void Start()
     {
-        Debug.Log(GetComponent<Checker>().body.mass);
         GetComponent<Checker>().body.mass *= 10;
-        Debug.Log(GetComponent<Checker>().body.mass);
         GetComponent<Checker>().coefForce = 10;
     }
 }

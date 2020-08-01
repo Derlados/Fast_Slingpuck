@@ -57,8 +57,6 @@ public class AI : MonoBehaviour
 
         XMLManager.LoadDifficulty(ref diff, (GameRule.globalDiff ? GameRule.difficulties + 2 : GameRule.difficulties).ToString());
 
-        //Debug.Log((GameRule.globalDiff ? GameRule.difficulties + 2 : GameRule.difficulties).ToString());
-
         speedAI = diff.speedAI;
         accuracyAI = diff.accuracyAI;
         timeRest = diff.timeRest;

@@ -52,9 +52,7 @@ public static class ScreenOptimization
 
     public static void fix18_9(BoxCollider2D box)
     {
-        Debug.Log(box.size);
         box.size = new Vector2(box.size.x * 0.935f, box.size.y);
-        Debug.Log(box.size);
     }
 
     public static void fix18_9(EdgeCollider2D edge)

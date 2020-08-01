@@ -8,7 +8,6 @@ public class RotationAI : AI
     public override void aim()
     {
         keepChecker.angle += calculateAngle(aimTarget, new Vector2(moveTarget.x, 0));
-        Debug.Log(keepChecker.angle);
         keepObj.rotation = Quaternion.Euler(0, 0, keepChecker.angle);
     }
     public override void getTarget()
