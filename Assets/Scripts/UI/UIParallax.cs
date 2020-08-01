@@ -10,8 +10,8 @@ public class UIParallax : MonoBehaviour
 
     float dragSpeed = 0.01f; //0.01f ANDROID, 0.001f PC
     float mousePosYStart = 0f;
-    float minDragY = -10.0f;
-    float maxDragY = 10.0f;
+    float minDragY = -15f;
+    float maxDragY = 15f;
     float deltaY = 0f;
 
     private void Start()

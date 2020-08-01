@@ -44,6 +44,7 @@ public class Shop : MonoBehaviour
     GameObject currenChecker; //обьект выбранной шайбы
     public GameObject shopMenu; //обьект магазина
     public GameObject backgroundAudio;
+    public GameObject ToastText;
 
     PlayerData playerData;  //данные игрока
     //ShopData shopData; //данные об шайбах в магазине
@@ -187,7 +188,7 @@ public class Shop : MonoBehaviour
                     }
                     else
                     {
-                        Debug.Log("Not enough money to buy!");
+                        NativeAndroidInUnity.ShowToast(ToastText.GetComponent<Text>().text);
                         AudioManager.PlaySound(AudioManager.Audio.refuse);
                     }
                 }
@@ -347,7 +348,7 @@ public class Shop : MonoBehaviour
                 }
                 else
                 {
-                    Debug.Log("Not enough money to buy or you already have it!");
+                    NativeAndroidInUnity.ShowToast(ToastText.GetComponent<Text>().text);
                     AudioManager.PlaySound(AudioManager.Audio.refuse);
                 }
             }
