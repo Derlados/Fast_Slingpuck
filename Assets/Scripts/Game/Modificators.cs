@@ -23,7 +23,7 @@ public class Modificators : MonoBehaviour
         data = new UserShopData();
 
         if (!XMLManager.LoadData<UserShopData>(ref data, "UserShopData"))
-            Debug.LogError("You did something to data// r u a*sho*e?");
+            Debug.LogError("You did something to the data.");
 
         //установка кол-во модификаторов
         for (int i = 0; i < this.transform.childCount; ++i)

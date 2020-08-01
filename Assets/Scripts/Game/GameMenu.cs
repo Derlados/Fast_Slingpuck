@@ -82,10 +82,10 @@ public class GameMenu : MonoBehaviour
         if (playerData.progress[GameRule.planetNum].first[GameRule.levelNum] < stars)
             playerData.progress[GameRule.planetNum].first[GameRule.levelNum] = (byte)stars;
 
-        if (GameRule.levelNum == GameRule.levelsCount && message== "YOU WIN !")
+        if (GameRule.levelNum == GameRule.levelsCount && message == "YOU WIN !" || message == "GAME OVER !")
         {
-           playerData.currentPlanet++;
-           playerData.progress[playerData.currentPlanet].second.second = true;
+            playerData.currentPlanet++;
+            playerData.progress[playerData.currentPlanet].second.second = true;
 
             switch (GameRule.type)
             {
@@ -95,7 +95,7 @@ public class GameMenu : MonoBehaviour
                 case GameRule.Type.sand: Social.ReportProgress(GPGSIds.achievement_mr_sandman, 100f, null); break;
                 case GameRule.Type.water: Social.ReportProgress(GPGSIds.achievement_have_you_drown, 100f, null); break;
                 default: Debug.LogError("Please, provide achievement for this planet"); break;
-            }      
+            }
         }
 
         XMLManager.SaveData(PlayerData.getInstance(), PlayerData.getInstance().ToString());
@@ -109,9 +109,14 @@ public class GameMenu : MonoBehaviour
             gameOverText.text = data.Element("win").Value;
             Social.ReportProgress(GPGSIds.achievement_hallelujah, 100f, null);
         }   
-        else
+        else if (message == "YOU LOSE !")
         {
             gameOverText.text = data.Element("lose").Value;
+            PlayGamesPlatform.Instance.IncrementAchievement(GPGSIds.achievement_you_need_a_coach, 1, null);
+        }
+        else
+        {
+            gameOverText.text = data.Element("gameOver").Value;
             PlayGamesPlatform.Instance.IncrementAchievement(GPGSIds.achievement_you_need_a_coach, 1, null);
         }   
     }

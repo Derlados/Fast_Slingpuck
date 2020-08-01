@@ -29,15 +29,12 @@ public class Ads : MonoBehaviour, IUnityAdsListener
         Advertisement.AddListener(this);
         this.money = money;
         this.text = text;
-        while (true)
+
+        while (!Advertisement.IsReady(VIDEO))
         {
-            if (Advertisement.IsReady(VIDEO))
-            {
-                Advertisement.Show(VIDEO);
-                yield break;
-            }
-            yield return new WaitForSeconds(1f);
+            yield return new WaitForSeconds(0.5f);
         }
+        Advertisement.Show(VIDEO);
     }
 
     public IEnumerator StartBanner()
@@ -46,7 +43,6 @@ public class Ads : MonoBehaviour, IUnityAdsListener
         {
             yield return new WaitForSeconds(0.5f);
         }
-
         Advertisement.Banner.SetPosition(BannerPosition.BOTTOM_CENTER);
         Advertisement.Banner.Show(BANNER);
     }
@@ -71,21 +67,21 @@ public class Ads : MonoBehaviour, IUnityAdsListener
         else if (showResult == ShowResult.Skipped)
         {
             // Do not reward the user for skipping the ad.
+            text.text = (int.Parse(text.text) + money/2).ToString();
+            PlayerData.getInstance().money += money;
+            PlayerData.getInstance().Save();
         }
         else if (showResult == ShowResult.Failed)
         {
             Debug.LogWarning("The ad did not finish due to an error.");
         }
+
+        Advertisement.RemoveListener(this);
     }
 
     public void OnUnityAdsReady(string placementId) { }
     public void OnUnityAdsDidError(string message) { }
     public void OnUnityAdsDidStart(string placementId) { }
 
-    // When the object that subscribes to ad events is destroyed, remove the listener:
-    public void OnDestroy()
-    {
-        Advertisement.RemoveListener(this);
-    }
 }
   

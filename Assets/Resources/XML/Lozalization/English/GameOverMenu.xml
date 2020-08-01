@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <GameOverMenu>
 	<totalText>Total</totalText>
-	<gameOver>Game Over</gameOver>
+	<gameOver>Game Over!</gameOver>
 	<win>YOU WIN!</win>
     <lose>YOU LOSE!</lose>
 	<Normal>
