@@ -31,4 +31,5 @@
    <volumeSettings>Настройки громкости</volumeSettings>
    <musicVolume>Громкость музыки</musicVolume>
    <effectsVolume>Громкость эффектов</effectsVolume>
+   <noMoney>Недостаточно денег для покупки!</noMoney>
 </localization>

@@ -177,6 +177,7 @@
     <Compile Include="Assets\Scripts\UI\GPGSAchievements.cs" />
     <Compile Include="Assets\Scripts\UI\LocalizationText.cs" />
     <Compile Include="Assets\Scripts\UI\MainMenu.cs" />
+    <Compile Include="Assets\Scripts\UI\NativeAndroidInUnity.cs" />
     <Compile Include="Assets\Scripts\UI\Settings.cs" />
     <Compile Include="Assets\Scripts\UI\Shop.cs" />
     <Compile Include="Assets\Scripts\UI\UIParallax.cs" />
