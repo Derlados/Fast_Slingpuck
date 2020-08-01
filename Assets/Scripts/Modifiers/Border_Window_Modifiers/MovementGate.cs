@@ -4,14 +4,14 @@ using UnityEngine;
 // Движущееся окно
 public class MovementGate : Gate
 {
-    RectTransform rectLeft, rectRight;
-    
-    float stepScreen, stepWorld; // шаг, для движения за один такт (в экранном режиме и в режиме реального пространтсва)
+    protected RectTransform rectLeft, rectRight;
 
-    Transform leftPos, rightPos, windowPos;
-    BoxCollider2D leftBorderCol, rightBorderCol;
+    protected float stepScreen, stepWorld; // шаг, для движения за один такт (в экранном режиме и в режиме реального пространтсва)
 
-    void Start()
+    protected Transform leftPos, rightPos, windowPos;
+    protected BoxCollider2D leftBorderCol, rightBorderCol;
+
+    public void Start()
     {
         // RectTransform окон и границ
         rectLeft = leftBorder.GetComponent<RectTransform>();
