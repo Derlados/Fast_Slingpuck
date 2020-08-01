@@ -31,4 +31,5 @@
    <volumeSettings>Volume settings</volumeSettings>
    <musicVolume>Music volume</musicVolume>
    <effectsVolume>Effects volume</effectsVolume>
+   <noMoney>Not enough money to buy!</noMoney>
 </localization>

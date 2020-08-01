@@ -24,8 +24,7 @@ public class GPGSAuthentication : MonoBehaviour
 
         Social.Active.localUser.Authenticate(success =>
         {
-            if (success) Debug.Log("Success");
-            else Debug.Log("Access denied.");
+            if (!success) NativeAndroidInUnity.ShowToast("Sign into Google play games failed");
         });
     }
 }
