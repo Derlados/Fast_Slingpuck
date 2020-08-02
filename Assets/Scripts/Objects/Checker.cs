@@ -20,8 +20,7 @@ public class Checker : MonoBehaviour
     public Transform objTransform; // компоненты Transfrom объекта
 
     bool mouseDown = false, stop = false; // Проверка нажатия на предмет, stop - рехрешение на движение
-    float startMass = 0.25f, startV, V = 0.0f, radius; // начальная скорость объекта и радиус объекта
-    const float startV_16_9 = 875, startV_18_9 = 775; // максимальные силы для разных соотношений экрана (почему то на соотношеня 16:9 и 18:9, шайбы летят по разному)
+    float startMass = 0.25f, radius; // начальная скорость объекта и радиус объекта
     public float angle;
     public float coefForce = 1f; // коефициент силы, умножается на стандартную силу (можно использовать для всяких модификаций)
     public const float DRAG = 8f;
@@ -57,7 +56,6 @@ public class Checker : MonoBehaviour
 
     private void Awake()
     {
-        startV = Screen.height % 18 == 0 ? startV_18_9 : startV_16_9;    
         id = ++countId;
         // Оптимизация под разные экраны
         //ScreenOptimization.setSize(gameObject, this.GetComponent<CircleCollider2D>(), 0.12f);
@@ -116,7 +114,6 @@ public class Checker : MonoBehaviour
     public void OnMouseDown()
     {
         body.velocity *= 0;
-        V = 0.0f;
         angle = field == Field.Down ? 0f : 180f;
         mouseDown = true;
     }
@@ -124,35 +121,6 @@ public class Checker : MonoBehaviour
     public void OnMouseUp()
     {
         mouseDown = false;
-        if (objTransform.position.y < 0)
-        {
-            float checkY = DownString.coordY + radius + DownString.correction;
-            float K = (checkY - objTransform.position.y) / (checkY - playerDownBorder.Down);
-
-            if (objTransform.position.y < checkY)
-            {
-                ++Game.countShots;
-                V = (K * startV) / boostModificator; // Формула рассчета начальной скорости объекта
-            }
-        }
-        else
-        {
-            float checkY = UpString.coordY - radius + UpString.correction;
-            float K =  (objTransform.position.y - checkY) / (playerUpBorder.Up - checkY);
-            if (objTransform.position.y > checkY)
-            {
-                ++Game.countShots;
-                V = (K * startV) / reductorModificator; // Формула рассчета начальной скорости объекта
-            }
-        }
-
-        V *= coefForce;
-
-        objTransform.rotation = Quaternion.Euler(0, 0, angle);
-        body.AddForce(transform.up * V);
-
-        if (V > 0)
-            AudioManager.PlaySound(AudioManager.Audio.string_pulling);
     }
 
     public float getRadius()

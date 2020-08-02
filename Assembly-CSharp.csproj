@@ -168,6 +168,7 @@
     <Compile Include="Assets\Scripts\Objects\AI\RotationAI.cs" />
     <Compile Include="Assets\Scripts\Objects\AudioAssets.cs" />
     <Compile Include="Assets\Scripts\Objects\BezierLine.cs" />
+    <Compile Include="Assets\Scripts\Objects\BoxColliderLine.cs" />
     <Compile Include="Assets\Scripts\Objects\Checker.cs" />
     <Compile Include="Assets\Scripts\Objects\ScreenFix.cs" />
     <Compile Include="Assets\Scripts\Objects\ScreenOptimization.cs" />
