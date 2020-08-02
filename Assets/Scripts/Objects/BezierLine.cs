@@ -80,26 +80,27 @@ public class BezierLine : MonoBehaviour
         }
     }
 
+
+    // Отслеживание столкновения с нитью, чтобы нить спружинила или откинула шайбу, либо если игрок натянул нить и нить задевает сразу несколько шайбы - эти шайбы так же летят 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        Checker colChecker = collision.gameObject.GetComponent<Checker>();
-        if (!colChecker.getMouseDown() && checker == null)
-        {
-            checker = collision.gameObject.GetComponent<Checker>();
-            objTransform = checker.GetComponent<Transform>();
-            checker.body.velocity *= 0;
-            pushChecker(collision.gameObject.GetComponent<Checker>(), 0.5f);
-        }
+        collisionDetect(collision);
     }
 
     private void OnCollisionStay2D(Collision2D collision)
     {
+        collisionDetect(collision);
+    }
+
+    void collisionDetect(Collision2D collision)
+    {
         Checker colChecker = collision.gameObject.GetComponent<Checker>();
         if (!colChecker.getMouseDown() && checker == null)
         {
             checker = collision.gameObject.GetComponent<Checker>();
             objTransform = checker.GetComponent<Transform>();
             checker.body.velocity *= 0;
+            checker.angle = DownString ? 0 : 180;
             pushChecker(collision.gameObject.GetComponent<Checker>(), 0.5f);
         }
     }
@@ -228,11 +229,8 @@ public class BezierLine : MonoBehaviour
     {
         float V = 0f, checkY;
 
-        checker.objTransform.rotation = Quaternion.Euler(0, 0, DownString ? 0 : 180f);
-
         if (DownString)
-        {
-            
+        {         
             checkY = coordY + checker.getRadius() + correction;
             float K = (checkY - checker.objTransform.position.y) / (checkY - checker.playerDownBorder.Down);
 
@@ -255,10 +253,8 @@ public class BezierLine : MonoBehaviour
         }
 
         V *= checker.coefForce * coef;
-
+        checker.objTransform.rotation = Quaternion.Euler(0, 0, checker.angle);
         checker.body.AddForce(checker.transform.up * V);
-
-        Debug.Log(V);
 
         if (V > 0)
             AudioManager.PlaySound(AudioManager.Audio.string_pulling);

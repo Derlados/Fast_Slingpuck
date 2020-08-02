@@ -12,9 +12,6 @@ public class Checker : MonoBehaviour
     public byte id;
     public bool playableForAI = true;
 
-    //Нитка
-    public BezierLine DownString, UpString;
-
     // Физическое тело
     public Rigidbody2D body;
     public Transform objTransform; // компоненты Transfrom объекта
@@ -92,7 +89,7 @@ public class Checker : MonoBehaviour
 
     private void OnMouseDrag()
     {
-        if (!stop)
+        if (!stop && mouseDown)
         {
             Vector2 Cursor = Input.mousePosition;
             Cursor = Camera.main.ScreenToWorldPoint(Cursor);
@@ -113,9 +110,13 @@ public class Checker : MonoBehaviour
     }
     public void OnMouseDown()
     {
-        body.velocity *= 0;
-        angle = field == Field.Down ? 0f : 180f;
-        mouseDown = true;
+        Debug.Log(field.ToString());
+        if (field == Field.Down)
+        { 
+            body.velocity *= 0;
+            angle = field == Field.Down ? 0f : 180f;
+            mouseDown = true;
+        }
     }
 
     public void OnMouseUp()
