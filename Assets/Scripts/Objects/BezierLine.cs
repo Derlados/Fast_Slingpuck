@@ -2,6 +2,7 @@ using UnityEngine;
 using BaseStructures;
 using System;
 using System.Linq;
+using Microsoft.SqlServer.Server;
 
 public class BezierLine : MonoBehaviour
 {
@@ -10,6 +11,7 @@ public class BezierLine : MonoBehaviour
     public EdgeCollider2D stringCollider;
 
     //Шайба
+
     public Checker checker;
     Transform objTransform; // компоненты Transfrom шайбы
 
@@ -24,7 +26,16 @@ public class BezierLine : MonoBehaviour
     public float coordY; // середина нити по координате Y
 
     public float correction, correctionForEdge; // визуальная коррекция нитки
-                                                
+
+
+    const float startV_16_9 = 875, startV_18_9 = 775; // максимальные силы для разных соотношений экрана (почему то на соотношеня 16:9 и 18:9, шайбы летят по разному)
+    float startV;
+
+    private void Awake()
+    {
+        startV = Screen.height / (Screen.width / 9) >= 18? startV_18_9 : startV_16_9;
+    }
+
     void Start()
     {
         // Установка двух крайних опорных точек для прорисовки линии
@@ -41,7 +52,7 @@ public class BezierLine : MonoBehaviour
         if (!DownString)
             correction = -correction;
 
-        correctionForEdge = Camera.main.WorldToScreenPoint(new Vector2(startPoint.x, 1.5f * correction)).y - Screen.height / 2;
+        correctionForEdge = Camera.main.WorldToScreenPoint(new Vector2(startPoint.x, 0.5f * correction)).y - Screen.height / 2;
         checker = null;
 
         drawCalm();
@@ -51,8 +62,9 @@ public class BezierLine : MonoBehaviour
      * Приоритет отдается шайбе которая удерживается игроковм */
     private void OnTriggerEnter2D(Collider2D col)
     {
-        if (checker == null || col.gameObject.GetComponent<Checker>().getMouseDown())
+        if (col.gameObject.GetComponent<Checker>().getMouseDown())
         {
+            checkPush = false;
             checker = col.gameObject.GetComponent<Checker>();
             objTransform = checker.GetComponent<Transform>();
         }
@@ -60,10 +72,36 @@ public class BezierLine : MonoBehaviour
 
     private void OnTriggerStay2D(Collider2D col)
     {
-        if (checker == null || col.gameObject.GetComponent<Checker>().getMouseDown())
+        if (col.gameObject.GetComponent<Checker>().getMouseDown())
         {
+            checkPush = false;
             checker = col.gameObject.GetComponent<Checker>();
             objTransform = checker.GetComponent<Transform>();
+        }
+    }
+
+
+    // Отслеживание столкновения с нитью, чтобы нить спружинила или откинула шайбу, либо если игрок натянул нить и нить задевает сразу несколько шайбы - эти шайбы так же летят 
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        collisionDetect(collision);
+    }
+
+    private void OnCollisionStay2D(Collision2D collision)
+    {
+        collisionDetect(collision);
+    }
+
+    void collisionDetect(Collision2D collision)
+    {
+        Checker colChecker = collision.gameObject.GetComponent<Checker>();
+        if (!colChecker.getMouseDown() && checker == null)
+        {
+            checker = collision.gameObject.GetComponent<Checker>();
+            objTransform = checker.GetComponent<Transform>();
+            checker.body.velocity *= 0;
+            checker.angle = DownString ? 0 : 180;
+            pushChecker(collision.gameObject.GetComponent<Checker>(), 0.5f);
         }
     }
 
@@ -71,6 +109,12 @@ public class BezierLine : MonoBehaviour
     {
         if (checker != null)
         {
+            if (!checker.getMouseDown() && !checkPush)
+            {
+                checkPush = true;
+                pushChecker(checker, 1f);
+            }
+
             if (checkPoint.y == 0)
                 checkPoint = DownString ? new Vector2(0, coordY + checker.getRadius() + correction) : new Vector2(0, coordY - checker.getRadius() + correction);
             bool check = DownString ? objTransform.position.y < checkPoint.y : objTransform.position.y > checkPoint.y;
@@ -129,7 +173,7 @@ public class BezierLine : MonoBehaviour
         for (int i = 0; i < points.Length; ++i)
         {
             points2D[i] = Camera.main.WorldToScreenPoint(points[i]);
-            points2D[i].y -= Camera.main.WorldToScreenPoint(startPoint).y + correctionForEdge;
+            points2D[i].y -= Camera.main.WorldToScreenPoint(startPoint).y;
             points2D[i].x -= Screen.width / 2;
         }
 
@@ -175,5 +219,44 @@ public class BezierLine : MonoBehaviour
             return new Pair<Vector2, Vector2>(first, second);
         else
             return new Pair<Vector2, Vector2>(second, first);
+    }
+
+    //////////////////////////////////////////////////////////////////// ФИЗИКА НИТИ ///////////////////////////////////////////////////////////////////////////////
+
+    // Функция запуска шайбы
+    bool checkPush = false;
+    void pushChecker(Checker checker, float coef)
+    {
+        float V = 0f, checkY;
+
+        if (DownString)
+        {         
+            checkY = coordY + checker.getRadius() + correction;
+            float K = (checkY - checker.objTransform.position.y) / (checkY - checker.playerDownBorder.Down);
+
+            if (objTransform.position.y < checkY)
+            {
+                ++Game.countShots;
+                V = (K * startV); // Формула рассчета начальной скорости объекта
+            }
+        }
+        else
+        {
+            checkY = coordY - checker.getRadius() + correction;
+            float K = (checker.objTransform.position.y - checkY) / (checker.playerUpBorder.Up - checkY);
+
+            if (objTransform.position.y > checkY)
+            {
+                ++Game.countShots;
+                V = (K * startV); // Формула рассчета начальной скорости объекта
+            }
+        }
+
+        V *= checker.coefForce * coef;
+        checker.objTransform.rotation = Quaternion.Euler(0, 0, checker.angle);
+        checker.body.AddForce(checker.transform.up * V);
+
+        if (V > 0)
+            AudioManager.PlaySound(AudioManager.Audio.string_pulling);
     }
 }
