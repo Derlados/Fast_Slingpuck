@@ -66,7 +66,7 @@ public class AI : MonoBehaviour
         dispersion = Camera.main.ScreenToWorldPoint(new Vector2(accuracyAI * Screen.width, 0)).x + Camera.main.ScreenToWorldPoint(new Vector2(Screen.width, 0)).x;
     }
 
-    int watchdogTimer = 0; // Нсли бот зависнет в режиме keep (максимум 20 тактов)
+    int watchdogTimer = 0; // Если бот зависнет в режиме keep (максимум 20 тактов)
 
     void FixedUpdate()
     {
