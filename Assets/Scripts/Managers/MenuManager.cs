@@ -82,7 +82,6 @@ public class MenuManager : MonoBehaviour
                 thisCamera.orthographicSize -= stepSize;
             }
         }
-
     }
 
     private void OnApplicationQuit()
