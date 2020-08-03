@@ -8,19 +8,34 @@ public class Ads : MonoBehaviour, IUnityAdsListener
 {
     private static Ads instance;
 
-    private const string ID = "3739541", VIDEO = "rewardedVideo", BANNER = "banner";
+    private const string VIDEO = "rewardedVideo", BANNER = "banner";
     private const bool TEST_MODE = false;
 
     private int money;
     private Text text;
 
-    public static Ads getInstance()
+#if UNITY_IOS
+    private const string ID = "3739540";
+#elif UNITY_ANDROID
+    private const string ID = "3739541";
+#endif
+
+    void Awake()
     {
         if (instance == null)
         {
-            instance = new Ads();
+            instance = this;
+            DontDestroyOnLoad(this.gameObject);
             Advertisement.Initialize(ID, TEST_MODE);
         }
+        else
+        {
+            Destroy(this);
+        }
+    }
+
+    public static Ads getInstance()
+    {
         return instance;
     }
 
