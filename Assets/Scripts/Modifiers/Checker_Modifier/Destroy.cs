@@ -19,12 +19,12 @@ public class Destroy : Modifier
         if (gameObject.transform.position.y > 0)
         {
             field = checker.playerUpBorder;
-            field.Down =  Math.Abs(field.Up  - field.Down) / 2;
+            field.Up -= Math.Abs(field.Up  - field.Down) / 2;
         }
         else
         {
             field = checker.playerDownBorder;
-            field.Down = Math.Abs(field.Up - field.Down) / 2;
+            field.Down += Math.Abs(field.Up - field.Down) / 2;
             checker.playableForAI = false;
         }     
     }
