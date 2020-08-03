@@ -89,7 +89,7 @@ public class Checker : MonoBehaviour
 
     private void OnMouseDrag()
     {
-        if (!stop && mouseDown)
+        if (!stop && field == Field.Down)
         {
             Vector2 Cursor = Input.mousePosition;
             Cursor = Camera.main.ScreenToWorldPoint(Cursor);
@@ -110,13 +110,9 @@ public class Checker : MonoBehaviour
     }
     public void OnMouseDown()
     {
-        Debug.Log(field.ToString());
-        if (field == Field.Down)
-        { 
-            body.velocity *= 0;
-            angle = field == Field.Down ? 0f : 180f;
-            mouseDown = true;
-        }
+        body.velocity *= 0;
+        angle = field == Field.Down ? 0f : 180f;
+        mouseDown = true;
     }
 
     public void OnMouseUp()
