@@ -145,7 +145,7 @@ public class AI : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D col)
     {
         if (col.gameObject.GetComponent<Checker>().playableForAI)
-            checkers.Add(col.gameObject.GetComponent<Checker>());
+            StartCoroutine(delayAddChecker(0.4f, col.gameObject.GetComponent<Checker>()));
     }
 
     // Удаляет шайбу из списка шайб которые может использовать AI
@@ -173,4 +173,14 @@ public class AI : MonoBehaviour
         yield return new WaitForSeconds(sec);
         statusType = Status.free;   
     }
+    
+    // Задержка перед добавлением новой шайбы в список шайб бота
+    IEnumerator delayAddChecker(float sec, Checker checker)
+    {
+        yield return new WaitForSeconds(sec);
+        statusType = Status.free;
+        checkers.Add(checker);
+    }
+
 }
+

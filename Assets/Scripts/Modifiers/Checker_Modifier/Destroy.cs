@@ -11,7 +11,7 @@ public class Destroy : Modifier
 {
     Checker checker;
     Checker.Border field;
-    bool destroy = false;
+    public bool destroy = false;
 
     private void Start()
     {
@@ -34,8 +34,7 @@ public class Destroy : Modifier
         if (!destroy)
         {
             destroy = true;
-            checker.body.velocity /= 4;
-            gameObject.GetComponent<CircleCollider2D>().isTrigger = true;
+            checker.body.velocity /= 4;           
             StartCoroutine(delayBeforeDissolve());
         }
     }
@@ -57,10 +56,9 @@ public class Destroy : Modifier
     void RandomPosition()
     {
         Vector2 randomPos = new Vector2(UnityEngine.Random.Range(field.Left, field.Right), UnityEngine.Random.Range(field.Down, field.Up));
-        gameObject.GetComponent<Checker>().OnMouseDown();
+        checker.OnMouseDown();
         gameObject.transform.position = randomPos;
         gameObject.GetComponent<CircleCollider2D>().isTrigger = false;
         destroy = false;
-        checker.changeField();
     }
 }
