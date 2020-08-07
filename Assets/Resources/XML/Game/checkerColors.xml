@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<checkerColors>
+  <lava_checker>
+    <red>191</red>
+	<green>44</green>
+	<blue>0</blue>
+	<intensity>2.416924</intensity>
+  </lava_checker>
+
+  <ice_checker>
+    <red>1</red>
+	<green>37</green>
+	<blue>191</blue>
+	<intensity>3.220174</intensity>
+  </ice_checker>
+  
+  <jungle_checker>
+    <red>57</red>
+	<green>133</green>
+	<blue>0</blue>
+	<intensity>0</intensity>
+  </jungle_checker>
+  
+  <sand_checker>
+    <red>191</red>
+	<green>149</green>
+	<blue>14</blue>
+	<intensity>1.982163</intensity>
+  </sand_checker>
+  
+  <water_checker>
+    <red>1</red>
+	<green>37</green>
+	<blue>191</blue>
+	<intensity>3.220174</intensity>
+  </water_checker>
+
+  <userChecker1>
+    <red>0</red>
+	<green>92</green>
+	<blue>191</blue>
+	<intensity>3.1457</intensity>
+  </userChecker1>
+  
+  <userChecker2>
+    <red>0</red>
+	<green>92</green>
+	<blue>191</blue>
+	<intensity>3.1457</intensity>
+  </userChecker2>
+  
+  <userChecker3>
+    <red>0</red>
+	<green>92</green>
+	<blue>191</blue>
+	<intensity>3.1457</intensity>
+  </userChecker3>
+  
+  <userChecker4>
+    <red>0</red>
+	<green>92</green>
+	<blue>191</blue>
+	<intensity>3.1457</intensity>
+  </userChecker4>
+  
+  <userChecker5>
+    <red>0</red>
+	<green>92</green>
+	<blue>191</blue>
+	<intensity>3.1457</intensity>
+  </userChecker5>
+  
+  <userChecker6>
+    <red>0</red>
+	<green>92</green>
+	<blue>191</blue>
+	<intensity>3.1457</intensity>
+  </userChecker6>
+  
+  <userChecker7>
+	<red>37</red>
+	<green>190</green>
+	<blue>26</blue>
+	<intensity>1</intensity>
+  </userChecker7>
+  
+  <userChecker8>
+    <red>191</red>
+	<green>44</green>
+	<blue>0</blue>
+	<intensity>2.416924</intensity>
+  </userChecker8>
+  
+  <userChecker9>
+    <red>0</red>
+	<green>92</green>
+	<blue>191</blue>
+	<intensity>3.1457</intensity>
+  </userChecker9>
+</checkerColors>
+
+

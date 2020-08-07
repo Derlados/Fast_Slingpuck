@@ -1,5 +1,6 @@
 using GooglePlayGames.BasicApi.Multiplayer;
 using System;
+using System.Globalization;
 using System.Xml.Linq;
 using UnityEngine;
 using UnityEngine.UI;
@@ -108,27 +109,133 @@ public class Game : MonoBehaviour
         if(type.ToString() == "water") imgField.color = new Color32(188, 188, 188, 255);
     }
 
-    void ChangeCheckerSprite(string matName, string spriteName, GameObject checkers)
+    void ChangeAICheckerSprite(string planetName, string spriteName, GameObject checkers)
     {
         for (int i = checkers.transform.childCount / 2; i < checkers.transform.childCount; ++i)
         {
             checkers.transform.GetChild(i).gameObject.SetActive(true);
-            Image img = checkers.transform.GetChild(i).gameObject.GetComponent<Image>();
-            img.material = Resources.Load<Material>("Sprites/Materials/Checker/" + matName);
-            img.sprite = Resources.Load<Sprite>("Sprites/levels/checkers/" + spriteName); 
 
+            //установка спрайта
+            Image img = checkers.transform.GetChild(i).gameObject.GetComponent<Image>();
+            img.sprite = Resources.Load<Sprite>("Sprites/levels/checkers/" + spriteName);
+
+            //установка материала
+            switch (mode)
+            {
+                case GameRule.Mode.Normal:
+                    img.material = Resources.Load<Material>("Sprites/Materials/Checker/AI_CheckerGlowMat");
+                    break;
+                case GameRule.Mode.Speed:
+                    img.material = Resources.Load<Material>("Sprites/Materials/Checker/AI_CheckerDissolveMat");
+                    break;
+            }
+
+            //установка текстуры материала
+            img.material.SetTexture("_MainTex", Resources.Load<Texture>("Sprites/levels/checkers/" + spriteName));
+            img.material.SetTexture("_Emission", Resources.Load<Texture>("Sprites/Materials/Checker/" + planetName + "_GlowPartOfChecker"));
+
+            //установка цвета материала
+            TextAsset textAsset = (TextAsset)Resources.Load("XML/Game/checkerColors");
+            XElement xdoc = XDocument.Parse(textAsset.text).Element("checkerColors");
+
+            int red = 0, green = 0, blue = 0;
+            float intensity = 1f;
+
+            foreach (XElement clr in xdoc.Elements(spriteName))
+            {
+                red = int.Parse(clr.Element("red").Value);
+                green = int.Parse(clr.Element("green").Value);
+                blue = int.Parse(clr.Element("blue").Value);
+                intensity = float.Parse(clr.Element("intensity").Value, CultureInfo.InvariantCulture);
+            }
+
+            float factor = (float)Math.Exp(-5.5115115f + 0.68895733f * intensity);
+
+            Color color = new Color(red * factor, green * factor, blue * factor);
+            img.material.SetColor("_Color", color);
+
+            //установка градиента цвета трея
             Gradient gradient;
             GradientColorKey[] colorKey;
             GradientAlphaKey[] alphaKey;
 
-            // Populate the color keys at the relative time 0 and 1 (0 and 100%)
+            //_Color - id цвета в материале чекеров AI
             colorKey = new GradientColorKey[2];
-            colorKey[0].color = img.material.GetColor("Color_35045387");
+            colorKey[0].color = img.material.GetColor("_Color");
             colorKey[0].time = 0.0f;
-            colorKey[1].color = img.material.GetColor("Color_35045387");
+            colorKey[1].color = img.material.GetColor("_Color");
             colorKey[1].time = 1.0f;
 
-            // Populate the alpha  keys at relative time 0 and 1  (0 and 100%)
+            alphaKey = new GradientAlphaKey[2];
+            alphaKey[0].alpha = 1.0f;
+            alphaKey[0].time = 0.0f;
+            alphaKey[1].alpha = 0.2f;
+            alphaKey[1].time = 1.0f;
+
+            gradient = new Gradient();
+            gradient.SetKeys(colorKey, alphaKey);
+
+            TrailRenderer trailRenderer = checkers.transform.GetChild(i).gameObject.transform.GetChild(0).gameObject.GetComponent<TrailRenderer>();
+            trailRenderer.colorGradient = gradient;
+        }
+    }
+
+
+    void ChangeCheckerSprite(string spriteName, GameObject checkers)
+    {
+        for (int i = 0; i < checkers.transform.childCount / 2; ++i)
+        {
+            //установка спрайта 
+            Image userImg = checkers.transform.GetChild(i).gameObject.GetComponent<Image>();
+            userImg.sprite = Resources.Load<Sprite>("Sprites/levels/checkers/" + spriteName);
+
+            //установка материала
+            switch (mode)
+            {
+                case GameRule.Mode.Normal:
+                    userImg.material = Resources.Load<Material>("Sprites/Materials/Checker/user_CheckerGlowMat");
+                    break;
+                case GameRule.Mode.Speed:
+                    userImg.material = Resources.Load<Material>("Sprites/Materials/Checker/user_DissolveMat");
+                    break;
+            }
+
+            //установка текстуры материала
+            Texture texture = Resources.Load<Texture>("Sprites/levels/checkers/" + spriteName);
+            userImg.material.SetTexture("_MainTex", texture);
+
+            //установка цвета материала
+            TextAsset textAsset = (TextAsset)Resources.Load("XML/Game/checkerColors");
+            XElement xdoc = XDocument.Parse(textAsset.text).Element("checkerColors");
+
+            int red=0, green = 0, blue = 0;
+            float intensity = 1f;
+
+            foreach (XElement clr in xdoc.Elements(spriteName))
+            {
+                 red = int.Parse(clr.Element("red").Value);
+                 green = int.Parse(clr.Element("green").Value);
+                 blue = int.Parse(clr.Element("blue").Value);
+                 intensity = float.Parse(clr.Element("intensity").Value, CultureInfo.InvariantCulture);
+            }
+
+            float factor = (float)Math.Exp(-5.5115115f + 0.68895733f * intensity);
+
+            Color color = new Color(red * factor, green * factor, blue * factor);
+            userImg.material.SetColor("_Color", color);
+
+            //установка градиента цвета трея
+            Gradient gradient;
+            GradientColorKey[] colorKey;
+            GradientAlphaKey[] alphaKey;
+
+            //_Color - id цвета в материале чекеров 
+            colorKey = new GradientColorKey[2];
+            colorKey[0].color = userImg.material.GetColor("_Color");
+            colorKey[0].time = 0.0f;
+            colorKey[1].color = userImg.material.GetColor("_Color");
+            colorKey[1].time = 1.0f;
+
             alphaKey = new GradientAlphaKey[2];
             alphaKey[0].alpha = 1.0f;
             alphaKey[0].time = 0.0f;
@@ -199,25 +306,16 @@ public class Game : MonoBehaviour
         GameObject checkers = initGameRule();
 
         //изменение спрайтов чекеров игрока
-        for (int i = 0; i < checkers.transform.childCount / 2; ++i)
-        {
-            Image userImg = checkers.transform.GetChild(i).gameObject.transform.GetComponent<Image>();
-            userImg.sprite = Resources.Load<Sprite>("Sprites/levels/checkers/" + PlayerData.getInstance().puckSprite);
-            // userImg.material = Resources.Load<Material>("Sprites/Materials/Checker/" + playerData.puckSprite + "_glowMat");
-        }
-
-        for (int i = 0; i < checkers.transform.childCount / 2; ++i)
-        {
-            Image userImg = checkers.transform.GetChild(i).gameObject.transform.GetComponent<Image>();
-            userImg.sprite = Resources.Load<Sprite>("Sprites/levels/checkers/" + PlayerData.getInstance().puckSprite);
-            // userImg.material = Resources.Load<Material>("Sprites/Materials/Checker/" + playerData.puckSprite + "_glowMat");
-        }
+        ChangeCheckerSprite(PlayerData.getInstance().puckSprite, checkers);
 
         // Наложение соответствующий текстур
         ChangePlanetSprite(type.ToString() + "_planet");
 
-        if(GameRule.TypeAI != GameRule.AI.None)
-           ChangeCheckerSprite(type.ToString() + "_CheckerGlowMat", type.ToString() + "_checker", checkers);
+        //установка спрайтов чекеров бота
+        if (GameRule.TypeAI != GameRule.AI.None)
+            ChangeAICheckerSprite(type.ToString(), type.ToString() + "_checker", checkers);
+
+        //установка частиц
         ChangeParticle(type.ToString() + "_particle", true);
     }
 }
