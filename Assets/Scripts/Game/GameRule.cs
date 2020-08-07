@@ -59,15 +59,16 @@ public static class GameRule
     public static AI TypeAI; // Вид ИИ
     public static Gate typeGate; // Вид ворот
     public static Difficulties difficulties; // Сложность игры
+    public static List<int> levelsCount = new List<int>();
 
-    public static int planetNum, levelNum, levelsCount; // номер планеты, номер уровня и кол-во уровней планеты, необходимы для записи прогреса
+    public static int planetNum, levelNum, levelCount; // номер планеты, номер уровня и кол-во уровней планеты, необходимы для записи прогреса
     public static int target1, target2, target3; // Цели, как правило это всегда числовые значение, если это касается особенности геймплея, то это обеспечивает сам режим
 
     // Модификаторы шайб на уровни
     public static List<CheckerModifier> AIModifier = new List<CheckerModifier>();
     public static List<CheckerModifier> GlobalModifier = new List<CheckerModifier>();
 
-    //для удобства
+    //конвертация numberPlanet в GameRule.Type
     public static Type[] planetProgressNum = new Type[] { Type.lava, Type.ice, Type.sand,  Type.water, Type.jungle, };
 
     public static bool globalDiff = false; // false - сложность обычная, true - повышенная сложность для всех уровней

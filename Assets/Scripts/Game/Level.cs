@@ -1,4 +1,28 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.SceneManagement;
+
+public class LevelData
+{
+    //normal mode
+    public int time;
+    public int countCheckers;
+
+    //speed mode
+    public int minTargetCheckers;
+    public int maxTargetCheckers;
+    public int accuracy;
+
+    //general 
+    public GameRule.Mode mode; // Режим игры
+    public GameRule.Type type; // Тип планеты
+    public GameRule.AI typeAI;
+    public GameRule.Gate typeGate;
+    public GameRule.Difficulties difficulties; // Сложность игры
+    public int numLevel; // Номер уровня, необходимо знать для того чтобы в дальнейшем записать результат
+
+    public List<GameRule.CheckerModifier> AIModifier = new List <GameRule.CheckerModifier>();
+}
 
 public class Level : MonoBehaviour
 {
@@ -26,42 +50,54 @@ public class Level : MonoBehaviour
     public GameRule.AI typeAI;
     public GameRule.Gate typeGate;
     public GameRule.Difficulties difficulties; // Сложность игры
-    public int numLevel; // Номер уровня, необходимо знать для того чтобы в дальнейшем записать результат
+    //public int numLevel; // Номер уровня, необходимо знать для того чтобы в дальнейшем записать результат
 
+    static LevelData levelData = new LevelData();
 
     // Установка всех игровых правил и запус игры
-    public void setGameRule(GameObject planet)
+    public static void setGameRule(bool next, int numberPlanet, int numLevel)
     {
-        GameRule.mode = mode;
-        GameRule.type = type;
-        GameRule.typeGate = typeGate;
-        GameRule.difficulties = difficulties;
-        GameRule.levelNum = numLevel;
-        GameRule.levelsCount = planet.transform.childCount-1;
-        GameRule.TypeAI = typeAI;
+        levelData.type = GameRule.planetProgressNum[numberPlanet];
+        levelData.numLevel = numLevel;
 
-        CheckerModifiers checkerModifiers = GetComponent<CheckerModifiers>();
-        for (int i = 0; i < checkerModifiers.AIModifier.Count; ++i)
-            GameRule.AIModifier.Add(checkerModifiers.AIModifier[i]);
+        XMLManager.LoadLevel(ref levelData, levelData.type.ToString(), levelData.numLevel);
+
+        GameRule.mode = levelData.mode;
+        GameRule.type = levelData.type;
+        GameRule.TypeAI = levelData.typeAI;
+        GameRule.typeGate = levelData.typeGate;
+        GameRule.difficulties = levelData.difficulties;
+        GameRule.levelNum = levelData.numLevel;
+        GameRule.levelCount = GameRule.levelsCount[0];
+
+        for (int i = 0; i < levelData.AIModifier.Count; ++i)
+            GameRule.AIModifier.Add(levelData.AIModifier[i]);
 
         setTargets();
-
-        GameObject.FindGameObjectWithTag("MenuManager").GetComponent<MenuManager>().loadLevelDesc(this);
+        if (!next)
+        {
+            GameObject.FindGameObjectWithTag("MenuManager").GetComponent<MenuManager>().loadLevelDesc(levelData);
+        }
+        else
+        {
+            MenuManager.level = levelData;
+            SceneManager.LoadScene("Game");
+        }
     }
 
-    public void setTargets()
+    public static void setTargets()
     {
         AudioManager.PlaySound(AudioManager.Audio.select);
         switch (GameRule.mode)
         {
-            case GameRule.Mode.Normal:
-                GameRule.target2 = normal.time;
-                GameRule.target3 = normal.countCheckers;
+            case GameRule.Mode.Normal: 
+                GameRule.target2 = levelData.time;
+                GameRule.target3 = levelData.countCheckers;
                 break;
             case GameRule.Mode.Speed:
-                GameRule.target1 = speed.minTargetCheckers;
-                GameRule.target2 = speed.maxTargetCheckers;
-                GameRule.target3 = speed.accuracy;
+                GameRule.target1 = levelData.minTargetCheckers;
+                GameRule.target2 = levelData.maxTargetCheckers;
+                GameRule.target3 = levelData.accuracy;
                 break;
         }
     }

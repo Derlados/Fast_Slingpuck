@@ -18,7 +18,7 @@ public class MenuManager : MonoBehaviour
     public GameObject levelInformation; // Описание уровня
     public GameObject backBtn; //кнопка назад
     public static GameObject menu; //обьект меню
-    public static Level level; //текущий уровень
+    public static LevelData level; //текущий уровень
 
     // Уровни планеты и номер самой планеты
     private GameObject planetLevels;
@@ -44,6 +44,10 @@ public class MenuManager : MonoBehaviour
     {
         allPlanets = galaxy.transform.childCount - 2;
         planets = mainMenu;
+
+        for (int i = 0; i < allPlanets; ++i)
+             GameRule.levelsCount.Add(planets.transform.GetChild(i + 5).transform.childCount);
+       
     }
 
     private void Start()
@@ -115,7 +119,7 @@ public class MenuManager : MonoBehaviour
     public LevelDesc levelDesc;
 
     // Окно информации об уровне
-    public void loadLevelDesc(Level level)
+    public void loadLevelDesc(LevelData level)
     {
         levelDesc.fieldImage.sprite = Resources.Load<Sprite>("Sprites/MainMenu/planets/" + level.type.ToString() + "/" + level.type.ToString() + "_planet");
 
@@ -377,6 +381,12 @@ public class MenuManager : MonoBehaviour
                 planet.GetComponent<Button>().enabled = false;
             }
         }
+    }
+
+    //кнопка загрузки уровня игры
+    public void LoadLvlBtn(int num)
+    {
+        Level.setGameRule(false, numberPlanet, num);
     }
 }
 

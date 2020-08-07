@@ -9,7 +9,7 @@ public class Ads : MonoBehaviour, IUnityAdsListener
     private static Ads instance;
 
     private const string VIDEO = "rewardedVideo", BANNER = "banner";
-    private const bool TEST_MODE = false;
+    private const bool TEST_MODE = true;
 
     private int money;
     private Text text;

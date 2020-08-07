@@ -12,13 +12,13 @@ using UnityEngine.Rendering;
 // Класс отвечающий за весь UI в самой игре
 public class GameMenu : MonoBehaviour
 {
-    public GameObject pauseMenuCanvas, gameOverCanvas, capperField, PauseBtnCanvas, AdvertBtn, HomeBtn;
+    public GameObject pauseMenuCanvas, gameOverCanvas, capperField, PauseBtnCanvas, AdvertBtn, HomeBtn, LevelBtn;
     public Text gameOverText, scoreText;
     public GameObject[] goalsTexts; //goals text в паузе
     public GameObject audioBackground;
 
     public int totalMoney;
-   
+    public bool next = true;
     public void Start()
     {
         StartCoroutine(fadeInBackground());
@@ -82,7 +82,7 @@ public class GameMenu : MonoBehaviour
         if (playerData.progress[GameRule.planetNum].first[GameRule.levelNum] < stars)
             playerData.progress[GameRule.planetNum].first[GameRule.levelNum] = (byte)stars;
 
-        if (GameRule.levelNum == GameRule.levelsCount && message == "YOU WIN !" || message == "GAME OVER !")
+        if ((GameRule.levelNum == (GameRule.levelCount - 1)) && message == "YOU WIN !" || message == "GAME OVER !")
         {
             playerData.currentPlanet++;
             playerData.progress[playerData.currentPlanet].second.second = true;
@@ -113,6 +113,8 @@ public class GameMenu : MonoBehaviour
         {
             gameOverText.text = data.Element("lose").Value;
             PlayGamesPlatform.Instance.IncrementAchievement(GPGSIds.achievement_you_need_a_coach, 1, null);
+            LevelBtn.transform.GetComponent<Image>().sprite = Resources.Load<Sprite>("Sprites/GameOverMenu/repeat_btn");
+            next = false;
         }
         else
         {
@@ -198,8 +200,10 @@ public class GameMenu : MonoBehaviour
         Color32 gray = new Color32(255, 255, 255, 255);
         AdvertBtn.GetComponent<Button>().enabled = true;
         HomeBtn.GetComponent<Button>().enabled = true;
+        LevelBtn.GetComponent<Button>().enabled = true;
         AdvertBtn.GetComponent<Image>().color = gray;
         HomeBtn.GetComponent<Image>().color = gray;
+        LevelBtn.GetComponent<Image>().color = gray;
     }
 
     IEnumerator fadeInBackground()
@@ -231,6 +235,33 @@ public class GameMenu : MonoBehaviour
     public void advertBtn()
     {
         StartCoroutine(Ads.getInstance().StartAd(totalMoney, gameOverMenu.moneyTotalText));
+    }
+
+    void NextLvl()
+    {
+        if(GameRule.levelNum == (GameRule.levelCount - 1))
+        {
+            GameRule.planetNum++;
+            GameRule.levelNum = 0;
+        }
+        else
+        {
+            GameRule.levelNum++;
+        }
+        Level.setGameRule(true, GameRule.planetNum, GameRule.levelNum);
+        AudioManager.PlaySound(AudioManager.Audio.click);
+    }
+
+   void RepeatLvl()
+    {
+        Level.setGameRule(true, GameRule.planetNum, GameRule.levelNum);
+        AudioManager.PlaySound(AudioManager.Audio.click);
+    }
+
+    public void LvlBtn()
+    {
+        if (next) NextLvl();
+        else RepeatLvl();
     }
 }
 

@@ -133,7 +133,6 @@
     <Compile Include="Assets\Scripts\Ads.cs" />
     <Compile Include="Assets\Scripts\GPGSAuthentication.cs" />
     <Compile Include="Assets\Scripts\GPGSIds.cs" />
-    <Compile Include="Assets\Scripts\Game\CheckerModifiers.cs" />
     <Compile Include="Assets\Scripts\Game\Game.cs" />
     <Compile Include="Assets\Scripts\Game\GameMenu.cs" />
     <Compile Include="Assets\Scripts\Game\GameRule.cs" />
@@ -187,6 +186,7 @@
     <None Include="Assets\Resources\daily.xml" />
     <None Include="Assets\Resources\XML\Lozalization\English\Level.xml" />
     <None Include="Assets\Resources\XML\Lozalization\English\GameOverMenu.xml" />
+    <None Include="Assets\Resources\XML\Game\levels.xml" />
     <None Include="Assets\Resources\XML\Game\Difficulties.xml" />
     <None Include="Assets\Resources\XML\Lozalization\English\GameMenu.xml" />
     <None Include="Assets\GooglePlayGames\Plugins\Android\GooglePlayGamesManifest.plugin\AndroidManifest.xml" />
