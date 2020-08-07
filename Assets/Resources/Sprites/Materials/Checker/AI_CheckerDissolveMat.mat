@@ -7,8 +7,8 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: lava_CheckerGlowMat
-  m_Shader: {fileID: -6465566751694194690, guid: b68b6306f50b8074d9dc74181881852f,
+  m_Name: AI_CheckerDissolveMat
+  m_Shader: {fileID: -6465566751694194690, guid: 65f697a9f0fb5ac40b7fa051a5ead76c,
     type: 3}
   m_ShaderKeywords: ETC1_EXTERNAL_ALPHA
   m_LightmapFlags: 4
@@ -62,6 +62,7 @@ Material:
     - _BumpScale: 1
     - _Cull: 2
     - _Cutoff: 0.5
+    - _DissolveAmount: 1
     - _DstBlend: 0
     - _EnvironmentReflections: 1
     - _GlossMapScale: 0
@@ -79,11 +80,14 @@ Material:
     - _WorkflowMode: 1
     - _ZWrite: 1
     m_Colors:
-    - Color_35045387: {r: 4, g: 0.9098039, b: 0, a: 0}
+    - ColorGlow: {r: 0.03292512, g: 1.3423413, b: 6.980109, a: 1}
+    - Color_35045387: {r: 0, g: 1.8782996, b: 4.350998, a: 0}
     - Color_7EDB2AA4: {r: 1, g: 1, b: 1, a: 0.6509804}
     - Color_B4D217C0: {r: 1, g: 0.8634263, b: 0, a: 0}
+    - Color_FF3CF69: {r: 0, g: 1.8782996, b: 4.350998, a: 0}
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
-    - _Color: {r: 1, g: 1, b: 1, a: 1}
+    - _Color: {r: 4.079276, g: 0.93972856, b: 0, a: 1}
+    - _ColorGlow: {r: 0, g: 0, b: 0, a: 0}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _SpecColor: {r: 0.2, g: 0.2, b: 0.2, a: 1}
 --- !u!114 &6348146872216965659

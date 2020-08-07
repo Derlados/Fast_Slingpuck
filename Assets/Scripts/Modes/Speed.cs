@@ -7,7 +7,7 @@ using GooglePlayGames;
 
 public class Speed : MonoBehaviour, Mode
 {
-    const int GAME_TIME_SEC = 1000;
+    const int GAME_TIME_SEC = 10;
 
     public GameObject AI;
     public GameObject capperField;

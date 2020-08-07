@@ -7,8 +7,8 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: jungle_CheckerGlowMat
-  m_Shader: {fileID: -6465566751694194690, guid: b68b6306f50b8074d9dc74181881852f,
+  m_Name: user_CheckerGlowMat
+  m_Shader: {fileID: -6465566751694194690, guid: 48c234c9b174e0a4989a641a290bb64b,
     type: 3}
   m_ShaderKeywords: ETC1_EXTERNAL_ALPHA
   m_LightmapFlags: 4
@@ -29,7 +29,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Emission:
-        m_Texture: {fileID: 2800000, guid: cf2821faa1371d748b2deb4cdf1e9b24, type: 3}
+        m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Emission2:
@@ -41,7 +41,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MainTex:
-        m_Texture: {fileID: 2800000, guid: 362ca9592934ee14e9e8808c4ef85845, type: 3}
+        m_Texture: {fileID: 2800000, guid: 7e94508791ba32341a899edaca189452, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MetallicGlossMap:
@@ -79,11 +79,13 @@ Material:
     - _WorkflowMode: 1
     - _ZWrite: 1
     m_Colors:
-    - Color_35045387: {r: 0.2246739, g: 0.44327557, b: 0, a: 1}
+    - ColorGlow: {r: 9.3189945, g: 9.3189945, b: 9.3189945, a: 1}
+    - Color_35045387: {r: 0, g: 1.8782996, b: 4.350998, a: 0}
     - Color_7EDB2AA4: {r: 1, g: 1, b: 1, a: 0.6509804}
     - Color_B4D217C0: {r: 1, g: 0.8634263, b: 0, a: 0}
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
-    - _Color: {r: 1, g: 1, b: 1, a: 1}
+    - _Color: {r: 0, g: 3.2463467, b: 6.7396984, a: 1}
+    - _ColorGlow: {r: 1, g: 0.378372, b: 0.0235849, a: 0}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _SpecColor: {r: 0.2, g: 0.2, b: 0.2, a: 1}
 --- !u!114 &6348146872216965659

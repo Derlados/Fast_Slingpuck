@@ -37,8 +37,6 @@ public class Normal : MonoBehaviour, Mode
         StartCoroutine(delayBeforeStart(3));
     }
 
-
-
     public void initScene()
     {
         game = GetComponent<Game>();

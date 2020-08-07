@@ -1,18 +1,5 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &-8642665977173453129
-MonoBehaviour:
-  m_ObjectHideFlags: 11
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d0353a89b1f911e48b9e16bdc9f2e058, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  version: 1
 --- !u!21 &2100000
 Material:
   serializedVersion: 6
@@ -20,8 +7,8 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: DissolveMat
-  m_Shader: {fileID: -6465566751694194690, guid: ed428d20e523af8499f80ed5ea434c68,
+  m_Name: AI_CheckerGlowMat
+  m_Shader: {fileID: -6465566751694194690, guid: b68b6306f50b8074d9dc74181881852f,
     type: 3}
   m_ShaderKeywords: ETC1_EXTERNAL_ALPHA
   m_LightmapFlags: 4
@@ -42,7 +29,11 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Emission:
-        m_Texture: {fileID: 2800000, guid: 1d0845de4be698848aecd93608fae76d, type: 3}
+        m_Texture: {fileID: 2800000, guid: adb23f0b568563d4e89eef61d7e7bff7, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _Emission2:
+        m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _EmissionMap:
@@ -50,7 +41,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MainTex:
-        m_Texture: {fileID: 2800000, guid: d31a17c205e8a64429f53e16b2a8b766, type: 3}
+        m_Texture: {fileID: 2800000, guid: 3da3be29697df4c46b1f312e4033ff34, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MetallicGlossMap:
@@ -65,18 +56,12 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
-    - _Texture2DAsset_4C84473_Out_0:
-        m_Texture: {fileID: 2800000, guid: 1d0845de4be698848aecd93608fae76d, type: 3}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
     m_Floats:
     - _AlphaClip: 0
     - _Blend: 0
     - _BumpScale: 1
     - _Cull: 2
     - _Cutoff: 0.5
-    - _DisovleAmount: 0.81
-    - _DissolveAmount: 1
     - _DstBlend: 0
     - _EnvironmentReflections: 1
     - _GlossMapScale: 0
@@ -94,7 +79,25 @@ Material:
     - _WorkflowMode: 1
     - _ZWrite: 1
     m_Colors:
+    - ColorGlow: {r: 0.03292512, g: 1.3423413, b: 6.980109, a: 1}
+    - Color_35045387: {r: 0, g: 1.8782996, b: 4.350998, a: 0}
+    - Color_7EDB2AA4: {r: 1, g: 1, b: 1, a: 0.6509804}
+    - Color_B4D217C0: {r: 1, g: 0.8634263, b: 0, a: 0}
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
-    - _Color: {r: 0, g: 3.193165, b: 6.6292915, a: 1}
+    - _Color: {r: 4.079276, g: 0.93972856, b: 0, a: 1}
+    - _ColorGlow: {r: 1, g: 0.378372, b: 0.0235849, a: 0}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _SpecColor: {r: 0.2, g: 0.2, b: 0.2, a: 1}
+--- !u!114 &6348146872216965659
+MonoBehaviour:
+  m_ObjectHideFlags: 11
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0353a89b1f911e48b9e16bdc9f2e058, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  version: 1
