@@ -3,8 +3,8 @@
   <begginer>
     <mode>Begginer</mode>
     <speedAI>15</speedAI>
-	  <accuracyAI>0.2</accuracyAI>
-	  <timeRest>1.2</timeRest>
+	<accuracyAI>0.2</accuracyAI>
+	<timeRest>1.2</timeRest>
   </begginer>
   <skilled>
     <mode>Skilled</mode>
