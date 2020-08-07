@@ -185,7 +185,7 @@ public class Game : MonoBehaviour
     public void loadMusic()
     {
         AudioSource audioSource = backgroundMusic.transform.GetComponent<AudioSource>();
-        if (GameRule.levelNum == GameRule.levelsCount)
+        if (GameRule.levelNum == (GameRule.levelCount - 1))
             audioSource.clip = Resources.Load<AudioClip>("Audio/Game/songs/boss");
         else
             audioSource.clip = Resources.Load<AudioClip>("Audio/Game/songs/" + type.ToString() + "_level");

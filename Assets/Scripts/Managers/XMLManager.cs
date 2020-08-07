@@ -70,6 +70,49 @@ public class XMLManager
         }
     }
 
+    /* Универсальная загрузка сложностей
+     * Параметры:
+     * data - класс который необходимо сериализовать
+     * planet - название планеты (берется из GameRule.Type)
+     * level - номер уровня на планете
+     */
+    public static void LoadLevel(ref LevelData data, string planet, int level)
+    {
+        TextAsset textAsset = (TextAsset)Resources.Load("XML/Game/levels");
+        XElement xdoc = XDocument.Parse(textAsset.text).Element("levels");
+
+        foreach (XElement pln in xdoc.Elements(planet))
+        {
+            foreach (XElement lvl in pln.Elements("lvl_" + level.ToString()))
+            {
+                foreach (XElement normal in lvl.Elements("normal"))
+                {
+                    data.time = int.Parse(normal.Element("time").Value);
+                    data.countCheckers = int.Parse(normal.Element("countCheckers").Value);
+                }
+
+                foreach (XElement speed in lvl.Elements("speed"))
+                {
+                    data.minTargetCheckers = int.Parse(speed.Element("minTargetCheckers").Value);
+                    data.maxTargetCheckers = int.Parse(speed.Element("maxTargetCheckers").Value);
+                    data.accuracy = int.Parse(speed.Element("accuracy").Value);
+                }
+
+                data.mode = (GameRule.Mode)System.Enum.Parse(typeof(GameRule.Mode), lvl.Element("mode").Value);
+                data.typeAI = (GameRule.AI)System.Enum.Parse(typeof(GameRule.AI), lvl.Element("typeAI").Value);
+                data.typeGate = (GameRule.Gate)System.Enum.Parse(typeof(GameRule.Gate), lvl.Element("typeGate").Value);
+                data.difficulties = (GameRule.Difficulties)System.Enum.Parse(typeof(GameRule.Difficulties), lvl.Element("difficulties").Value);
+
+                foreach (XElement chkMod in lvl.Elements("AIModifier"))
+                {
+                    int size = int.Parse(chkMod.Element("size").Value);
+                    for (int i = 0; i < size; ++i)
+                        data.AIModifier.Add((GameRule.CheckerModifier)System.Enum.Parse(typeof(GameRule.CheckerModifier), chkMod.Element("checkerModifier" + i).Value));
+                }
+            }
+        }
+    }
+    
 
     /* Универсальная загрузка данных в магазин
      * Параметры:
