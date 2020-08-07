@@ -89,7 +89,7 @@ public class Checker : MonoBehaviour
 
     private void OnMouseDrag()
     {
-        if (!stop && field == Field.Down)
+        if (!stop) //&& field == Field.Down)
         {
             Vector2 Cursor = Input.mousePosition;
             Cursor = Camera.main.ScreenToWorldPoint(Cursor);

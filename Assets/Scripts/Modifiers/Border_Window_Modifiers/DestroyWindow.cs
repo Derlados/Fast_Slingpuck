@@ -13,10 +13,14 @@ public class DestroyWindow : Window
     public override void Action(Collider2D collision)
     {
         Checker check = collision.gameObject.GetComponent<Checker>();
+
+        if (check.GetComponent<Destroy>().destroy)
+            return;
+
         if ((collision.gameObject.transform.position.y > 0 && check.field == Checker.Field.Down) || (collision.gameObject.transform.position.y < 0 && check.field == Checker.Field.Up))
         {
             game.GetComponent<Mode>().changeCount(collision.gameObject);
-            check.changeField();
+            check.GetComponent<CircleCollider2D>().isTrigger = true;
             check.GetComponent<Destroy>().OnTrigger();
             for (int i = 0; i < gate.Length; ++i)
                 gate[i].goalReaction();

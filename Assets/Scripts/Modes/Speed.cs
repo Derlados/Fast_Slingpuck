@@ -7,6 +7,8 @@ using GooglePlayGames;
 
 public class Speed : MonoBehaviour, Mode
 {
+    const int GAME_TIME_SEC = 1000;
+
     public GameObject AI;
     public GameObject capperField;
     public GameObject gameMenu;
@@ -196,7 +198,7 @@ public class Speed : MonoBehaviour, Mode
             }
         }
 
-        StartCoroutine(counter(10));
+        StartCoroutine(counter(GAME_TIME_SEC));
     }
 
     // Таймер игры

@@ -1,39 +1,55 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using UnityEngine;
 
 // Движущееся окно
 public class MovementGate : Gate
 {
-    protected RectTransform rectLeft, rectRight;
-
     protected float stepScreen, stepWorld; // шаг, для движения за один такт (в экранном режиме и в режиме реального пространтсва)
 
     protected Transform leftPos, rightPos, windowPos;
     protected BoxCollider2D leftBorderCol, rightBorderCol;
+    protected Vector2 worldLeftBorderWindow, worldRightBorderWindow, currentTarget;
+    protected float screenLeftBorderWindow, screenRightBorderWindow;
+    protected RectTransform rectLeftBorder, rectRightBorder, rectWindow;
 
     public void Start()
     {
-        // RectTransform окон и границ
-        rectLeft = leftBorder.GetComponent<RectTransform>();
-        rectRight = rightBorder.GetComponent<RectTransform>();
+        rectWindow = window.GetComponent<RectTransform>();
+        rectLeftBorder = leftBorder.GetComponent<RectTransform>();
+        rectRightBorder = rightBorder.GetComponent<RectTransform>();
 
-        // Transform окон и границ
-        leftPos = rectLeft.transform;
-        rightPos = rectRight.transform;
-        windowPos = window.transform;
+        // Границы в экранном пространстве
+        screenLeftBorderWindow = Screen.width * rectLeftBorder.anchorMin.x + rectWindow.rect.width / 2;
+        screenRightBorderWindow = Screen.width * rectRightBorder.anchorMax.x - rectWindow.rect.width / 2;
 
-        // Коллайдеры границ
-        leftBorderCol = leftBorder.GetComponent<BoxCollider2D>();
-        rightBorderCol = rightBorder.GetComponent<BoxCollider2D>();
+        // Границы в мировых координатах
+        worldLeftBorderWindow =  new Vector2(Camera.main.ScreenToWorldPoint(new Vector2(screenLeftBorderWindow, 0)).x, 0);
+        worldRightBorderWindow = new Vector2(Camera.main.ScreenToWorldPoint(new Vector2(screenRightBorderWindow, 0)).x, 0);
+
+        // Увеличение размера границ в два раза (потому что идет смещение всех ворот сразу, отстальная часть за экраном)
+        rectLeftBorder.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, rectLeftBorder.rect.width * 2f);
+        rectRightBorder.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, rectRightBorder.rect.width * 2f);
+
+        // Смещение позиции границ (для корректного отображения)
+        leftBorder.transform.position = new Vector2(Camera.main.ScreenToWorldPoint(new Vector2(Screen.width * rectLeftBorder.anchorMin.x, 0)).x, leftBorder.transform.position.y);
+        rightBorder.transform.position = new Vector2(Camera.main.ScreenToWorldPoint(new Vector2(Screen.width * rectRightBorder.anchorMax.x, 0)).x, rightBorder.transform.position.y);
+
+        // Модифицикация колайдеров
+        BoxCollider2D leftBorderCol = leftBorder.GetComponent<BoxCollider2D>(), rightBorderCol = rightBorder.GetComponent<BoxCollider2D>();
+        leftBorderCol.size = new Vector2(leftBorderCol.size.x * 2, leftBorderCol.size.y);
+        rightBorderCol.size = new Vector2(rightBorderCol.size.x * 2, rightBorderCol.size.y); ;
 
         // Шаг для изменения размеров и позиции объектов и границы где может находится окно (последнее необходимо для прогнозирования)
         float left, right;
-        left = rectRight.anchorMax.x * Screen.width;
-        right = rectLeft.anchorMin.x * Screen.width;
+        left = rectRightBorder.anchorMax.x * Screen.width;
+        right = rectLeftBorder.anchorMin.x * Screen.width;
 
 
         stepScreen = (left - right) / (speedTime / Time.fixedDeltaTime);
         stepWorld = Camera.main.ScreenToWorldPoint(new Vector2(stepScreen, 0)).x - Camera.main.ScreenToWorldPoint(new Vector2(0, 0)).x;
+
+        currentTarget = worldLeftBorderWindow; // Текущее движение окна (в левую сторону)
     }
 
     // Update is called once per frame
@@ -41,48 +57,35 @@ public class MovementGate : Gate
     {
         if (Game.activeGame)
         {
-            // Модифицируем объекты по размеру и смещаем позиции
-            rectLeft.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, rectLeft.rect.width - stepScreen);
-            leftPos.position = new Vector3(leftPos.position.x - stepWorld / 2, leftPos.position.y, leftPos.position.z);
-
-            rectRight.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, rectRight.rect.width + stepScreen);
-            rightPos.position = new Vector3(rightPos.position.x - stepWorld / 2, rightPos.position.y, rightPos.position.z);
-
-            windowPos.position = new Vector3(windowPos.position.x - stepWorld, windowPos.position.y, windowPos.position.z);
-
-            // Модифицикация колайдеров
-            leftBorderCol.size = new Vector2(rectLeft.rect.width, rectLeft.rect.height);
-            rightBorderCol.size = new Vector2(rectRight.rect.width, rectRight.rect.height);
+            gameObject.transform.position = Vector2.MoveTowards(gameObject.transform.position, currentTarget, stepWorld);
 
             // Смена направления
-            if (rectLeft.rect.width < 0 || rectRight.rect.width < 0)
-            {
-                stepWorld = -stepWorld;
-                stepScreen = -stepScreen;
-            }
+            if ((Vector2)gameObject.transform.position == worldLeftBorderWindow)
+                currentTarget = worldRightBorderWindow;
+            else if ((Vector2)gameObject.transform.position == worldRightBorderWindow)
+                currentTarget = worldLeftBorderWindow;
+
         }
     }
 
-    // Вариант через симуляцию
+    // Симуляция для прогнозирования
     public override float calculatePos(float sec)
     {
-        float leftSize = rectLeft.rect.width, rightSize = rectRight.rect.width, posX = windowPos.position.x;
-        float tempStepWorld = stepWorld, tempStepScreen = stepScreen;
+        Vector2 currTarget = currentTarget;
+        float posX = gameObject.transform.position.x, stWorld = stepWorld;
 
         sec += 0.03f;
 
+        if (currTarget == worldRightBorderWindow)
+            stWorld = -stWorld;
+
+
         for (float i = 0; i <= sec; i += Time.fixedDeltaTime)
         {
-            leftSize -= tempStepScreen;
-            rightSize += tempStepScreen;
+            posX -= stWorld;
 
-            posX -= tempStepWorld;
-
-            if (leftSize < 0 || rightSize < 0)
-            {
-                tempStepWorld = -tempStepWorld;
-                tempStepScreen = -tempStepScreen;
-            }
+            if (posX <= worldLeftBorderWindow.x || posX >= worldRightBorderWindow.x)
+                stWorld = -stWorld;
         }
 
         return posX;

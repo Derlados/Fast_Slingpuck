@@ -100,7 +100,7 @@ public class BezierLine : MonoBehaviour
             objTransform = checker.GetComponent<Transform>();
             checker.body.velocity *= 0;
             checker.angle = DownString ? 0 : 180;
-            pushChecker(collision.gameObject.GetComponent<Checker>(), 0.5f);
+            pushChecker(collision.gameObject.GetComponent<Checker>(), 0.25f);
         }
     }
 
