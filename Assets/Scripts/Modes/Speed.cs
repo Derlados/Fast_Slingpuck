@@ -100,10 +100,13 @@ public class Speed : MonoBehaviour, Mode
     public void gameOver()
     {
         calculateResult();
-        if (GameRule.TypeAI != GameRule.AI.None)
-            AI.GetComponent<AI>().active = false;
-        gameMenu.GetComponent<GameMenu>().gameOver("GAME OVER!", game.countStars, money1, money2, money3);
+        if (GameRule.TypeAI != GameRule.AI.None) 
+             AI.GetComponent<AI>().active = false;
+        gameMenu.GetComponent<GameMenu>().gameOver(game.countStars == 0 ? "YOU LOSE !" : "YOU WIN !", game.countStars, money1, money2, money3);
         game.ChangeParticle(GameRule.type.ToString() + "_particle", false);
+
+      
+
     }
 
     public void calculateResult()

@@ -115,12 +115,7 @@ public class GameMenu : MonoBehaviour
             PlayGamesPlatform.Instance.IncrementAchievement(GPGSIds.achievement_you_need_a_coach, 1, null);
             LevelBtn.transform.GetComponent<Image>().sprite = Resources.Load<Sprite>("Sprites/GameOverMenu/repeat_btn");
             next = false;
-        }
-        else
-        {
-            gameOverText.text = data.Element("gameOver").Value;
-            PlayGamesPlatform.Instance.IncrementAchievement(GPGSIds.achievement_you_need_a_coach, 1, null);
-        }   
+        } 
     }
 
     [System.Serializable]
