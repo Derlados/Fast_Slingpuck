@@ -178,7 +178,6 @@ public class AI : MonoBehaviour
     IEnumerator delayAddChecker(float sec, Checker checker)
     {
         yield return new WaitForSeconds(sec);
-        statusType = Status.free;
         checkers.Add(checker);
     }
 

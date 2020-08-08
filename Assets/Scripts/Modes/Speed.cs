@@ -104,9 +104,6 @@ public class Speed : MonoBehaviour, Mode
              AI.GetComponent<AI>().active = false;
         gameMenu.GetComponent<GameMenu>().gameOver(game.countStars == 0 ? "YOU LOSE !" : "YOU WIN !", game.countStars, money1, money2, money3);
         game.ChangeParticle(GameRule.type.ToString() + "_particle", false);
-
-      
-
     }
 
     public void calculateResult()

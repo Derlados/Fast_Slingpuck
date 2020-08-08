@@ -30,7 +30,7 @@ public class GameMenu : MonoBehaviour
         AudioManager.PlaySound(AudioManager.Audio.click);
         Time.timeScale = 0f;
 
-        capperField.SetActive(true);
+       // capperField.SetActive(true);
         pauseMenuCanvas.SetActive(true);
         PauseBtnCanvas.SetActive(false);
 
@@ -50,7 +50,7 @@ public class GameMenu : MonoBehaviour
     {
         Time.timeScale = 1f;
         audioBackground.transform.GetComponent<AudioSource>().volume = PlayerData.getInstance().volume;
-        capperField.SetActive(false);
+       // capperField.SetActive(false);
         pauseMenuCanvas.SetActive(false);
         PauseBtnCanvas.SetActive(true);
         AudioManager.PlaySound(AudioManager.Audio.click);
@@ -64,6 +64,7 @@ public class GameMenu : MonoBehaviour
         LocalizationManager.clear();
         SceneManager.LoadScene("GameMenu");
     }
+
     public void gameOver(string message, int stars, int money1, int money2, int money3)
     {
         Game.activeGame = false;
