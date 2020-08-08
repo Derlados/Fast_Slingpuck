@@ -4,14 +4,14 @@
     <red>191</red>
 	<green>44</green>
 	<blue>0</blue>
-	<intensity>2.416924</intensity>
+	<intensity>2.0</intensity>
   </lava_checker>
 
   <ice_checker>
     <red>1</red>
 	<green>37</green>
 	<blue>191</blue>
-	<intensity>3.220174</intensity>
+	<intensity>2.2</intensity>
   </ice_checker>
   
   <jungle_checker>
@@ -25,7 +25,7 @@
     <red>191</red>
 	<green>149</green>
 	<blue>14</blue>
-	<intensity>1.982163</intensity>
+	<intensity>2.2</intensity>
   </sand_checker>
   
   <water_checker>
